@@ -1,0 +1,25 @@
+{
+  "2025": {
+    "weeks": [
+      {"week": 1, "highScore": "Zak, 134.16", "lowScore": "Ben, 94.56", "highPlayer": "James - Saquon (34.2)", "lowPlayer": "Nathan - Kincaid (1.10)", "waiver": "-"},
+      {"week": 2, "highScore": "Zak, 130.90", "lowScore": "Lance, 100.06", "highPlayer": "Ben - Kamara (43)", "lowPlayer": "Ben - Kelce (0.6)", "waiver": "Aron - Zach Charbonnet (8)"}
+    ],
+    "standings": [
+      {"rank": 1, "player": "Zak", "record": "9-6", "pf": 1716.18, "pa": 1565.1},
+      {"rank": 2, "player": "Lance", "record": "8-7", "pf": 1623.84, "pa": 1668.38}
+    ],
+    "champion": "TBD"
+  },
+  "2024": {
+    "weeks": [],
+    "standings": [],
+    "champion": "Zak"
+  },
+  "hallOfFame": {
+    "champions": [
+      {"year": 2024, "champion": "Zak"},
+      {"year": 2023, "champion": "Ethan"}
+    ],
+    "championships": {"Aron": 3, "Ben": 1, "Ethan": 2, "James": 2, "Lance": 3, "Nathan": 1, "Zak": 2}
+  }
+}
