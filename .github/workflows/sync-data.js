@@ -15,53 +15,55 @@ function fetchSheet(gid) {
 }
 
 async function sync() {
-  const weeks = await fetchSheet(142810151);
-  const standings = await fetchSheet(869048924);
-  const hof = await fetchSheet(514323247);
-  const champ = await fetchSheet(286305454);
+  try {
+    console.log('Fetching sheets...');
+    const weeks = await fetchSheet(142810151);
+    const standings = await fetchSheet(869048924);
+    const hof = await fetchSheet(514323247);
+    const champ = await fetchSheet(286305454);
 
-  const parseCSV = (csv) => {
-    const lines = csv.trim().split('\n');
-    const headers = lines[0].split(',').map(h => h.trim());
-    return lines.slice(1).map(line => {
-      const obj = {};
-      line.split(',').forEach((v, i) => obj[headers[i]] = v.trim());
-      return obj;
-    });
-  };
+    console.log('Weeks CSV (first 200 chars):', weeks.substring(0, 200));
+    console.log('Standings CSV (first 200 chars):', standings.substring(0, 200));
+    console.log('HOF CSV (first 200 chars):', hof.substring(0, 200));
+    console.log('Champ CSV (first 200 chars):', champ.substring(0, 200));
 
-  const weeksData = parseCSV(weeks).filter(r => r.Week);
-  const standingsData = parseCSV(standings).filter(r => r.Rank);
-  const hofData = parseCSV(hof).filter(r => r.Year);
-  const champData = parseCSV(champ).filter(r => r.Player);
+    const parseCSV = (csv) => {
+      const lines = csv.trim().split('\n');
+      const headers = lines[0].split(',').map(h => h.trim());
+      console.log('Headers:', headers);
+      return lines.slice(1).map(line => {
+        const obj = {};
+        line.split(',').forEach((v, i) => obj[headers[i]] = v.trim());
+        return obj;
+      });
+    };
 
-  const data = {
-    '2025': {
-      weeks: weeksData.map(r => ({
-        week: parseInt(r.Week),
-        highScore: `${r.High_Scorer}, ${r.High_Score}`,
-        lowScore: `${r.Low_Scorer}, ${r.Low_Score}`,
-        highPlayer: r.Highest_Player,
-        lowPlayer: r.Lowest_Player,
-        waiver: r.Most_Expensive_waiver || '-'
-      })),
-      standings: standingsData.map(r => ({
-        rank: parseInt(r.Rank),
-        player: r.Player,
-        record: r.Record,
-        pf: parseFloat(r.Points_For.replace(/,/g, '')) || 0,
-        pa: parseFloat(r.Points_Against.replace(/,/g, '')) || 0
-      })),
-      champion: standingsData[0]?.Player || null
-    },
-    hallOfFame: {
-      champions: hofData.map(r => ({ year: parseInt(r.Year), champion: r.Champion })),
-      championships: Object.fromEntries(champData.map(r => [r.Player, parseInt(r.Total)]))
-    }
-  };
+    const weeksData = parseCSV(weeks);
+    console.log('Weeks parsed:', weeksData.length, 'rows');
+    console.log('First week row:', weeksData[0]);
 
-  fs.writeFileSync('public/data.json', JSON.stringify(data, null, 2));
-  console.log('✅ Synced!');
+    const data = {
+      '2025': {
+        weeks: weeksData.map(r => ({
+          week: parseInt(r.Week),
+          highScore: `${r.High_Scorer}, ${r.High_Score}`,
+          lowScore: `${r.Low_Scorer}, ${r.Low_Score}`,
+          highPlayer: r.Highest_Player,
+          lowPlayer: r.Lowest_Player,
+          waiver: r.Most_Expensive_waiver || '-'
+        })),
+        standings: [],
+        champion: null
+      },
+      hallOfFame: { champions: [], championships: {} }
+    };
+
+    fs.writeFileSync('public/data.json', JSON.stringify(data, null, 2));
+    console.log('✅ Done!');
+  } catch (e) {
+    console.error('❌ Error:', e);
+    process.exit(1);
+  }
 }
 
-sync().catch(e => { console.error(e); process.exit(1); });
+sync();
