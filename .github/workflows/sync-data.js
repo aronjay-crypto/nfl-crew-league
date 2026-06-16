@@ -26,34 +26,4 @@ function fetchSheet(gid) {
   });
 }
 
-function parseCSV(csv) {
-  const lines = csv.trim().split('\n').filter(l => l.trim());
-  if (lines.length < 2) return [];
-  
-  const headers = lines[0].split(',').map(h => h.trim());
-  const rows = [];
-  
-  for (let i = 1; i < lines.length; i++) {
-    const values = lines[i].split(',').map(v => v.trim());
-    const obj = {};
-    headers.forEach((h, idx) => {
-      obj[h] = values[idx] || '';
-    });
-    rows.push(obj);
-  }
-  return rows;
-}
-
-async function build() {
-  try {
-    const data = {};
-
-    // Fetch 2025 Weeks
-    console.log('Fetching 2025 Weeks...');
-    const weeksCsv = await fetchSheet(sheets['2025_Weeks']);
-    const weeksData = parseCSV(weeksCsv);
-    console.log(`Parsed ${weeksData.length} weeks`);
-
-    data['2025'] = {
-      weeks: weeksData
-        .filter(row => row.Week && row.Week.trim())
+functio
