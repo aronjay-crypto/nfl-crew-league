@@ -5,10 +5,10 @@ const SHEET_ID = '1XSztc0Pp9sIjZImnRQBfA_zPymtdMJr0ekuVFG1CLuE';
 
 // Sheet names and their GIDs (you may need to adjust these)
 const sheets = {
-  '2025_Weeks': 286305454,
-  '2025_Standings': 0,
-  'Hall_of_Fame': 1,
-  'Championships': 2
+  '2025_Weeks': 142810151,
+  '2025_Standings': 869048924,
+  'Hall_of_Fame': 514323247,
+  'Championships': 286305454
 };
 
 async function fetchSheet(sheetName, gid) {
