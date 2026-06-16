@@ -1,177 +1,732 @@
 {
-  "2025": {
-    "weeks": [
-      {"week": 1, "highScore": "Lance, 123.82", "lowScore": "Nathan, 63.64", "highPlayer": "Zak, Josh Allen, 39.76", "lowPlayer": "Zak, A.J Brown, 0.8", "waiver": "-"},
-      {"week": 2, "highScore": "Lance, 136.44", "lowScore": "Ben, 94.60", "highPlayer": "Aron, Amon Ra St Brown, 31.20", "lowPlayer": "Jamie, Derrick Henry, -0.7", "waiver": "Ben, Keon Coleman, 14"},
-      {"week": 3, "highScore": "Ethan, 117.92", "lowScore": "Zak, 89.92", "highPlayer": "James, Jonathan Taylor, 30.80", "lowPlayer": "Aron, Chase Brown, 1.0", "waiver": "James, Daniel Jones, 12"},
-      {"week": 4, "highScore": "James, 129.92", "lowScore": "Jamie, 107.12", "highPlayer": "Aron, Jeanty, 31.50", "lowPlayer": "Zak, A.J Brown, 0.7", "waiver": "Aron, Trey Benson, 71"},
-      {"week": 5, "highScore": "Zak, 136.72", "lowScore": "Ethan, 86.52", "highPlayer": "James, Jonathan Taylor, 30.60", "lowPlayer": "James, Quetin Johnston, 1.9", "waiver": "Ethan, Darren Waller, 10"},
-      {"week": 6, "highScore": "Jamie, 156.54", "lowScore": "Ben, 74.94", "highPlayer": "James, Bijan, 30.80", "lowPlayer": "Ben, Garrett Wilson, 1.3", "waiver": "Aron, Stefon Diggs, 17"},
-      {"week": 7, "highScore": "Jamie, 150.08", "lowScore": "Nathan, 65.34", "highPlayer": "Jamie, CMC, 33.10", "lowPlayer": "Zak, Caleb williams, -0.82", "waiver": "Ben, Kayshon Boutte, 8"},
-      {"week": 8, "highScore": "Aron, 134.75", "lowScore": "James, 84.08", "highPlayer": "James, Jonathan Taylor, 36.40", "lowPlayer": "James + Nathan, Jake Ferguson + Hollywood Brown, 1", "waiver": "Ben, Tez Johnson, 9"},
-      {"week": 9, "highScore": "Zak, 129.82", "lowScore": "Ben, 67.02", "highPlayer": "James, Caleb Williams, 36.70", "lowPlayer": "Ben, Kamara, -1.3", "waiver": "Nathan, Tyrone Tracey, 51"},
-      {"week": 10, "highScore": "Nathan, 155.30", "lowScore": "Zak, 97.74", "highPlayer": "James, Jonathan Taylor, 46.60", "lowPlayer": "Zak, A.J Brown, 1.3", "waiver": "Ben + Lance, Demercado + Singletary, 12"},
-      {"week": 11, "highScore": "Nathan, 127.54", "lowScore": "Ethan, 67.32", "highPlayer": "Zak, Josh Allen, 41.68", "lowPlayer": "Zak, Khalil Shakir, -0.3", "waiver": "Lance, RJ Harvey, 31"},
-      {"week": 12, "highScore": "Jamie, 148.76", "lowScore": "Nathan, 83.22", "highPlayer": "Ethan, Gibbs, 46.40", "lowPlayer": "Aron, Swift, -0.1", "waiver": "Ben, Sean Tucker, 15"},
-      {"week": 13, "highScore": "Lance, 150.34", "lowScore": "Ethan, 66.04", "highPlayer": "Lance, Mahomes, 29.44", "lowPlayer": "Ben, Justin Jefferson, 0.9", "waiver": "Nathan, Jordyn Brooks, 6"},
-      {"week": 14, "highScore": "Lance, 164.94", "lowScore": "Aron, 92.74", "highPlayer": "Zak, Josh Allen, 37.84", "lowPlayer": "James, Jalen Hurt, -2.7", "waiver": "-"},
-      {"week": 15, "highScore": "James, 179", "lowScore": "Ben, 83.26", "highPlayer": "James, Kyle Pitts!, 35.60", "lowPlayer": "Lance, Judkins, 1.7", "waiver": "-"},
-      {"week": 16, "highScore": "Jamie, 146.30", "lowScore": "Zak, 75.70", "highPlayer": "Lance, Puca, 36.50", "lowPlayer": "Aron, Dartmania, -0.98", "waiver": "-"},
-      {"week": 17, "highScore": "-", "lowScore": "-", "highPlayer": "-", "lowPlayer": "-", "waiver": "-"}
-    ],
+  "2020": {
+    "weeks": [],
     "standings": [
-      {"rank": 1, "player": "Lance", "record": "-", "pf": 0, "pa": 0},
-      {"rank": 2, "player": "James", "record": "-", "pf": 0, "pa": 0},
-      {"rank": 3, "player": "Zak", "record": "-", "pf": 0, "pa": 0},
-      {"rank": 4, "player": "Nathan", "record": "-", "pf": 0, "pa": 0},
-      {"rank": 5, "player": "Jamie", "record": "-", "pf": 0, "pa": 0},
-      {"rank": 6, "player": "Aron", "record": "-", "pf": 0, "pa": 0},
-      {"rank": 7, "player": "Ben", "record": "-", "pf": 0, "pa": 0},
-      {"rank": 8, "player": "Ethan", "record": "-", "pf": 0, "pa": 0}
+      {
+        "rank": 1,
+        "player": "Lance",
+        "record": "11-3",
+        "pf": 1762.14,
+        "pa": 1499.14
+      },
+      {
+        "rank": 2,
+        "player": "Aron",
+        "record": "9-5",
+        "pf": 1664.2,
+        "pa": 1597.96
+      },
+      {
+        "rank": 3,
+        "player": "Ethan",
+        "record": "8-6",
+        "pf": 1566.52,
+        "pa": 1520.5
+      },
+      {
+        "rank": 4,
+        "player": "Zak",
+        "record": "7-7",
+        "pf": 1723.38,
+        "pa": 1650.66
+      },
+      {
+        "rank": 5,
+        "player": "Ben",
+        "record": "6-8",
+        "pf": 1600.62,
+        "pa": 1609.72
+      },
+      {
+        "rank": 6,
+        "player": "Nathan",
+        "record": "6-8",
+        "pf": 1565.82,
+        "pa": 1629.46
+      },
+      {
+        "rank": 7,
+        "player": "James",
+        "record": "5-9",
+        "pf": 1485.38,
+        "pa": 1652.4
+      },
+      {
+        "rank": 8,
+        "player": "Jamie",
+        "record": "4-10",
+        "pf": 1485.62,
+        "pa": 1693.84
+      }
     ],
-    "champion": "TBD"
+    "champion": "Aron"
   },
-  "2024": {
-    "weeks": [
-      {"week": 1, "highScore": "Zak, 134.16", "lowScore": "Ben, 94.56", "highPlayer": "James, Saquon, 34.2", "lowPlayer": "Nathan, Kincaid, 1.10", "waiver": "-"},
-      {"week": 2, "highScore": "Zak, 130.90", "lowScore": "Lance, 100.06", "highPlayer": "Ben, Kamara, 43", "lowPlayer": "Ben, Kelce, 0.6", "waiver": "Aron, Zach Charbonnet, 8"},
-      {"week": 3, "highScore": "Jamie, 143.08", "lowScore": "Lance, 72.28", "highPlayer": "Ethan, Josh Allen, 30.92", "lowPlayer": "James, Stevenson, -0.7", "waiver": "James, Rashid Shaheed, 18"},
-      {"week": 4, "highScore": "Aron, 129.94", "lowScore": "Lance, 82.02", "highPlayer": "Jamie, Derrick Henry, 30.90", "lowPlayer": "Ben, Steele, -2.4", "waiver": "Ethan, Jauan Jennings, 15"},
-      {"week": 5, "highScore": "Ben, 129.68", "lowScore": "James, 76.92", "highPlayer": "Ben, Burrow, 33.78", "lowPlayer": "Jamie, Olave, 1", "waiver": "Lance, Xavier Worthy, 22"},
-      {"week": 6, "highScore": "Aron, 155.12", "lowScore": "Ethan, 87.40", "highPlayer": "Nathan + Jamie, Mixon + Henry, 26.20", "lowPlayer": "Jamie, Olave, -2.50", "waiver": "Ethan, Rico Dowdle, 15"},
-      {"week": 7, "highScore": "Aron, 145.24", "lowScore": "Ben, 82.04", "highPlayer": "Aron, Lamar, 33.94", "lowPlayer": "Lance, Jameson Williams, -0.4", "waiver": "Ben, Keenan Allen, 20"},
-      {"week": 8, "highScore": "James, 136.56", "lowScore": "Ethan, 104.32", "highPlayer": "James, Hurts, 35.14", "lowPlayer": "Zak, Jake Ferguson, 1.30", "waiver": "Aron, Jauan Jennings, 38"},
-      {"week": 9, "highScore": "James, 150.40", "lowScore": "Zak, 73.32", "highPlayer": "James, Hurts + Saquon, 29.90", "lowPlayer": "Ethan, Kmet, 0", "waiver": "Ben, Alexander Mattison, 6"},
-      {"week": 10, "highScore": "Lance, 130.14", "lowScore": "Ethan, 83", "highPlayer": "Lance, Chase, 46.40", "lowPlayer": "Zak, Brian Thomas, 1.2", "waiver": "Ethan, Tucker Kraft, 10"},
-      {"week": 11, "highScore": "James, 152.54", "lowScore": "Ethan, 84.88", "highPlayer": "Nathan, Mixon, 34.30", "lowPlayer": "Jamie, Pitts, 0.8", "waiver": "-"},
-      {"week": 12, "highScore": "James, 151.96", "lowScore": "Jamie, 71", "highPlayer": "James, Saquon, 44.20", "lowPlayer": "Zak, Jonathan Taylor, 0.5", "waiver": "-"},
-      {"week": 13, "highScore": "Nathan, 141.64", "lowScore": "Jamie, 81.90", "highPlayer": "Nathan, Bucky Irving, 27.50", "lowPlayer": "Lance, Hubbard, 1.30", "waiver": "-"},
-      {"week": 14, "highScore": "Ethan, 152.12", "lowScore": "Zak, 105.88", "highPlayer": "Zak, Sam Darnold, 35.58", "lowPlayer": "Ethan, Jayden Reed, 0", "waiver": "-"},
-      {"week": 15, "highScore": "Zak, 159.14", "lowScore": "Jamie, 85.66", "highPlayer": "Ethan, Josh Allen, 42.28", "lowPlayer": "Nathan, Kupp, 0", "waiver": "-"},
-      {"week": 16, "highScore": "Zak, 167.74", "lowScore": "Ethan, 90.56", "highPlayer": "Jonathan Taylor, 41.80", "lowPlayer": "Ethan, Brian Robinson, -1.90", "waiver": "-"},
-      {"week": 17, "highScore": "Zak, 162.28", "lowScore": "Ethan, 97.08", "highPlayer": "Ben, Burrow, 38.98", "lowPlayer": "Ben, Scary Terry, 0.5", "waiver": "-"}
-    ],
+  "2021": {
+    "weeks": [],
     "standings": [
-      {"rank": 1, "player": "Zak", "record": "9-6", "pf": 1716.18, "pa": 1565.1},
-      {"rank": 2, "player": "Lance", "record": "8-7", "pf": 1623.84, "pa": 1668.38},
-      {"rank": 3, "player": "James", "record": "11-4", "pf": 1818.7, "pa": 1556.44},
-      {"rank": 4, "player": "Nathan", "record": "10-5", "pf": 1703.23, "pa": 1660.7},
-      {"rank": 5, "player": "Jamie", "record": "6-9", "pf": 1598.88, "pa": 1702.34},
-      {"rank": 6, "player": "Aron", "record": "7-8", "pf": 1767.14, "pa": 1686.76},
-      {"rank": 7, "player": "Ben", "record": "4-11", "pf": 1557.02, "pa": 1737.94},
-      {"rank": 8, "player": "Ethan", "record": "5-10", "pf": 1613, "pa": 1820}
-    ],
-    "champion": "Zak"
-  },
-  "2023": {
-    "weeks": [
-      {"week": 1, "highScore": "James, 135.84", "lowScore": "Zak, 74.10", "highPlayer": "James, Tyreek Hill, 35.50", "lowPlayer": "James + Zak, Goedert + Higbee, 0", "waiver": "-"},
-      {"week": 2, "highScore": "Ben, 115.94", "lowScore": "Ethan, 92.90", "highPlayer": "Ben, Brian Robinson, 26.90", "lowPlayer": "Jamie, Juwan Johnson, 1.3", "waiver": "Aron, Puca Nacua, 15"},
-      {"week": 3, "highScore": "Ethan, 141.88", "lowScore": "Ben, 93.56", "highPlayer": "Ethan, Mostert, 38.20", "lowPlayer": "Aron + Jamie + Ben, Josh Kelley + Hunter Henry + Brandin Cooks, 1.7", "waiver": "Nathan, Jerome Ford, 40"},
-      {"week": 4, "highScore": "Zak, 144.46", "lowScore": "Ethan, 60.92", "highPlayer": "James, Josh Allen, 37.50", "lowPlayer": "Ethan, Mostert, -1.5", "waiver": "Ben, Adam Theilen, 10"},
-      {"week": 5, "highScore": "James, 157.56", "lowScore": "Aron, 75.08", "highPlayer": "Jamie, DJ Moore, 43", "lowPlayer": "Jamie, Hunter Henry, 0", "waiver": "Zak, Jameson Williams, 21"},
-      {"week": 6, "highScore": "Nathan, 117.32", "lowScore": "Zak, 86.90", "highPlayer": "Ethan, Mostert, 34", "lowPlayer": "Ethan, Gabe Davis, -0.9", "waiver": "Ben, Emari Demercado, 16"},
-      {"week": 7, "highScore": "Nathan, 159.08", "lowScore": "Ben, 74.50", "highPlayer": "Ethan, Mahomes, 34.86", "lowPlayer": "Jamie, Bijan, 0.3", "waiver": "Lance, Craig Reynolds, 12"},
-      {"week": 8, "highScore": "James, 144.36", "lowScore": "Ben, 93.52", "highPlayer": "Ethan, CD Lamb, 30", "lowPlayer": "Aron, Darren Waller, 0.1", "waiver": "Jamie, Dalton Kincaid, 14"},
-      {"week": 9, "highScore": "Zak, 122.08", "lowScore": "James, 70.42", "highPlayer": "Zak, Hurts, 24.88", "lowPlayer": "Nathan, Pickens, -0.1", "waiver": "James, Chubba Hubbard, 17"},
-      {"week": 10, "highScore": "Jamie, 170.22", "lowScore": "Ben, 70.48", "highPlayer": "Jamie, Keenan, 30.50", "lowPlayer": "Lance, Dionte Johnson, 1.7", "waiver": "Jamie, Keaton Mitchell, 28"},
-      {"week": 11, "highScore": "Aron, 150.34", "lowScore": "Lance, 67.84", "highPlayer": "Ben, Saquon, 26", "lowPlayer": "Zak, Diggs, -0.3", "waiver": "Nathan, Noah Brown, 9"},
-      {"week": 12, "highScore": "Lance, 137.96", "lowScore": "Ben, 89.38", "highPlayer": "James, Josh Allen, 39.66", "lowPlayer": "Aron, Shultz, 0.2", "waiver": "Aron, Zach Charbonnet, 17"},
-      {"week": 13, "highScore": "Aron, 138.08", "lowScore": "Ben, 108.20", "highPlayer": "Jamie, Deebo, 32.8", "lowPlayer": "Zak, Tank Dell, 0", "waiver": "Nathan, Zack Moss, 25"},
-      {"week": 14, "highScore": "Nathan, 122.54", "lowScore": "James, 90.22", "highPlayer": "Nathan, Lamar, 31.64", "lowPlayer": "Ethan, Gabe Davis, 0", "waiver": "Ethan, Montez Sweat, 5"},
-      {"week": 15, "highScore": "James, 126.96", "lowScore": "Ben, 69.84", "highPlayer": "Aron, CMC, 37.70", "lowPlayer": "Jamie, Bijan, -1.6", "waiver": "James, Gus Edwards, 43"},
-      {"week": 16, "highScore": "Ethan, 134.80", "lowScore": "Jamie, 80.30", "highPlayer": "Aron, Breece, 31.10", "lowPlayer": "Jamie, Taysom hill, 0.2", "waiver": "James, Julian Love, 6"},
-      {"week": 17, "highScore": "Nathan, 128.94", "lowScore": "Ben, 95.72", "highPlayer": "Nathan, Lamar, 37.74", "lowPlayer": "Ben, Kmet, 0", "waiver": "-"}
-    ],
-    "standings": [
-      {"rank": 1, "player": "Ethan", "record": "9-6", "pf": 1593.34, "pa": 1552.94},
-      {"rank": 2, "player": "James", "record": "11-4", "pf": 1835, "pa": 1556.28},
-      {"rank": 3, "player": "Nathan", "record": "9-6", "pf": 1748.62, "pa": 1619.98},
-      {"rank": 4, "player": "Jamie", "record": "8-7", "pf": 1629.06, "pa": 1657.28},
-      {"rank": 5, "player": "Lance", "record": "7-8", "pf": 1671.9, "pa": 1739.08},
-      {"rank": 6, "player": "Aron", "record": "6-9", "pf": 1651.54, "pa": 1680.3},
-      {"rank": 7, "player": "Zak", "record": "7-8", "pf": 1668.4, "pa": 1689.12},
-      {"rank": 8, "player": "Ben", "record": "3-12", "pf": 1415.46, "pa": 1718.34}
+      {
+        "rank": 1,
+        "player": "Ethan",
+        "record": "13-2",
+        "pf": 1971.52,
+        "pa": 1567.68
+      },
+      {
+        "rank": 2,
+        "player": "Nathan",
+        "record": "9-6",
+        "pf": 1721.22,
+        "pa": 1592.32
+      },
+      {
+        "rank": 3,
+        "player": "Jamie",
+        "record": "8-7",
+        "pf": 1783.1,
+        "pa": 1649.5
+      },
+      {
+        "rank": 4,
+        "player": "Zak",
+        "record": "7-8",
+        "pf": 1701.48,
+        "pa": 1695.5
+      },
+      {
+        "rank": 5,
+        "player": "Lance",
+        "record": "7-8",
+        "pf": 1690.36,
+        "pa": 1846.88
+      },
+      {
+        "rank": 6,
+        "player": "James",
+        "record": "7-8",
+        "pf": 1585.38,
+        "pa": 1650.94
+      },
+      {
+        "rank": 7,
+        "player": "Aron",
+        "record": "6-9",
+        "pf": 1728.96,
+        "pa": 1844.98
+      },
+      {
+        "rank": 8,
+        "player": "Ben",
+        "record": "3-12",
+        "pf": 1506.4,
+        "pa": 1850.72
+      }
     ],
     "champion": "Ethan"
   },
   "2022": {
     "weeks": [
-      {"week": 1, "highScore": "Aron, 154.92", "lowScore": "Freedy, 81.16", "highPlayer": "Jamie, Mahomes, 32.9", "lowPlayer": "Lance, Akers, 0", "waiver": "-"},
-      {"week": 2, "highScore": "Zak, 143.96", "lowScore": "Ben, 100.66", "highPlayer": "Lance, Lamar, 41.12", "lowPlayer": "Nathan, Pitts, 1.9", "waiver": "Lance, Mike Sanders, 20"},
-      {"week": 3, "highScore": "Ben, 139.10", "lowScore": "Ethan, 73.74", "highPlayer": "Lance, Lamar, 39.42", "lowPlayer": "Aron, Jefferson, 1.4", "waiver": "Aron, Garrett Wilson, 20"},
-      {"week": 4, "highScore": "Nathan, 133.52", "lowScore": "Aron, 100.76", "highPlayer": "Lance, TJ Hock, 32.90", "lowPlayer": "Jamie, J Rob, -0.10", "waiver": "Nathan, Khalil Herbert, 21"},
-      {"week": 5, "highScore": "Ben, 159.58", "lowScore": "Freedy, 87", "highPlayer": "Nathan, Josh Allen, 36.16", "lowPlayer": "Zak, Tee Higgins, 0", "waiver": "Jamie, Rachaad White, 11"},
-      {"week": 6, "highScore": "Jamie, 125.22", "lowScore": "Lance, 77.44", "highPlayer": "Ben, Joe Burrow, 33.50", "lowPlayer": "Lance, Jeff Wilson, -0.5", "waiver": "Jamie, Kenneth Walker, 31"},
-      {"week": 7, "highScore": "Ethan, 133.40", "lowScore": "Freedy, 64.98", "highPlayer": "Ben, Joe Burrow, 41.24", "lowPlayer": "Jamie, Mark Andrews, 0.4", "waiver": "Ethan, Robby Anderson, 19"},
-      {"week": 8, "highScore": "Zak, 194.78", "lowScore": "Freedy, 86.50", "highPlayer": "Zak, AJ Brown, 34.60", "lowPlayer": "Lance, Bateman, 0", "waiver": "James, Tyler Lockett, 19"},
-      {"week": 9, "highScore": "Jamie, 132.64", "lowScore": "Lance, 69.34", "highPlayer": "Aron, Mixon, 52.10", "lowPlayer": "Lance, Duvernay, 0.5", "waiver": "Aron + Lance, Likely + Duvernay, 10"},
-      {"week": 10, "highScore": "Aron, 127.40", "lowScore": "Ethan, 84.20", "highPlayer": "Lance, Fields, 36.38", "lowPlayer": "Ben, Cooper Kupp, -0.10", "waiver": "Aron, Jeff Wilson + Justin Fields, 22"},
-      {"week": 11, "highScore": "Ben, 155.66", "lowScore": "Nathan, 86.68", "highPlayer": "Jamie, Mahomes, 27.46", "lowPlayer": "Jamie, Claypol, 1.1", "waiver": "Nathan, Dalton Shultz, 17"},
-      {"week": 12, "highScore": "Aron, 152.66", "lowScore": "Jamie, 102.70", "highPlayer": "Aron, Jacobs, 45.80", "lowPlayer": "Nathan, Etienne, 0.3", "waiver": "Ben, Samaj Per, 25"},
-      {"week": 13, "highScore": "Aron, 145.60", "lowScore": "Lance, 68.24", "highPlayer": "Aron, Hurts, 32.40", "lowPlayer": "Lance, Sutton, 0", "waiver": "Lance, BAM knight, 9"},
-      {"week": 14, "highScore": "Aron, 137.18", "lowScore": "Freedy, 75.56", "highPlayer": "Aron, Hurts, 30.38", "lowPlayer": "Ethan, BIG MIKE, -1", "waiver": "Nathan + Lance, James Cook + Dak, 6"},
-      {"week": 15, "highScore": "Jamie, 131.84", "lowScore": "Lance, 71.74", "highPlayer": "Aron, Hurts, 34.70", "lowPlayer": "Aron, Miles Sanders, -0.1", "waiver": "-"},
-      {"week": 16, "highScore": "Jamie, 131.26", "lowScore": "James, 76.66", "highPlayer": "Aron + Jamie, Kittle + CD, 25", "lowPlayer": "Aron, Stevenson, -2.7", "waiver": "-"},
-      {"week": 17, "highScore": "Jamie, 165.12", "lowScore": "Ethan, 63.30", "highPlayer": "Jamie, Ekeler, 29.10", "lowPlayer": "James, Lawrence, -0.02", "waiver": "-"}
+      {
+        "week": 1,
+        "highScore": "Aron, 154.92",
+        "lowScore": "Freedy, 81.16",
+        "highPlayer": "Jamie, Mahomes, 32.9",
+        "lowPlayer": "Lance, Akers, 0",
+        "waiver": "-"
+      },
+      {
+        "week": 2,
+        "highScore": "Zak, 143.96",
+        "lowScore": "Ben, 100.66",
+        "highPlayer": "Lance, Lamar, 41.12",
+        "lowPlayer": "Nathan, Pitts, 1.9",
+        "waiver": "Lance, Mike Sanders, 20"
+      },
+      {
+        "week": 3,
+        "highScore": "Ben, 139.10",
+        "lowScore": "Ethan, 73.74",
+        "highPlayer": "Lance, Lamar, 39.42",
+        "lowPlayer": "Aron, Jefferson, 1.4",
+        "waiver": "Aron, Garrett Wilson, 20"
+      },
+      {
+        "week": 4,
+        "highScore": "Nathan, 133.52",
+        "lowScore": "Aron, 100.76",
+        "highPlayer": "Lance, TJ Hock, 32.90",
+        "lowPlayer": "Jamie, J Rob, -0.10",
+        "waiver": "Nathan, Khalil Herbert, 21"
+      },
+      {
+        "week": 5,
+        "highScore": "Ben, 159.58",
+        "lowScore": "Freedy, 87",
+        "highPlayer": "Nathan, Josh Allen, 36.16",
+        "lowPlayer": "Zak, Tee Higgins, 0",
+        "waiver": "Jamie, Rachaad White, 11"
+      },
+      {
+        "week": 6,
+        "highScore": "Jamie, 125.22",
+        "lowScore": "Lance, 77.44",
+        "highPlayer": "Ben, Joe Burrow, 33.50",
+        "lowPlayer": "Lance, Jeff Wilson, -0.5",
+        "waiver": "Jamie, Kenneth Walker, 31"
+      },
+      {
+        "week": 7,
+        "highScore": "Ethan, 133.40",
+        "lowScore": "Freedy, 64.98",
+        "highPlayer": "Ben, Joe Burrow, 41.24",
+        "lowPlayer": "Jamie, Mark Andrews, 0.4",
+        "waiver": "Ethan, Robby Anderson, 19"
+      },
+      {
+        "week": 8,
+        "highScore": "Zak, 194.78",
+        "lowScore": "Freedy, 86.50",
+        "highPlayer": "Zak, AJ Brown, 34.60",
+        "lowPlayer": "Lance, Bateman, 0",
+        "waiver": "James, Tyler Lockett, 19"
+      },
+      {
+        "week": 9,
+        "highScore": "Jamie, 132.64",
+        "lowScore": "Lance, 69.34",
+        "highPlayer": "Aron, Mixon, 52.10",
+        "lowPlayer": "Lance, Duvernay, 0.5",
+        "waiver": "Aron + Lance, Likely + Duvernay, 10"
+      },
+      {
+        "week": 10,
+        "highScore": "Aron, 127.40",
+        "lowScore": "Ethan, 84.20",
+        "highPlayer": "Lance, Fields, 36.38",
+        "lowPlayer": "Ben, Cooper Kupp, -0.10",
+        "waiver": "Aron, Jeff Wilson + Justin Fields, 22"
+      },
+      {
+        "week": 11,
+        "highScore": "Ben, 155.66",
+        "lowScore": "Nathan, 86.68",
+        "highPlayer": "Jamie, Mahomes, 27.46",
+        "lowPlayer": "Jamie, Claypol, 1.1",
+        "waiver": "Nathan, Dalton Shultz, 17"
+      },
+      {
+        "week": 12,
+        "highScore": "Aron, 152.66",
+        "lowScore": "Jamie, 102.70",
+        "highPlayer": "Aron, Jacobs, 45.80",
+        "lowPlayer": "Nathan, Etienne, 0.3",
+        "waiver": "Ben, Samaj Per, 25"
+      },
+      {
+        "week": 13,
+        "highScore": "Aron, 145.60",
+        "lowScore": "Lance, 68.24",
+        "highPlayer": "Aron, Hurts, 32.40",
+        "lowPlayer": "Lance, Sutton, 0",
+        "waiver": "Lance, BAM knight, 9"
+      },
+      {
+        "week": 14,
+        "highScore": "Aron, 137.18",
+        "lowScore": "Freedy, 75.56",
+        "highPlayer": "Aron, Hurts, 30.38",
+        "lowPlayer": "Ethan, BIG MIKE, -1",
+        "waiver": "Nathan + Lance, James Cook + Dak, 6"
+      },
+      {
+        "week": 15,
+        "highScore": "Jamie, 131.84",
+        "lowScore": "Lance, 71.74",
+        "highPlayer": "Aron, Hurts, 34.70",
+        "lowPlayer": "Aron, Miles Sanders, -0.1",
+        "waiver": "-"
+      },
+      {
+        "week": 16,
+        "highScore": "Jamie, 131.26",
+        "lowScore": "James, 76.66",
+        "highPlayer": "Aron + Jamie, Kittle + CD, 25",
+        "lowPlayer": "Aron, Stevenson, -2.7",
+        "waiver": "-"
+      },
+      {
+        "week": 17,
+        "highScore": "Jamie, 165.12",
+        "lowScore": "Ethan, 63.30",
+        "highPlayer": "Jamie, Ekeler, 29.10",
+        "lowPlayer": "James, Lawrence, -0.02",
+        "waiver": "-"
+      }
     ],
     "standings": [
-      {"rank": 1, "player": "Aron", "record": "11-4", "pf": 1881.98, "pa": 1589.78},
-      {"rank": 2, "player": "Ben", "record": "10-5", "pf": 1795.02, "pa": 1723.22},
-      {"rank": 3, "player": "Zak", "record": "10-5", "pf": 1733.5, "pa": 1644.6},
-      {"rank": 4, "player": "Nathan", "record": "9-6", "pf": 1664.22, "pa": 1603.22},
-      {"rank": 5, "player": "Jamie", "record": "7-8", "pf": 1794.84, "pa": 1678.22},
-      {"rank": 6, "player": "Ethan", "record": "5-10", "pf": 1651.42, "pa": 1753.48},
-      {"rank": 7, "player": "James", "record": "5-10", "pf": 1426.72, "pa": 1644.66},
-      {"rank": 8, "player": "Lance", "record": "3-12", "pf": 1435.58, "pa": 1746.1}
+      {
+        "rank": 1,
+        "player": "Aron",
+        "record": "11-4",
+        "pf": 1881.98,
+        "pa": 1589.78
+      },
+      {
+        "rank": 2,
+        "player": "Ben",
+        "record": "10-5",
+        "pf": 1795.02,
+        "pa": 1723.22
+      },
+      {
+        "rank": 3,
+        "player": "Zak",
+        "record": "10-5",
+        "pf": 1733.5,
+        "pa": 1644.6
+      },
+      {
+        "rank": 4,
+        "player": "Nathan",
+        "record": "9-6",
+        "pf": 1664.22,
+        "pa": 1603.22
+      },
+      {
+        "rank": 5,
+        "player": "Jamie",
+        "record": "7-8",
+        "pf": 1794.84,
+        "pa": 1678.22
+      },
+      {
+        "rank": 6,
+        "player": "Ethan",
+        "record": "5-10",
+        "pf": 1651.42,
+        "pa": 1753.48
+      },
+      {
+        "rank": 7,
+        "player": "James",
+        "record": "5-10",
+        "pf": 1426.72,
+        "pa": 1644.66
+      },
+      {
+        "rank": 8,
+        "player": "Lance",
+        "record": "3-12",
+        "pf": 1435.58,
+        "pa": 1746.1
+      }
     ],
     "champion": "Aron + Ben"
   },
-  "2021": {
-    "weeks": [],
+  "2023": {
+    "weeks": [
+      {
+        "week": 1,
+        "highScore": "James, 135.84",
+        "lowScore": "Zak, 74.10",
+        "highPlayer": "James, Tyreek Hill, 35.50",
+        "lowPlayer": "James + Zak, Goedert + Higbee, 0",
+        "waiver": "-"
+      },
+      {
+        "week": 2,
+        "highScore": "Ben, 115.94",
+        "lowScore": "Ethan, 92.90",
+        "highPlayer": "Ben, Brian Robinson, 26.90",
+        "lowPlayer": "Jamie, Juwan Johnson, 1.3",
+        "waiver": "Aron, Puca Nacua, 15"
+      },
+      {
+        "week": 3,
+        "highScore": "Ethan, 141.88",
+        "lowScore": "Ben, 93.56",
+        "highPlayer": "Ethan, Mostert, 38.20",
+        "lowPlayer": "Aron + Jamie + Ben, Josh Kelley + Hunter Henry + Brandin Cooks, 1.7",
+        "waiver": "Nathan, Jerome Ford, 40"
+      },
+      {
+        "week": 4,
+        "highScore": "Zak, 144.46",
+        "lowScore": "Ethan, 60.92",
+        "highPlayer": "James, Josh Allen, 37.50",
+        "lowPlayer": "Ethan, Mostert, -1.5",
+        "waiver": "Ben, Adam Theilen, 10"
+      },
+      {
+        "week": 5,
+        "highScore": "James, 157.56",
+        "lowScore": "Aron, 75.08",
+        "highPlayer": "Jamie, DJ Moore, 43",
+        "lowPlayer": "Jamie, Hunter Henry, 0",
+        "waiver": "Zak, Jameson Williams, 21"
+      },
+      {
+        "week": 6,
+        "highScore": "Nathan, 117.32",
+        "lowScore": "Zak, 86.90",
+        "highPlayer": "Ethan, Mostert, 34",
+        "lowPlayer": "Ethan, Gabe Davis, -0.9",
+        "waiver": "Ben, Emari Demercado, 16"
+      },
+      {
+        "week": 7,
+        "highScore": "Nathan, 159.08",
+        "lowScore": "Ben, 74.50",
+        "highPlayer": "Ethan, Mahomes, 34.86",
+        "lowPlayer": "Jamie, Bijan, 0.3",
+        "waiver": "Lance, Craig Reynolds, 12"
+      },
+      {
+        "week": 8,
+        "highScore": "James, 144.36",
+        "lowScore": "Ben, 93.52",
+        "highPlayer": "Ethan, CD Lamb, 30",
+        "lowPlayer": "Aron, Darren Waller, 0.1",
+        "waiver": "Jamie, Dalton Kincaid, 14"
+      },
+      {
+        "week": 9,
+        "highScore": "Zak, 122.08",
+        "lowScore": "James, 70.42",
+        "highPlayer": "Zak, Hurts, 24.88",
+        "lowPlayer": "Nathan, Pickens, -0.1",
+        "waiver": "James, Chubba Hubbard, 17"
+      },
+      {
+        "week": 10,
+        "highScore": "Jamie, 170.22",
+        "lowScore": "Ben, 70.48",
+        "highPlayer": "Jamie, Keenan, 30.50",
+        "lowPlayer": "Lance, Dionte Johnson, 1.7",
+        "waiver": "Jamie, Keaton Mitchell, 28"
+      },
+      {
+        "week": 11,
+        "highScore": "Aron, 150.34",
+        "lowScore": "Lance, 67.84",
+        "highPlayer": "Ben, Saquon, 26",
+        "lowPlayer": "Zak, Diggs, -0.3",
+        "waiver": "Nathan, Noah Brown, 9"
+      },
+      {
+        "week": 12,
+        "highScore": "Lance, 137.96",
+        "lowScore": "Ben, 89.38",
+        "highPlayer": "James, Josh Allen, 39.66",
+        "lowPlayer": "Aron, Shultz, 0.2",
+        "waiver": "Aron, Zach Charbonnet, 17"
+      },
+      {
+        "week": 13,
+        "highScore": "Aron, 138.08",
+        "lowScore": "Ben, 108.20",
+        "highPlayer": "Jamie, Deebo, 32.8",
+        "lowPlayer": "Zak, Tank Dell, 0",
+        "waiver": "Nathan, Zack Moss, 25"
+      },
+      {
+        "week": 14,
+        "highScore": "Nathan, 122.54",
+        "lowScore": "James, 90.22",
+        "highPlayer": "Nathan, Lamar, 31.64",
+        "lowPlayer": "Ethan, Gabe Davis, 0",
+        "waiver": "Ethan, Montez Sweat, 5"
+      },
+      {
+        "week": 15,
+        "highScore": "James, 126.96",
+        "lowScore": "Ben, 69.84",
+        "highPlayer": "Aron, CMC, 37.70",
+        "lowPlayer": "Jamie, Bijan, -1.6",
+        "waiver": "James, Gus Edwards, 43"
+      },
+      {
+        "week": 16,
+        "highScore": "Ethan, 134.80",
+        "lowScore": "Jamie, 80.30",
+        "highPlayer": "Aron, Breece, 31.10",
+        "lowPlayer": "Jamie, Taysom hill, 0.2",
+        "waiver": "James, Julian Love, 6"
+      },
+      {
+        "week": 17,
+        "highScore": "Nathan, 128.94",
+        "lowScore": "Ben, 95.72",
+        "highPlayer": "Nathan, Lamar, 37.74",
+        "lowPlayer": "Ben, Kmet, 0",
+        "waiver": "-"
+      }
+    ],
     "standings": [
-      {"rank": 1, "player": "Ethan", "record": "13-2", "pf": 1971.52, "pa": 1567.68},
-      {"rank": 2, "player": "Nathan", "record": "9-6", "pf": 1721.22, "pa": 1592.32},
-      {"rank": 3, "player": "Jamie", "record": "8-7", "pf": 1783.1, "pa": 1649.5},
-      {"rank": 4, "player": "Zak", "record": "7-8", "pf": 1701.48, "pa": 1695.5},
-      {"rank": 5, "player": "Lance", "record": "7-8", "pf": 1690.36, "pa": 1846.88},
-      {"rank": 6, "player": "James", "record": "7-8", "pf": 1585.38, "pa": 1650.94},
-      {"rank": 7, "player": "Aron", "record": "6-9", "pf": 1728.96, "pa": 1844.98},
-      {"rank": 8, "player": "Ben", "record": "3-12", "pf": 1506.4, "pa": 1850.72}
+      {
+        "rank": 1,
+        "player": "Ethan",
+        "record": "9-6",
+        "pf": 1593.34,
+        "pa": 1552.94
+      },
+      {
+        "rank": 2,
+        "player": "James",
+        "record": "11-4",
+        "pf": 1835,
+        "pa": 1556.28
+      },
+      {
+        "rank": 3,
+        "player": "Nathan",
+        "record": "9-6",
+        "pf": 1748.62,
+        "pa": 1619.98
+      },
+      {
+        "rank": 4,
+        "player": "Jamie",
+        "record": "8-7",
+        "pf": 1629.06,
+        "pa": 1657.28
+      },
+      {
+        "rank": 5,
+        "player": "Lance",
+        "record": "7-8",
+        "pf": 1671.9,
+        "pa": 1739.08
+      },
+      {
+        "rank": 6,
+        "player": "Aron",
+        "record": "6-9",
+        "pf": 1651.54,
+        "pa": 1680.3
+      },
+      {
+        "rank": 7,
+        "player": "Zak",
+        "record": "7-8",
+        "pf": 1668.4,
+        "pa": 1689.12
+      },
+      {
+        "rank": 8,
+        "player": "Ben",
+        "record": "3-12",
+        "pf": 1415.46,
+        "pa": 1718.34
+      }
     ],
     "champion": "Ethan"
   },
-  "2020": {
-    "weeks": [],
-    "standings": [
-      {"rank": 1, "player": "Lance", "record": "11-3", "pf": 1762.14, "pa": 1499.14},
-      {"rank": 2, "player": "Aron", "record": "9-5", "pf": 1664.2, "pa": 1597.96},
-      {"rank": 3, "player": "Ethan", "record": "8-6", "pf": 1566.52, "pa": 1520.5},
-      {"rank": 4, "player": "Zak", "record": "7-7", "pf": 1723.38, "pa": 1650.66},
-      {"rank": 5, "player": "Ben", "record": "6-8", "pf": 1600.62, "pa": 1609.72},
-      {"rank": 6, "player": "Nathan", "record": "6-8", "pf": 1565.82, "pa": 1629.46},
-      {"rank": 7, "player": "James", "record": "5-9", "pf": 1485.38, "pa": 1652.4},
-      {"rank": 8, "player": "Jamie", "record": "4-10", "pf": 1485.62, "pa": 1693.84}
+  "2024": {
+    "weeks": [
+      {
+        "week": 1,
+        "highScore": "Zak, 134.16",
+        "lowScore": "Ben, 94.56",
+        "highPlayer": "James, Saquon, 34.2",
+        "lowPlayer": "Nathan, Kincaid, 1.10",
+        "waiver": "-"
+      },
+      {
+        "week": 2,
+        "highScore": "Zak, 130.90",
+        "lowScore": "Lance, 100.06",
+        "highPlayer": "Ben, Kamara, 43",
+        "lowPlayer": "Ben, Kelce, 0.6",
+        "waiver": "Aron, Zach Charbonnet, 8"
+      },
+      {
+        "week": 3,
+        "highScore": "Jamie, 143.08",
+        "lowScore": "Lance, 72.28",
+        "highPlayer": "Ethan, Josh Allen, 30.92",
+        "lowPlayer": "James, Stevenson, -0.7",
+        "waiver": "James, Rashid Shaheed, 18"
+      },
+      {
+        "week": 4,
+        "highScore": "Aron, 129.94",
+        "lowScore": "Lance, 82.02",
+        "highPlayer": "Jamie, Derrick Henry, 30.90",
+        "lowPlayer": "Ben, Steele, -2.4",
+        "waiver": "Ethan, Jauan Jennings, 15"
+      },
+      {
+        "week": 5,
+        "highScore": "Ben, 129.68",
+        "lowScore": "James, 76.92",
+        "highPlayer": "Ben, Burrow, 33.78",
+        "lowPlayer": "Jamie, Olave, 1",
+        "waiver": "Lance, Xavier Worthy, 22"
+      },
+      {
+        "week": 6,
+        "highScore": "Aron, 155.12",
+        "lowScore": "Ethan, 87.40",
+        "highPlayer": "Nathan + Jamie, Mixon + Henry, 26.20",
+        "lowPlayer": "Jamie, Olave, -2.50",
+        "waiver": "Ethan, Rico Dowdle, 15"
+      },
+      {
+        "week": 7,
+        "highScore": "Aron, 145.24",
+        "lowScore": "Ben, 82.04",
+        "highPlayer": "Aron, Lamar, 33.94",
+        "lowPlayer": "Lance, Jameson Williams, -0.4",
+        "waiver": "Ben, Keenan Allen, 20"
+      },
+      {
+        "week": 8,
+        "highScore": "James, 136.56",
+        "lowScore": "Ethan, 104.32",
+        "highPlayer": "James, Hurts, 35.14",
+        "lowPlayer": "Zak, Jake Ferguson, 1.30",
+        "waiver": "Aron, Jauan Jennings, 38"
+      },
+      {
+        "week": 9,
+        "highScore": "James, 150.40",
+        "lowScore": "Zak, 73.32",
+        "highPlayer": "James, Hurts + Saquon, 29.90",
+        "lowPlayer": "Ethan, Kmet, 0",
+        "waiver": "Ben, Alexander Mattison, 6"
+      },
+      {
+        "week": 10,
+        "highScore": "Lance, 130.14",
+        "lowScore": "Ethan, 83",
+        "highPlayer": "Lance, Chase, 46.40",
+        "lowPlayer": "Zak, Brian Thomas, 1.2",
+        "waiver": "Ethan, Tucker Kraft, 10"
+      },
+      {
+        "week": 11,
+        "highScore": "James, 152.54",
+        "lowScore": "Ethan, 84.88",
+        "highPlayer": "Nathan, Mixon, 34.30",
+        "lowPlayer": "Jamie, Pitts, 0.8",
+        "waiver": "-"
+      },
+      {
+        "week": 12,
+        "highScore": "James, 151.96",
+        "lowScore": "Jamie, 71",
+        "highPlayer": "James, Saquon, 44.20",
+        "lowPlayer": "Zak, Jonathan Taylor, 0.5",
+        "waiver": "-"
+      },
+      {
+        "week": 13,
+        "highScore": "Nathan, 141.64",
+        "lowScore": "Jamie, 81.90",
+        "highPlayer": "Nathan, Bucky Irving, 27.50",
+        "lowPlayer": "Lance, Hubbard, 1.30",
+        "waiver": "-"
+      },
+      {
+        "week": 14,
+        "highScore": "Ethan, 152.12",
+        "lowScore": "Zak, 105.88",
+        "highPlayer": "Zak, Sam Darnold, 35.58",
+        "lowPlayer": "Ethan, Jayden Reed, 0",
+        "waiver": "-"
+      },
+      {
+        "week": 15,
+        "highScore": "Zak, 159.14",
+        "lowScore": "Jamie, 85.66",
+        "highPlayer": "Ethan, Josh Allen, 42.28",
+        "lowPlayer": "Nathan, Kupp, 0",
+        "waiver": "-"
+      },
+      {
+        "week": 16,
+        "highScore": "Zak, 167.74",
+        "lowScore": "Ethan, 90.56",
+        "highPlayer": "Jonathan Taylor, 41.80",
+        "lowPlayer": "Ethan, Brian Robinson, -1.90",
+        "waiver": "-"
+      },
+      {
+        "week": 17,
+        "highScore": "Zak, 162.28",
+        "lowScore": "Ethan, 97.08",
+        "highPlayer": "Ben, Burrow, 38.98",
+        "lowPlayer": "Ben, Scary Terry, 0.5",
+        "waiver": "-"
+      }
     ],
-    "champion": "Aron"
+    "standings": [
+      {
+        "rank": 1,
+        "player": "Zak",
+        "record": "9-6",
+        "pf": 1716.18,
+        "pa": 1565.1
+      },
+      {
+        "rank": 2,
+        "player": "Lance",
+        "record": "8-7",
+        "pf": 1623.84,
+        "pa": 1668.38
+      },
+      {
+        "rank": 3,
+        "player": "James",
+        "record": "11-4",
+        "pf": 1818.7,
+        "pa": 1556.44
+      },
+      {
+        "rank": 4,
+        "player": "Nathan",
+        "record": "10-5",
+        "pf": 1703.23,
+        "pa": 1660.7
+      },
+      {
+        "rank": 5,
+        "player": "Jamie",
+        "record": "6-9",
+        "pf": 1598.88,
+        "pa": 1702.34
+      },
+      {
+        "rank": 6,
+        "player": "Aron",
+        "record": "7-8",
+        "pf": 1767.14,
+        "pa": 1686.76
+      },
+      {
+        "rank": 7,
+        "player": "Ben",
+        "record": "4-11",
+        "pf": 1557.02,
+        "pa": 1737.94
+      },
+      {
+        "rank": 8,
+        "player": "Ethan",
+        "record": "5-10",
+        "pf": 1613,
+        "pa": 1820
+      }
+    ],
+    "champion": "Zak"
+  },
+  "2025": {
+    "weeks": [],
+    "standings": [],
+    "champion": null
   },
   "hallOfFame": {
-    "champions": [
-      {"year": 2024, "champion": "Zak"},
-      {"year": 2023, "champion": "Ethan"},
-      {"year": 2022, "champion": "Aron + Ben"},
-      {"year": 2021, "champion": "Ethan"},
-      {"year": 2020, "champion": "Aron"}
-    ],
-    "championships": {
-      "Aron": 3,
-      "Ben": 1,
-      "Ethan": 2,
-      "James": 2,
-      "Lance": 3,
-      "Nathan": 1,
-      "Zak": 2,
-      "Jamie": 0
-    }
+    "champions": [],
+    "championships": {}
   }
 }
