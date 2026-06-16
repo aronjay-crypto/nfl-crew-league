@@ -1,1 +1,11 @@
-{}
+{
+  "2025": {
+    "weeks": [],
+    "standings": [],
+    "champion": null
+  },
+  "hallOfFame": {
+    "champions": [],
+    "championships": {}
+  }
+}
