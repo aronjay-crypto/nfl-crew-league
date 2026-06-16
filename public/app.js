@@ -46,7 +46,7 @@ function getSeasonRecords(data) {
   let lowestPlayer = { value: Infinity, label: '', week: 0 };
   let expensiveWaiver = { value: -Infinity, label: '', week: 0 };
   
-  data.weeks.forEach(w => {
+  data.weeks.forEach(w => {/
     // Highest weekly score
     const hs = extractScore(w.highScore);
     if (hs > highestScore.value) {
@@ -81,8 +81,29 @@ function getSeasonRecords(data) {
 function renderWeekly() {
   const data = allData[selectedYear];
   if (!data || !data.weeks.length) {
-    return `<div style="max-width: 1100px; margin: 2rem auto; padding: 1rem; text-align: center; color: #94a3b8;">No week data available for ${selectedYear}</div>`;
-  }
+   return `
+    <div style="max-width: 1100px; margin: 0 auto; padding: 1.5rem 1rem;">
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 1.5rem;">NFL Crew League</h1>
+      
+      <div class="home-grid">
+        
+        <div class="weeks-grid">
+          ${data.weeks.map(weekCard).join('')}
+        </div>
+        
+        <div class="records-sidebar">
+          <h2 style="font-size: 12px; font-weight: 500; color: #94a3b8; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">${selectedYear} Season Records</h2>
+          ${records ? `
+            ${recordCard('Highest Score', records.highestScore.label, `Week ${records.highestScore.week}`)}
+            ${recordCard('Highest Scoring Player', records.highestPlayer.label, `Week ${records.highestPlayer.week}`)}
+            ${recordCard('Lowest Scoring Player', records.lowestPlayer.label, `Week ${records.lowestPlayer.week}`)}
+            ${recordCard('Most Expensive Waiver', records.expensiveWaiver.label, `Week ${records.expensiveWaiver.week}`)}
+          ` : '<p style="color: #94a3b8; font-size: 13px;">No records yet</p>'}
+        </div>
+        
+      </div>
+    </div>
+  `;
   
   const records = getSeasonRecords(data);
   
