@@ -6,10 +6,19 @@ const SHEET_ID = '1XSztc0Pp9sIjZImnRQBfA_zPymtdMJr0ekuVFG1CLuE';
 function fetchSheet(gid) {
   return new Promise((resolve, reject) => {
     const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
-    https.get(url, (res) => {
+    const options = {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      }
+    };
+    
+    https.get(url, options, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
-      res.on('end', () => resolve(data));
+      res.on('end', () => {
+        console.log(`Fetched ${data.length} bytes from gid ${gid}`);
+        resolve(data);
+      });
     }).on('error', reject);
   });
 }
@@ -22,15 +31,10 @@ async function sync() {
     const hof = await fetchSheet(514323247);
     const champ = await fetchSheet(286305454);
 
-    console.log('Weeks CSV (first 200 chars):', weeks.substring(0, 200));
-    console.log('Standings CSV (first 200 chars):', standings.substring(0, 200));
-    console.log('HOF CSV (first 200 chars):', hof.substring(0, 200));
-    console.log('Champ CSV (first 200 chars):', champ.substring(0, 200));
-
     const parseCSV = (csv) => {
-      const lines = csv.trim().split('\n');
+      const lines = csv.trim().split('\n').filter(l => l.trim());
+      if (lines.length < 2) return [];
       const headers = lines[0].split(',').map(h => h.trim());
-      console.log('Headers:', headers);
       return lines.slice(1).map(line => {
         const obj = {};
         line.split(',').forEach((v, i) => obj[headers[i]] = v.trim());
@@ -39,8 +43,11 @@ async function sync() {
     };
 
     const weeksData = parseCSV(weeks);
-    console.log('Weeks parsed:', weeksData.length, 'rows');
-    console.log('First week row:', weeksData[0]);
+    const standingsData = parseCSV(standings);
+    const hofData = parseCSV(hof);
+    const champData = parseCSV(champ);
+
+    console.log(`Weeks: ${weeksData.length}, Standings: ${standingsData.length}, HOF: ${hofData.length}, Champ: ${champData.length}`);
 
     const data = {
       '2025': {
@@ -52,14 +59,23 @@ async function sync() {
           lowPlayer: r.Lowest_Player,
           waiver: r.Most_Expensive_waiver || '-'
         })),
-        standings: [],
-        champion: null
+        standings: standingsData.map(r => ({
+          rank: parseInt(r.Rank),
+          player: r.Player,
+          record: r.Record,
+          pf: parseFloat(r.Points_For.replace(/,/g, '')) || 0,
+          pa: parseFloat(r.Points_Against.replace(/,/g, '')) || 0
+        })),
+        champion: standingsData[0]?.Player || null
       },
-      hallOfFame: { champions: [], championships: {} }
+      hallOfFame: {
+        champions: hofData.map(r => ({ year: parseInt(r.Year), champion: r.Champion })),
+        championships: Object.fromEntries(champData.map(r => [r.Player, parseInt(r.Total)]))
+      }
     };
 
     fs.writeFileSync('public/data.json', JSON.stringify(data, null, 2));
-    console.log('✅ Done!');
+    console.log('✅ Synced successfully!');
   } catch (e) {
     console.error('❌ Error:', e);
     process.exit(1);
