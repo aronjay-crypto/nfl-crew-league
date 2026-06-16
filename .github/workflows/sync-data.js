@@ -1,26 +1,16 @@
 const fs = require('fs');
-const https = require('https');
 
 const SHEET_ID = '1XSztc0Pp9sIjZImnRQBfA_zPymtdMJr0ekuVFG1CLuE';
 
-function fetchSheet(gid) {
-  return new Promise((resolve, reject) => {
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
-    const options = {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-      }
-    };
-    
-    https.get(url, options, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        console.log(`Fetched ${data.length} bytes from gid ${gid}`);
-        resolve(data);
-      });
-    }).on('error', reject);
+async function fetchSheet(gid) {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
+  const res = await fetch(url, {
+    headers: { 'User-Agent': 'Mozilla/5.0' },
+    redirect: 'follow'
   });
+  const text = await res.text();
+  console.log(`Fetched ${text.length} bytes from gid ${gid} (status ${res.status})`);
+  return text;
 }
 
 async function sync() {
