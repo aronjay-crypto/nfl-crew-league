@@ -1,4 +1,3 @@
-const SHEET_ID = '1OoGAkPgzE4UFEekM3XchU22RGz3fIXl-2rxYeg0zJcU';
 const app = document.getElementById('app');
 
 let allData = {};
@@ -6,179 +5,32 @@ let currentPage = 'weekly';
 let selectedYear = 2025;
 let availableYears = [];
 
-// Fetch data from Google Sheets
-async function fetchSheetData() {
+async function fetchData() {
   try {
-    const sheetsToFetch = ['HALL OF FAME', '2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017'];
+    const response = await fetch('/data.json');
+    allData = await response.json();
     
-    for (const sheetName of sheetsToFetch) {
-      const csv = await fetchCSV(sheetName);
-      if (csv) {
-        parseSheetData(sheetName, csv);
-      }
-    }
+    availableYears = Object.keys(allData)
+      .filter(k => k !== 'hallOfFame')
+      .map(k => parseInt(k))
+      .sort((a, b) => b - a);
     
-    availableYears = Object.keys(allData).filter(k => k !== 'hallOfFame').map(k => parseInt(k)).sort((a, b) => b - a);
     selectedYear = availableYears[0] || 2025;
     render();
   } catch (error) {
-    console.error('Error fetching sheet:', error);
-    showError('Could not load data from Google Sheets');
-  }
-}
-
-async function fetchCSV(sheetName) {
-  try {
-    const gid = getSheetGID(sheetName);
-    if (gid === null) return null;
-    
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
-    const response = await fetch(url);
-    return await response.text();
-  } catch (error) {
-    console.error(`Error fetching ${sheetName}:`, error);
-    return null;
-  }
-}
-
-function getSheetGID(sheetName) {
-  const sheetMap = {
-    'HALL OF FAME': 0,
-    '2025': 1006709501,
-    '2024': 632173622,
-    '2023': 632173623,
-    '2022': 632173624,
-    '2021': 632173625,
-    '2020': 632173626,
-    '2019': 632173627,
-    '2018': 632173628,
-    '2017': 632173629,
-  };
-  
-  return sheetMap[sheetName] !== undefined ? sheetMap[sheetName] : null;
-}
-
-function parseSheetData(sheetName, csvData) {
-  const lines = csvData.split('\n').filter(line => line.trim());
-  
-  if (sheetName === 'HALL OF FAME') {
-    parseHallOfFame(lines);
-  } else {
-    const year = parseInt(sheetName);
-    parseYearSheet(year, lines);
-  }
-}
-
-function parseHallOfFame(lines) {
-  allData.hallOfFame = {
-    champions: [],
-    championshipTotals: {}
-  };
-  
-  let inChampions = false;
-  let inTotals = false;
-  
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    
-    if (line.includes('Winners')) {
-      inChampions = true;
-      inTotals = false;
-      continue;
-    }
-    if (line.includes('Championship Totals')) {
-      inChampions = false;
-      inTotals = true;
-      continue;
-    }
-    
-    if (inChampions && line.trim()) {
-      const parts = line.split(',').map(p => p.trim()).filter(p => p);
-      if (parts.length >= 2 && !isNaN(parts[0])) {
-        allData.hallOfFame.champions.push({
-          year: parseInt(parts[0]),
-          champion: parts[1]
-        });
-      }
-    }
-    
-    if (inTotals && line.trim() && !line.includes('Championship Totals')) {
-      const parts = line.split(',').map(p => p.trim()).filter(p => p);
-      if (parts.length >= 2 && parts[0] && !isNaN(parseInt(parts[1]))) {
-        allData.hallOfFame.championshipTotals[parts[0]] = parseInt(parts[1]);
-      }
-    }
-  }
-}
-
-function parseYearSheet(year, lines) {
-  allData[year] = {
-    weeks: [],
-    standings: [],
-    champion: null
-  };
-  
-  let inWeeks = false;
-  let inStandings = false;
-  
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    
-    if (line.includes('highest points') || (line.includes('Week') && line.includes('highest'))) {
-      inWeeks = true;
-      inStandings = false;
-      continue;
-    }
-    
-    if (line.includes('Final Standings') || (line.includes('Person') && line.includes('Record'))) {
-      inWeeks = false;
-      inStandings = true;
-      continue;
-    }
-    
-    if (inWeeks && line.trim()) {
-      const parts = line.split(',').map(p => p.trim());
-      
-      if (parts[0] && !isNaN(parseInt(parts[0])) && parseInt(parts[0]) > 0 && parseInt(parts[0]) <= 20) {
-        const week = {
-          week: parseInt(parts[0]),
-          highScore: parts[1] || '',
-          lowScore: parts[2] || '',
-          highPlayer: parts[3] || '',
-          lowPlayer: parts[4] || '',
-          waiver: parts[5] || '-'
-        };
-        allData[year].weeks.push(week);
-      }
-    }
-    
-    if (inStandings && line.trim() && !line.includes('Person') && !line.includes('Final Standings')) {
-      const parts = line.split(',').map(p => p.trim()).filter(p => p);
-      if (parts.length >= 5 && !isNaN(parseInt(parts[0]))) {
-        const standing = {
-          rank: parseInt(parts[0]),
-          player: parts[1],
-          record: parts[2],
-          pf: parseFloat(parts[3]) || 0,
-          pa: parseFloat(parts[4]) || 0
-        };
-        if (allData[year].standings.length === 0) {
-          allData[year].champion = standing.player;
-        }
-        allData[year].standings.push(standing);
-      }
-    }
+    console.error('Error:', error);
+    app.innerHTML = '<div style="max-width: 680px; margin: 2rem auto; padding: 1rem; text-align: center; color: #ef4444;">Error loading data</div>';
   }
 }
 
 function showError(msg) {
-  app.innerHTML = `<div style="max-width: 680px; margin: 2rem auto; padding: 1rem; text-align: center; color: #ef4444; background: #fee2e2; border-radius: 8px;">${msg}</div>`;
+  app.innerHTML = `<div style="max-width: 680px; margin: 2rem auto; padding: 1rem; text-align: center; color: #ef4444;">${msg}</div>`;
 }
 
 function renderWeekly() {
   const data = allData[selectedYear];
   if (!data || !data.weeks.length) {
-    return `<div style="max-width: 680px; margin: 2rem auto; padding: 1rem; text-align: center; color: #94a3b8;">No week data available</div>`;
+    return `<div style="max-width: 680px; margin: 2rem auto; padding: 1rem; text-align: center; color: #94a3b8;">No week data available for ${selectedYear}</div>`;
   }
   
   return `
@@ -257,7 +109,7 @@ function renderStandings() {
 function renderHallOfFame() {
   const data = allData.hallOfFame;
   if (!data) {
-    return `<div style="max-width: 680px; margin: 2rem auto; padding: 1rem; text-align: center; color: #94a3b8;">No hall of fame data available</div>`;
+    return `<div style="max-width: 680px; margin: 2rem auto; padding: 1rem; text-align: center; color: #94a3b8;">No data available</div>`;
   }
   
   return `
@@ -266,7 +118,7 @@ function renderHallOfFame() {
 
       <h2 style="font-size: 12px; font-weight: 500; color: #94a3b8; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Championships by Player</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 2rem;">
-        ${Object.entries(data.championshipTotals).sort((a, b) => b[1] - a[1]).map(([player, count]) => `
+        ${Object.entries(data.championships || {}).sort((a, b) => b[1] - a[1]).map(([player, count]) => `
           <div style="background: #1e293b; border-radius: 8px; padding: 1rem; text-align: center;">
             <p style="font-size: 16px; font-weight: 500; margin: 0 0 0.5rem;">${player}</p>
             <p style="font-size: 24px; font-weight: 500; color: #3b82f6; margin: 0;">${count}</p>
@@ -298,9 +150,9 @@ function render() {
 
   const navHTML = `
     <div style="background: #1e293b; border-bottom: 0.5px solid #334155; display: flex; gap: 0; position: sticky; top: 0; z-index: 10;">
-      <button class="nav-btn" data-page="weekly" style="flex: 1; padding: 1rem; background: transparent; border: none; border-bottom: ${currentPage === 'weekly' ? '2px solid #3b82f6' : '2px solid transparent'}; color: ${currentPage === 'weekly' ? '#3b82f6' : '#64748b'}; cursor: pointer; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">Home</button>
-      <button class="nav-btn" data-page="standings" style="flex: 1; padding: 1rem; background: transparent; border: none; border-bottom: ${currentPage === 'standings' ? '2px solid #3b82f6' : '2px solid transparent'}; color: ${currentPage === 'standings' ? '#3b82f6' : '#64748b'}; cursor: pointer; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">Standings</button>
-      <button class="nav-btn" data-page="hall" style="flex: 1; padding: 1rem; background: transparent; border: none; border-bottom: ${currentPage === 'hall' ? '2px solid #3b82f6' : '2px solid transparent'}; color: ${currentPage === 'hall' ? '#3b82f6' : '#64748b'}; cursor: pointer; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s;">Hall of Fame</button>
+      <button class="nav-btn" data-page="weekly" style="flex: 1; padding: 1rem; background: transparent; border: none; border-bottom: ${currentPage === 'weekly' ? '2px solid #3b82f6' : '2px solid transparent'}; color: ${currentPage === 'weekly' ? '#3b82f6' : '#64748b'}; cursor: pointer; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Home</button>
+      <button class="nav-btn" data-page="standings" style="flex: 1; padding: 1rem; background: transparent; border: none; border-bottom: ${currentPage === 'standings' ? '2px solid #3b82f6' : '2px solid transparent'}; color: ${currentPage === 'standings' ? '#3b82f6' : '#64748b'}; cursor: pointer; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Standings</button>
+      <button class="nav-btn" data-page="hall" style="flex: 1; padding: 1rem; background: transparent; border: none; border-bottom: ${currentPage === 'hall' ? '2px solid #3b82f6' : '2px solid transparent'}; color: ${currentPage === 'hall' ? '#3b82f6' : '#64748b'}; cursor: pointer; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Hall of Fame</button>
     </div>
     
     <div style="background: #0f172a; padding: 1rem; border-bottom: 0.5px solid #334155;">
@@ -322,10 +174,13 @@ function render() {
     });
   });
   
-  document.getElementById('yearSelector').addEventListener('change', (e) => {
-    selectedYear = parseInt(e.target.value);
-    render();
-  });
+  const selector = document.getElementById('yearSelector');
+  if (selector) {
+    selector.addEventListener('change', (e) => {
+      selectedYear = parseInt(e.target.value);
+      render();
+    });
+  }
 }
 
-fetchSheetData();
+fetchData();
