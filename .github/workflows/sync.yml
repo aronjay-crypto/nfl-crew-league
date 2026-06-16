@@ -1,0 +1,27 @@
+name: Sync Data
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Every hour
+  workflow_dispatch:     # Manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Sync data
+        run: node .github/workflows/sync-data.js
+      
+      - name: Commit changes
+        run: |
+          git config user.name "Sync Bot"
+          git config user.email "sync@bot.local"
+          git add public/data.json
+          git commit -m "Auto-sync from Google Sheet" || true
+          git push
