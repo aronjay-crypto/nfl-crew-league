@@ -4,6 +4,7 @@ let allData = {};
 let currentPage = 'weekly';
 let selectedYear = 2025;
 let availableYears = [];
+let selectedPlayer = null;
 
 async function fetchData() {
   try {
@@ -35,40 +36,93 @@ function extractPlayerPoints(str) {
   return match ? parseFloat(match[1]) : 0;
 }
 
-function getSeasonRecords(data) {
-  if (!data || !data.weeks.length) return null;
+// Extract the league member's name from the start of a "Name, ..." string
+function extractName(str) {
+  if (!str) return '';
+  return str.split(',')[0].trim();
+}
 
-  let highestScore = { value: -Infinity, label: '', week: 0 };
-  let highestPlayer = { value: -Infinity, label: '', week: 0 };
-  let lowestPlayer = { value: Infinity, label: '', week: 0 };
-  let expensiveWaiver = { value: -Infinity, label: '', week: 0 };
+// Get full list of league members across all data
+function getAllPlayers() {
+  const players = new Set();
+  Object.keys(allData).forEach(key => {
+    if (key === 'hallOfFame') return;
+    const data = allData[key];
+    (data.standings || []).forEach(s => { if (s.player) players.add(s.player); });
+  });
+  // Also include anyone in championships
+  if (allData.hallOfFame && allData.hallOfFame.championships) {
+    Object.keys(allData.hallOfFame.championships).forEach(p => players.add(p));
+  }
+  return Array.from(players).sort();
+}
 
-  data.weeks.forEach(w => {
-    const hs = extractScore(w.highScore);
-    if (hs > highestScore.value) {
-      highestScore = { value: hs, label: w.highScore, week: w.week };
+// Build a profile object for one player
+function getPlayerProfile(player) {
+  const profile = {
+    name: player,
+    championships: 0,
+    titleYears: [],
+    finishes: [],
+    bestWeek: null,
+    worstWeek: null
+  };
+
+  // Championships
+  if (allData.hallOfFame) {
+    if (allData.hallOfFame.championships && allData.hallOfFame.championships[player] != null) {
+      profile.championships = allData.hallOfFame.championships[player];
     }
-
-    const hp = extractPlayerPoints(w.highPlayer);
-    if (hp > highestPlayer.value) {
-      highestPlayer = { value: hp, label: w.highPlayer, week: w.week };
-    }
-
-    const lp = extractPlayerPoints(w.lowPlayer);
-    if (w.lowPlayer && lp < lowestPlayer.value) {
-      lowestPlayer = { value: lp, label: w.lowPlayer, week: w.week };
-    }
-
-    if (w.waiver && w.waiver !== '-') {
-      const costMatch = w.waiver.match(/,\s*(\d+)\s*$/);
-      const cost = costMatch ? parseInt(costMatch[1]) : 0;
-      if (cost > expensiveWaiver.value) {
-        expensiveWaiver = { value: cost, label: w.waiver, week: w.week };
+    (allData.hallOfFame.champions || []).forEach(c => {
+      // champion field can be "Aron + Ben" so check inclusion
+      if (c.champion && c.champion.split('+').map(s => s.trim()).includes(player)) {
+        profile.titleYears.push(c.year);
       }
+    });
+  }
+
+  // Season finishes
+  availableYears.forEach(year => {
+    const data = allData[year];
+    if (!data || !data.standings) return;
+    const standing = data.standings.find(s => s.player === player);
+    if (standing) {
+      profile.finishes.push({ year, rank: standing.rank, record: standing.record });
     }
   });
+  profile.finishes.sort((a, b) => b.year - a.year);
 
-  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver };
+  // Best/worst weeks across all years (using high/low score fields where this player was the scorer)
+  let best = { value: -Infinity };
+  let worst = { value: Infinity };
+
+  availableYears.forEach(year => {
+    const data = allData[year];
+    if (!data || !data.weeks) return;
+    data.weeks.forEach(w => {
+      // High score line
+      if (extractName(w.highScore) === player) {
+        const v = extractScore(w.highScore);
+        if (v > best.value) best = { value: v, year, week: w.week };
+      }
+      // Low score line
+      if (extractName(w.lowScore) === player) {
+        const v = extractScore(w.lowScore);
+        if (v < worst.value) worst = { value: v, year, week: w.week };
+      }
+    });
+  });
+
+  if (best.value !== -Infinity) profile.bestWeek = best;
+  if (worst.value !== Infinity) profile.worstWeek = worst;
+
+  return profile;
+}
+
+function ordinal(n) {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
 
 function renderWeekly() {
@@ -142,6 +196,42 @@ function renderWeekly() {
   `;
 }
 
+function getSeasonRecords(data) {
+  if (!data || !data.weeks.length) return null;
+
+  let highestScore = { value: -Infinity, label: '', week: 0 };
+  let highestPlayer = { value: -Infinity, label: '', week: 0 };
+  let lowestPlayer = { value: Infinity, label: '', week: 0 };
+  let expensiveWaiver = { value: -Infinity, label: '', week: 0 };
+
+  data.weeks.forEach(w => {
+    const hs = extractScore(w.highScore);
+    if (hs > highestScore.value) {
+      highestScore = { value: hs, label: w.highScore, week: w.week };
+    }
+
+    const hp = extractPlayerPoints(w.highPlayer);
+    if (hp > highestPlayer.value) {
+      highestPlayer = { value: hp, label: w.highPlayer, week: w.week };
+    }
+
+    const lp = extractPlayerPoints(w.lowPlayer);
+    if (w.lowPlayer && lp < lowestPlayer.value) {
+      lowestPlayer = { value: lp, label: w.lowPlayer, week: w.week };
+    }
+
+    if (w.waiver && w.waiver !== '-') {
+      const costMatch = w.waiver.match(/,\s*(\d+)\s*$/);
+      const cost = costMatch ? parseInt(costMatch[1]) : 0;
+      if (cost > expensiveWaiver.value) {
+        expensiveWaiver = { value: cost, label: w.waiver, week: w.week };
+      }
+    }
+  });
+
+  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver };
+}
+
 function renderStandings() {
   const data = allData[selectedYear];
   if (!data || !data.standings.length) {
@@ -211,21 +301,109 @@ function renderHallOfFame() {
   `;
 }
 
+function renderPlayers() {
+  // If a player is selected, show their profile
+  if (selectedPlayer) {
+    return renderPlayerProfile(selectedPlayer);
+  }
+
+  // Otherwise show the grid of players
+  const players = getAllPlayers();
+  if (!players.length) {
+    return `<div style="max-width: 1100px; margin: 2rem auto; padding: 1rem; text-align: center; color: #64748b;">No players found</div>`;
+  }
+
+  return `
+    <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 1.5rem; color: #011A36;">Players</h1>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+        ${players.map(p => {
+          const champs = (allData.hallOfFame && allData.hallOfFame.championships && allData.hallOfFame.championships[p]) || 0;
+          return `
+            <div class="player-tile" data-player="${p}" style="background: #383D44; border-radius: 8px; padding: 1.25rem 1rem; text-align: center; color: #e2e8f0; cursor: pointer; transition: transform 0.1s;">
+              <p style="font-size: 18px; font-weight: 500; margin: 0 0 0.5rem;">${p}</p>
+              <p style="font-size: 12px; color: #5B9BD5; margin: 0;">${champs} title${champs !== 1 ? 's' : ''}</p>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderPlayerProfile(player) {
+  const profile = getPlayerProfile(player);
+
+  const statCard = (label, value, sublabel) => `
+    <div style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0;">
+      <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">${label}</p>
+      <p style="font-size: 22px; font-weight: 500; margin: 0 0 2px;">${value}</p>
+      ${sublabel ? `<p style="font-size: 11px; color: #a8b0bd; margin: 0;">${sublabel}</p>` : ''}
+    </div>
+  `;
+
+  return `
+    <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
+      <button id="backToPlayers" style="background: transparent; border: 0.5px solid #d0d5dd; color: #011A36; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 1.5rem;">← All Players</button>
+
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.25rem; color: #011A36;">${profile.name}</h1>
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 2rem;">
+        ${profile.championships} championship${profile.championships !== 1 ? 's' : ''}${profile.titleYears.length ? ' · ' + profile.titleYears.sort((a, b) => b - a).join(', ') : ''}
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 2rem;">
+        ${statCard('Championships', profile.championships, profile.titleYears.length ? profile.titleYears.sort((a, b) => b - a).join(', ') : 'No titles yet')}
+        ${statCard('Best Week', profile.bestWeek ? profile.bestWeek.value : '—', profile.bestWeek ? `${profile.bestWeek.year} · Week ${profile.bestWeek.week}` : 'No data')}
+        ${statCard('Worst Week', profile.worstWeek ? profile.worstWeek.value : '—', profile.worstWeek ? `${profile.worstWeek.year} · Week ${profile.worstWeek.week}` : 'No data')}
+        ${statCard('Seasons', profile.finishes.length, profile.finishes.length ? `Since ${Math.min(...profile.finishes.map(f => f.year))}` : '')}
+      </div>
+
+      <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Season Finishes</h2>
+      ${profile.finishes.length ? `
+        <div style="display: grid; gap: 8px;">
+          ${profile.finishes.map(f => `
+            <div style="background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0;">
+              <span style="font-size: 14px; color: #a8b0bd;">${f.year}</span>
+              <div style="display: flex; gap: 16px; align-items: center;">
+                <span style="font-size: 13px; color: #a8b0bd;">${f.record}</span>
+                <span style="font-size: 16px; font-weight: 500; color: ${f.rank === 1 ? '#5B9BD5' : '#e2e8f0'};">${ordinal(f.rank)}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      ` : '<p style="color: #64748b; font-size: 13px;">No season data yet</p>'}
+
+      <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 2rem 0 1rem; letter-spacing: 0.5px;">Head to Head</h2>
+      <div style="background: #383D44; border-radius: 8px; padding: 1.25rem; color: #a8b0bd; font-size: 13px;">
+        Head-to-head records will appear here once weekly matchup data is added to the league sheet.
+      </div>
+    </div>
+  `;
+}
+
 function render() {
   let content = '';
   if (currentPage === 'weekly') content = renderWeekly();
   else if (currentPage === 'standings') content = renderStandings();
   else if (currentPage === 'hall') content = renderHallOfFame();
+  else if (currentPage === 'players') content = renderPlayers();
 
+  const showYearSelector = (currentPage === 'weekly' || currentPage === 'standings');
   const yearOptions = availableYears.map(y => `<option value="${y}" ${y === selectedYear ? 'selected' : ''}>${y}</option>`).join('');
+
+  const tab = (id, label) => `
+    <button class="nav-btn" data-page="${id}" style="flex: 1; padding: 1rem; background: transparent; border: none; border-bottom: ${currentPage === id ? '2px solid #5B9BD5' : '2px solid transparent'}; color: ${currentPage === id ? '#FFFFFF' : '#8a97a8'}; cursor: pointer; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">${label}</button>
+  `;
 
   const navHTML = `
     <div style="background: #011A36; display: flex; gap: 0; position: sticky; top: 0; z-index: 10;">
-      <button class="nav-btn" data-page="weekly" style="flex: 1; padding: 1rem; background: transparent; border: none; border-bottom: ${currentPage === 'weekly' ? '2px solid #5B9BD5' : '2px solid transparent'}; color: ${currentPage === 'weekly' ? '#FFFFFF' : '#8a97a8'}; cursor: pointer; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Home</button>
-      <button class="nav-btn" data-page="standings" style="flex: 1; padding: 1rem; background: transparent; border: none; border-bottom: ${currentPage === 'standings' ? '2px solid #5B9BD5' : '2px solid transparent'}; color: ${currentPage === 'standings' ? '#FFFFFF' : '#8a97a8'}; cursor: pointer; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Standings</button>
-      <button class="nav-btn" data-page="hall" style="flex: 1; padding: 1rem; background: transparent; border: none; border-bottom: ${currentPage === 'hall' ? '2px solid #5B9BD5' : '2px solid transparent'}; color: ${currentPage === 'hall' ? '#FFFFFF' : '#8a97a8'}; cursor: pointer; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Hall of Fame</button>
+      ${tab('weekly', 'Home')}
+      ${tab('standings', 'Standings')}
+      ${tab('players', 'Players')}
+      ${tab('hall', 'Hall of Fame')}
     </div>
 
+    ${showYearSelector ? `
     <div style="background: #011A36; padding: 1rem;">
       <div style="max-width: 1100px; margin: 0 auto;">
         <label style="font-size: 12px; color: #8a97a8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 0.5rem;">Select Season</label>
@@ -234,6 +412,7 @@ function render() {
         </select>
       </div>
     </div>
+    ` : ''}
   `;
 
   app.innerHTML = navHTML + content;
@@ -241,6 +420,7 @@ function render() {
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       currentPage = e.target.dataset.page;
+      if (currentPage !== 'players') selectedPlayer = null;
       render();
     });
   });
@@ -249,6 +429,23 @@ function render() {
   if (selector) {
     selector.addEventListener('change', (e) => {
       selectedYear = parseInt(e.target.value);
+      render();
+    });
+  }
+
+  // Player tiles
+  document.querySelectorAll('.player-tile').forEach(tile => {
+    tile.addEventListener('click', (e) => {
+      selectedPlayer = tile.dataset.player;
+      render();
+    });
+  });
+
+  // Back button
+  const backBtn = document.getElementById('backToPlayers');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      selectedPlayer = null;
       render();
     });
   }
