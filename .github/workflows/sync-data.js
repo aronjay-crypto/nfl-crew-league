@@ -5,7 +5,7 @@ const SHEET_ID = '1XSztc0Pp9sIjZImnRQBfA_zPymtdMJr0ekuVFG1CLuE';
 // Add a new season by adding one line here with its two GIDs.
 const SEASONS = {
   '2025': { weeks: 142810151, standings: 593825938 },
-  '2024': { weeks: 733256198, standings: 869048924 }
+  '2024': { weeks: 733256198, standings: 869048924 },
   '2023': { weeks: 1919173883, standings: 290329594 }
 };
 
