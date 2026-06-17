@@ -340,62 +340,62 @@
     "standings": [
       {
         "rank": 1,
-        "player": "Zak",
-        "record": "9-6",
-        "pf": 1716.18,
-        "pa": 1565.1
+        "player": "James",
+        "record": "10-5",
+        "pf": 1837.26,
+        "pa": 1693.26
       },
       {
         "rank": 2,
         "player": "Lance",
-        "record": "8-7",
-        "pf": 1623.84,
-        "pa": 1668.38
+        "record": "10-5",
+        "pf": 1820.52,
+        "pa": 1670.14
       },
       {
         "rank": 3,
-        "player": "James",
-        "record": "11-4",
-        "pf": 1818.7,
-        "pa": 1556.44
+        "player": "Zak",
+        "record": "10-5",
+        "pf": 1703.02,
+        "pa": 1616.3
       },
       {
         "rank": 4,
         "player": "Nathan",
         "record": "10-5",
-        "pf": 1703.23,
-        "pa": 1660.7
+        "pf": 1679.66,
+        "pa": 1662.36
       },
       {
         "rank": 5,
         "player": "Jamie",
-        "record": "6-9",
-        "pf": 1598.88,
-        "pa": 1702.34
+        "record": "7-8",
+        "pf": 1863.04,
+        "pa": 1665.42
       },
       {
         "rank": 6,
-        "player": "Aron",
-        "record": "7-8",
-        "pf": 1767.14,
-        "pa": 1686.76
+        "player": "Ethan",
+        "record": "5-10",
+        "pf": 1582.26,
+        "pa": 1720.54
       },
       {
         "rank": 7,
-        "player": "Ben",
+        "player": "Aron",
         "record": "4-11",
-        "pf": 1557.02,
-        "pa": 1737.94
+        "pf": 1685.84,
+        "pa": 1778.32
       },
       {
         "rank": 8,
-        "player": "Ethan",
-        "record": "5-10",
-        "pf": 1613,
-        "pa": 1820
+        "player": "Ben",
+        "record": "4-11",
+        "pf": 1452.82,
+        "pa": 1818.08
       }
     ],
-    "champion": "Zak"
+    "champion": "James"
   },
   "hallOfFame": {
     "champions": [
