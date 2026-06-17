@@ -1,4 +1,146 @@
 {
+  "2024": {
+    "weeks": [
+      {
+        "week": 1,
+        "highScore": "Zak, 134.16",
+        "lowScore": "Ben, 94.56",
+        "highPlayer": "James, Saquon, 34.2",
+        "lowPlayer": "Nathan, Kincaid, 1.10",
+        "waiver": "-"
+      },
+      {
+        "week": 2,
+        "highScore": "Zak, 130.9",
+        "lowScore": "Lance, 100.06",
+        "highPlayer": "Ben, Kamara, 43",
+        "lowPlayer": "Ben, Kelce, 0.6",
+        "waiver": "Aron, Zach Charbonnet, 8"
+      },
+      {
+        "week": 3,
+        "highScore": "Jamie, 143.08",
+        "lowScore": "Lance, 72.28",
+        "highPlayer": "Ethan, Josh Allen, 30.92",
+        "lowPlayer": "James, Stevenson, -0.7",
+        "waiver": "James, Rashid Shaheed, 18"
+      },
+      {
+        "week": 4,
+        "highScore": "Aron, 129.94",
+        "lowScore": "Lance, 82.02",
+        "highPlayer": "Jamie, Derrick Henry, 30.90",
+        "lowPlayer": "Ben, Steele, -2.4",
+        "waiver": "Ethan, Jauan Jennings, 15"
+      },
+      {
+        "week": 5,
+        "highScore": "Ben, 129.68",
+        "lowScore": "James, 76.92",
+        "highPlayer": "Ben, Burrow, 33.78",
+        "lowPlayer": "Jamie, Olave, 1",
+        "waiver": "Lance, Xavier Worthy, 22"
+      },
+      {
+        "week": 6,
+        "highScore": "Aron, 155.12",
+        "lowScore": "Ethan, 87.4",
+        "highPlayer": "Nathan + Jamie, Mixon + Henry, 26.20",
+        "lowPlayer": "Jamie, Olave, -2.50",
+        "waiver": "Ethan, Rico Dowdle, 15"
+      },
+      {
+        "week": 7,
+        "highScore": "Aron, 145.25",
+        "lowScore": "Ben, 82.04",
+        "highPlayer": "Aron, Lamar, 33.94",
+        "lowPlayer": "Lance, Jameson Williams, -0.4",
+        "waiver": "Ben, Keenan Allen, 20"
+      },
+      {
+        "week": 8,
+        "highScore": "James, 136.56",
+        "lowScore": "Ethan, 104.32",
+        "highPlayer": "James, Hurts, 35.14",
+        "lowPlayer": "Zak, Jake Ferguson, 1.30",
+        "waiver": "Aron, Jauan Jennings, 38"
+      },
+      {
+        "week": 9,
+        "highScore": "James, 150.4",
+        "lowScore": "Zak, 73.32",
+        "highPlayer": "James, Hurts + Saquon, 29.90",
+        "lowPlayer": "Ethan, Kmet, 0",
+        "waiver": "Ben, Alexander Mattison, 6"
+      },
+      {
+        "week": 10,
+        "highScore": "Lance, 130.14",
+        "lowScore": "Ethan, 83",
+        "highPlayer": "Lance, Chase, 46.40",
+        "lowPlayer": "Zak, Brian Thomas, 1.2",
+        "waiver": "Ethan (deviously), Tucker Kraft, 10"
+      },
+      {
+        "week": 11,
+        "highScore": "James, 152.54",
+        "lowScore": "Ethan, 84.88",
+        "highPlayer": "Nathan, Mixon, 34.30",
+        "lowPlayer": "Jamie, Pitts, 0.8",
+        "waiver": "-"
+      },
+      {
+        "week": 12,
+        "highScore": "James, 151.96",
+        "lowScore": "Jamie, 71",
+        "highPlayer": "James, Saquon, 44.20",
+        "lowPlayer": "Zak, Jonathan Taylor, 0.5",
+        "waiver": "-"
+      },
+      {
+        "week": 13,
+        "highScore": "Nathan, 141.64",
+        "lowScore": "Jamie, 81.9",
+        "highPlayer": "Nathan, Bucky Irving, 27.50",
+        "lowPlayer": "Lance, Hubbard, 1.30",
+        "waiver": "-"
+      },
+      {
+        "week": 14,
+        "highScore": "Ethan, 152.12",
+        "lowScore": "Zak, 105.88",
+        "highPlayer": "Zak, Sam Darnold, 35.58",
+        "lowPlayer": "Ethan, Jayden Reed, 0",
+        "waiver": "-"
+      },
+      {
+        "week": 15,
+        "highScore": "Zak, 159.14",
+        "lowScore": "Jamie, 85.66",
+        "highPlayer": "Ethan, Josh Allen, 42.28",
+        "lowPlayer": "Nathan, Kupp, 0",
+        "waiver": "-"
+      },
+      {
+        "week": 16,
+        "highScore": "Zak, 167.54",
+        "lowScore": "Ethan, 90.56",
+        "highPlayer": "Jonathan Taylor, 41.80",
+        "lowPlayer": "Ethan, Brian Robinson, -1.90",
+        "waiver": "-"
+      },
+      {
+        "week": 17,
+        "highScore": "Zak, 162.28",
+        "lowScore": "Ethan, 97.08",
+        "highPlayer": "Ben, Burrow, 38.98",
+        "lowPlayer": "Ben, Scary Terry, 0.5",
+        "waiver": "-"
+      }
+    ],
+    "standings": [],
+    "champion": null
+  },
   "2025": {
     "weeks": [
       {
@@ -141,62 +283,62 @@
     "standings": [
       {
         "rank": 1,
-        "player": "James",
-        "record": "10-5",
-        "pf": 1837.26,
-        "pa": 1693.26
+        "player": "Zak",
+        "record": "9-6",
+        "pf": 1716.18,
+        "pa": 1565.1
       },
       {
         "rank": 2,
         "player": "Lance",
-        "record": "10-5",
-        "pf": 1820.52,
-        "pa": 1670.14
+        "record": "8-7",
+        "pf": 1623.84,
+        "pa": 1668.38
       },
       {
         "rank": 3,
-        "player": "Zak",
-        "record": "10-5",
-        "pf": 1703.02,
-        "pa": 1616.3
+        "player": "James",
+        "record": "11-4",
+        "pf": 1818.7,
+        "pa": 1556.44
       },
       {
         "rank": 4,
         "player": "Nathan",
         "record": "10-5",
-        "pf": 1679.66,
-        "pa": 1662.36
+        "pf": 1703.23,
+        "pa": 1660.7
       },
       {
         "rank": 5,
         "player": "Jamie",
-        "record": "7-8",
-        "pf": 1863.04,
-        "pa": 1665.42
+        "record": "6-9",
+        "pf": 1598.88,
+        "pa": 1702.34
       },
       {
         "rank": 6,
-        "player": "Ethan",
-        "record": "5-10",
-        "pf": 1582.26,
-        "pa": 1720.54
+        "player": "Aron",
+        "record": "7-8",
+        "pf": 1767.14,
+        "pa": 1686.76
       },
       {
         "rank": 7,
-        "player": "Aron",
+        "player": "Ben",
         "record": "4-11",
-        "pf": 1685.84,
-        "pa": 1778.32
+        "pf": 1557.02,
+        "pa": 1737.94
       },
       {
         "rank": 8,
-        "player": "Ben",
-        "record": "4-11",
-        "pf": 1452.82,
-        "pa": 1818.08
+        "player": "Ethan",
+        "record": "5-10",
+        "pf": 1613,
+        "pa": 1820
       }
     ],
-    "champion": "James"
+    "champion": "Zak"
   },
   "hallOfFame": {
     "champions": [
