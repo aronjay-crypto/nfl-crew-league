@@ -1,4 +1,203 @@
 {
+  "2023": {
+    "weeks": [
+      {
+        "week": 1,
+        "highScore": "James, 135.84",
+        "lowScore": "Zak, 74.1",
+        "highPlayer": "James, Tyreek Hill, 35.50",
+        "lowPlayer": "James, Zak - Goedert, Higbee 0",
+        "waiver": "-"
+      },
+      {
+        "week": 2,
+        "highScore": "Ben, 115.94",
+        "lowScore": "Ethan, 92.9",
+        "highPlayer": "Ben, Brian Robinson, 26.90",
+        "lowPlayer": "Jamie - Juwan Johnson, 1.3",
+        "waiver": "Aron, Puca Nacua, 15"
+      },
+      {
+        "week": 3,
+        "highScore": "Ethan, 141.88",
+        "lowScore": "Ben, 93.56",
+        "highPlayer": "Ethan, Mostert, 38.20",
+        "lowPlayer": "Aron, Jamie, Ben - Josh Kelley, Hunter Henry, Brandin Cooks, 1.7",
+        "waiver": "Nathan, Jerome Ford, 40"
+      },
+      {
+        "week": 4,
+        "highScore": "Zak, 144.46",
+        "lowScore": "Ethan, 60.92",
+        "highPlayer": "James, Josh Allen, 37.50",
+        "lowPlayer": "Ethan, Mostert, -1.5",
+        "waiver": "Ben, Adam Theilen, 10"
+      },
+      {
+        "week": 5,
+        "highScore": "James, 157.56",
+        "lowScore": "Aron, 75.08",
+        "highPlayer": "Jamie, DJ Moore, 43",
+        "lowPlayer": "Jamie, Hunter Henry, 0",
+        "waiver": "Zak, Jameson Williams, 21"
+      },
+      {
+        "week": 6,
+        "highScore": "Nathan, 117.32",
+        "lowScore": "Zak, 86.9",
+        "highPlayer": "Ethan, Mostert, 34",
+        "lowPlayer": "Ethan, Gabe Davis, -0.9",
+        "waiver": "Ben, Emari Demercado, 16"
+      },
+      {
+        "week": 7,
+        "highScore": "Nathan, 159.08",
+        "lowScore": "Ben, 74.5",
+        "highPlayer": "Ethan, Mahomes, 34.86",
+        "lowPlayer": "Jamie, Bijan, 0.3",
+        "waiver": "Lance, Craig Reynolds, 12"
+      },
+      {
+        "week": 8,
+        "highScore": "James, 144.36",
+        "lowScore": "Ben, 93.52",
+        "highPlayer": "Ethan, CD Lamb, 30",
+        "lowPlayer": "Aron, Darren Waller, 0.1",
+        "waiver": "Jamie, Dalton Kincaid, 14"
+      },
+      {
+        "week": 9,
+        "highScore": "Zak, 122.08",
+        "lowScore": "James, 70.42",
+        "highPlayer": "Zak, Hurts, 24.88",
+        "lowPlayer": "Nathan, Pickens, -0.1",
+        "waiver": "James, Chubba Hubbard, 17"
+      },
+      {
+        "week": 10,
+        "highScore": "Jamie, 170.22",
+        "lowScore": "Ben, 70.48",
+        "highPlayer": "Jamie, Keenan, 30.50",
+        "lowPlayer": "Lance, Dionte Johnson, 1.7",
+        "waiver": "Jamie, Keaton Mitchell, 28"
+      },
+      {
+        "week": 11,
+        "highScore": "Aron, 150.34",
+        "lowScore": "Lance, 67.84",
+        "highPlayer": "Ben, Saquon, 26",
+        "lowPlayer": "Zak, Diggs, -0.3",
+        "waiver": "Nathan, Noah Brown, 9"
+      },
+      {
+        "week": 12,
+        "highScore": "Lance, 137.96",
+        "lowScore": "Ben, 89.38",
+        "highPlayer": "James, Josh Allen, 39.66",
+        "lowPlayer": "Aron, Shultz, 0.2",
+        "waiver": "Aron, Zach Charbonnet, 17"
+      },
+      {
+        "week": 13,
+        "highScore": "Aron, 138.08",
+        "lowScore": "Ben, 108.2",
+        "highPlayer": "Jamie, Deebo, 32.8",
+        "lowPlayer": "Zak, Tank Dell, 0",
+        "waiver": "Nathan, Zack Moss, 25"
+      },
+      {
+        "week": 14,
+        "highScore": "Nathan, 122.54",
+        "lowScore": "James, 90.22",
+        "highPlayer": "Nathan, Lamar, 31.64",
+        "lowPlayer": "Ethan, Gabe Davis, 0",
+        "waiver": "Ethan, Montez Sweat, 5"
+      },
+      {
+        "week": 15,
+        "highScore": "James, 126.96",
+        "lowScore": "Ben, 69.84",
+        "highPlayer": "Aron, CMC, 37.70",
+        "lowPlayer": "Jamie, Bijan, -1.6",
+        "waiver": "James, Gus Edwards, 43"
+      },
+      {
+        "week": 16,
+        "highScore": "Ethan, 134.8",
+        "lowScore": "Jamie, 80.3",
+        "highPlayer": "Aron, Breece, 31.10",
+        "lowPlayer": "Jamie, Taysom hill, 0.2",
+        "waiver": "James, Julian Love, 6"
+      },
+      {
+        "week": 17,
+        "highScore": "Nathan, 128.94",
+        "lowScore": "Ben, 95.72",
+        "highPlayer": "Nathan, Lamar, 37.74",
+        "lowPlayer": "Ben, Kmet, 0",
+        "waiver": "-"
+      }
+    ],
+    "standings": [
+      {
+        "rank": 1,
+        "player": "Ethan",
+        "record": "9-6",
+        "pf": 1593.34,
+        "pa": 1552.94
+      },
+      {
+        "rank": 2,
+        "player": "James",
+        "record": "11-4",
+        "pf": 1835,
+        "pa": 1556.28
+      },
+      {
+        "rank": 3,
+        "player": "Nathan",
+        "record": "9-6",
+        "pf": 1748.62,
+        "pa": 1619.98
+      },
+      {
+        "rank": 4,
+        "player": "Jamie",
+        "record": "8-7",
+        "pf": 1629.06,
+        "pa": 1657.28
+      },
+      {
+        "rank": 5,
+        "player": "Lance",
+        "record": "7-8",
+        "pf": 1671.9,
+        "pa": 1739.08
+      },
+      {
+        "rank": 6,
+        "player": "Aron",
+        "record": "6-9",
+        "pf": 1651.54,
+        "pa": 1680.3
+      },
+      {
+        "rank": 7,
+        "player": "Zak",
+        "record": "7-8",
+        "pf": 1668.4,
+        "pa": 1689.12
+      },
+      {
+        "rank": 8,
+        "player": "Ben",
+        "record": "3-12",
+        "pf": 1415.46,
+        "pa": 1718.34
+      }
+    ],
+    "champion": "Ethan"
+  },
   "2024": {
     "weeks": [
       {
