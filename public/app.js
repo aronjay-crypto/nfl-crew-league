@@ -462,11 +462,11 @@ function renderHallOfFame() {
       </div>
 
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Year by Year</h2>
-      <div style="display: grid; gap: 8px;">
-        ${data.champions.map(entry => `
-          <div style="background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0;">
-            <p style="font-size: 14px; color: #a8b0bd; margin: 0;">${entry.year}</p>
-            <p style="font-size: 16px; font-weight: 500; margin: 0;">${entry.champion}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px;">
+        ${data.champions.sort((a, b) => b.year - a.year).map(entry => `
+          <div style="background: #383D44; border-radius: 8px; padding: 10px 12px; color: #e2e8f0;">
+            <p style="font-size: 11px; color: #a8b0bd; margin: 0 0 2px;">${entry.year}</p>
+            <p style="font-size: 14px; font-weight: 500; margin: 0;">${entry.champion}</p>
           </div>
         `).join('')}
       </div>
