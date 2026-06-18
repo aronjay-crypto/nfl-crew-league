@@ -109,5 +109,23 @@ async function sync() {
     process.exit(1);
   }
 }
+// Matchups (only exist for some seasons)
+    for (const [year, gid] of Object.entries(MATCHUPS)) {
+      console.log(`Fetching ${year} matchups...`);
+      const matchupsCsv = await fetchSheet(gid);
+      const rows = parseCSV(matchupsCsv).filter(r => r.Week && r.Red && r.Blue);
 
+      const matchups = rows.map(r => ({
+        week: parseInt(r.Week),
+        round: r.Round || 'Regular',
+        red: r.Red,
+        redScore: parseFloat((r.Red_Score || '').replace(/,/g, '')) || 0,
+        blue: r.Blue,
+        blueScore: parseFloat((r.Blue_Score || '').replace(/,/g, '')) || 0
+      }));
+
+      if (data[year]) {
+        data[year].matchups = matchups;
+      }
+    }
 sync();
