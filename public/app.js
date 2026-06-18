@@ -116,6 +116,30 @@ function getPlayerProfile(player) {
   if (best.value !== -Infinity) profile.bestWeek = best;
   if (worst.value !== Infinity) profile.worstWeek = worst;
 
+  // Head-to-head across all seasons that have matchup data
+  const h2h = {}; // opponent -> { wins, losses, ties }
+  availableYears.forEach(year => {
+    const data = allData[year];
+    if (!data || !data.matchups) return;
+    data.matchups.forEach(m => {
+      let me, opp, myScore, oppScore;
+      if (m.red === player) {
+        me = m.red; opp = m.blue; myScore = m.redScore; oppScore = m.blueScore;
+      } else if (m.blue === player) {
+        me = m.blue; opp = m.red; myScore = m.blueScore; oppScore = m.redScore;
+      } else {
+        return; // player not in this matchup
+      }
+      if (!h2h[opp]) h2h[opp] = { wins: 0, losses: 0, ties: 0 };
+      if (myScore > oppScore) h2h[opp].wins++;
+      else if (myScore < oppScore) h2h[opp].losses++;
+      else h2h[opp].ties++;
+    });
+  });
+  profile.headToHead = Object.entries(h2h)
+    .map(([opponent, rec]) => ({ opponent, ...rec }))
+    .sort((a, b) => a.opponent.localeCompare(b.opponent));
+
   return profile;
 }
 
@@ -273,6 +297,8 @@ function getAllTimeRecords() {
   let lowestWeek = { value: Infinity, who: '', year: 0, week: 0 };
   let highestPlayerWeek = { value: -Infinity, label: '', year: 0, week: 0 };
   let biggestWaiver = { value: -Infinity, label: '', year: 0, week: 0 };
+  let biggestBlowout = { value: -Infinity, winner: '', loser: '', year: 0, week: 0 };
+  let closestGame = { value: Infinity, winner: '', loser: '', year: 0, week: 0 };
 
   // Career aggregates
   const career = {}; // player -> { pf, wins, losses, seasons, bestFinish }
@@ -308,6 +334,21 @@ function getAllTimeRecords() {
       const rec = (s.record || '').match(/(\d+)\s*-\s*(\d+)/);
       if (rec) { c.wins += parseInt(rec[1]); c.losses += parseInt(rec[2]); }
     });
+
+    // Matchup-based records (only years with matchup data)
+    (data.matchups || []).forEach(m => {
+      if (m.redScore === 0 && m.blueScore === 0) return; // skip empty rows
+      const margin = Math.abs(m.redScore - m.blueScore);
+      const winner = m.redScore >= m.blueScore ? m.red : m.blue;
+      const loser = m.redScore >= m.blueScore ? m.blue : m.red;
+
+      if (margin > biggestBlowout.value) {
+        biggestBlowout = { value: margin, winner, loser, year, week: m.week };
+      }
+      if (margin < closestGame.value) {
+        closestGame = { value: margin, winner, loser, year, week: m.week };
+      }
+    });
   });
 
   // Career leaders
@@ -315,7 +356,7 @@ function getAllTimeRecords() {
   const mostPoints = [...careerArr].sort((a, b) => b.pf - a.pf)[0];
   const mostWins = [...careerArr].sort((a, b) => b.wins - a.wins)[0];
 
-  return { highestWeek, lowestWeek, highestPlayerWeek, biggestWaiver, mostPoints, mostWins };
+  return { highestWeek, lowestWeek, highestPlayerWeek, biggestWaiver, mostPoints, mostWins, biggestBlowout, closestGame };
 }
 
 function renderHallOfFame() {
@@ -345,6 +386,8 @@ function renderHallOfFame() {
         ${recordTile('Priciest Waiver', records.biggestWaiver.value > -Infinity ? records.biggestWaiver.label : '—', records.biggestWaiver.value > -Infinity ? `${records.biggestWaiver.year} · Week ${records.biggestWaiver.week}` : '')}
         ${records.mostPoints ? recordTile('Most Career Points', records.mostPoints.player, `${Math.round(records.mostPoints.pf).toLocaleString()} pts`) : ''}
         ${records.mostWins ? recordTile('Most Career Wins', records.mostWins.player, `${records.mostWins.wins} wins`) : ''}
+        ${records.biggestBlowout && records.biggestBlowout.value > -Infinity ? recordTile('Biggest Blowout', `${records.biggestBlowout.winner} def. ${records.biggestBlowout.loser}`, `by ${records.biggestBlowout.value.toFixed(2)} · ${records.biggestBlowout.year} Wk ${records.biggestBlowout.week}`) : ''}
+        ${records.closestGame && records.closestGame.value < Infinity ? recordTile('Closest Game', `${records.closestGame.winner} def. ${records.closestGame.loser}`, `by ${records.closestGame.value.toFixed(2)} · ${records.closestGame.year} Wk ${records.closestGame.week}`) : ''}
       </div>
 
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Championships by Player</h2>
@@ -444,9 +487,22 @@ function renderPlayerProfile(player) {
       ` : '<p style="color: #64748b; font-size: 13px;">No season data yet</p>'}
 
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 2rem 0 1rem; letter-spacing: 0.5px;">Head to Head</h2>
-      <div style="background: #383D44; border-radius: 8px; padding: 1.25rem; color: #a8b0bd; font-size: 13px;">
-        Head-to-head records will appear here once weekly matchup data is added to the league sheet.
-      </div>
+      ${profile.headToHead && profile.headToHead.length ? `
+        <div style="display: grid; gap: 8px;">
+          ${profile.headToHead.map(h => {
+            const total = h.wins + h.losses + h.ties;
+            const leading = h.wins > h.losses;
+            const trailing = h.wins < h.losses;
+            const recordColor = leading ? '#5B9BD5' : (trailing ? '#a8b0bd' : '#e2e8f0');
+            return `
+              <div style="background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0;">
+                <span style="font-size: 15px; font-weight: 500;">${profile.name} v ${h.opponent}</span>
+                <span style="font-size: 15px; font-weight: 500; color: ${recordColor};">${h.wins}-${h.losses}${h.ties ? '-' + h.ties : ''}</span>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      ` : '<div style="background: #383D44; border-radius: 8px; padding: 1.25rem; color: #a8b0bd; font-size: 13px;">Head-to-head records will appear here once weekly matchup data is added to the league sheet.</div>'}
     </div>
   `;
 }
