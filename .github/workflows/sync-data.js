@@ -12,6 +12,10 @@ const SEASONS = {
 const HALL_OF_FAME_GID = 514323247;
 const CHAMPIONSHIPS_GID = 286305454;
 
+const MATCHUPS = {
+  '2025': 1738901299
+};
+
 async function fetchSheet(gid) {
   const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
   const res = await fetch(url, {
