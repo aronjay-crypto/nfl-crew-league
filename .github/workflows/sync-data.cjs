@@ -14,7 +14,8 @@ const CHAMPIONSHIPS_GID = 286305454;
 
 // Matchup tabs by year (add older years here as you backfill)
 const MATCHUPS = {
-  '2025': 1738901299
+  '2025': 1738901299,
+  '2024': 487381305
 };
 
 async function fetchSheet(gid) {
