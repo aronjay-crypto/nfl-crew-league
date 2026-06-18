@@ -267,15 +267,85 @@ function renderStandings() {
   `;
 }
 
+// Compute all-time records across every season
+function getAllTimeRecords() {
+  let highestWeek = { value: -Infinity, who: '', year: 0, week: 0 };
+  let lowestWeek = { value: Infinity, who: '', year: 0, week: 0 };
+  let highestPlayerWeek = { value: -Infinity, label: '', year: 0, week: 0 };
+  let biggestWaiver = { value: -Infinity, label: '', year: 0, week: 0 };
+
+  // Career aggregates
+  const career = {}; // player -> { pf, wins, losses, seasons, bestFinish }
+
+  availableYears.forEach(year => {
+    const data = allData[year];
+    if (!data) return;
+
+    (data.weeks || []).forEach(w => {
+      const hs = extractScore(w.highScore);
+      if (hs > highestWeek.value) highestWeek = { value: hs, who: extractName(w.highScore), year, week: w.week };
+
+      const ls = extractScore(w.lowScore);
+      if (w.lowScore && ls < lowestWeek.value) lowestWeek = { value: ls, who: extractName(w.lowScore), year, week: w.week };
+
+      const hp = extractPlayerPoints(w.highPlayer);
+      if (hp > highestPlayerWeek.value) highestPlayerWeek = { value: hp, label: w.highPlayer, year, week: w.week };
+
+      if (w.waiver && w.waiver !== '-') {
+        const m = w.waiver.match(/,\s*(\d+)\s*$/);
+        const cost = m ? parseInt(m[1]) : 0;
+        if (cost > biggestWaiver.value) biggestWaiver = { value: cost, label: w.waiver, year, week: w.week };
+      }
+    });
+
+    (data.standings || []).forEach(s => {
+      if (!career[s.player]) career[s.player] = { pf: 0, wins: 0, losses: 0, seasons: 0, bestFinish: Infinity };
+      const c = career[s.player];
+      c.pf += s.pf || 0;
+      c.seasons += 1;
+      if (s.rank < c.bestFinish) c.bestFinish = s.rank;
+      // Parse record "9-6"
+      const rec = (s.record || '').match(/(\d+)\s*-\s*(\d+)/);
+      if (rec) { c.wins += parseInt(rec[1]); c.losses += parseInt(rec[2]); }
+    });
+  });
+
+  // Career leaders
+  const careerArr = Object.entries(career).map(([player, c]) => ({ player, ...c }));
+  const mostPoints = [...careerArr].sort((a, b) => b.pf - a.pf)[0];
+  const mostWins = [...careerArr].sort((a, b) => b.wins - a.wins)[0];
+
+  return { highestWeek, lowestWeek, highestPlayerWeek, biggestWaiver, mostPoints, mostWins };
+}
+
 function renderHallOfFame() {
   const data = allData.hallOfFame;
   if (!data) {
     return `<div style="max-width: 1100px; margin: 2rem auto; padding: 1rem; text-align: center; color: #64748b;">No data available</div>`;
   }
 
+  const records = getAllTimeRecords();
+  const recordTile = (label, value, sublabel) => `
+    <div style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0;">
+      <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">${label}</p>
+      <p style="font-size: 17px; font-weight: 500; margin: 0 0 2px;">${value}</p>
+      <p style="font-size: 11px; color: #a8b0bd; margin: 0;">${sublabel}</p>
+    </div>
+  `;
+
   return `
     <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
       <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 1.5rem; color: #011A36;">Hall of Fame</h1>
+
+      <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">All-Time Records</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 2rem;">
+        ${recordTile('Highest Week', records.highestWeek.value > -Infinity ? `${records.highestWeek.who}, ${records.highestWeek.value}` : '—', records.highestWeek.value > -Infinity ? `${records.highestWeek.year} · Week ${records.highestWeek.week}` : '')}
+        ${recordTile('Lowest Week', records.lowestWeek.value < Infinity ? `${records.lowestWeek.who}, ${records.lowestWeek.value}` : '—', records.lowestWeek.value < Infinity ? `${records.lowestWeek.year} · Week ${records.lowestWeek.week}` : '')}
+        ${recordTile('Best Player Week', records.highestPlayerWeek.value > -Infinity ? records.highestPlayerWeek.label : '—', records.highestPlayerWeek.value > -Infinity ? `${records.highestPlayerWeek.year} · Week ${records.highestPlayerWeek.week}` : '')}
+        ${recordTile('Priciest Waiver', records.biggestWaiver.value > -Infinity ? records.biggestWaiver.label : '—', records.biggestWaiver.value > -Infinity ? `${records.biggestWaiver.year} · Week ${records.biggestWaiver.week}` : '')}
+        ${records.mostPoints ? recordTile('Most Career Points', records.mostPoints.player, `${Math.round(records.mostPoints.pf).toLocaleString()} pts`) : ''}
+        ${records.mostWins ? recordTile('Most Career Wins', records.mostWins.player, `${records.mostWins.wins} wins`) : ''}
+      </div>
 
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Championships by Player</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 2rem;">
