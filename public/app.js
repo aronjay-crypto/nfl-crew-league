@@ -219,11 +219,20 @@ function renderWeekly() {
             ${recordCard('Lowest Scoring Player', records.lowestPlayer.label, `Week ${records.lowestPlayer.week}`)}
             ${recordCard('Most Expensive Waiver', records.expensiveWaiver.label, `Week ${records.expensiveWaiver.week}`)}
             ${records.unluckiest ? `
-              <div style="background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0;">
-                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Unluckiest Player</p>
+              <div class="unlucky-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0; cursor: pointer;">
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Unluckiest Player <span style="color: #8a97a8;">ⓘ</span></p>
                 <p style="font-size: 14px; font-weight: 500; margin: 0 0 2px;">${records.unluckiest.player}</p>
                 <p style="font-size: 11px; color: #a8b0bd; margin: 0 0 8px;">${records.unluckiest.count} loss${records.unluckiest.count !== 1 ? 'es' : ''} by under ${records.unluckiest.margin} points</p>
                 <p style="font-size: 11px; color: #8a97a8; margin: 0; font-style: italic; line-height: 1.4;">Awarded to the player who lost the most games by a margin of under ${records.unluckiest.margin} points across the season.</p>
+                <div class="unlucky-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+                  <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Narrow Losses (under ${records.unluckiest.margin})</p>
+                  ${records.unluckiest.breakdown.map(b => `
+                    <div style="display: flex; justify-content: space-between; padding: 3px 0; font-size: 12px;">
+                      <span style="color: #e2e8f0;">${b.player}</span>
+                      <span style="color: #a8b0bd;">${b.count}</span>
+                    </div>
+                  `).join('')}
+                </div>
               </div>
             ` : ''}
           ` : '<p style="color: #64748b; font-size: 13px;">No records yet</p>'}
@@ -282,7 +291,12 @@ function getSeasonRecords(data) {
 
     const ranked = Object.entries(narrowLosses).sort((a, b) => b[1] - a[1]);
     if (ranked.length) {
-      unluckiest = { player: ranked[0][0], count: ranked[0][1], margin: NARROW_MARGIN };
+      unluckiest = {
+        player: ranked[0][0],
+        count: ranked[0][1],
+        margin: NARROW_MARGIN,
+        breakdown: ranked.map(([player, count]) => ({ player, count }))
+      };
     }
   }
 
@@ -607,6 +621,17 @@ function render() {
     backBtn.addEventListener('click', () => {
       selectedPlayer = null;
       render();
+    });
+  }
+
+  // Unluckiest player tooltip (hover on desktop, tap on mobile)
+  const unluckyTile = document.querySelector('.unlucky-tile');
+  if (unluckyTile) {
+    const tooltip = unluckyTile.querySelector('.unlucky-tooltip');
+    unluckyTile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
+    unluckyTile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    unluckyTile.addEventListener('click', () => {
+      tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
     });
   }
 }
