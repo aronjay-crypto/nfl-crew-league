@@ -1,5 +1,5 @@
 - name: Sync data
-        run: node .github/workflows/sync-data.cjs
+run: node .github/workflows/sync-data.cjs
 
 on:
   schedule:
