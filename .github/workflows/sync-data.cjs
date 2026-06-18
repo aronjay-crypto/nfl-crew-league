@@ -12,6 +12,7 @@ const SEASONS = {
 const HALL_OF_FAME_GID = 514323247;
 const CHAMPIONSHIPS_GID = 286305454;
 
+// Matchup tabs by year (add older years here as you backfill)
 const MATCHUPS = {
   '2025': 1738901299
 };
@@ -92,24 +93,7 @@ async function sync() {
       };
     }
 
-    // Hall of Fame + Championships
-    console.log('Fetching Hall of Fame...');
-    const hofData = parseCSV(await fetchSheet(HALL_OF_FAME_GID)).filter(r => r.Year);
-    const champData = parseCSV(await fetchSheet(CHAMPIONSHIPS_GID)).filter(r => r.Player);
-
-    data.hallOfFame = {
-      champions: hofData.map(r => ({ year: parseInt(r.Year), champion: r.Champion })),
-      championships: Object.fromEntries(champData.map(r => [r.Player, parseInt(r.Total)]))
-    };
-
-    fs.writeFileSync('public/data.json', JSON.stringify(data, null, 2));
-    console.log('✅ Synced successfully!');
-  } catch (e) {
-    console.error('❌ Error:', e);
-    process.exit(1);
-  }
-}
-// Matchups (only exist for some seasons)
+    // Matchups (only exist for some seasons)
     for (const [year, gid] of Object.entries(MATCHUPS)) {
       console.log(`Fetching ${year} matchups...`);
       const matchupsCsv = await fetchSheet(gid);
@@ -128,4 +112,23 @@ async function sync() {
         data[year].matchups = matchups;
       }
     }
+
+    // Hall of Fame + Championships
+    console.log('Fetching Hall of Fame...');
+    const hofData = parseCSV(await fetchSheet(HALL_OF_FAME_GID)).filter(r => r.Year);
+    const champData = parseCSV(await fetchSheet(CHAMPIONSHIPS_GID)).filter(r => r.Player);
+
+    data.hallOfFame = {
+      champions: hofData.map(r => ({ year: parseInt(r.Year), champion: r.Champion })),
+      championships: Object.fromEntries(champData.map(r => [r.Player, parseInt(r.Total)]))
+    };
+
+    fs.writeFileSync('public/data.json', JSON.stringify(data, null, 2));
+    console.log('✅ Synced successfully!');
+  } catch (e) {
+    console.error('❌ Error:', e);
+    process.exit(1);
+  }
+}
+
 sync();
