@@ -1,5 +1,4 @@
-- name: Sync data
-run: node .github/workflows/sync-data.cjs
+name: Sync Data
 
 on:
   schedule:
@@ -13,14 +12,14 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      
+
       - name: Sync data
-        run: node .github/workflows/sync-data.js
-      
+        run: node .github/workflows/sync-data.cjs
+
       - name: Commit and push
         run: |
           git config --global user.name "github-actions[bot]"
