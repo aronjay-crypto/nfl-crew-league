@@ -149,6 +149,12 @@ function ordinal(n) {
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
 
+// Turn a matchup round into a short readable game-type tag
+function roundLabel(round) {
+  if (!round || round === 'Regular') return 'Regular Season';
+  return round; // e.g. "Semi-Final", "Final", "Losers Final", "3rd Place"
+}
+
 function renderWeekly() {
   const data = allData[selectedYear];
   if (!data || !data.weeks.length) {
@@ -341,12 +347,13 @@ function getAllTimeRecords() {
       const margin = Math.abs(m.redScore - m.blueScore);
       const winner = m.redScore >= m.blueScore ? m.red : m.blue;
       const loser = m.redScore >= m.blueScore ? m.blue : m.red;
+      const round = m.round || 'Regular';
 
       if (margin > biggestBlowout.value) {
-        biggestBlowout = { value: margin, winner, loser, year, week: m.week };
+        biggestBlowout = { value: margin, winner, loser, year, week: m.week, round };
       }
       if (margin < closestGame.value) {
-        closestGame = { value: margin, winner, loser, year, week: m.week };
+        closestGame = { value: margin, winner, loser, year, week: m.week, round };
       }
     });
   });
@@ -386,8 +393,8 @@ function renderHallOfFame() {
         ${recordTile('Priciest Waiver', records.biggestWaiver.value > -Infinity ? records.biggestWaiver.label : '—', records.biggestWaiver.value > -Infinity ? `${records.biggestWaiver.year} · Week ${records.biggestWaiver.week}` : '')}
         ${records.mostPoints ? recordTile('Most Career Points', records.mostPoints.player, `${Math.round(records.mostPoints.pf).toLocaleString()} pts`) : ''}
         ${records.mostWins ? recordTile('Most Career Wins', records.mostWins.player, `${records.mostWins.wins} wins`) : ''}
-        ${records.biggestBlowout && records.biggestBlowout.value > -Infinity ? recordTile('Biggest Blowout', `${records.biggestBlowout.winner} def. ${records.biggestBlowout.loser}`, `by ${records.biggestBlowout.value.toFixed(2)} · ${records.biggestBlowout.year} Wk ${records.biggestBlowout.week}`) : ''}
-        ${records.closestGame && records.closestGame.value < Infinity ? recordTile('Closest Game', `${records.closestGame.winner} def. ${records.closestGame.loser}`, `by ${records.closestGame.value.toFixed(2)} · ${records.closestGame.year} Wk ${records.closestGame.week}`) : ''}
+        ${records.biggestBlowout && records.biggestBlowout.value > -Infinity ? recordTile('Biggest Blowout', `${records.biggestBlowout.winner} def. ${records.biggestBlowout.loser}`, `by ${records.biggestBlowout.value.toFixed(2)} · ${records.biggestBlowout.year} Wk ${records.biggestBlowout.week} · ${roundLabel(records.biggestBlowout.round)}`) : ''}
+        ${records.closestGame && records.closestGame.value < Infinity ? recordTile('Closest Game', `${records.closestGame.winner} def. ${records.closestGame.loser}`, `by ${records.closestGame.value.toFixed(2)} · ${records.closestGame.year} Wk ${records.closestGame.week} · ${roundLabel(records.closestGame.round)}`) : ''}
       </div>
 
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Championships by Player</h2>
