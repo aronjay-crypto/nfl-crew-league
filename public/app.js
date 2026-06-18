@@ -218,6 +218,14 @@ function renderWeekly() {
             ${recordCard('Highest Scoring Player', records.highestPlayer.label, `Week ${records.highestPlayer.week}`)}
             ${recordCard('Lowest Scoring Player', records.lowestPlayer.label, `Week ${records.lowestPlayer.week}`)}
             ${recordCard('Most Expensive Waiver', records.expensiveWaiver.label, `Week ${records.expensiveWaiver.week}`)}
+            ${records.unluckiest ? `
+              <div style="background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0;">
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Unluckiest Player</p>
+                <p style="font-size: 14px; font-weight: 500; margin: 0 0 2px;">${records.unluckiest.player}</p>
+                <p style="font-size: 11px; color: #a8b0bd; margin: 0 0 8px;">${records.unluckiest.count} loss${records.unluckiest.count !== 1 ? 'es' : ''} by under ${records.unluckiest.margin} points</p>
+                <p style="font-size: 11px; color: #8a97a8; margin: 0; font-style: italic; line-height: 1.4;">Awarded to the player who lost the most games by a margin of under ${records.unluckiest.margin} points across the season.</p>
+              </div>
+            ` : ''}
           ` : '<p style="color: #64748b; font-size: 13px;">No records yet</p>'}
         </div>
 
@@ -259,7 +267,26 @@ function getSeasonRecords(data) {
     }
   });
 
-  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver };
+  // Unluckiest player: most narrow losses (margin under threshold) across all games this season
+  const NARROW_MARGIN = 5;
+  let unluckiest = null;
+  if (data.matchups && data.matchups.length) {
+    const narrowLosses = {}; // player -> count
+    data.matchups.forEach(m => {
+      if (m.redScore === 0 && m.blueScore === 0) return; // skip empty rows
+      const margin = Math.abs(m.redScore - m.blueScore);
+      if (margin === 0 || margin >= NARROW_MARGIN) return; // ties or non-narrow games don't count
+      const loser = m.redScore < m.blueScore ? m.red : m.blue;
+      narrowLosses[loser] = (narrowLosses[loser] || 0) + 1;
+    });
+
+    const ranked = Object.entries(narrowLosses).sort((a, b) => b[1] - a[1]);
+    if (ranked.length) {
+      unluckiest = { player: ranked[0][0], count: ranked[0][1], margin: NARROW_MARGIN };
+    }
+  }
+
+  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver, unluckiest };
 }
 
 function renderStandings() {
