@@ -395,7 +395,553 @@
         "pa": 1820
       }
     ],
-    "champion": "Zak"
+    "champion": "Zak",
+    "matchups": [
+      {
+        "week": 1,
+        "round": "Regular",
+        "red": "James",
+        "redScore": 109.42,
+        "blue": "Aron",
+        "blueScore": 119.32
+      },
+      {
+        "week": 1,
+        "round": "Regular",
+        "red": "Zak",
+        "redScore": 134.16,
+        "blue": "Ben",
+        "blueScore": 94.56
+      },
+      {
+        "week": 1,
+        "round": "Regular",
+        "red": "Jamie",
+        "redScore": 102.24,
+        "blue": "Lance",
+        "blueScore": 102.18
+      },
+      {
+        "week": 1,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 99.88,
+        "blue": "Nathan",
+        "blueScore": 116.48
+      },
+      {
+        "week": 2,
+        "round": "Regular",
+        "red": "Jamie",
+        "redScore": 121.54,
+        "blue": "Aron",
+        "blueScore": 130.58
+      },
+      {
+        "week": 2,
+        "round": "Regular",
+        "red": "Zak",
+        "redScore": 130.9,
+        "blue": "James",
+        "blueScore": 115.62
+      },
+      {
+        "week": 2,
+        "round": "Regular",
+        "red": "Ben",
+        "redScore": 107.72,
+        "blue": "Ethan",
+        "blueScore": 121.86
+      },
+      {
+        "week": 2,
+        "round": "Regular",
+        "red": "Lance",
+        "redScore": 101.06,
+        "blue": "Nathan",
+        "blueScore": 125.42
+      },
+      {
+        "week": 3,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 111.38,
+        "blue": "Nathan",
+        "blueScore": 117.06
+      },
+      {
+        "week": 3,
+        "round": "Regular",
+        "red": "James",
+        "redScore": 85.74,
+        "blue": "Jamie",
+        "blueScore": 143.08
+      },
+      {
+        "week": 3,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 103.12,
+        "blue": "Zak",
+        "blueScore": 94.1
+      },
+      {
+        "week": 3,
+        "round": "Regular",
+        "red": "Lance",
+        "redScore": 71.78,
+        "blue": "Ben",
+        "blueScore": 85.46
+      },
+      {
+        "week": 4,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 129.94,
+        "blue": "Ben",
+        "blueScore": 84.18
+      },
+      {
+        "week": 4,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 111,
+        "blue": "James",
+        "blueScore": 112.6
+      },
+      {
+        "week": 4,
+        "round": "Regular",
+        "red": "Jamie",
+        "redScore": 104.68,
+        "blue": "Nathan",
+        "blueScore": 98.14
+      },
+      {
+        "week": 4,
+        "round": "Regular",
+        "red": "Zak",
+        "redScore": 114.8,
+        "blue": "Lance",
+        "blueScore": 82.02
+      },
+      {
+        "week": 5,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 113.02,
+        "blue": "Zak",
+        "blueScore": 128.56
+      },
+      {
+        "week": 5,
+        "round": "Regular",
+        "red": "James",
+        "redScore": 76.92,
+        "blue": "Nathan",
+        "blueScore": 79.34
+      },
+      {
+        "week": 5,
+        "round": "Regular",
+        "red": "Lance",
+        "redScore": 128.16,
+        "blue": "Ethan",
+        "blueScore": 112.54
+      },
+      {
+        "week": 5,
+        "round": "Regular",
+        "red": "Ben",
+        "redScore": 129.68,
+        "blue": "Jamie",
+        "blueScore": 95.4
+      },
+      {
+        "week": 6,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 157.12,
+        "blue": "Ethan",
+        "blueScore": 87.4
+      },
+      {
+        "week": 6,
+        "round": "Regular",
+        "red": "Lance",
+        "redScore": 94.72,
+        "blue": "James",
+        "blueScore": 105.76
+      },
+      {
+        "week": 6,
+        "round": "Regular",
+        "red": "Nathan",
+        "redScore": 124.3,
+        "blue": "Ben",
+        "blueScore": 111.32
+      },
+      {
+        "week": 6,
+        "round": "Regular",
+        "red": "Jamie",
+        "redScore": 103.26,
+        "blue": "Zak",
+        "blueScore": 98.02
+      },
+      {
+        "week": 7,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 145.24,
+        "blue": "Lance",
+        "blueScore": 97.16
+      },
+      {
+        "week": 7,
+        "round": "Regular",
+        "red": "James",
+        "redScore": 115.16,
+        "blue": "Ben",
+        "blueScore": 82.04
+      },
+      {
+        "week": 7,
+        "round": "Regular",
+        "red": "Zak",
+        "redScore": 128.7,
+        "blue": "Nathan",
+        "blueScore": 96.74
+      },
+      {
+        "week": 7,
+        "round": "Regular",
+        "red": "Jamie",
+        "redScore": 119.8,
+        "blue": "Ethan",
+        "blueScore": 115.82
+      },
+      {
+        "week": 8,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 110.06,
+        "blue": "James",
+        "blueScore": 136.56
+      },
+      {
+        "week": 8,
+        "round": "Regular",
+        "red": "Ben",
+        "redScore": 109.06,
+        "blue": "Zak",
+        "blueScore": 115.54
+      },
+      {
+        "week": 8,
+        "round": "Regular",
+        "red": "Lance",
+        "redScore": 128.4,
+        "blue": "Jamie",
+        "blueScore": 117.98
+      },
+      {
+        "week": 8,
+        "round": "Regular",
+        "red": "Nathan",
+        "redScore": 135.3,
+        "blue": "Ethan",
+        "blueScore": 104.32
+      },
+      {
+        "week": 9,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 95.2,
+        "blue": "Jamie",
+        "blueScore": 112.86
+      },
+      {
+        "week": 9,
+        "round": "Regular",
+        "red": "James",
+        "redScore": 150.4,
+        "blue": "Zak",
+        "blueScore": 73.32
+      },
+      {
+        "week": 9,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 108.68,
+        "blue": "Ben",
+        "blueScore": 96.64
+      },
+      {
+        "week": 9,
+        "round": "Regular",
+        "red": "Nathan",
+        "redScore": 106.96,
+        "blue": "Lance",
+        "blueScore": 118.8
+      },
+      {
+        "week": 10,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 101.5,
+        "blue": "Nathan",
+        "blueScore": 88.98
+      },
+      {
+        "week": 10,
+        "round": "Regular",
+        "red": "Jamie",
+        "redScore": 100.04,
+        "blue": "James",
+        "blueScore": 112.58
+      },
+      {
+        "week": 10,
+        "round": "Regular",
+        "red": "Zak",
+        "redScore": 99.48,
+        "blue": "Ethan",
+        "blueScore": 83
+      },
+      {
+        "week": 10,
+        "round": "Regular",
+        "red": "Ben",
+        "redScore": 128.92,
+        "blue": "Lance",
+        "blueScore": 130.14
+      },
+      {
+        "week": 11,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 88.78,
+        "blue": "Ben",
+        "blueScore": 106.24
+      },
+      {
+        "week": 11,
+        "round": "Regular",
+        "red": "James",
+        "redScore": 152.54,
+        "blue": "Ethan",
+        "blueScore": 84.88
+      },
+      {
+        "week": 11,
+        "round": "Regular",
+        "red": "Nathan",
+        "redScore": 125.14,
+        "blue": "Jamie",
+        "blueScore": 104.78
+      },
+      {
+        "week": 11,
+        "round": "Regular",
+        "red": "Lance",
+        "redScore": 109.68,
+        "blue": "Zak",
+        "blueScore": 105.18
+      },
+      {
+        "week": 12,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 116.68,
+        "blue": "Zak",
+        "blueScore": 94.22
+      },
+      {
+        "week": 12,
+        "round": "Regular",
+        "red": "Nathan",
+        "redScore": 104.2,
+        "blue": "James",
+        "blueScore": 151.96
+      },
+      {
+        "week": 12,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 80.26,
+        "blue": "Lance",
+        "blueScore": 141.52
+      },
+      {
+        "week": 12,
+        "round": "Regular",
+        "red": "Jamie",
+        "redScore": 71,
+        "blue": "Ben",
+        "blueScore": 105.86
+      },
+      {
+        "week": 13,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 94.88,
+        "blue": "Ethan",
+        "blueScore": 121.54
+      },
+      {
+        "week": 13,
+        "round": "Regular",
+        "red": "James",
+        "redScore": 121.62,
+        "blue": "Lance",
+        "blueScore": 89.88
+      },
+      {
+        "week": 13,
+        "round": "Regular",
+        "red": "Ben",
+        "redScore": 112.94,
+        "blue": "Nathan",
+        "blueScore": 141.64
+      },
+      {
+        "week": 13,
+        "round": "Regular",
+        "red": "Zak",
+        "redScore": 134.18,
+        "blue": "Jamie",
+        "blueScore": 81.9
+      },
+      {
+        "week": 14,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 130.34,
+        "blue": "Lance",
+        "blueScore": 139.64
+      },
+      {
+        "week": 14,
+        "round": "Regular",
+        "red": "Ben",
+        "redScore": 110.56,
+        "blue": "James",
+        "blueScore": 130.42
+      },
+      {
+        "week": 14,
+        "round": "Regular",
+        "red": "Nathan",
+        "redScore": 114.2,
+        "blue": "Zak",
+        "blueScore": 105.88
+      },
+      {
+        "week": 14,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 152.12,
+        "blue": "Jamie",
+        "blueScore": 134.66
+      },
+      {
+        "week": 15,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 123.1,
+        "blue": "James",
+        "blueScore": 141.4
+      },
+      {
+        "week": 15,
+        "round": "Regular",
+        "red": "Zak",
+        "redScore": 159.14,
+        "blue": "Ben",
+        "blueScore": 91.84
+      },
+      {
+        "week": 15,
+        "round": "Regular",
+        "red": "Jamie",
+        "redScore": 85.66,
+        "blue": "Lance",
+        "blueScore": 88.7
+      },
+      {
+        "week": 15,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 126.58,
+        "blue": "Nathan",
+        "blueScore": 129.34
+      },
+      {
+        "week": 16,
+        "round": "Semi-Final",
+        "red": "James",
+        "redScore": 104.24,
+        "blue": "Lance",
+        "blueScore": 161.18
+      },
+      {
+        "week": 16,
+        "round": "Semi-Final",
+        "red": "Nathan",
+        "redScore": 143.32,
+        "blue": "Zak",
+        "blueScore": 167.74
+      },
+      {
+        "week": 16,
+        "round": "Losers Semi",
+        "red": "Aron",
+        "redScore": 114.28,
+        "blue": "Ben",
+        "blueScore": 99.18
+      },
+      {
+        "week": 16,
+        "round": "Losers Semi",
+        "red": "Jamie",
+        "redScore": 95.88,
+        "blue": "Ethan",
+        "blueScore": 90.56
+      },
+      {
+        "week": 17,
+        "round": "Final",
+        "red": "Lance",
+        "redScore": 110.04,
+        "blue": "Zak",
+        "blueScore": 162.28
+      },
+      {
+        "week": 17,
+        "round": "3rd Place",
+        "red": "James",
+        "redScore": 117.38,
+        "blue": "Nathan",
+        "blueScore": 99.08
+      },
+      {
+        "week": 17,
+        "round": "Losers Final",
+        "red": "Aron",
+        "redScore": 107.82,
+        "blue": "Jamie",
+        "blueScore": 115.14
+      },
+      {
+        "week": 17,
+        "round": "7th Place",
+        "red": "Ben",
+        "redScore": 100.88,
+        "blue": "Ethan",
+        "blueScore": 97.08
+      }
+    ]
   },
   "2025": {
     "weeks": [
