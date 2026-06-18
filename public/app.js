@@ -440,13 +440,25 @@ function renderHallOfFame() {
 
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Championships by Player</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 2rem;">
-        ${Object.entries(data.championships || {}).sort((a, b) => b[1] - a[1]).map(([player, count]) => `
-          <div style="background: #383D44; border-radius: 8px; padding: 1rem; text-align: center; color: #e2e8f0;">
-            <p style="font-size: 16px; font-weight: 500; margin: 0 0 0.5rem;">${player}</p>
+        ${Object.entries(data.championships || {}).sort((a, b) => b[1] - a[1]).map(([player, count]) => {
+          const years = (data.champions || [])
+            .filter(c => c.champion && c.champion.split('+').map(s => s.trim()).includes(player))
+            .map(c => c.year)
+            .sort((a, b) => b - a);
+          return `
+          <div class="champ-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 1rem; text-align: center; color: #e2e8f0; ${count > 0 ? 'cursor: pointer;' : ''}">
+            <p style="font-size: 16px; font-weight: 500; margin: 0 0 0.5rem;">${player}${count > 0 ? ' <span style="color: #8a97a8; font-size: 11px;">ⓘ</span>' : ''}</p>
             <p style="font-size: 24px; font-weight: 500; color: #5B9BD5; margin: 0;">${count}</p>
             <p style="font-size: 11px; color: #a8b0bd; margin: 0.5rem 0 0; text-transform: uppercase;">Title${count !== 1 ? 's' : ''}</p>
+            ${count > 0 && years.length ? `
+              <div class="champ-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Title Years</p>
+                ${years.map(y => `<p style="font-size: 13px; color: #e2e8f0; margin: 2px 0;">${y}</p>`).join('')}
+              </div>
+            ` : ''}
           </div>
-        `).join('')}
+          `;
+        }).join('')}
       </div>
 
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Year by Year</h2>
@@ -634,6 +646,17 @@ function render() {
       tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
     });
   }
+
+  // Championship tile tooltips (hover on desktop, tap on mobile)
+  document.querySelectorAll('.champ-tile').forEach(tile => {
+    const tooltip = tile.querySelector('.champ-tooltip');
+    if (!tooltip) return;
+    tile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
+    tile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    tile.addEventListener('click', () => {
+      tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
+    });
+  });
 }
 
 fetchData();
