@@ -5,6 +5,7 @@ let currentPage = 'weekly';
 let selectedYear = 2025;
 let availableYears = [];
 let selectedPlayer = null;
+let selectedWeek = null;
 
 async function fetchData() {
   try {
@@ -237,6 +238,55 @@ function getSuperlative(profile) {
   return { title: 'Aggressively Average', line: "Not good enough to fear, not bad enough to mock. The beige of the league." };
 }
 
+function renderWeekDetail() {
+  const data = allData[selectedYear];
+  const matchups = (data && data.matchups) ? data.matchups.filter(m => m.week === selectedWeek) : [];
+
+  // Order rounds sensibly: regular first, then playoff bracket order
+  const roundOrder = ['Regular', 'Semi-Final', 'Final', '3rd Place', 'Losers Semi', 'Losers Final', '7th Place'];
+  const sorted = [...matchups].sort((a, b) => {
+    const ai = roundOrder.indexOf(a.round); const bi = roundOrder.indexOf(b.round);
+    return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+  });
+
+  const matchupRow = (m) => {
+    const redWon = m.redScore > m.blueScore;
+    const blueWon = m.blueScore > m.redScore;
+    const isPlayoff = m.round && m.round !== 'Regular';
+    return `
+      <div style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0; ${isPlayoff ? 'border-left: 4px solid #5B9BD5;' : ''}">
+        ${isPlayoff ? `<p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin: 0 0 10px; text-align: center;">${m.round}</p>` : ''}
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="flex: 1; text-align: center;">
+            <p style="font-size: 15px; font-weight: ${redWon ? '600' : '500'}; margin: 0 0 2px; color: ${redWon ? '#2BAE66' : '#e2e8f0'};">${m.red}${redWon ? ' ✓' : ''}</p>
+            <p style="font-size: 22px; font-weight: 600; margin: 0; color: ${redWon ? '#2BAE66' : '#a8b0bd'};">${m.redScore}</p>
+          </div>
+          <div style="color: #6b7280; font-size: 12px; font-weight: 500;">v</div>
+          <div style="flex: 1; text-align: center;">
+            <p style="font-size: 15px; font-weight: ${blueWon ? '600' : '500'}; margin: 0 0 2px; color: ${blueWon ? '#2BAE66' : '#e2e8f0'};">${m.blue}${blueWon ? ' ✓' : ''}</p>
+            <p style="font-size: 22px; font-weight: 600; margin: 0; color: ${blueWon ? '#2BAE66' : '#a8b0bd'};">${m.blueScore}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  };
+
+  return `
+    <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
+      <button id="backToWeeks" style="background: transparent; border: 0.5px solid #d0d5dd; color: #011A36; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 1.5rem;">← Back</button>
+
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.25rem; color: #011A36;">Week ${selectedWeek}</h1>
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 2rem;">${selectedYear} Season · Matchups</p>
+
+      ${sorted.length ? `
+        <div style="display: grid; gap: 10px;">
+          ${sorted.map(matchupRow).join('')}
+        </div>
+      ` : '<p style="color: #64748b; font-size: 13px;">No matchup data for this week.</p>'}
+    </div>
+  `;
+}
+
 function renderWeekly() {
   const data = allData[selectedYear];
   if (!data || !data.weeks.length) {
@@ -246,7 +296,7 @@ function renderWeekly() {
   const records = getSeasonRecords(data);
 
   const weekCard = (w) => `
-    <div class="week-card" style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0;">
+    <div class="week-card" data-week="${w.week}" style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0; cursor: pointer;">
       <p style="font-size: 11px; font-weight: 500; color: #5B9BD5; margin: 0 0 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">Week ${w.week}</p>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
         <div>
@@ -272,6 +322,9 @@ function renderWeekly() {
           <p style="font-size: 12px; margin: 0;">${w.waiver}</p>
         </div>
       </div>
+      ${(data.matchups && data.matchups.some(m => m.week === w.week)) ? `
+        <p style="font-size: 11px; color: #5B9BD5; margin: 12px 0 0; text-align: right; font-weight: 500;">View matchups →</p>
+      ` : ''}
     </div>
   `;
 
@@ -689,7 +742,7 @@ function renderPlayerProfile(player) {
 
 function render() {
   let content = '';
-  if (currentPage === 'weekly') content = renderWeekly();
+  if (currentPage === 'weekly') content = selectedWeek !== null ? renderWeekDetail() : renderWeekly();
   else if (currentPage === 'standings') content = renderStandings();
   else if (currentPage === 'hall') content = renderHallOfFame();
   else if (currentPage === 'players') content = renderPlayers();
@@ -727,6 +780,7 @@ function render() {
     btn.addEventListener('click', (e) => {
       currentPage = e.target.dataset.page;
       if (currentPage !== 'players') selectedPlayer = null;
+      selectedWeek = null;
       render();
     });
   });
@@ -735,6 +789,25 @@ function render() {
   if (selector) {
     selector.addEventListener('change', (e) => {
       selectedYear = parseInt(e.target.value);
+      selectedWeek = null;
+      render();
+    });
+  }
+
+  // Week cards → open week detail
+  document.querySelectorAll('.week-card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectedWeek = parseInt(card.dataset.week);
+      window.scrollTo(0, 0);
+      render();
+    });
+  });
+
+  // Back from week detail
+  const backToWeeks = document.getElementById('backToWeeks');
+  if (backToWeeks) {
+    backToWeeks.addEventListener('click', () => {
+      selectedWeek = null;
       render();
     });
   }
