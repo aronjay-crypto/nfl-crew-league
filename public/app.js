@@ -663,6 +663,128 @@ function renderPlayers() {
   `;
 }
 
+// Build all pairwise rivalry records from matchup data across every season
+function getRivalries() {
+  const MIN_GAMES = 3; // threshold for lopsided & streak records
+  const pairs = {}; // "A|B" (sorted) -> { games:[], a, b }
+
+  availableYears.forEach(year => {
+    const data = allData[year];
+    if (!data || !data.matchups) return;
+    data.matchups.forEach(m => {
+      if (m.redScore === 0 && m.blueScore === 0) return;
+      const [a, b] = [m.red, m.blue].sort();
+      const key = `${a}|${b}`;
+      if (!pairs[key]) pairs[key] = { a, b, games: [] };
+      pairs[key].games.push({ year, week: m.week, round: m.round || 'Regular', red: m.red, redScore: m.redScore, blue: m.blue, blueScore: m.blueScore });
+    });
+  });
+
+  const list = Object.values(pairs);
+
+  // Most-played rivalry
+  let mostPlayed = null;
+  list.forEach(p => { if (!mostPlayed || p.games.length > mostPlayed.games.length) mostPlayed = p; });
+
+  // Highest-scoring matchup ever (combined points in a single game)
+  let highestScoring = null;
+  list.forEach(p => p.games.forEach(g => {
+    const total = g.redScore + g.blueScore;
+    if (!highestScoring || total > highestScoring.total) {
+      highestScoring = { total, ...g };
+    }
+  }));
+
+  // Biggest single blowout (largest margin in one game)
+  let biggestBlowout = null;
+  list.forEach(p => p.games.forEach(g => {
+    const margin = Math.abs(g.redScore - g.blueScore);
+    if (!biggestBlowout || margin > biggestBlowout.margin) {
+      const winner = g.redScore >= g.blueScore ? g.red : g.blue;
+      const loser = g.redScore >= g.blueScore ? g.blue : g.red;
+      biggestBlowout = { margin, winner, loser, ...g };
+    }
+  }));
+
+  // Most lopsided rivalry (min games): biggest win-share gap
+  let mostLopsided = null;
+  list.forEach(p => {
+    if (p.games.length < MIN_GAMES) return;
+    let aWins = 0, bWins = 0;
+    p.games.forEach(g => {
+      const winner = g.redScore >= g.blueScore ? g.red : g.blue;
+      if (winner === p.a) aWins++; else bWins++;
+    });
+    const dominant = aWins >= bWins ? p.a : p.b;
+    const dWins = Math.max(aWins, bWins);
+    const lWins = Math.min(aWins, bWins);
+    const gap = dWins - lWins;
+    if (!mostLopsided || gap > mostLopsided.gap || (gap === mostLopsided.gap && p.games.length > mostLopsided.total)) {
+      mostLopsided = { dominant, loser: dominant === p.a ? p.b : p.a, dWins, lWins, gap, total: p.games.length };
+    }
+  });
+
+  // Longest win streak within a rivalry (min games)
+  let longestStreak = null;
+  list.forEach(p => {
+    if (p.games.length < MIN_GAMES) return;
+    // order games chronologically
+    const ordered = [...p.games].sort((g1, g2) => g1.year - g2.year || g1.week - g2.week);
+    let curWinner = null, cur = 0, best = 0, bestWinner = null;
+    ordered.forEach(g => {
+      const winner = g.redScore >= g.blueScore ? g.red : g.blue;
+      if (winner === curWinner) { cur++; }
+      else { curWinner = winner; cur = 1; }
+      if (cur > best) { best = cur; bestWinner = winner; }
+    });
+    if (!longestStreak || best > longestStreak.streak) {
+      longestStreak = { streak: best, winner: bestWinner, loser: bestWinner === p.a ? p.b : p.a };
+    }
+  });
+
+  return { mostPlayed, highestScoring, biggestBlowout, mostLopsided, longestStreak, minGames: MIN_GAMES, hasData: list.length > 0 };
+}
+
+function renderRivalries() {
+  const r = getRivalries();
+  if (!r.hasData) {
+    return `<div style="max-width: 680px; margin: 2rem auto; padding: 1rem; text-align: center; color: #64748b;">No matchup data available yet.</div>`;
+  }
+
+  const card = (label, headline, sub) => `
+    <div style="background: #383D44; border-radius: 10px; padding: 1.25rem; color: #e2e8f0; margin-bottom: 12px;">
+      <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin: 0 0 8px;">${label}</p>
+      <p style="font-size: 18px; font-weight: 600; margin: 0 0 4px;">${headline}</p>
+      <p style="font-size: 12px; color: #a8b0bd; margin: 0; line-height: 1.4;">${sub}</p>
+    </div>
+  `;
+
+  const mp = r.mostPlayed;
+  const hs = r.highestScoring;
+  const bb = r.biggestBlowout;
+  const ml = r.mostLopsided;
+  const ls = r.longestStreak;
+
+  return `
+    <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.25rem; color: #011A36;">Rivalries</h1>
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 2rem;">All-time, across every season with matchup data</p>
+
+      ${mp ? card('Most-Played Rivalry', `${mp.a} v ${mp.b}`, `${mp.games.length} meetings and counting.`) : ''}
+
+      ${ml ? card('Most Lopsided Rivalry', `${ml.dominant} owns ${ml.loser}`, `${ml.dWins}–${ml.lWins} all-time across ${ml.total} meetings. One-sided doesn't cover it.`) : ''}
+
+      ${ls ? card('Longest Win Streak', `${ls.winner} over ${ls.loser}`, `${ls.streak} straight wins in the rivalry. Bragging rights secured.`) : ''}
+
+      ${hs ? card('Highest-Scoring Matchup', `${hs.red} v ${hs.blue}`, `${hs.total.toFixed(2)} combined points · ${hs.year} Week ${hs.week} (${hs.redScore} – ${hs.blueScore}).`) : ''}
+
+      ${bb ? card('Biggest Blowout', `${bb.winner} demolished ${bb.loser}`, `by ${bb.margin.toFixed(2)} · ${bb.year} Week ${bb.week} (${bb.redScore} – ${bb.blueScore})${bb.round !== 'Regular' ? ' · ' + bb.round : ''}.`) : ''}
+
+      <p style="font-size: 11px; color: #94a3b8; margin: 1.5rem 0 0; font-style: italic;">Most Lopsided and Longest Win Streak require at least ${r.minGames} meetings to qualify.</p>
+    </div>
+  `;
+}
+
 function renderPlayerProfile(player) {
   const profile = getPlayerProfile(player);
   const superlative = getSuperlative(profile);
@@ -746,6 +868,7 @@ function render() {
   else if (currentPage === 'standings') content = renderStandings();
   else if (currentPage === 'hall') content = renderHallOfFame();
   else if (currentPage === 'players') content = renderPlayers();
+  else if (currentPage === 'rivalries') content = renderRivalries();
 
   const showYearSelector = (currentPage === 'weekly' || currentPage === 'standings');
   const yearOptions = availableYears.map(y => `<option value="${y}" ${y === selectedYear ? 'selected' : ''}>${y}</option>`).join('');
@@ -759,6 +882,7 @@ function render() {
       ${tab('weekly', 'Home')}
       ${tab('standings', 'Standings')}
       ${tab('players', 'Players')}
+      ${tab('rivalries', 'Rivalries')}
       ${tab('hall', 'Hall of Fame')}
     </div>
 
