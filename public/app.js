@@ -155,6 +155,88 @@ function roundLabel(round) {
   return round; // e.g. "Semi-Final", "Final", "Losers Final", "3rd Place"
 }
 
+// Generate a banter-first superlative for a player from their history.
+// Weighs RECENT form heavily — distant glory counts for little. First match wins.
+function getSuperlative(profile) {
+  const PLAYOFF_CUTOFF = 4;
+  const finishes = [...profile.finishes].sort((a, b) => b.year - a.year); // newest first
+  if (!finishes.length) {
+    return { title: 'Ghost', line: "No record, no relevance. Did this person even play?" };
+  }
+
+  const titles = profile.championships || 0;
+  const titleYears = [...(profile.titleYears || [])].sort((a, b) => b - a);
+  const latestSeason = availableYears.length ? Math.max(...availableYears) : finishes[0].year;
+  const lastTitle = titleYears.length ? titleYears[0] : null;
+  const titleDrought = lastTitle ? (latestSeason - lastTitle) : null; // years since last ring
+  const last = finishes[0];
+
+  const madePlayoffs = (f) => f.rank <= PLAYOFF_CUTOFF;
+  const recent3 = finishes.slice(0, 3);
+  const recentPlayoffs = recent3.filter(madePlayoffs).length;
+  const recentBottom = recent3.filter(f => f.rank >= 7).length; // 7th/8th
+  const wonRecently = lastTitle !== null && titleDrought <= 1;     // this year or last
+  const wonMidRecent = lastTitle !== null && titleDrought >= 2 && titleDrought <= 4;
+  const wonAgesAgo = lastTitle !== null && titleDrought >= 5;
+  const reigning = titleYears.includes(latestSeason);
+  const firstYear = Math.min(...finishes.map(f => f.year));
+  const seasonsCount = finishes.length;
+
+  // Recent playoff appearances without ever converting to a title
+  const recentPlayoffNoTitle = recentPlayoffs >= 2 && titles === 0;
+  const everPlayoffNoTitle = titles === 0 && finishes.some(madePlayoffs);
+
+  // --- Priority-ordered, harsh ---
+
+  // Aron — the exception. Nothing but praise.
+  if (profile.name === 'Aron') {
+    return { title: 'The GOAT', line: "Three-time champion, architect of this very website, and the undisputed heartbeat of the league. A visionary on and off the field — the others are merely playing for second." };
+  }
+
+  // Jamie gets the dedicated "nearly man" roast (title-less but keeps reaching the playoffs)
+  if (profile.name === 'Jamie') {
+    return { title: 'So Close, Yet Forever Ringless', line: "Always knocking on the door, never invited in. The eternal nearly-man — collects playoff appearances like participation trophies and titles like dust." };
+  }
+
+  if (reigning) {
+    return { title: 'Reigning Champion', line: "Top of the pile — for now. History says this won't last." };
+  }
+
+  if (wonRecently) {
+    return { title: 'Recent Winner', line: "Won it lately and unbearable about it. Enjoy it before regression hits." };
+  }
+
+  if (wonMidRecent && recentPlayoffs >= 2) {
+    return { title: 'Fading Contender', line: `Last ring in ${lastTitle} and the window's creaking shut. Tick tock.` };
+  }
+
+  if (wonAgesAgo) {
+    return { title: 'Living in the Past', line: `Last won in ${lastTitle}. That's ${titleDrought} years of dining out on one trophy. Let it go.` };
+  }
+
+  if (wonMidRecent) {
+    return { title: 'One-Hit Wonder', line: `Got lucky in ${lastTitle}, hasn't sniffed it since. A flash in the pan.` };
+  }
+
+  if (recentBottom >= 2) {
+    return { title: 'Bona Fide Bottom-Feeder', line: "Parked at the foot of the table. 'Rebuilding' for the third year running, sure." };
+  }
+
+  if (recentPlayoffNoTitle) {
+    return { title: 'Chronic Choker', line: "Makes the playoffs, then folds like a deckchair. All bark, no bite." };
+  }
+
+  if (everPlayoffNoTitle && (latestSeason - firstYear) >= 5) {
+    return { title: 'Career Underachiever', line: `Years in the league, a fistful of playoff exits, zero rings. Defining the word 'meh'.` };
+  }
+
+  if (!madePlayoffs(last)) {
+    return { title: 'Missing in Action', line: "Didn't even make the cut last year. Bottom-half regular, top-half fantasist." };
+  }
+
+  return { title: 'Aggressively Average', line: "Not good enough to fear, not bad enough to mock. The beige of the league." };
+}
+
 function renderWeekly() {
   const data = allData[selectedYear];
   if (!data || !data.weeks.length) {
@@ -530,6 +612,7 @@ function renderPlayers() {
 
 function renderPlayerProfile(player) {
   const profile = getPlayerProfile(player);
+  const superlative = getSuperlative(profile);
 
   const statCard = (label, value, sublabel) => `
     <div style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0;">
@@ -544,9 +627,14 @@ function renderPlayerProfile(player) {
       <button id="backToPlayers" style="background: transparent; border: 0.5px solid #d0d5dd; color: #011A36; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 1.5rem;">← All Players</button>
 
       <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.25rem; color: #011A36;">${profile.name}</h1>
-      <p style="font-size: 14px; color: #64748b; margin: 0 0 2rem;">
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 1.25rem;">
         ${profile.championships} championship${profile.championships !== 1 ? 's' : ''}${profile.titleYears.length ? ' · ' + profile.titleYears.sort((a, b) => b - a).join(', ') : ''}
       </p>
+
+      <div style="background: linear-gradient(135deg, #011A36 0%, #033a6b 100%); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 2rem; border-left: 4px solid #5B9BD5;">
+        <p style="font-size: 11px; color: #5B9BD5; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin: 0 0 4px;">${superlative.title}</p>
+        <p style="font-size: 14px; color: #e2e8f0; margin: 0; line-height: 1.45;">${superlative.line}</p>
+      </div>
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 2rem;">
         ${statCard('Championships', profile.championships, profile.titleYears.length ? profile.titleYears.sort((a, b) => b - a).join(', ') : 'No titles yet')}
