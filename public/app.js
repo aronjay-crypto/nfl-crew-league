@@ -164,16 +164,16 @@ function renderWeekly() {
   const records = getSeasonRecords(data);
 
   const weekCard = (w) => `
-    <div style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0;">
+    <div class="week-card" style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0;">
       <p style="font-size: 11px; font-weight: 500; color: #5B9BD5; margin: 0 0 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">Week ${w.week}</p>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
         <div>
           <p style="font-size: 11px; color: #a8b0bd; text-transform: uppercase; margin: 0 0 4px; letter-spacing: 0.5px;">High Score</p>
-          <p style="font-size: 15px; font-weight: 500; margin: 0;">${w.highScore}</p>
+          <p style="font-size: 15px; font-weight: 600; margin: 0; color: #2BAE66;">${w.highScore}</p>
         </div>
         <div>
           <p style="font-size: 11px; color: #a8b0bd; text-transform: uppercase; margin: 0 0 4px; letter-spacing: 0.5px;">Low Score</p>
-          <p style="font-size: 15px; font-weight: 500; margin: 0;">${w.lowScore}</p>
+          <p style="font-size: 15px; font-weight: 600; margin: 0; color: #d96b7e;">${w.lowScore}</p>
         </div>
       </div>
       <div style="border-top: 0.5px solid #4b515a; padding-top: 12px;">
@@ -309,30 +309,43 @@ function renderStandings() {
     return `<div style="max-width: 1100px; margin: 2rem auto; padding: 1rem; text-align: center; color: #64748b;">No standings data available</div>`;
   }
 
+  const PLAYOFF_CUTOFF = 4;
+
   return `
     <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
       <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.5rem; color: #011A36;">NFL Crew League</h1>
       <p style="font-size: 14px; color: #64748b; margin: 0 0 2rem;">${selectedYear} Season</p>
 
-      <div style="background: #383D44; border-radius: 12px; padding: 1.5rem; text-align: center; margin-bottom: 2rem; color: #e2e8f0;">
+      <div style="background: linear-gradient(135deg, #383D44 0%, #2c3138 100%); border-radius: 12px; padding: 1.5rem; text-align: center; margin-bottom: 2rem; color: #e2e8f0; border: 1px solid rgba(245, 197, 66, 0.25);">
         <p style="font-size: 11px; color: #a8b0bd; text-transform: uppercase; margin: 0 0 0.5rem; letter-spacing: 0.5px;">${selectedYear} Champion</p>
-        <p style="font-size: 32px; font-weight: 500; color: #5B9BD5; margin: 0;">${data.champion || 'TBD'}</p>
+        <p style="font-size: 32px; font-weight: 600; color: #F5C542; margin: 0;">🏆 ${data.champion || 'TBD'}</p>
       </div>
 
-      <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Standings</h2>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin: 0 0 1rem;">
+        <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0; letter-spacing: 0.5px;">Standings</h2>
+        <div style="display: flex; gap: 14px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
+          <span style="color: #2BAE66;">● Playoffs</span>
+          <span style="color: #c0566b;">● Eliminated</span>
+        </div>
+      </div>
       <div style="display: grid; gap: 8px;">
-        ${data.standings.map(s => `
-          <div style="background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0;">
+        ${data.standings.map(s => {
+          const inPlayoffs = s.rank <= PLAYOFF_CUTOFF;
+          const accent = inPlayoffs ? '#2BAE66' : '#c0566b';
+          const isChamp = data.champion && s.player === data.champion;
+          return `
+          <div style="background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0; border-left: 4px solid ${accent}; ${inPlayoffs ? '' : 'opacity: 0.78;'}">
             <div style="display: flex; align-items: center; gap: 12px;">
-              <span style="font-size: 14px; font-weight: 500; color: #a8b0bd; min-width: 24px;">${s.rank}</span>
-              <span style="font-size: 16px; font-weight: 500;">${s.player}</span>
+              <span style="font-size: 14px; font-weight: 600; color: ${accent}; min-width: 22px;">${s.rank}</span>
+              <span style="font-size: 16px; font-weight: 500;">${s.player}${isChamp ? ' <span style="color:#F5C542;">🏆</span>' : ''}</span>
             </div>
-            <div style="display: flex; gap: 16px; font-size: 13px; color: #a8b0bd;">
-              <span>${s.record}</span>
+            <div style="display: flex; gap: 16px; font-size: 13px; color: #a8b0bd; align-items: center;">
+              <span style="font-weight: 500; color: #e2e8f0;">${s.record}</span>
               <span>${Math.round(s.pf)}</span>
             </div>
           </div>
-        `).join('')}
+          `;
+        }).join('')}
       </div>
     </div>
   `;
@@ -440,15 +453,19 @@ function renderHallOfFame() {
 
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Championships by Player</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 2rem;">
-        ${Object.entries(data.championships || {}).sort((a, b) => b[1] - a[1]).map(([player, count]) => {
+        ${(() => {
+          const entries = Object.entries(data.championships || {}).sort((a, b) => b[1] - a[1]);
+          const maxTitles = entries.length ? entries[0][1] : 0;
+          return entries.map(([player, count]) => {
           const years = (data.champions || [])
             .filter(c => c.champion && c.champion.split('+').map(s => s.trim()).includes(player))
             .map(c => c.year)
             .sort((a, b) => b - a);
+          const isLeader = count > 0 && count === maxTitles;
           return `
-          <div class="champ-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 1rem; text-align: center; color: #e2e8f0; ${count > 0 ? 'cursor: pointer;' : ''}">
+          <div class="champ-tile" style="position: relative; background: ${isLeader ? 'linear-gradient(135deg, #4a4327 0%, #383D44 60%)' : '#383D44'}; border-radius: 8px; padding: 1rem; text-align: center; color: #e2e8f0; ${count > 0 ? 'cursor: pointer;' : ''} ${isLeader ? 'border: 1px solid rgba(245, 197, 66, 0.4);' : ''}">
             <p style="font-size: 16px; font-weight: 500; margin: 0 0 0.5rem;">${player}${count > 0 ? ' <span style="color: #8a97a8; font-size: 11px;">ⓘ</span>' : ''}</p>
-            <p style="font-size: 24px; font-weight: 500; color: #5B9BD5; margin: 0;">${count}</p>
+            <p style="font-size: 26px; font-weight: 600; color: ${isLeader ? '#F5C542' : '#5B9BD5'}; margin: 0;">${isLeader ? '👑 ' : ''}${count}</p>
             <p style="font-size: 11px; color: #a8b0bd; margin: 0.5rem 0 0; text-transform: uppercase;">Title${count !== 1 ? 's' : ''}</p>
             ${count > 0 && years.length ? `
               <div class="champ-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
@@ -458,7 +475,8 @@ function renderHallOfFame() {
             ` : ''}
           </div>
           `;
-        }).join('')}
+          }).join('');
+        })()}
       </div>
 
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Year by Year</h2>
@@ -534,15 +552,23 @@ function renderPlayerProfile(player) {
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Season Finishes</h2>
       ${profile.finishes.length ? `
         <div style="display: grid; gap: 8px;">
-          ${profile.finishes.map(f => `
-            <div style="background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0;">
+          ${profile.finishes.map(f => {
+            const medal = f.rank === 1 ? '🥇' : f.rank === 2 ? '🥈' : f.rank === 3 ? '🥉' : '';
+            let accent = '#6b7280';        // mid-pack
+            if (f.rank === 1) accent = '#F5C542';      // gold
+            else if (f.rank <= 4) accent = '#2BAE66';  // playoffs (green)
+            else if (f.rank >= 7) accent = '#c0566b';  // bottom (red)
+            const rankColor = f.rank === 1 ? '#F5C542' : (f.rank <= 4 ? '#2BAE66' : '#e2e8f0');
+            return `
+            <div style="background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0; border-left: 4px solid ${accent};">
               <span style="font-size: 14px; color: #a8b0bd;">${f.year}</span>
               <div style="display: flex; gap: 16px; align-items: center;">
                 <span style="font-size: 13px; color: #a8b0bd;">${f.record}</span>
-                <span style="font-size: 16px; font-weight: 500; color: ${f.rank === 1 ? '#5B9BD5' : '#e2e8f0'};">${ordinal(f.rank)}</span>
+                <span style="font-size: 16px; font-weight: 600; color: ${rankColor};">${medal ? medal + ' ' : ''}${ordinal(f.rank)}</span>
               </div>
             </div>
-          `).join('')}
+            `;
+          }).join('')}
         </div>
       ` : '<p style="color: #64748b; font-size: 13px;">No season data yet</p>'}
 
