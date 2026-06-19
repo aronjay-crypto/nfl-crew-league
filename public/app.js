@@ -462,8 +462,9 @@ function renderHallOfFame() {
             .map(c => c.year)
             .sort((a, b) => b - a);
           const isLeader = count > 0 && count === maxTitles;
+          const isJamieRoast = player === 'Jamie' && count === 0;
           return `
-          <div class="champ-tile" style="position: relative; background: ${isLeader ? 'linear-gradient(135deg, #4a4327 0%, #383D44 60%)' : '#383D44'}; border-radius: 8px; padding: 1rem; text-align: center; color: #e2e8f0; ${count > 0 ? 'cursor: pointer;' : ''} ${isLeader ? 'border: 1px solid rgba(245, 197, 66, 0.4);' : ''}">
+          <div class="champ-tile" style="position: relative; background: ${isLeader ? 'linear-gradient(135deg, #4a4327 0%, #383D44 60%)' : '#383D44'}; border-radius: 8px; padding: 1rem; text-align: center; color: #e2e8f0; ${count > 0 || isJamieRoast ? 'cursor: pointer;' : ''} ${isLeader ? 'border: 1px solid rgba(245, 197, 66, 0.4);' : ''}">
             <p style="font-size: 16px; font-weight: 500; margin: 0 0 0.5rem;">${player}${count > 0 ? ' <span style="color: #8a97a8; font-size: 11px;">ⓘ</span>' : ''}</p>
             <p style="font-size: 26px; font-weight: 600; color: ${isLeader ? '#F5C542' : '#5B9BD5'}; margin: 0;">${isLeader ? '👑 ' : ''}${count}</p>
             <p style="font-size: 11px; color: #a8b0bd; margin: 0.5rem 0 0; text-transform: uppercase;">Title${count !== 1 ? 's' : ''}</p>
@@ -471,6 +472,11 @@ function renderHallOfFame() {
               <div class="champ-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
                 <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Title Years</p>
                 ${years.map(y => `<p style="font-size: 13px; color: #e2e8f0; margin: 2px 0;">${y}</p>`).join('')}
+              </div>
+            ` : ''}
+            ${isJamieRoast ? `
+              <div class="champ-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 16px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+                <p style="font-size: 40px; margin: 0; text-align: center;">🤡</p>
               </div>
             ` : ''}
           </div>
