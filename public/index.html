@@ -30,6 +30,19 @@
       top: 90px;
     }
 
+    /* Hover lift on cards */
+    .week-card,
+    .player-tile,
+    .champ-tile {
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .week-card:hover,
+    .player-tile:hover,
+    .champ-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(1, 26, 54, 0.18);
+    }
+
     @media (max-width: 768px) {
       .home-grid { grid-template-columns: 1fr; }
       .weeks-grid { grid-template-columns: 1fr; }
