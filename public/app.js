@@ -338,7 +338,6 @@ function renderWeekly() {
 
   return `
     <div style="max-width: 1100px; margin: 0 auto; padding: 1.5rem 1rem;">
-      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 1.5rem; color: #011A36;">NFL Crew League</h1>
 
       <div class="home-grid">
 
@@ -448,7 +447,7 @@ function renderStandings() {
 
   return `
     <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
-      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.5rem; color: #011A36;">NFL Crew League</h1>
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.5rem; color: #011A36;">Standings</h1>
       <p style="font-size: 14px; color: #64748b; margin: 0 0 2rem;">${selectedYear} Season</p>
 
       <div style="background: linear-gradient(135deg, #383D44 0%, #2c3138 100%); border-radius: 12px; padding: 1.5rem; text-align: center; margin-bottom: 2rem; color: #e2e8f0; border: 1px solid rgba(245, 197, 66, 0.25);">
