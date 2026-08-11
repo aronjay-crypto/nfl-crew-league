@@ -872,17 +872,19 @@ function render() {
   const showYearSelector = (currentPage === 'weekly' || currentPage === 'standings');
   const yearOptions = availableYears.map(y => `<option value="${y}" ${y === selectedYear ? 'selected' : ''}>${y}</option>`).join('');
 
-  const tab = (id, label) => `
-    <button class="nav-btn" data-page="${id}" style="flex: 1; padding: 1rem; background: transparent; border: none; border-bottom: ${currentPage === id ? '2px solid #5B9BD5' : '2px solid transparent'}; color: ${currentPage === id ? '#FFFFFF' : '#8a97a8'}; cursor: pointer; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">${label}</button>
+  const tab = (id, label, shortLabel) => `
+    <button class="nav-btn nav-tab ${shortLabel ? 'has-short' : ''} ${currentPage === id ? 'nav-tab-active' : ''}" data-page="${id}">
+      <span class="nav-label-full">${label}</span>${shortLabel ? `<span class="nav-label-short">${shortLabel}</span>` : ''}
+    </button>
   `;
 
   const navHTML = `
-    <div style="background: #011A36; display: flex; gap: 0; position: sticky; top: 0; z-index: 10;">
+    <div class="nav-bar" style="background: #011A36; display: flex; gap: 0; position: sticky; top: 0; z-index: 10;">
       ${tab('weekly', 'Home')}
       ${tab('standings', 'Standings')}
       ${tab('players', 'Players')}
       ${tab('rivalries', 'Rivalries')}
-      ${tab('hall', 'Hall of Fame')}
+      ${tab('hall', 'Hall of Fame', 'HOF')}
     </div>
 
     ${showYearSelector ? `
@@ -901,7 +903,7 @@ function render() {
 
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      currentPage = e.target.dataset.page;
+      currentPage = btn.dataset.page;
       if (currentPage !== 'players') selectedPlayer = null;
       selectedWeek = null;
       render();
