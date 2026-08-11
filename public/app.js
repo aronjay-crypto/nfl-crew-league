@@ -977,4 +977,55 @@ function render() {
   });
 }
 
-fetchData();
+// --- Password gate (soft client-side gate; deters casual visitors only) ---
+const SITE_PASSWORD = 'nfl';
+const UNLOCK_KEY = 'ncl_unlocked';
+
+function showLogin(errorMsg) {
+  app.innerHTML = `
+    <div style="min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem;">
+      <div style="width: 100%; max-width: 340px; text-align: center;">
+        <svg width="56" height="56" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto 1rem; display: block;">
+          <rect width="64" height="64" rx="12" fill="#011A36"/>
+          <ellipse cx="32" cy="32" rx="16" ry="10" fill="#F5C542"/>
+          <line x1="21" y1="32" x2="43" y2="32" stroke="#011A36" stroke-width="2.5"/>
+          <line x1="27" y1="28.5" x2="27" y2="35.5" stroke="#011A36" stroke-width="2.5"/>
+          <line x1="32" y1="27.5" x2="32" y2="36.5" stroke="#011A36" stroke-width="2.5"/>
+          <line x1="37" y1="28.5" x2="37" y2="35.5" stroke="#011A36" stroke-width="2.5"/>
+        </svg>
+        <h1 style="font-size: 20px; font-weight: 700; color: #011A36; margin: 0 0 0.25rem; letter-spacing: 0.5px;">NFL CREW LEAGUE</h1>
+        <p style="font-size: 13px; color: #64748b; margin: 0 0 1.5rem;">Members only. Enter the password to continue.</p>
+        <input id="pwInput" type="password" placeholder="Password" autocomplete="current-password"
+          style="width: 100%; padding: 0.75rem 1rem; font-size: 15px; border: 1px solid #d0d5dd; border-radius: 8px; margin-bottom: 0.75rem; outline: none;" />
+        <button id="pwBtn" style="width: 100%; padding: 0.75rem; font-size: 15px; font-weight: 600; color: #FFFFFF; background: #011A36; border: none; border-radius: 8px; cursor: pointer;">Enter</button>
+        ${errorMsg ? `<p style="font-size: 13px; color: #c0566b; margin: 1rem 0 0;">${errorMsg}</p>` : ''}
+      </div>
+    </div>
+  `;
+
+  const input = document.getElementById('pwInput');
+  const btn = document.getElementById('pwBtn');
+  const attempt = () => {
+    if (input.value === SITE_PASSWORD) {
+      try { localStorage.setItem(UNLOCK_KEY, '1'); } catch (e) {}
+      fetchData();
+    } else {
+      showLogin('Incorrect password. Try again.');
+    }
+  };
+  btn.addEventListener('click', attempt);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') attempt(); });
+  input.focus();
+}
+
+function startApp() {
+  let unlocked = false;
+  try { unlocked = localStorage.getItem(UNLOCK_KEY) === '1'; } catch (e) {}
+  if (unlocked) {
+    fetchData();
+  } else {
+    showLogin();
+  }
+}
+
+startApp();
