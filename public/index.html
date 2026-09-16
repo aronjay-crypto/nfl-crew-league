@@ -45,6 +45,43 @@
     }
     .site-footer .accent { color: #5B9BD5; }
 
+    /* Nav tabs */
+    .nav-tab {
+      flex: 1;
+      padding: 1rem 0.5rem;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: #8a97a8;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .nav-tab-active {
+      color: #FFFFFF;
+      border-bottom: 2px solid #5B9BD5;
+    }
+    .nav-label-short { display: none; }
+
+    @media (max-width: 600px) {
+      .nav-tab {
+        padding: 0.85rem 0.25rem;
+        font-size: 11px;
+        letter-spacing: 0.2px;
+      }
+      /* Swap full label for short on tabs that have one (Hall of Fame -> HOF) */
+      .nav-tab.has-short .nav-label-full { display: none; }
+      .nav-tab.has-short .nav-label-short { display: inline; }
+    }
+
+    @media (max-width: 380px) {
+      .nav-tab { font-size: 10px; padding: 0.85rem 0.15rem; }
+    }
+
     @media (max-width: 768px) {
       .home-grid { grid-template-columns: 1fr; }
       .weeks-grid { grid-template-columns: 1fr; }
