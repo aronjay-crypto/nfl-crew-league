@@ -386,22 +386,28 @@ function getSeasonRecords(data) {
   let expensiveWaiver = { value: -Infinity, label: '', week: 0 };
 
   data.weeks.forEach(w => {
-    const hs = extractScore(w.highScore);
-    if (hs > highestScore.value) {
-      highestScore = { value: hs, label: w.highScore, week: w.week };
+    if (w.highScore && extractName(w.highScore)) {
+      const hs = extractScore(w.highScore);
+      if (hs > highestScore.value) {
+        highestScore = { value: hs, label: w.highScore, week: w.week };
+      }
     }
 
-    const hp = extractPlayerPoints(w.highPlayer);
-    if (hp > highestPlayer.value) {
-      highestPlayer = { value: hp, label: w.highPlayer, week: w.week };
+    if (w.highPlayer && extractName(w.highPlayer)) {
+      const hp = extractPlayerPoints(w.highPlayer);
+      if (hp > highestPlayer.value) {
+        highestPlayer = { value: hp, label: w.highPlayer, week: w.week };
+      }
     }
 
-    const lp = extractPlayerPoints(w.lowPlayer);
-    if (w.lowPlayer && lp < lowestPlayer.value) {
-      lowestPlayer = { value: lp, label: w.lowPlayer, week: w.week };
+    if (w.lowPlayer && extractName(w.lowPlayer)) {
+      const lp = extractPlayerPoints(w.lowPlayer);
+      if (lp < lowestPlayer.value) {
+        lowestPlayer = { value: lp, label: w.lowPlayer, week: w.week };
+      }
     }
 
-    if (w.waiver && w.waiver !== '-') {
+    if (w.waiver && w.waiver !== '-' && extractName(w.waiver)) {
       const costMatch = w.waiver.match(/,\s*(\d+)\s*$/);
       const cost = costMatch ? parseInt(costMatch[1]) : 0;
       if (cost > expensiveWaiver.value) {
@@ -502,16 +508,24 @@ function getAllTimeRecords() {
     if (!data) return;
 
     (data.weeks || []).forEach(w => {
-      const hs = extractScore(w.highScore);
-      if (hs > highestWeek.value) highestWeek = { value: hs, who: extractName(w.highScore), year, week: w.week };
+      const highName = extractName(w.highScore);
+      if (highName) {
+        const hs = extractScore(w.highScore);
+        if (hs > highestWeek.value) highestWeek = { value: hs, who: highName, year, week: w.week };
+      }
 
-      const ls = extractScore(w.lowScore);
-      if (w.lowScore && ls < lowestWeek.value) lowestWeek = { value: ls, who: extractName(w.lowScore), year, week: w.week };
+      const lowName = extractName(w.lowScore);
+      if (lowName) {
+        const ls = extractScore(w.lowScore);
+        if (ls < lowestWeek.value) lowestWeek = { value: ls, who: lowName, year, week: w.week };
+      }
 
-      const hp = extractPlayerPoints(w.highPlayer);
-      if (hp > highestPlayerWeek.value) highestPlayerWeek = { value: hp, label: w.highPlayer, year, week: w.week };
+      if (w.highPlayer && extractName(w.highPlayer)) {
+        const hp = extractPlayerPoints(w.highPlayer);
+        if (hp > highestPlayerWeek.value) highestPlayerWeek = { value: hp, label: w.highPlayer, year, week: w.week };
+      }
 
-      if (w.waiver && w.waiver !== '-') {
+      if (w.waiver && w.waiver !== '-' && extractName(w.waiver)) {
         const m = w.waiver.match(/,\s*(\d+)\s*$/);
         const cost = m ? parseInt(m[1]) : 0;
         if (cost > biggestWaiver.value) biggestWaiver = { value: cost, label: w.waiver, year, week: w.week };
