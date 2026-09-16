@@ -2234,6 +2234,239 @@
       }
     ]
   },
+  "2026": {
+    "weeks": [
+      {
+        "week": 1,
+        "highScore": "Aron, 123.82",
+        "lowScore": "Ben, 91.06",
+        "highPlayer": "Nathan, Derrick Henry, 35.3",
+        "lowPlayer": "Lance, Kyle Pitts, 0",
+        "waiver": "-"
+      },
+      {
+        "week": 2,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "Aron, Kaelon Black, 25"
+      },
+      {
+        "week": 3,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 4,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 5,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 6,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 7,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 8,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 9,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 10,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 11,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 12,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 13,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 14,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 15,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 16,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      },
+      {
+        "week": 17,
+        "highScore": ", ",
+        "lowScore": ", ",
+        "highPlayer": "",
+        "lowPlayer": "",
+        "waiver": "-"
+      }
+    ],
+    "standings": [
+      {
+        "rank": 1,
+        "player": "",
+        "record": "",
+        "pf": 0,
+        "pa": 0
+      },
+      {
+        "rank": 2,
+        "player": "",
+        "record": "",
+        "pf": 0,
+        "pa": 0
+      },
+      {
+        "rank": 3,
+        "player": "",
+        "record": "",
+        "pf": 0,
+        "pa": 0
+      },
+      {
+        "rank": 4,
+        "player": "",
+        "record": "",
+        "pf": 0,
+        "pa": 0
+      },
+      {
+        "rank": 5,
+        "player": "",
+        "record": "",
+        "pf": 0,
+        "pa": 0
+      },
+      {
+        "rank": 6,
+        "player": "",
+        "record": "",
+        "pf": 0,
+        "pa": 0
+      },
+      {
+        "rank": 7,
+        "player": "",
+        "record": "",
+        "pf": 0,
+        "pa": 0
+      },
+      {
+        "rank": 8,
+        "player": "",
+        "record": "",
+        "pf": 0,
+        "pa": 0
+      }
+    ],
+    "champion": null,
+    "matchups": [
+      {
+        "week": 1,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 163.46,
+        "blue": "Lance",
+        "blueScore": 100.16
+      },
+      {
+        "week": 1,
+        "round": "Regular",
+        "red": "Nathan",
+        "redScore": 137.16,
+        "blue": "Ben",
+        "blueScore": 91.06
+      },
+      {
+        "week": 1,
+        "round": "Regular",
+        "red": "Zak",
+        "redScore": 95.82,
+        "blue": "Jamie",
+        "blueScore": 118.4
+      },
+      {
+        "week": 1,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 114.72,
+        "blue": "James",
+        "blueScore": 137.46
+      }
+    ]
+  },
   "hallOfFame": {
     "champions": [
       {
