@@ -4,6 +4,7 @@ const SHEET_ID = '1XSztc0Pp9sIjZImnRQBfA_zPymtdMJr0ekuVFG1CLuE';
 
 // Add a new season by adding one line here with its two GIDs.
 const SEASONS = {
+  '2015': { weeks: 1412784562, standings: },
   '2025': { weeks: 142810151, standings: 593825938 },
   '2024': { weeks: 733256198, standings: 869048924 },
   '2023': { weeks: 1919173883, standings: 290329594 }
@@ -14,6 +15,7 @@ const CHAMPIONSHIPS_GID = 286305454;
 
 // Matchup tabs by year (add older years here as you backfill)
 const MATCHUPS = {
+  '2026': 963768362,
   '2025': 1738901299,
   '2024': 487381305,
   '2023': 711669497
