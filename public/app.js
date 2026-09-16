@@ -369,6 +369,14 @@ function renderWeekly() {
                 </div>
               </div>
             ` : ''}
+            ${records.worstManagerAward ? `
+              <div style="background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0;">
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Worst Manager</p>
+                <p style="font-size: 14px; font-weight: 500; margin: 0 0 6px;">${records.worstManagerAward.player}</p>
+                <p style="font-size: 12px; color: #a8b0bd; margin: 0 0 4px; line-height: 1.4;">Only scored ${records.worstManagerAward.score.toFixed(2)} (${records.worstManagerAward.pct.toFixed(0)}%) of their perfect possible lineup (${records.worstManagerAward.perfect.toFixed(2)}).</p>
+                <p style="font-size: 11px; color: #a8b0bd; margin: 0;">Week ${records.worstManagerAward.week}</p>
+              </div>
+            ` : ''}
           ` : '<p style="color: #64748b; font-size: 13px;">No records yet</p>'}
         </div>
 
@@ -440,7 +448,23 @@ function getSeasonRecords(data) {
     }
   }
 
-  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver, unluckiest };
+  // Worst Manager: the single worst lineup-efficiency week this season (score vs perfect possible score)
+  let worstManagerAward = null;
+  data.weeks.forEach(w => {
+    if (!w.worstManager) return;
+    const parts = w.worstManager.split(',').map(p => p.trim());
+    if (parts.length < 3) return; // need Name, Score, Perfect
+    const name = parts[0];
+    const score = parseFloat(parts[1]);
+    const perfect = parseFloat(parts[2]);
+    if (!name || isNaN(score) || isNaN(perfect) || perfect <= 0) return;
+    const pct = (score / perfect) * 100;
+    if (!worstManagerAward || pct < worstManagerAward.pct) {
+      worstManagerAward = { player: name, score, perfect, pct, week: w.week };
+    }
+  });
+
+  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver, unluckiest, worstManagerAward };
 }
 
 function renderStandings() {
