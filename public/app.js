@@ -371,10 +371,26 @@ function renderWeekly() {
             ` : ''}
             ${records.worstManagerAward ? `
               <div style="background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0;">
-                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Worst Manager</p>
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Worst Managed Week</p>
                 <p style="font-size: 14px; font-weight: 500; margin: 0 0 6px;">${records.worstManagerAward.player}</p>
                 <p style="font-size: 12px; color: #a8b0bd; margin: 0 0 4px; line-height: 1.4;">Only scored ${records.worstManagerAward.score.toFixed(2)} (${records.worstManagerAward.pct.toFixed(0)}%) of their perfect possible lineup (${records.worstManagerAward.perfect.toFixed(2)}).</p>
                 <p style="font-size: 11px; color: #a8b0bd; margin: 0;">Week ${records.worstManagerAward.week}</p>
+              </div>
+            ` : ''}
+            ${records.worstManagerSeasonLeader ? `
+              <div class="wm-season-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0; cursor: pointer;">
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Worst Manager (Season) <span style="color: #8a97a8;">ⓘ</span></p>
+                <p style="font-size: 14px; font-weight: 500; margin: 0 0 2px;">${records.worstManagerSeasonLeader.player}</p>
+                <p style="font-size: 11px; color: #a8b0bd; margin: 0;">${records.worstManagerSeasonLeader.count} week${records.worstManagerSeasonLeader.count !== 1 ? 's' : ''} as worst manager this season</p>
+                <div class="wm-season-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+                  <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Worst Manager Weeks (Season)</p>
+                  ${records.worstManagerTallyRanked.map(b => `
+                    <div style="display: flex; justify-content: space-between; padding: 3px 0; font-size: 12px;">
+                      <span style="color: #e2e8f0;">${b.player}</span>
+                      <span style="color: #a8b0bd;">${b.count}</span>
+                    </div>
+                  `).join('')}
+                </div>
               </div>
             ` : ''}
           ` : '<p style="color: #64748b; font-size: 13px;">No records yet</p>'}
@@ -449,7 +465,9 @@ function getSeasonRecords(data) {
   }
 
   // Worst Manager: the single worst lineup-efficiency week this season (score vs perfect possible score)
+  // ...and a tally of how many times each player has been worst manager this season.
   let worstManagerAward = null;
+  const worstManagerTally = {}; // player -> count
   data.weeks.forEach(w => {
     if (!w.worstManager) return;
     const parts = w.worstManager.split(',').map(p => p.trim());
@@ -462,9 +480,15 @@ function getSeasonRecords(data) {
     if (!worstManagerAward || pct < worstManagerAward.pct) {
       worstManagerAward = { player: name, score, perfect, pct, week: w.week };
     }
+    worstManagerTally[name] = (worstManagerTally[name] || 0) + 1;
   });
 
-  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver, unluckiest, worstManagerAward };
+  const worstManagerTallyRanked = Object.entries(worstManagerTally)
+    .map(([player, count]) => ({ player, count }))
+    .sort((a, b) => b.count - a.count);
+  const worstManagerSeasonLeader = worstManagerTallyRanked.length ? worstManagerTallyRanked[0] : null;
+
+  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver, unluckiest, worstManagerAward, worstManagerSeasonLeader, worstManagerTallyRanked };
 }
 
 function renderStandings() {
@@ -523,6 +547,7 @@ function getAllTimeRecords() {
   let biggestWaiver = { value: -Infinity, label: '', year: 0, week: 0 };
   let biggestBlowout = { value: -Infinity, winner: '', loser: '', year: 0, week: 0 };
   let closestGame = { value: Infinity, winner: '', loser: '', year: 0, week: 0 };
+  const worstManagerAllTimeTally = {}; // player -> count, across every season
 
   // Career aggregates
   const career = {}; // player -> { pf, wins, losses, seasons, bestFinish }
@@ -553,6 +578,13 @@ function getAllTimeRecords() {
         const m = w.waiver.match(/,\s*(\d+)\s*$/);
         const cost = m ? parseInt(m[1]) : 0;
         if (cost > biggestWaiver.value) biggestWaiver = { value: cost, label: w.waiver, year, week: w.week };
+      }
+
+      if (w.worstManager) {
+        const parts = w.worstManager.split(',').map(p => p.trim());
+        if (parts.length >= 3 && parts[0]) {
+          worstManagerAllTimeTally[parts[0]] = (worstManagerAllTimeTally[parts[0]] || 0) + 1;
+        }
       }
     });
 
@@ -589,7 +621,12 @@ function getAllTimeRecords() {
   const mostPoints = [...careerArr].sort((a, b) => b.pf - a.pf)[0];
   const mostWins = [...careerArr].sort((a, b) => b.wins - a.wins)[0];
 
-  return { highestWeek, lowestWeek, highestPlayerWeek, biggestWaiver, mostPoints, mostWins, biggestBlowout, closestGame };
+  const worstManagerAllTimeRanked = Object.entries(worstManagerAllTimeTally)
+    .map(([player, count]) => ({ player, count }))
+    .sort((a, b) => b.count - a.count);
+  const worstManagerAllTimeLeader = worstManagerAllTimeRanked.length ? worstManagerAllTimeRanked[0] : null;
+
+  return { highestWeek, lowestWeek, highestPlayerWeek, biggestWaiver, mostPoints, mostWins, biggestBlowout, closestGame, worstManagerAllTimeLeader, worstManagerAllTimeRanked };
 }
 
 function renderHallOfFame() {
@@ -621,6 +658,22 @@ function renderHallOfFame() {
         ${records.mostWins ? recordTile('Most Career Wins', records.mostWins.player, `${records.mostWins.wins} wins`) : ''}
         ${records.biggestBlowout && records.biggestBlowout.value > -Infinity ? recordTile('Biggest Blowout', `${records.biggestBlowout.winner} def. ${records.biggestBlowout.loser}`, `by ${records.biggestBlowout.value.toFixed(2)} · ${records.biggestBlowout.year} Wk ${records.biggestBlowout.week} · ${roundLabel(records.biggestBlowout.round)}`) : ''}
         ${records.closestGame && records.closestGame.value < Infinity ? recordTile('Closest Game', `${records.closestGame.winner} def. ${records.closestGame.loser}`, `by ${records.closestGame.value.toFixed(2)} · ${records.closestGame.year} Wk ${records.closestGame.week} · ${roundLabel(records.closestGame.round)}`) : ''}
+        ${records.worstManagerAllTimeLeader ? `
+          <div class="wm-alltime-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0; cursor: pointer;">
+            <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Worst Manager (All-Time) <span style="color: #8a97a8;">ⓘ</span></p>
+            <p style="font-size: 17px; font-weight: 500; margin: 0 0 2px;">${records.worstManagerAllTimeLeader.player}</p>
+            <p style="font-size: 11px; color: #a8b0bd; margin: 0;">${records.worstManagerAllTimeLeader.count} week${records.worstManagerAllTimeLeader.count !== 1 ? 's' : ''} across every season</p>
+            <div class="wm-alltime-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+              <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Worst Manager Weeks (All-Time)</p>
+              ${records.worstManagerAllTimeRanked.map(b => `
+                <div style="display: flex; justify-content: space-between; padding: 3px 0; font-size: 12px;">
+                  <span style="color: #e2e8f0;">${b.player}</span>
+                  <span style="color: #a8b0bd;">${b.count}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
       </div>
 
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Championships by Player</h2>
@@ -999,6 +1052,28 @@ function render() {
     unluckyTile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
     unluckyTile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
     unluckyTile.addEventListener('click', () => {
+      tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
+    });
+  }
+
+  // Worst Manager (season) tooltip (hover on desktop, tap on mobile)
+  const wmSeasonTile = document.querySelector('.wm-season-tile');
+  if (wmSeasonTile) {
+    const tooltip = wmSeasonTile.querySelector('.wm-season-tooltip');
+    wmSeasonTile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
+    wmSeasonTile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    wmSeasonTile.addEventListener('click', () => {
+      tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
+    });
+  }
+
+  // Worst Manager (all-time) tooltip (hover on desktop, tap on mobile)
+  const wmAllTimeTile = document.querySelector('.wm-alltime-tile');
+  if (wmAllTimeTile) {
+    const tooltip = wmAllTimeTile.querySelector('.wm-alltime-tooltip');
+    wmAllTimeTile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
+    wmAllTimeTile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    wmAllTimeTile.addEventListener('click', () => {
       tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
     });
   }
