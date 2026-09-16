@@ -1,138 +1,1069 @@
-const fs = require('fs');
+const app = document.getElementById('app');
 
-const SHEET_ID = '1XSztc0Pp9sIjZImnRQBfA_zPymtdMJr0ekuVFG1CLuE';
+let allData = {};
+let currentPage = 'weekly';
+let selectedYear = 2025;
+let availableYears = [];
+let selectedPlayer = null;
+let selectedWeek = null;
 
-// Add a new season by adding one line here with its two GIDs.
-const SEASONS = {
-  '2026': { weeks: 1412784562, standings: 778983467},
-  '2025': { weeks: 142810151, standings: 593825938 },
-  '2024': { weeks: 733256198, standings: 869048924 },
-  '2023': { weeks: 1919173883, standings: 290329594 }
-};
-
-const HALL_OF_FAME_GID = 514323247;
-const CHAMPIONSHIPS_GID = 286305454;
-
-// Matchup tabs by year (add older years here as you backfill)
-const MATCHUPS = {
-  '2026': 963768362,
-  '2025': 1738901299,
-  '2024': 487381305,
-  '2023': 711669497
-};
-
-async function fetchSheet(gid) {
-  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
-  const res = await fetch(url, {
-    headers: { 'User-Agent': 'Mozilla/5.0' },
-    redirect: 'follow'
-  });
-  const text = await res.text();
-  console.log(`Fetched ${text.length} bytes from gid ${gid} (status ${res.status})`);
-  return text;
-}
-
-function parseCSV(csv) {
-  const lines = csv.trim().split('\n').filter(l => l.trim());
-  if (lines.length < 2) return [];
-
-  const parseLine = (line) => {
-    const result = [];
-    let current = '';
-    let inQuotes = false;
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
-      if (char === '"') {
-        inQuotes = !inQuotes;
-      } else if (char === ',' && !inQuotes) {
-        result.push(current.trim());
-        current = '';
-      } else {
-        current += char;
-      }
-    }
-    result.push(current.trim());
-    return result;
-  };
-
-  const headers = parseLine(lines[0]);
-  return lines.slice(1).map(line => {
-    const values = parseLine(line);
-    const obj = {};
-    headers.forEach((h, i) => obj[h] = values[i] || '');
-    return obj;
-  });
-}
-
-async function sync() {
+async function fetchData() {
   try {
-    const data = {};
+    const response = await fetch('/data.json');
+    allData = await response.json();
 
-    // Loop through every season defined above
-    for (const [year, gids] of Object.entries(SEASONS)) {
-      console.log(`Fetching ${year}...`);
-      const weeksCsv = await fetchSheet(gids.weeks);
-      const standingsCsv = await fetchSheet(gids.standings);
+    availableYears = Object.keys(allData)
+      .filter(k => k !== 'hallOfFame')
+      .map(k => parseInt(k))
+      .sort((a, b) => b - a);
 
-      const weeksData = parseCSV(weeksCsv).filter(r => r.Week);
-      const standingsData = parseCSV(standingsCsv).filter(r => r.Rank);
-
-      data[year] = {
-        weeks: weeksData.map(r => ({
-          week: parseInt(r.Week),
-          highScore: `${r.High_Scorer}, ${r.High_Score}`,
-          lowScore: `${r.Low_Scorer}, ${r.Low_Score}`,
-          highPlayer: r.Highest_Player,
-          lowPlayer: r.Lowest_Player,
-          waiver: r.Most_Expensive_waiver || '-'
-        })),
-        standings: standingsData.map(r => ({
-          rank: parseInt(r.Rank),
-          player: r.Player,
-          record: r.Record,
-          pf: parseFloat((r.Points_For || '').replace(/,/g, '')) || 0,
-          pa: parseFloat((r.Points_Against || '').replace(/,/g, '')) || 0
-        })),
-        champion: standingsData[0]?.Player || null
-      };
-    }
-
-    // Matchups (only exist for some seasons)
-    for (const [year, gid] of Object.entries(MATCHUPS)) {
-      console.log(`Fetching ${year} matchups...`);
-      const matchupsCsv = await fetchSheet(gid);
-      const rows = parseCSV(matchupsCsv).filter(r => r.Week && r.Red && r.Blue);
-
-      const matchups = rows.map(r => ({
-        week: parseInt(r.Week),
-        round: r.Round || 'Regular',
-        red: r.Red,
-        redScore: parseFloat((r.Red_Score || '').replace(/,/g, '')) || 0,
-        blue: r.Blue,
-        blueScore: parseFloat((r.Blue_Score || '').replace(/,/g, '')) || 0
-      }));
-
-      if (data[year]) {
-        data[year].matchups = matchups;
-      }
-    }
-
-    // Hall of Fame + Championships
-    console.log('Fetching Hall of Fame...');
-    const hofData = parseCSV(await fetchSheet(HALL_OF_FAME_GID)).filter(r => r.Year);
-    const champData = parseCSV(await fetchSheet(CHAMPIONSHIPS_GID)).filter(r => r.Player);
-
-    data.hallOfFame = {
-      champions: hofData.map(r => ({ year: parseInt(r.Year), champion: r.Champion })),
-      championships: Object.fromEntries(champData.map(r => [r.Player, parseInt(r.Total)]))
-    };
-
-    fs.writeFileSync('public/data.json', JSON.stringify(data, null, 2));
-    console.log('✅ Synced successfully!');
-  } catch (e) {
-    console.error('❌ Error:', e);
-    process.exit(1);
+    selectedYear = availableYears[0] || 2025;
+    render();
+  } catch (error) {
+    console.error('Error:', error);
+    app.innerHTML = '<div style="max-width: 1100px; margin: 2rem auto; padding: 1rem; text-align: center; color: #ef4444;">Error loading data</div>';
   }
 }
 
-sync();
+function extractScore(str) {
+  if (!str) return 0;
+  const match = str.match(/,\s*(-?\d+\.?\d*)\s*$/);
+  return match ? parseFloat(match[1]) : 0;
+}
+
+function extractPlayerPoints(str) {
+  if (!str) return 0;
+  const match = str.match(/,\s*(-?\d+\.?\d*)[^,]*$/);
+  return match ? parseFloat(match[1]) : 0;
+}
+
+// Extract the league member's name from the start of a "Name, ..." string
+function extractName(str) {
+  if (!str) return '';
+  return str.split(',')[0].trim();
+}
+
+// Get full list of league members across all data
+function getAllPlayers() {
+  const players = new Set();
+  Object.keys(allData).forEach(key => {
+    if (key === 'hallOfFame') return;
+    const data = allData[key];
+    (data.standings || []).forEach(s => { if (s.player) players.add(s.player); });
+  });
+  // Also include anyone in championships
+  if (allData.hallOfFame && allData.hallOfFame.championships) {
+    Object.keys(allData.hallOfFame.championships).forEach(p => players.add(p));
+  }
+  return Array.from(players).sort();
+}
+
+// Build a profile object for one player
+function getPlayerProfile(player) {
+  const profile = {
+    name: player,
+    championships: 0,
+    titleYears: [],
+    finishes: [],
+    bestWeek: null,
+    worstWeek: null
+  };
+
+  // Championships
+  if (allData.hallOfFame) {
+    if (allData.hallOfFame.championships && allData.hallOfFame.championships[player] != null) {
+      profile.championships = allData.hallOfFame.championships[player];
+    }
+    (allData.hallOfFame.champions || []).forEach(c => {
+      // champion field can be "Aron + Ben" so check inclusion
+      if (c.champion && c.champion.split('+').map(s => s.trim()).includes(player)) {
+        profile.titleYears.push(c.year);
+      }
+    });
+  }
+
+  // Season finishes
+  availableYears.forEach(year => {
+    const data = allData[year];
+    if (!data || !data.standings) return;
+    const standing = data.standings.find(s => s.player === player);
+    if (standing) {
+      profile.finishes.push({ year, rank: standing.rank, record: standing.record });
+    }
+  });
+  profile.finishes.sort((a, b) => b.year - a.year);
+
+  // Best/worst weeks across all years (using high/low score fields where this player was the scorer)
+  let best = { value: -Infinity };
+  let worst = { value: Infinity };
+
+  availableYears.forEach(year => {
+    const data = allData[year];
+    if (!data || !data.weeks) return;
+    data.weeks.forEach(w => {
+      // High score line
+      if (extractName(w.highScore) === player) {
+        const v = extractScore(w.highScore);
+        if (v > best.value) best = { value: v, year, week: w.week };
+      }
+      // Low score line
+      if (extractName(w.lowScore) === player) {
+        const v = extractScore(w.lowScore);
+        if (v < worst.value) worst = { value: v, year, week: w.week };
+      }
+    });
+  });
+
+  if (best.value !== -Infinity) profile.bestWeek = best;
+  if (worst.value !== Infinity) profile.worstWeek = worst;
+
+  // Head-to-head across all seasons that have matchup data
+  const h2h = {}; // opponent -> { wins, losses, ties }
+  availableYears.forEach(year => {
+    const data = allData[year];
+    if (!data || !data.matchups) return;
+    data.matchups.forEach(m => {
+      let me, opp, myScore, oppScore;
+      if (m.red === player) {
+        me = m.red; opp = m.blue; myScore = m.redScore; oppScore = m.blueScore;
+      } else if (m.blue === player) {
+        me = m.blue; opp = m.red; myScore = m.blueScore; oppScore = m.redScore;
+      } else {
+        return; // player not in this matchup
+      }
+      if (!h2h[opp]) h2h[opp] = { wins: 0, losses: 0, ties: 0 };
+      if (myScore > oppScore) h2h[opp].wins++;
+      else if (myScore < oppScore) h2h[opp].losses++;
+      else h2h[opp].ties++;
+    });
+  });
+  profile.headToHead = Object.entries(h2h)
+    .map(([opponent, rec]) => ({ opponent, ...rec }))
+    .sort((a, b) => a.opponent.localeCompare(b.opponent));
+
+  return profile;
+}
+
+function ordinal(n) {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+// Turn a matchup round into a short readable game-type tag
+function roundLabel(round) {
+  if (!round || round === 'Regular') return 'Regular Season';
+  return round; // e.g. "Semi-Final", "Final", "Losers Final", "3rd Place"
+}
+
+// Generate a banter-first superlative for a player from their history.
+// Weighs RECENT form heavily — distant glory counts for little. First match wins.
+function getSuperlative(profile) {
+  const PLAYOFF_CUTOFF = 4;
+  const finishes = [...profile.finishes].sort((a, b) => b.year - a.year); // newest first
+  if (!finishes.length) {
+    return { title: 'Ghost', line: "No record, no relevance. Did this person even play?" };
+  }
+
+  const titles = profile.championships || 0;
+  const titleYears = [...(profile.titleYears || [])].sort((a, b) => b - a);
+  const latestSeason = availableYears.length ? Math.max(...availableYears) : finishes[0].year;
+  const lastTitle = titleYears.length ? titleYears[0] : null;
+  const titleDrought = lastTitle ? (latestSeason - lastTitle) : null; // years since last ring
+  const last = finishes[0];
+
+  const madePlayoffs = (f) => f.rank <= PLAYOFF_CUTOFF;
+  const recent3 = finishes.slice(0, 3);
+  const recentPlayoffs = recent3.filter(madePlayoffs).length;
+  const recentBottom = recent3.filter(f => f.rank >= 7).length; // 7th/8th
+  const wonRecently = lastTitle !== null && titleDrought <= 1;     // this year or last
+  const wonMidRecent = lastTitle !== null && titleDrought >= 2 && titleDrought <= 4;
+  const wonAgesAgo = lastTitle !== null && titleDrought >= 5;
+  const reigning = titleYears.includes(latestSeason);
+  const firstYear = Math.min(...finishes.map(f => f.year));
+  const seasonsCount = finishes.length;
+
+  // Recent playoff appearances without ever converting to a title
+  const recentPlayoffNoTitle = recentPlayoffs >= 2 && titles === 0;
+  const everPlayoffNoTitle = titles === 0 && finishes.some(madePlayoffs);
+
+  // --- Priority-ordered, harsh ---
+
+  // Aron — the exception. Nothing but praise.
+  if (profile.name === 'Aron') {
+    return { title: 'The GOAT', line: "Three-time champion, architect of this very website, and the undisputed heartbeat of the league. A visionary on and off the field — the others are merely playing for second." };
+  }
+
+  // Jamie gets the dedicated "nearly man" roast (title-less but keeps reaching the playoffs)
+  if (profile.name === 'Jamie') {
+    return { title: 'So Close, Yet Forever Ringless', line: "Always knocking on the door, never invited in. The eternal nearly-man — collects playoff appearances like participation trophies and titles like dust." };
+  }
+
+  if (reigning) {
+    return { title: 'Reigning Champion', line: "Top of the pile — for now. History says this won't last." };
+  }
+
+  if (wonRecently) {
+    return { title: 'Recent Winner', line: "Won it lately and unbearable about it. Enjoy it before regression hits." };
+  }
+
+  if (wonMidRecent && recentPlayoffs >= 2) {
+    return { title: 'Fading Contender', line: `Last ring in ${lastTitle} and the window's creaking shut. Tick tock.` };
+  }
+
+  if (wonAgesAgo) {
+    return { title: 'Living in the Past', line: `Last won in ${lastTitle}. That's ${titleDrought} years of dining out on one trophy. Let it go.` };
+  }
+
+  if (wonMidRecent) {
+    return { title: 'One-Hit Wonder', line: `Got lucky in ${lastTitle}, hasn't sniffed it since. A flash in the pan.` };
+  }
+
+  if (recentBottom >= 2) {
+    return { title: 'Bona Fide Bottom-Feeder', line: "Parked at the foot of the table. 'Rebuilding' for the third year running, sure." };
+  }
+
+  if (recentPlayoffNoTitle) {
+    return { title: 'Chronic Choker', line: "Makes the playoffs, then folds like a deckchair. All bark, no bite." };
+  }
+
+  if (everPlayoffNoTitle && (latestSeason - firstYear) >= 5) {
+    return { title: 'Career Underachiever', line: `Years in the league, a fistful of playoff exits, zero rings. Defining the word 'meh'.` };
+  }
+
+  if (!madePlayoffs(last)) {
+    return { title: 'Missing in Action', line: "Didn't even make the cut last year. Bottom-half regular, top-half fantasist." };
+  }
+
+  return { title: 'Aggressively Average', line: "Not good enough to fear, not bad enough to mock. The beige of the league." };
+}
+
+function renderWeekDetail() {
+  const data = allData[selectedYear];
+  const matchups = (data && data.matchups) ? data.matchups.filter(m => m.week === selectedWeek) : [];
+
+  // Order rounds sensibly: regular first, then playoff bracket order
+  const roundOrder = ['Regular', 'Semi-Final', 'Final', '3rd Place', 'Losers Semi', 'Losers Final', '7th Place'];
+  const sorted = [...matchups].sort((a, b) => {
+    const ai = roundOrder.indexOf(a.round); const bi = roundOrder.indexOf(b.round);
+    return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+  });
+
+  const matchupRow = (m) => {
+    const redWon = m.redScore > m.blueScore;
+    const blueWon = m.blueScore > m.redScore;
+    const isPlayoff = m.round && m.round !== 'Regular';
+    return `
+      <div style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0; ${isPlayoff ? 'border-left: 4px solid #5B9BD5;' : ''}">
+        ${isPlayoff ? `<p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin: 0 0 10px; text-align: center;">${m.round}</p>` : ''}
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="flex: 1; text-align: center;">
+            <p style="font-size: 15px; font-weight: ${redWon ? '600' : '500'}; margin: 0 0 2px; color: ${redWon ? '#2BAE66' : '#e2e8f0'};">${m.red}${redWon ? ' ✓' : ''}</p>
+            <p style="font-size: 22px; font-weight: 600; margin: 0; color: ${redWon ? '#2BAE66' : '#a8b0bd'};">${m.redScore}</p>
+          </div>
+          <div style="color: #6b7280; font-size: 12px; font-weight: 500;">v</div>
+          <div style="flex: 1; text-align: center;">
+            <p style="font-size: 15px; font-weight: ${blueWon ? '600' : '500'}; margin: 0 0 2px; color: ${blueWon ? '#2BAE66' : '#e2e8f0'};">${m.blue}${blueWon ? ' ✓' : ''}</p>
+            <p style="font-size: 22px; font-weight: 600; margin: 0; color: ${blueWon ? '#2BAE66' : '#a8b0bd'};">${m.blueScore}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  };
+
+  return `
+    <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
+      <button id="backToWeeks" style="background: transparent; border: 0.5px solid #d0d5dd; color: #011A36; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 1.5rem;">← Back</button>
+
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.25rem; color: #011A36;">Week ${selectedWeek}</h1>
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 2rem;">${selectedYear} Season · Matchups</p>
+
+      ${sorted.length ? `
+        <div style="display: grid; gap: 10px;">
+          ${sorted.map(matchupRow).join('')}
+        </div>
+      ` : '<p style="color: #64748b; font-size: 13px;">No matchup data for this week.</p>'}
+    </div>
+  `;
+}
+
+function renderWeekly() {
+  const data = allData[selectedYear];
+  if (!data || !data.weeks.length) {
+    return `<div style="max-width: 1100px; margin: 2rem auto; padding: 1rem; text-align: center; color: #64748b;">No week data available for ${selectedYear}</div>`;
+  }
+
+  const records = getSeasonRecords(data);
+
+  const weekCard = (w) => `
+    <div class="week-card" data-week="${w.week}" style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0; cursor: pointer;">
+      <p style="font-size: 11px; font-weight: 500; color: #5B9BD5; margin: 0 0 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">Week ${w.week}</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div>
+          <p style="font-size: 11px; color: #a8b0bd; text-transform: uppercase; margin: 0 0 4px; letter-spacing: 0.5px;">High Score</p>
+          <p style="font-size: 15px; font-weight: 600; margin: 0; color: #2BAE66;">${w.highScore}</p>
+        </div>
+        <div>
+          <p style="font-size: 11px; color: #a8b0bd; text-transform: uppercase; margin: 0 0 4px; letter-spacing: 0.5px;">Low Score</p>
+          <p style="font-size: 15px; font-weight: 600; margin: 0; color: #d96b7e;">${w.lowScore}</p>
+        </div>
+      </div>
+      <div style="border-top: 0.5px solid #4b515a; padding-top: 12px;">
+        <div style="margin-bottom: 8px;">
+          <p style="font-size: 11px; color: #a8b0bd; text-transform: uppercase; margin: 0 0 4px; letter-spacing: 0.5px;">Highest Player</p>
+          <p style="font-size: 12px; margin: 0;">${w.highPlayer}</p>
+        </div>
+        <div style="margin-bottom: 8px;">
+          <p style="font-size: 11px; color: #a8b0bd; text-transform: uppercase; margin: 0 0 4px; letter-spacing: 0.5px;">Lowest Player</p>
+          <p style="font-size: 12px; margin: 0;">${w.lowPlayer}</p>
+        </div>
+        <div>
+          <p style="font-size: 11px; color: #a8b0bd; text-transform: uppercase; margin: 0 0 4px; letter-spacing: 0.5px;">Most Expensive Waiver</p>
+          <p style="font-size: 12px; margin: 0;">${w.waiver}</p>
+        </div>
+      </div>
+      ${(data.matchups && data.matchups.some(m => m.week === w.week)) ? `
+        <p style="font-size: 11px; color: #5B9BD5; margin: 12px 0 0; text-align: right; font-weight: 500;">View matchups →</p>
+      ` : ''}
+    </div>
+  `;
+
+  const recordCard = (label, value, sublabel) => `
+    <div style="background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0;">
+      <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">${label}</p>
+      <p style="font-size: 14px; font-weight: 500; margin: 0 0 2px;">${value}</p>
+      <p style="font-size: 11px; color: #a8b0bd; margin: 0;">${sublabel}</p>
+    </div>
+  `;
+
+  return `
+    <div style="max-width: 1100px; margin: 0 auto; padding: 1.5rem 1rem;">
+
+      <div class="home-grid">
+
+        <div class="weeks-grid">
+          ${data.weeks.map(weekCard).join('')}
+        </div>
+
+        <div class="records-sidebar">
+          <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">${selectedYear} Season Records</h2>
+          ${records ? `
+            ${recordCard('Highest Score', records.highestScore.label, `Week ${records.highestScore.week}`)}
+            ${recordCard('Highest Scoring Player', records.highestPlayer.label, `Week ${records.highestPlayer.week}`)}
+            ${recordCard('Lowest Scoring Player', records.lowestPlayer.label, `Week ${records.lowestPlayer.week}`)}
+            ${recordCard('Most Expensive Waiver', records.expensiveWaiver.label, `Week ${records.expensiveWaiver.week}`)}
+            ${records.unluckiest ? `
+              <div class="unlucky-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0; cursor: pointer;">
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Unluckiest Player <span style="color: #8a97a8;">ⓘ</span></p>
+                <p style="font-size: 14px; font-weight: 500; margin: 0 0 2px;">${records.unluckiest.player}</p>
+                <p style="font-size: 11px; color: #a8b0bd; margin: 0 0 8px;">${records.unluckiest.count} loss${records.unluckiest.count !== 1 ? 'es' : ''} by under ${records.unluckiest.margin} points</p>
+                <p style="font-size: 11px; color: #8a97a8; margin: 0; font-style: italic; line-height: 1.4;">Awarded to the player who lost the most games by a margin of under ${records.unluckiest.margin} points across the season.</p>
+                <div class="unlucky-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+                  <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Narrow Losses (under ${records.unluckiest.margin})</p>
+                  ${records.unluckiest.breakdown.map(b => `
+                    <div style="display: flex; justify-content: space-between; padding: 3px 0; font-size: 12px;">
+                      <span style="color: #e2e8f0;">${b.player}</span>
+                      <span style="color: #a8b0bd;">${b.count}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+            ${records.worstManagerAward ? `
+              <div style="background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0;">
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Worst Manager</p>
+                <p style="font-size: 14px; font-weight: 500; margin: 0 0 6px;">${records.worstManagerAward.player}</p>
+                <p style="font-size: 12px; color: #a8b0bd; margin: 0 0 4px; line-height: 1.4;">Only scored ${records.worstManagerAward.score.toFixed(2)} (${records.worstManagerAward.pct.toFixed(0)}%) of their perfect possible lineup (${records.worstManagerAward.perfect.toFixed(2)}).</p>
+                <p style="font-size: 11px; color: #a8b0bd; margin: 0;">Week ${records.worstManagerAward.week}</p>
+              </div>
+            ` : ''}
+          ` : '<p style="color: #64748b; font-size: 13px;">No records yet</p>'}
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+
+function getSeasonRecords(data) {
+  if (!data || !data.weeks.length) return null;
+
+  let highestScore = { value: -Infinity, label: '', week: 0 };
+  let highestPlayer = { value: -Infinity, label: '', week: 0 };
+  let lowestPlayer = { value: Infinity, label: '', week: 0 };
+  let expensiveWaiver = { value: -Infinity, label: '', week: 0 };
+
+  data.weeks.forEach(w => {
+    if (w.highScore && extractName(w.highScore)) {
+      const hs = extractScore(w.highScore);
+      if (hs > highestScore.value) {
+        highestScore = { value: hs, label: w.highScore, week: w.week };
+      }
+    }
+
+    if (w.highPlayer && extractName(w.highPlayer)) {
+      const hp = extractPlayerPoints(w.highPlayer);
+      if (hp > highestPlayer.value) {
+        highestPlayer = { value: hp, label: w.highPlayer, week: w.week };
+      }
+    }
+
+    if (w.lowPlayer && extractName(w.lowPlayer)) {
+      const lp = extractPlayerPoints(w.lowPlayer);
+      if (lp < lowestPlayer.value) {
+        lowestPlayer = { value: lp, label: w.lowPlayer, week: w.week };
+      }
+    }
+
+    if (w.waiver && w.waiver !== '-' && extractName(w.waiver)) {
+      const costMatch = w.waiver.match(/,\s*(\d+)\s*$/);
+      const cost = costMatch ? parseInt(costMatch[1]) : 0;
+      if (cost > expensiveWaiver.value) {
+        expensiveWaiver = { value: cost, label: w.waiver, week: w.week };
+      }
+    }
+  });
+
+  // Unluckiest player: most narrow losses (margin under threshold) across all games this season
+  const NARROW_MARGIN = 5;
+  let unluckiest = null;
+  if (data.matchups && data.matchups.length) {
+    const narrowLosses = {}; // player -> count
+    data.matchups.forEach(m => {
+      if (m.redScore === 0 && m.blueScore === 0) return; // skip empty rows
+      const margin = Math.abs(m.redScore - m.blueScore);
+      if (margin === 0 || margin >= NARROW_MARGIN) return; // ties or non-narrow games don't count
+      const loser = m.redScore < m.blueScore ? m.red : m.blue;
+      narrowLosses[loser] = (narrowLosses[loser] || 0) + 1;
+    });
+
+    const ranked = Object.entries(narrowLosses).sort((a, b) => b[1] - a[1]);
+    if (ranked.length) {
+      unluckiest = {
+        player: ranked[0][0],
+        count: ranked[0][1],
+        margin: NARROW_MARGIN,
+        breakdown: ranked.map(([player, count]) => ({ player, count }))
+      };
+    }
+  }
+
+  // Worst Manager: the single worst lineup-efficiency week this season (score vs perfect possible score)
+  let worstManagerAward = null;
+  data.weeks.forEach(w => {
+    if (!w.worstManager) return;
+    const parts = w.worstManager.split(',').map(p => p.trim());
+    if (parts.length < 3) return; // need Name, Score, Perfect
+    const name = parts[0];
+    const score = parseFloat(parts[1]);
+    const perfect = parseFloat(parts[2]);
+    if (!name || isNaN(score) || isNaN(perfect) || perfect <= 0) return;
+    const pct = (score / perfect) * 100;
+    if (!worstManagerAward || pct < worstManagerAward.pct) {
+      worstManagerAward = { player: name, score, perfect, pct, week: w.week };
+    }
+  });
+
+  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver, unluckiest, worstManagerAward };
+}
+
+function renderStandings() {
+  const data = allData[selectedYear];
+  if (!data || !data.standings.length) {
+    return `<div style="max-width: 1100px; margin: 2rem auto; padding: 1rem; text-align: center; color: #64748b;">No standings data available</div>`;
+  }
+
+  const PLAYOFF_CUTOFF = 4;
+
+  return `
+    <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.5rem; color: #011A36;">Standings</h1>
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 2rem;">${selectedYear} Season</p>
+
+      <div style="background: linear-gradient(135deg, #383D44 0%, #2c3138 100%); border-radius: 12px; padding: 1.5rem; text-align: center; margin-bottom: 2rem; color: #e2e8f0; border: 1px solid rgba(245, 197, 66, 0.25);">
+        <p style="font-size: 11px; color: #a8b0bd; text-transform: uppercase; margin: 0 0 0.5rem; letter-spacing: 0.5px;">${selectedYear} Champion</p>
+        <p style="font-size: 32px; font-weight: 600; color: #F5C542; margin: 0;">🏆 ${data.champion || 'TBD'}</p>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin: 0 0 1rem;">
+        <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0; letter-spacing: 0.5px;">Standings</h2>
+        <div style="display: flex; gap: 14px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
+          <span style="color: #2BAE66;">● Playoffs</span>
+          <span style="color: #c0566b;">● Eliminated</span>
+        </div>
+      </div>
+      <div style="display: grid; gap: 8px;">
+        ${data.standings.map(s => {
+          const inPlayoffs = s.rank <= PLAYOFF_CUTOFF;
+          const accent = inPlayoffs ? '#2BAE66' : '#c0566b';
+          const isChamp = data.champion && s.player === data.champion;
+          return `
+          <div style="background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0; border-left: 4px solid ${accent}; ${inPlayoffs ? '' : 'opacity: 0.78;'}">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-size: 14px; font-weight: 600; color: ${accent}; min-width: 22px;">${s.rank}</span>
+              <span style="font-size: 16px; font-weight: 500;">${s.player}${isChamp ? ' <span style="color:#F5C542;">🏆</span>' : ''}</span>
+            </div>
+            <div style="display: flex; gap: 16px; font-size: 13px; color: #a8b0bd; align-items: center;">
+              <span style="font-weight: 500; color: #e2e8f0;">${s.record}</span>
+              <span>${Math.round(s.pf)}</span>
+            </div>
+          </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// Compute all-time records across every season
+function getAllTimeRecords() {
+  let highestWeek = { value: -Infinity, who: '', year: 0, week: 0 };
+  let lowestWeek = { value: Infinity, who: '', year: 0, week: 0 };
+  let highestPlayerWeek = { value: -Infinity, label: '', year: 0, week: 0 };
+  let biggestWaiver = { value: -Infinity, label: '', year: 0, week: 0 };
+  let biggestBlowout = { value: -Infinity, winner: '', loser: '', year: 0, week: 0 };
+  let closestGame = { value: Infinity, winner: '', loser: '', year: 0, week: 0 };
+
+  // Career aggregates
+  const career = {}; // player -> { pf, wins, losses, seasons, bestFinish }
+
+  availableYears.forEach(year => {
+    const data = allData[year];
+    if (!data) return;
+
+    (data.weeks || []).forEach(w => {
+      const highName = extractName(w.highScore);
+      if (highName) {
+        const hs = extractScore(w.highScore);
+        if (hs > highestWeek.value) highestWeek = { value: hs, who: highName, year, week: w.week };
+      }
+
+      const lowName = extractName(w.lowScore);
+      if (lowName) {
+        const ls = extractScore(w.lowScore);
+        if (ls < lowestWeek.value) lowestWeek = { value: ls, who: lowName, year, week: w.week };
+      }
+
+      if (w.highPlayer && extractName(w.highPlayer)) {
+        const hp = extractPlayerPoints(w.highPlayer);
+        if (hp > highestPlayerWeek.value) highestPlayerWeek = { value: hp, label: w.highPlayer, year, week: w.week };
+      }
+
+      if (w.waiver && w.waiver !== '-' && extractName(w.waiver)) {
+        const m = w.waiver.match(/,\s*(\d+)\s*$/);
+        const cost = m ? parseInt(m[1]) : 0;
+        if (cost > biggestWaiver.value) biggestWaiver = { value: cost, label: w.waiver, year, week: w.week };
+      }
+    });
+
+    (data.standings || []).forEach(s => {
+      if (!career[s.player]) career[s.player] = { pf: 0, wins: 0, losses: 0, seasons: 0, bestFinish: Infinity };
+      const c = career[s.player];
+      c.pf += s.pf || 0;
+      c.seasons += 1;
+      if (s.rank < c.bestFinish) c.bestFinish = s.rank;
+      // Parse record "9-6"
+      const rec = (s.record || '').match(/(\d+)\s*-\s*(\d+)/);
+      if (rec) { c.wins += parseInt(rec[1]); c.losses += parseInt(rec[2]); }
+    });
+
+    // Matchup-based records (only years with matchup data)
+    (data.matchups || []).forEach(m => {
+      if (m.redScore === 0 && m.blueScore === 0) return; // skip empty rows
+      const margin = Math.abs(m.redScore - m.blueScore);
+      const winner = m.redScore >= m.blueScore ? m.red : m.blue;
+      const loser = m.redScore >= m.blueScore ? m.blue : m.red;
+      const round = m.round || 'Regular';
+
+      if (margin > biggestBlowout.value) {
+        biggestBlowout = { value: margin, winner, loser, year, week: m.week, round };
+      }
+      if (margin < closestGame.value) {
+        closestGame = { value: margin, winner, loser, year, week: m.week, round };
+      }
+    });
+  });
+
+  // Career leaders
+  const careerArr = Object.entries(career).map(([player, c]) => ({ player, ...c }));
+  const mostPoints = [...careerArr].sort((a, b) => b.pf - a.pf)[0];
+  const mostWins = [...careerArr].sort((a, b) => b.wins - a.wins)[0];
+
+  return { highestWeek, lowestWeek, highestPlayerWeek, biggestWaiver, mostPoints, mostWins, biggestBlowout, closestGame };
+}
+
+function renderHallOfFame() {
+  const data = allData.hallOfFame;
+  if (!data) {
+    return `<div style="max-width: 1100px; margin: 2rem auto; padding: 1rem; text-align: center; color: #64748b;">No data available</div>`;
+  }
+
+  const records = getAllTimeRecords();
+  const recordTile = (label, value, sublabel) => `
+    <div style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0;">
+      <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">${label}</p>
+      <p style="font-size: 17px; font-weight: 500; margin: 0 0 2px;">${value}</p>
+      <p style="font-size: 11px; color: #a8b0bd; margin: 0;">${sublabel}</p>
+    </div>
+  `;
+
+  return `
+    <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 1.5rem; color: #011A36;">Hall of Fame</h1>
+
+      <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">All-Time Records</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 2rem;">
+        ${recordTile('Highest Week', records.highestWeek.value > -Infinity ? `${records.highestWeek.who}, ${records.highestWeek.value}` : '—', records.highestWeek.value > -Infinity ? `${records.highestWeek.year} · Week ${records.highestWeek.week}` : '')}
+        ${recordTile('Lowest Week', records.lowestWeek.value < Infinity ? `${records.lowestWeek.who}, ${records.lowestWeek.value}` : '—', records.lowestWeek.value < Infinity ? `${records.lowestWeek.year} · Week ${records.lowestWeek.week}` : '')}
+        ${recordTile('Best Player Week', records.highestPlayerWeek.value > -Infinity ? records.highestPlayerWeek.label : '—', records.highestPlayerWeek.value > -Infinity ? `${records.highestPlayerWeek.year} · Week ${records.highestPlayerWeek.week}` : '')}
+        ${recordTile('Priciest Waiver', records.biggestWaiver.value > -Infinity ? records.biggestWaiver.label : '—', records.biggestWaiver.value > -Infinity ? `${records.biggestWaiver.year} · Week ${records.biggestWaiver.week}` : '')}
+        ${records.mostPoints ? recordTile('Most Career Points', records.mostPoints.player, `${Math.round(records.mostPoints.pf).toLocaleString()} pts`) : ''}
+        ${records.mostWins ? recordTile('Most Career Wins', records.mostWins.player, `${records.mostWins.wins} wins`) : ''}
+        ${records.biggestBlowout && records.biggestBlowout.value > -Infinity ? recordTile('Biggest Blowout', `${records.biggestBlowout.winner} def. ${records.biggestBlowout.loser}`, `by ${records.biggestBlowout.value.toFixed(2)} · ${records.biggestBlowout.year} Wk ${records.biggestBlowout.week} · ${roundLabel(records.biggestBlowout.round)}`) : ''}
+        ${records.closestGame && records.closestGame.value < Infinity ? recordTile('Closest Game', `${records.closestGame.winner} def. ${records.closestGame.loser}`, `by ${records.closestGame.value.toFixed(2)} · ${records.closestGame.year} Wk ${records.closestGame.week} · ${roundLabel(records.closestGame.round)}`) : ''}
+      </div>
+
+      <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Championships by Player</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 2rem;">
+        ${(() => {
+          const entries = Object.entries(data.championships || {}).sort((a, b) => b[1] - a[1]);
+          const maxTitles = entries.length ? entries[0][1] : 0;
+          return entries.map(([player, count]) => {
+          const years = (data.champions || [])
+            .filter(c => c.champion && c.champion.split('+').map(s => s.trim()).includes(player))
+            .map(c => c.year)
+            .sort((a, b) => b - a);
+          const isLeader = count > 0 && count === maxTitles;
+          const isJamieRoast = player === 'Jamie' && count === 0;
+          return `
+          <div class="champ-tile" style="position: relative; background: ${isLeader ? 'linear-gradient(135deg, #4a4327 0%, #383D44 60%)' : '#383D44'}; border-radius: 8px; padding: 1rem; text-align: center; color: #e2e8f0; ${count > 0 || isJamieRoast ? 'cursor: pointer;' : ''} ${isLeader ? 'border: 1px solid rgba(245, 197, 66, 0.4);' : ''}">
+            <p style="font-size: 16px; font-weight: 500; margin: 0 0 0.5rem;">${player}${count > 0 ? ' <span style="color: #8a97a8; font-size: 11px;">ⓘ</span>' : ''}</p>
+            <p style="font-size: 26px; font-weight: 600; color: ${isLeader ? '#F5C542' : '#5B9BD5'}; margin: 0;">${isLeader ? '👑 ' : ''}${count}</p>
+            <p style="font-size: 11px; color: #a8b0bd; margin: 0.5rem 0 0; text-transform: uppercase;">Title${count !== 1 ? 's' : ''}</p>
+            ${count > 0 && years.length ? `
+              <div class="champ-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Title Years</p>
+                ${years.map(y => `<p style="font-size: 13px; color: #e2e8f0; margin: 2px 0;">${y}</p>`).join('')}
+              </div>
+            ` : ''}
+            ${isJamieRoast ? `
+              <div class="champ-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 16px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+                <p style="font-size: 40px; margin: 0; text-align: center;">🤡</p>
+              </div>
+            ` : ''}
+          </div>
+          `;
+          }).join('');
+        })()}
+      </div>
+
+      <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Year by Year</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px;">
+        ${data.champions.sort((a, b) => b.year - a.year).map(entry => `
+          <div style="background: #383D44; border-radius: 8px; padding: 10px 12px; color: #e2e8f0;">
+            <p style="font-size: 11px; color: #a8b0bd; margin: 0 0 2px;">${entry.year}</p>
+            <p style="font-size: 14px; font-weight: 500; margin: 0;">${entry.champion}</p>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderPlayers() {
+  // If a player is selected, show their profile
+  if (selectedPlayer) {
+    return renderPlayerProfile(selectedPlayer);
+  }
+
+  // Otherwise show the grid of players
+  const players = getAllPlayers();
+  if (!players.length) {
+    return `<div style="max-width: 1100px; margin: 2rem auto; padding: 1rem; text-align: center; color: #64748b;">No players found</div>`;
+  }
+
+  return `
+    <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 1.5rem; color: #011A36;">Players</h1>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+        ${players.map(p => {
+          const champs = (allData.hallOfFame && allData.hallOfFame.championships && allData.hallOfFame.championships[p]) || 0;
+          return `
+            <div class="player-tile" data-player="${p}" style="background: #383D44; border-radius: 8px; padding: 1.25rem 1rem; text-align: center; color: #e2e8f0; cursor: pointer; transition: transform 0.1s;">
+              <p style="font-size: 18px; font-weight: 500; margin: 0 0 0.5rem;">${p}</p>
+              <p style="font-size: 12px; color: #5B9BD5; margin: 0;">${champs} title${champs !== 1 ? 's' : ''}</p>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// Build all pairwise rivalry records from matchup data across every season
+function getRivalries() {
+  const MIN_GAMES = 3; // threshold for lopsided & streak records
+  const pairs = {}; // "A|B" (sorted) -> { games:[], a, b }
+
+  availableYears.forEach(year => {
+    const data = allData[year];
+    if (!data || !data.matchups) return;
+    data.matchups.forEach(m => {
+      if (m.redScore === 0 && m.blueScore === 0) return;
+      const [a, b] = [m.red, m.blue].sort();
+      const key = `${a}|${b}`;
+      if (!pairs[key]) pairs[key] = { a, b, games: [] };
+      pairs[key].games.push({ year, week: m.week, round: m.round || 'Regular', red: m.red, redScore: m.redScore, blue: m.blue, blueScore: m.blueScore });
+    });
+  });
+
+  const list = Object.values(pairs);
+
+  // Most-played rivalry
+  let mostPlayed = null;
+  list.forEach(p => { if (!mostPlayed || p.games.length > mostPlayed.games.length) mostPlayed = p; });
+
+  // Highest-scoring matchup ever (combined points in a single game)
+  let highestScoring = null;
+  list.forEach(p => p.games.forEach(g => {
+    const total = g.redScore + g.blueScore;
+    if (!highestScoring || total > highestScoring.total) {
+      highestScoring = { total, ...g };
+    }
+  }));
+
+  // Biggest single blowout (largest margin in one game)
+  let biggestBlowout = null;
+  list.forEach(p => p.games.forEach(g => {
+    const margin = Math.abs(g.redScore - g.blueScore);
+    if (!biggestBlowout || margin > biggestBlowout.margin) {
+      const winner = g.redScore >= g.blueScore ? g.red : g.blue;
+      const loser = g.redScore >= g.blueScore ? g.blue : g.red;
+      biggestBlowout = { margin, winner, loser, ...g };
+    }
+  }));
+
+  // Most lopsided rivalry (min games): biggest win-share gap
+  let mostLopsided = null;
+  list.forEach(p => {
+    if (p.games.length < MIN_GAMES) return;
+    let aWins = 0, bWins = 0;
+    p.games.forEach(g => {
+      const winner = g.redScore >= g.blueScore ? g.red : g.blue;
+      if (winner === p.a) aWins++; else bWins++;
+    });
+    const dominant = aWins >= bWins ? p.a : p.b;
+    const dWins = Math.max(aWins, bWins);
+    const lWins = Math.min(aWins, bWins);
+    const gap = dWins - lWins;
+    if (!mostLopsided || gap > mostLopsided.gap || (gap === mostLopsided.gap && p.games.length > mostLopsided.total)) {
+      mostLopsided = { dominant, loser: dominant === p.a ? p.b : p.a, dWins, lWins, gap, total: p.games.length };
+    }
+  });
+
+  // Longest win streak within a rivalry (min games)
+  let longestStreak = null;
+  list.forEach(p => {
+    if (p.games.length < MIN_GAMES) return;
+    // order games chronologically
+    const ordered = [...p.games].sort((g1, g2) => g1.year - g2.year || g1.week - g2.week);
+    let curWinner = null, cur = 0, best = 0, bestWinner = null;
+    ordered.forEach(g => {
+      const winner = g.redScore >= g.blueScore ? g.red : g.blue;
+      if (winner === curWinner) { cur++; }
+      else { curWinner = winner; cur = 1; }
+      if (cur > best) { best = cur; bestWinner = winner; }
+    });
+    if (!longestStreak || best > longestStreak.streak) {
+      longestStreak = { streak: best, winner: bestWinner, loser: bestWinner === p.a ? p.b : p.a };
+    }
+  });
+
+  return { mostPlayed, highestScoring, biggestBlowout, mostLopsided, longestStreak, minGames: MIN_GAMES, hasData: list.length > 0 };
+}
+
+function renderRivalries() {
+  const r = getRivalries();
+  if (!r.hasData) {
+    return `<div style="max-width: 680px; margin: 2rem auto; padding: 1rem; text-align: center; color: #64748b;">No matchup data available yet.</div>`;
+  }
+
+  const card = (label, headline, sub) => `
+    <div style="background: #383D44; border-radius: 10px; padding: 1.25rem; color: #e2e8f0; margin-bottom: 12px;">
+      <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin: 0 0 8px;">${label}</p>
+      <p style="font-size: 18px; font-weight: 600; margin: 0 0 4px;">${headline}</p>
+      <p style="font-size: 12px; color: #a8b0bd; margin: 0; line-height: 1.4;">${sub}</p>
+    </div>
+  `;
+
+  const mp = r.mostPlayed;
+  const hs = r.highestScoring;
+  const bb = r.biggestBlowout;
+  const ml = r.mostLopsided;
+  const ls = r.longestStreak;
+
+  return `
+    <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.25rem; color: #011A36;">Rivalries</h1>
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 2rem;">All-time, across every season with matchup data</p>
+
+      ${mp ? card('Most-Played Rivalry', `${mp.a} v ${mp.b}`, `${mp.games.length} meetings and counting.`) : ''}
+
+      ${ml ? card('Most Lopsided Rivalry', `${ml.dominant} owns ${ml.loser}`, `${ml.dWins}–${ml.lWins} all-time across ${ml.total} meetings. One-sided doesn't cover it.`) : ''}
+
+      ${ls ? card('Longest Win Streak', `${ls.winner} over ${ls.loser}`, `${ls.streak} straight wins in the rivalry. Bragging rights secured.`) : ''}
+
+      ${hs ? card('Highest-Scoring Matchup', `${hs.red} v ${hs.blue}`, `${hs.total.toFixed(2)} combined points · ${hs.year} Week ${hs.week} (${hs.redScore} – ${hs.blueScore}).`) : ''}
+
+      ${bb ? card('Biggest Blowout', `${bb.winner} demolished ${bb.loser}`, `by ${bb.margin.toFixed(2)} · ${bb.year} Week ${bb.week} (${bb.redScore} – ${bb.blueScore})${bb.round !== 'Regular' ? ' · ' + bb.round : ''}.`) : ''}
+
+      <p style="font-size: 11px; color: #94a3b8; margin: 1.5rem 0 0; font-style: italic;">Most Lopsided and Longest Win Streak require at least ${r.minGames} meetings to qualify.</p>
+    </div>
+  `;
+}
+
+function renderPlayerProfile(player) {
+  const profile = getPlayerProfile(player);
+  const superlative = getSuperlative(profile);
+
+  const statCard = (label, value, sublabel) => `
+    <div style="background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0;">
+      <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">${label}</p>
+      <p style="font-size: 22px; font-weight: 500; margin: 0 0 2px;">${value}</p>
+      ${sublabel ? `<p style="font-size: 11px; color: #a8b0bd; margin: 0;">${sublabel}</p>` : ''}
+    </div>
+  `;
+
+  return `
+    <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
+      <button id="backToPlayers" style="background: transparent; border: 0.5px solid #d0d5dd; color: #011A36; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 1.5rem;">← All Players</button>
+
+      <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.25rem; color: #011A36;">${profile.name}</h1>
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 1.25rem;">
+        ${profile.championships} championship${profile.championships !== 1 ? 's' : ''}${profile.titleYears.length ? ' · ' + profile.titleYears.sort((a, b) => b - a).join(', ') : ''}
+      </p>
+
+      <div style="background: linear-gradient(135deg, #011A36 0%, #033a6b 100%); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 2rem; border-left: 4px solid #5B9BD5;">
+        <p style="font-size: 11px; color: #5B9BD5; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin: 0 0 4px;">${superlative.title}</p>
+        <p style="font-size: 14px; color: #e2e8f0; margin: 0; line-height: 1.45;">${superlative.line}</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 2rem;">
+        ${statCard('Championships', profile.championships, profile.titleYears.length ? profile.titleYears.sort((a, b) => b - a).join(', ') : 'No titles yet')}
+        ${statCard('Best Week', profile.bestWeek ? profile.bestWeek.value : '—', profile.bestWeek ? `${profile.bestWeek.year} · Week ${profile.bestWeek.week}` : 'No data')}
+        ${statCard('Worst Week', profile.worstWeek ? profile.worstWeek.value : '—', profile.worstWeek ? `${profile.worstWeek.year} · Week ${profile.worstWeek.week}` : 'No data')}
+        ${statCard('Seasons', profile.finishes.length, profile.finishes.length ? `Since ${Math.min(...profile.finishes.map(f => f.year))}` : '')}
+      </div>
+
+      <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Season Finishes</h2>
+      ${profile.finishes.length ? `
+        <div style="display: grid; gap: 8px;">
+          ${profile.finishes.map(f => {
+            const medal = f.rank === 1 ? '🥇' : f.rank === 2 ? '🥈' : f.rank === 3 ? '🥉' : '';
+            let accent = '#6b7280';        // mid-pack
+            if (f.rank === 1) accent = '#F5C542';      // gold
+            else if (f.rank <= 4) accent = '#2BAE66';  // playoffs (green)
+            else if (f.rank >= 7) accent = '#c0566b';  // bottom (red)
+            const rankColor = f.rank === 1 ? '#F5C542' : (f.rank <= 4 ? '#2BAE66' : '#e2e8f0');
+            return `
+            <div style="background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0; border-left: 4px solid ${accent};">
+              <span style="font-size: 14px; color: #a8b0bd;">${f.year}</span>
+              <div style="display: flex; gap: 16px; align-items: center;">
+                <span style="font-size: 13px; color: #a8b0bd;">${f.record}</span>
+                <span style="font-size: 16px; font-weight: 600; color: ${rankColor};">${medal ? medal + ' ' : ''}${ordinal(f.rank)}</span>
+              </div>
+            </div>
+            `;
+          }).join('')}
+        </div>
+      ` : '<p style="color: #64748b; font-size: 13px;">No season data yet</p>'}
+
+      <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 2rem 0 1rem; letter-spacing: 0.5px;">Head to Head</h2>
+      ${profile.headToHead && profile.headToHead.length ? `
+        <div style="display: grid; gap: 8px;">
+          ${profile.headToHead.map(h => {
+            const total = h.wins + h.losses + h.ties;
+            const leading = h.wins > h.losses;
+            const trailing = h.wins < h.losses;
+            const recordColor = leading ? '#5B9BD5' : (trailing ? '#a8b0bd' : '#e2e8f0');
+            return `
+              <div style="background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0;">
+                <span style="font-size: 15px; font-weight: 500;">${profile.name} v ${h.opponent}</span>
+                <span style="font-size: 15px; font-weight: 500; color: ${recordColor};">${h.wins}-${h.losses}${h.ties ? '-' + h.ties : ''}</span>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      ` : '<div style="background: #383D44; border-radius: 8px; padding: 1.25rem; color: #a8b0bd; font-size: 13px;">Head-to-head records will appear here once weekly matchup data is added to the league sheet.</div>'}
+    </div>
+  `;
+}
+
+function render() {
+  let content = '';
+  if (currentPage === 'weekly') content = selectedWeek !== null ? renderWeekDetail() : renderWeekly();
+  else if (currentPage === 'standings') content = renderStandings();
+  else if (currentPage === 'hall') content = renderHallOfFame();
+  else if (currentPage === 'players') content = renderPlayers();
+  else if (currentPage === 'rivalries') content = renderRivalries();
+
+  const showYearSelector = (currentPage === 'weekly' || currentPage === 'standings');
+  const yearOptions = availableYears.map(y => `<option value="${y}" ${y === selectedYear ? 'selected' : ''}>${y}</option>`).join('');
+
+  const tab = (id, label, shortLabel) => `
+    <button class="nav-btn nav-tab ${shortLabel ? 'has-short' : ''} ${currentPage === id ? 'nav-tab-active' : ''}" data-page="${id}">
+      <span class="nav-label-full">${label}</span>${shortLabel ? `<span class="nav-label-short">${shortLabel}</span>` : ''}
+    </button>
+  `;
+
+  const navHTML = `
+    <div class="nav-bar" style="background: #011A36; display: flex; gap: 0; position: sticky; top: 0; z-index: 10;">
+      ${tab('weekly', 'Home')}
+      ${tab('standings', 'Standings')}
+      ${tab('players', 'Players')}
+      ${tab('rivalries', 'Rivalries')}
+      ${tab('hall', 'Hall of Fame', 'HOF')}
+    </div>
+
+    ${showYearSelector ? `
+    <div style="background: #011A36; padding: 1rem;">
+      <div style="max-width: 1100px; margin: 0 auto;">
+        <label style="font-size: 12px; color: #8a97a8; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 0.5rem;">Select Season</label>
+        <select id="yearSelector" style="max-width: 200px; width: 100%; padding: 0.75rem; background: #FFFFFF; color: #011A36; border: 0.5px solid #d0d5dd; border-radius: 6px; font-size: 14px;">
+          ${yearOptions}
+        </select>
+      </div>
+    </div>
+    ` : ''}
+  `;
+
+  app.innerHTML = navHTML + content;
+
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      currentPage = btn.dataset.page;
+      if (currentPage !== 'players') selectedPlayer = null;
+      selectedWeek = null;
+      render();
+    });
+  });
+
+  const selector = document.getElementById('yearSelector');
+  if (selector) {
+    selector.addEventListener('change', (e) => {
+      selectedYear = parseInt(e.target.value);
+      selectedWeek = null;
+      render();
+    });
+  }
+
+  // Week cards → open week detail
+  document.querySelectorAll('.week-card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectedWeek = parseInt(card.dataset.week);
+      window.scrollTo(0, 0);
+      render();
+    });
+  });
+
+  // Back from week detail
+  const backToWeeks = document.getElementById('backToWeeks');
+  if (backToWeeks) {
+    backToWeeks.addEventListener('click', () => {
+      selectedWeek = null;
+      render();
+    });
+  }
+
+  // Player tiles
+  document.querySelectorAll('.player-tile').forEach(tile => {
+    tile.addEventListener('click', (e) => {
+      selectedPlayer = tile.dataset.player;
+      render();
+    });
+  });
+
+  // Back button
+  const backBtn = document.getElementById('backToPlayers');
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      selectedPlayer = null;
+      render();
+    });
+  }
+
+  // Unluckiest player tooltip (hover on desktop, tap on mobile)
+  const unluckyTile = document.querySelector('.unlucky-tile');
+  if (unluckyTile) {
+    const tooltip = unluckyTile.querySelector('.unlucky-tooltip');
+    unluckyTile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
+    unluckyTile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    unluckyTile.addEventListener('click', () => {
+      tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
+    });
+  }
+
+  // Championship tile tooltips (hover on desktop, tap on mobile)
+  document.querySelectorAll('.champ-tile').forEach(tile => {
+    const tooltip = tile.querySelector('.champ-tooltip');
+    if (!tooltip) return;
+    tile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
+    tile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    tile.addEventListener('click', () => {
+      tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+}
+
+// --- Password gate (soft client-side gate; deters casual visitors only) ---
+const SITE_PASSWORD = 'nfl';
+const UNLOCK_KEY = 'ncl_unlocked';
+
+function showLogin(errorMsg) {
+  app.innerHTML = `
+    <div style="min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem;">
+      <div style="width: 100%; max-width: 340px; text-align: center;">
+        <svg width="56" height="56" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto 1rem; display: block;">
+          <rect width="64" height="64" rx="12" fill="#011A36"/>
+          <ellipse cx="32" cy="32" rx="16" ry="10" fill="#F5C542"/>
+          <line x1="21" y1="32" x2="43" y2="32" stroke="#011A36" stroke-width="2.5"/>
+          <line x1="27" y1="28.5" x2="27" y2="35.5" stroke="#011A36" stroke-width="2.5"/>
+          <line x1="32" y1="27.5" x2="32" y2="36.5" stroke="#011A36" stroke-width="2.5"/>
+          <line x1="37" y1="28.5" x2="37" y2="35.5" stroke="#011A36" stroke-width="2.5"/>
+        </svg>
+        <h1 style="font-size: 20px; font-weight: 700; color: #011A36; margin: 0 0 0.25rem; letter-spacing: 0.5px;">NFL CREW LEAGUE</h1>
+        <p style="font-size: 13px; color: #64748b; margin: 0 0 1.5rem;">Members only. Enter the password to continue.</p>
+        <input id="pwInput" type="password" placeholder="Password" autocomplete="current-password"
+          style="width: 100%; padding: 0.75rem 1rem; font-size: 15px; border: 1px solid #d0d5dd; border-radius: 8px; margin-bottom: 0.75rem; outline: none;" />
+        <button id="pwBtn" style="width: 100%; padding: 0.75rem; font-size: 15px; font-weight: 600; color: #FFFFFF; background: #011A36; border: none; border-radius: 8px; cursor: pointer;">Enter</button>
+        ${errorMsg ? `<p style="font-size: 13px; color: #c0566b; margin: 1rem 0 0;">${errorMsg}</p>` : ''}
+      </div>
+    </div>
+  `;
+
+  const input = document.getElementById('pwInput');
+  const btn = document.getElementById('pwBtn');
+  const attempt = () => {
+    if (input.value === SITE_PASSWORD) {
+      try { localStorage.setItem(UNLOCK_KEY, '1'); } catch (e) {}
+      fetchData();
+    } else {
+      showLogin('Incorrect password. Try again.');
+    }
+  };
+  btn.addEventListener('click', attempt);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') attempt(); });
+  input.focus();
+}
+
+function startApp() {
+  let unlocked = false;
+  try { unlocked = localStorage.getItem(UNLOCK_KEY) === '1'; } catch (e) {}
+  if (unlocked) {
+    fetchData();
+  } else {
+    showLogin();
+  }
+}
+
+startApp();
