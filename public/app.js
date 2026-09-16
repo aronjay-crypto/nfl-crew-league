@@ -493,8 +493,20 @@ function getSeasonRecords(data) {
 
 function renderStandings() {
   const data = allData[selectedYear];
+
+  const jamieJab = selectedYear === 2026 ? `
+    <p style="font-size: 13px; color: #c0566b; font-style: italic; margin: 0 0 1.5rem; text-align: center;">Let's be real, Jamie isn't going to win.</p>
+  ` : '';
+
   if (!data || !data.standings.length) {
-    return `<div style="max-width: 1100px; margin: 2rem auto; padding: 1rem; text-align: center; color: #64748b;">No standings data available</div>`;
+    return `
+      <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
+        <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.5rem; color: #011A36;">Standings</h1>
+        <p style="font-size: 14px; color: #64748b; margin: 0 0 1rem;">${selectedYear} Season</p>
+        ${jamieJab}
+        <div style="text-align: center; padding: 1rem; color: #64748b;">No standings data available yet</div>
+      </div>
+    `;
   }
 
   const PLAYOFF_CUTOFF = 4;
@@ -502,7 +514,8 @@ function renderStandings() {
   return `
     <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
       <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.5rem; color: #011A36;">Standings</h1>
-      <p style="font-size: 14px; color: #64748b; margin: 0 0 2rem;">${selectedYear} Season</p>
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 1rem;">${selectedYear} Season</p>
+      ${jamieJab}
 
       <div style="background: linear-gradient(135deg, #383D44 0%, #2c3138 100%); border-radius: 12px; padding: 1.5rem; text-align: center; margin-bottom: 2rem; color: #e2e8f0; border: 1px solid rgba(245, 197, 66, 0.25);">
         <p style="font-size: 11px; color: #a8b0bd; text-transform: uppercase; margin: 0 0 0.5rem; letter-spacing: 0.5px;">${selectedYear} Champion</p>
@@ -548,6 +561,7 @@ function getAllTimeRecords() {
   let biggestBlowout = { value: -Infinity, winner: '', loser: '', year: 0, week: 0 };
   let closestGame = { value: Infinity, winner: '', loser: '', year: 0, week: 0 };
   const worstManagerAllTimeTally = {}; // player -> count, across every season
+  let worstManagerTrackedSince = null; // earliest year with Worst_Manager data
 
   // Career aggregates
   const career = {}; // player -> { pf, wins, losses, seasons, bestFinish }
@@ -584,6 +598,9 @@ function getAllTimeRecords() {
         const parts = w.worstManager.split(',').map(p => p.trim());
         if (parts.length >= 3 && parts[0]) {
           worstManagerAllTimeTally[parts[0]] = (worstManagerAllTimeTally[parts[0]] || 0) + 1;
+          if (worstManagerTrackedSince === null || year < worstManagerTrackedSince) {
+            worstManagerTrackedSince = year;
+          }
         }
       }
     });
@@ -626,7 +643,7 @@ function getAllTimeRecords() {
     .sort((a, b) => b.count - a.count);
   const worstManagerAllTimeLeader = worstManagerAllTimeRanked.length ? worstManagerAllTimeRanked[0] : null;
 
-  return { highestWeek, lowestWeek, highestPlayerWeek, biggestWaiver, mostPoints, mostWins, biggestBlowout, closestGame, worstManagerAllTimeLeader, worstManagerAllTimeRanked };
+  return { highestWeek, lowestWeek, highestPlayerWeek, biggestWaiver, mostPoints, mostWins, biggestBlowout, closestGame, worstManagerAllTimeLeader, worstManagerAllTimeRanked, worstManagerTrackedSince };
 }
 
 function renderHallOfFame() {
@@ -662,7 +679,8 @@ function renderHallOfFame() {
           <div class="wm-alltime-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0; cursor: pointer;">
             <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Worst Manager (All-Time) <span style="color: #8a97a8;">ⓘ</span></p>
             <p style="font-size: 17px; font-weight: 500; margin: 0 0 2px;">${records.worstManagerAllTimeLeader.player}</p>
-            <p style="font-size: 11px; color: #a8b0bd; margin: 0;">${records.worstManagerAllTimeLeader.count} week${records.worstManagerAllTimeLeader.count !== 1 ? 's' : ''} across every season</p>
+            <p style="font-size: 11px; color: #a8b0bd; margin: 0 0 4px;">${records.worstManagerAllTimeLeader.count} week${records.worstManagerAllTimeLeader.count !== 1 ? 's' : ''} across every season</p>
+            <p style="font-size: 10px; color: #8a97a8; margin: 0; font-style: italic;">Tracked since the ${records.worstManagerTrackedSince} season</p>
             <div class="wm-alltime-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
               <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Worst Manager Weeks (All-Time)</p>
               ${records.worstManagerAllTimeRanked.map(b => `
