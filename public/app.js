@@ -145,7 +145,7 @@ function getPlayerProfile(player) {
       wins: rec.wins,
       losses: rec.losses,
       ties: rec.ties,
-      games: rec.games.sort((a, b) => a.year - b.year || a.week - b.week)
+      games: rec.games.sort((a, b) => b.year - a.year || b.week - a.week)
     }))
     .sort((a, b) => a.opponent.localeCompare(b.opponent));
 
