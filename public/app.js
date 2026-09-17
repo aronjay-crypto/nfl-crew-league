@@ -118,7 +118,7 @@ function getPlayerProfile(player) {
   if (worst.value !== Infinity) profile.worstWeek = worst;
 
   // Head-to-head across all seasons that have matchup data
-  const h2h = {}; // opponent -> { wins, losses, ties }
+  const h2h = {}; // opponent -> { wins, losses, ties, games: [] }
   availableYears.forEach(year => {
     const data = allData[year];
     if (!data || !data.matchups) return;
@@ -131,14 +131,22 @@ function getPlayerProfile(player) {
       } else {
         return; // player not in this matchup
       }
-      if (!h2h[opp]) h2h[opp] = { wins: 0, losses: 0, ties: 0 };
-      if (myScore > oppScore) h2h[opp].wins++;
-      else if (myScore < oppScore) h2h[opp].losses++;
-      else h2h[opp].ties++;
+      if (!h2h[opp]) h2h[opp] = { wins: 0, losses: 0, ties: 0, games: [] };
+      let result = 'T';
+      if (myScore > oppScore) { h2h[opp].wins++; result = 'W'; }
+      else if (myScore < oppScore) { h2h[opp].losses++; result = 'L'; }
+      else { h2h[opp].ties++; }
+      h2h[opp].games.push({ year, week: m.week, round: m.round || 'Regular', myScore, oppScore, result });
     });
   });
   profile.headToHead = Object.entries(h2h)
-    .map(([opponent, rec]) => ({ opponent, ...rec }))
+    .map(([opponent, rec]) => ({
+      opponent,
+      wins: rec.wins,
+      losses: rec.losses,
+      ties: rec.ties,
+      games: rec.games.sort((a, b) => a.year - b.year || a.week - b.week)
+    }))
     .sort((a, b) => a.opponent.localeCompare(b.opponent));
 
   return profile;
@@ -958,9 +966,20 @@ function renderPlayerProfile(player) {
             const trailing = h.wins < h.losses;
             const recordColor = leading ? '#5B9BD5' : (trailing ? '#a8b0bd' : '#e2e8f0');
             return `
-              <div style="background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0;">
-                <span style="font-size: 15px; font-weight: 500;">${profile.name} v ${h.opponent}</span>
+              <div class="h2h-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; color: #e2e8f0; cursor: pointer;">
+                <span style="font-size: 15px; font-weight: 500;">${profile.name} v ${h.opponent} <span style="color: #8a97a8; font-size: 11px;">ⓘ</span></span>
                 <span style="font-size: 15px; font-weight: 500; color: ${recordColor};">${h.wins}-${h.losses}${h.ties ? '-' + h.ties : ''}</span>
+                <div class="h2h-tooltip" style="display: none; position: absolute; top: calc(100% + 6px); right: 0; left: 0; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4); text-align: left;">
+                  <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">${profile.name} v ${h.opponent} — Game Log</p>
+                  ${h.games.map(g => `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; font-size: 12px; border-top: 0.5px solid #1c3a5e;">
+                      <span style="color: #a8b0bd;">${g.year} Wk ${g.week}${g.round !== 'Regular' ? ' · ' + g.round : ''}</span>
+                      <span style="font-weight: 600; color: ${g.result === 'W' ? '#2BAE66' : (g.result === 'L' ? '#c0566b' : '#e2e8f0')};">
+                        ${g.myScore.toFixed(2)} – ${g.oppScore.toFixed(2)} ${g.result === 'W' ? '✓' : (g.result === 'L' ? '✕' : '=')}
+                      </span>
+                    </div>
+                  `).join('')}
+                </div>
               </div>
             `;
           }).join('')}
@@ -1099,6 +1118,17 @@ function render() {
   // Championship tile tooltips (hover on desktop, tap on mobile)
   document.querySelectorAll('.champ-tile').forEach(tile => {
     const tooltip = tile.querySelector('.champ-tooltip');
+    if (!tooltip) return;
+    tile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
+    tile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    tile.addEventListener('click', () => {
+      tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+
+  // Head-to-head tile tooltips (hover on desktop, tap on mobile)
+  document.querySelectorAll('.h2h-tile').forEach(tile => {
+    const tooltip = tile.querySelector('.h2h-tooltip');
     if (!tooltip) return;
     tile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
     tile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
