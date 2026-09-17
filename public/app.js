@@ -500,6 +500,62 @@ function getSeasonRecords(data) {
   return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver, unluckiest, worstManagerAward, worstManagerSeasonLeader, worstManagerTallyRanked };
 }
 
+// Build a playoff bracket section (Championship + Consolation) for a given season's matchups
+function renderPlayoffBracket(data) {
+  if (!data || !data.matchups) return '';
+  const playoffGames = data.matchups.filter(m => m.round && m.round !== 'Regular');
+  if (!playoffGames.length) return '';
+
+  const roundOrder = ['Semi-Final', 'Final', '3rd Place', 'Losers Semi', 'Losers Final', '7th Place'];
+  const byRound = {};
+  playoffGames.forEach(m => {
+    if (!byRound[m.round]) byRound[m.round] = [];
+    byRound[m.round].push(m);
+  });
+
+  const gameRow = (m) => {
+    const redWon = m.redScore > m.blueScore;
+    const blueWon = m.blueScore > m.redScore;
+    return `
+      <div style="display: flex; align-items: center; justify-content: space-between; background: #383D44; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <span style="font-size: 13px; color: ${redWon ? '#2BAE66' : '#e2e8f0'}; font-weight: ${redWon ? '600' : '500'};">${m.red}${redWon ? ' ✓' : ''} <span style="color: #a8b0bd; font-weight: 500;">${m.redScore.toFixed(2)}</span></span>
+          <span style="font-size: 13px; color: ${blueWon ? '#2BAE66' : '#e2e8f0'}; font-weight: ${blueWon ? '600' : '500'};">${m.blue}${blueWon ? ' ✓' : ''} <span style="color: #a8b0bd; font-weight: 500;">${m.blueScore.toFixed(2)}</span></span>
+        </div>
+        <span style="font-size: 10px; color: #8a97a8; text-transform: uppercase; letter-spacing: 0.5px;">Wk ${m.week}</span>
+      </div>
+    `;
+  };
+
+  const roundBlock = (roundName) => {
+    const games = byRound[roundName];
+    if (!games || !games.length) return '';
+    return `
+      <div style="margin-bottom: 14px;">
+        <p style="font-size: 11px; color: #5B9BD5; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin: 0 0 8px;">${roundName}</p>
+        ${games.map(gameRow).join('')}
+      </div>
+    `;
+  };
+
+  const champBracketRounds = ['Semi-Final', 'Final', '3rd Place'].filter(r => byRound[r]);
+  const consolationRounds = ['Losers Semi', 'Losers Final', '7th Place'].filter(r => byRound[r]);
+
+  return `
+    <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 2rem 0 1rem; letter-spacing: 0.5px;">Playoffs</h2>
+    <div class="home-grid" style="grid-template-columns: 1fr 1fr;">
+      <div>
+        <p style="font-size: 10px; color: #a8b0bd; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 10px;">Championship Bracket</p>
+        ${champBracketRounds.length ? champBracketRounds.map(roundBlock).join('') : '<p style="font-size: 12px; color: #64748b;">No games recorded</p>'}
+      </div>
+      <div>
+        <p style="font-size: 10px; color: #a8b0bd; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 10px;">Consolation Bracket</p>
+        ${consolationRounds.length ? consolationRounds.map(roundBlock).join('') : '<p style="font-size: 12px; color: #64748b;">No games recorded</p>'}
+      </div>
+    </div>
+  `;
+}
+
 function renderStandings() {
   const data = allData[selectedYear];
 
@@ -557,6 +613,8 @@ function renderStandings() {
           `;
         }).join('')}
       </div>
+
+      ${renderPlayoffBracket(data)}
     </div>
   `;
 }
