@@ -6,6 +6,7 @@ let selectedYear = 2025;
 let availableYears = [];
 let selectedPlayer = null;
 let selectedWeek = null;
+let finishTrendChartInstance = null; // tracks the active Chart.js instance so we can destroy it on re-render
 
 async function fetchData() {
   try {
@@ -934,6 +935,15 @@ function renderPlayerProfile(player) {
         ${statCard('Seasons', profile.finishes.length, profile.finishes.length ? `Since ${Math.min(...profile.finishes.map(f => f.year))}` : '')}
       </div>
 
+      ${profile.finishes.length >= 2 ? `
+        <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Finish Over Time</h2>
+        <div style="background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 2rem;">
+          <div style="position: relative; height: 200px;">
+            <canvas id="finishTrendChart" role="img" aria-label="Line chart of ${profile.name}'s season finish position from ${Math.min(...profile.finishes.map(f => f.year))} to ${Math.max(...profile.finishes.map(f => f.year))}">${[...profile.finishes].sort((a, b) => a.year - b.year).map(f => `${f.year}: ${ordinal(f.rank)}`).join(', ')}</canvas>
+          </div>
+        </div>
+      ` : ''}
+
       <h2 style="font-size: 12px; font-weight: 500; color: #011A36; text-transform: uppercase; margin: 0 0 1rem; letter-spacing: 0.5px;">Season Finishes</h2>
       ${profile.finishes.length ? `
         <div style="display: grid; gap: 8px;">
@@ -1136,6 +1146,72 @@ function render() {
       tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
     });
   });
+
+  // Finish-over-time trend chart (player profile only)
+  // innerHTML replacement destroys the old canvas without telling Chart.js,
+  // so we must explicitly destroy the previous instance before creating a new one.
+  if (finishTrendChartInstance) {
+    finishTrendChartInstance.destroy();
+    finishTrendChartInstance = null;
+  }
+  const trendCanvas = document.getElementById('finishTrendChart');
+  if (trendCanvas && typeof Chart !== 'undefined') {
+    const profile = getPlayerProfile(selectedPlayer);
+    const sorted = [...profile.finishes].sort((a, b) => a.year - b.year);
+    const labels = sorted.map(f => String(f.year));
+    const ranks = sorted.map(f => f.rank);
+    const maxRank = Math.max(8, ...ranks); // league size fallback of 8 if smaller
+
+    finishTrendChartInstance = new Chart(trendCanvas, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Finish',
+          data: ranks,
+          borderColor: '#5B9BD5',
+          backgroundColor: 'rgba(91, 155, 213, 0.15)',
+          borderWidth: 2,
+          pointBackgroundColor: '#5B9BD5',
+          pointBorderColor: '#383D44',
+          pointBorderWidth: 2,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          fill: true,
+          tension: 0.25
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            reverse: true, // rank 1 (best) shows at the top
+            min: 1,
+            max: maxRank,
+            ticks: {
+              stepSize: 1,
+              color: '#a8b0bd',
+              callback: (value) => ordinal(value)
+            },
+            grid: { color: 'rgba(168, 176, 189, 0.15)' }
+          },
+          x: {
+            ticks: { color: '#a8b0bd' },
+            grid: { display: false }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => `Finished ${ordinal(ctx.parsed.y)}`
+            }
+          }
+        }
+      }
+    });
+  }
 }
 
 fetchData();
