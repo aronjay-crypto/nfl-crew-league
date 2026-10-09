@@ -72,11 +72,10 @@ async function sync() {
     for (const [year, gids] of Object.entries(SEASONS)) {
       console.log(`Fetching ${year}...`);
       const weeksCsv = await fetchSheet(gids.weeks);
-      const weeksData = parseCSV(weeksCsv).filter(r => r.Week);
+      const standingsCsv = gids.standings ? await fetchSheet(gids.standings) : '';
 
-      const standingsData = gids.standings
-        ? parseCSV(await fetchSheet(gids.standings)).filter(r => r.Rank)
-        : [];
+      const weeksData = parseCSV(weeksCsv).filter(r => r.Week);
+      const standingsData = parseCSV(standingsCsv).filter(r => r.Rank);
 
       data[year] = {
         weeks: weeksData.map(r => ({
@@ -86,7 +85,8 @@ async function sync() {
           highPlayer: r.Highest_Player,
           lowPlayer: r.Lowest_Player,
           waiver: r.Most_Expensive_waiver || '-',
-          worstManager: r.Worst_Manager || ''
+          worstManager: r.Worst_Manager || '',
+          bestManager: r.Best_Manager || ''
         })),
         standings: standingsData.map(r => ({
           rank: parseInt(r.Rank),
