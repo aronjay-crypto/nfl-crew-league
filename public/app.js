@@ -402,6 +402,30 @@ function renderWeekly() {
                 </div>
               </div>
             ` : ''}
+            ${records.bestManagerAward ? `
+              <div style="background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0;">
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Best Managed Week</p>
+                <p style="font-size: 14px; font-weight: 500; margin: 0 0 6px;">${records.bestManagerAward.player}</p>
+                <p style="font-size: 12px; color: #a8b0bd; margin: 0 0 4px; line-height: 1.4;">Scored ${records.bestManagerAward.score.toFixed(2)} (${records.bestManagerAward.pct.toFixed(0)}%) of their perfect possible lineup (${records.bestManagerAward.perfect.toFixed(2)}).</p>
+                <p style="font-size: 11px; color: #a8b0bd; margin: 0;">Week ${records.bestManagerAward.week}</p>
+              </div>
+            ` : ''}
+            ${records.bestManagerSeasonLeader ? `
+              <div class="bm-season-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0; cursor: pointer;">
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Best Manager (Season) <span style="color: #8a97a8;">ⓘ</span></p>
+                <p style="font-size: 14px; font-weight: 500; margin: 0 0 2px;">${records.bestManagerSeasonLeader.player}</p>
+                <p style="font-size: 11px; color: #a8b0bd; margin: 0;">${records.bestManagerSeasonLeader.count} week${records.bestManagerSeasonLeader.count !== 1 ? 's' : ''} as best manager this season</p>
+                <div class="bm-season-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+                  <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Best Manager Weeks (Season)</p>
+                  ${records.bestManagerTallyRanked.map(b => `
+                    <div style="display: flex; justify-content: space-between; padding: 3px 0; font-size: 12px;">
+                      <span style="color: #e2e8f0;">${b.player}</span>
+                      <span style="color: #a8b0bd;">${b.count}</span>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
           ` : '<p style="color: #64748b; font-size: 13px;">No records yet</p>'}
         </div>
 
@@ -497,7 +521,32 @@ function getSeasonRecords(data) {
     .sort((a, b) => b.count - a.count);
   const worstManagerSeasonLeader = worstManagerTallyRanked.length ? worstManagerTallyRanked[0] : null;
 
-  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver, unluckiest, worstManagerAward, worstManagerSeasonLeader, worstManagerTallyRanked };
+  // Best Manager: the single best lineup-efficiency week this season (score vs perfect possible score)
+  // ...and a tally of how many times each player has been worst manager this season.
+  let bestManagerAward = null;
+  const bestManagerTally = {}; // player -> count
+  data.weeks.forEach(w => {
+    if (!w.bestManager) return;
+    const parts = w.bestManager.split(',').map(p => p.trim());
+    if (parts.length < 3) return; // need Name, Score, Perfect
+    const name = parts[0];
+    const score = parseFloat(parts[1]);
+    const perfect = parseFloat(parts[2]);
+    if (!name || isNaN(score) || isNaN(perfect) || perfect <= 0) return;
+    const pct = (score / perfect) * 100;
+    if (!bestManagerAward || pct > bestManagerAward.pct) {
+      bestManagerAward = { player: name, score, perfect, pct, week: w.week };
+    }
+    bestManagerTally[name] = (bestManagerTally[name] || 0) + 1;
+  });
+
+  const bestManagerTallyRanked = Object.entries(bestManagerTally)
+    .map(([player, count]) => ({ player, count }))
+    .sort((a, b) => b.count - a.count);
+  const bestManagerSeasonLeader = bestManagerTallyRanked.length ? bestManagerTallyRanked[0] : null;
+
+
+  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver, unluckiest, worstManagerAward, worstManagerSeasonLeader, worstManagerTallyRanked, bestManagerAward, bestManagerSeasonLeader, bestManagerTallyRanked };
 }
 
 // Build a playoff bracket section (Championship + Consolation) for a given season's matchups
@@ -629,6 +678,8 @@ function getAllTimeRecords() {
   let closestGame = { value: Infinity, winner: '', loser: '', year: 0, week: 0 };
   const worstManagerAllTimeTally = {}; // player -> count, across every season
   let worstManagerTrackedSince = null; // earliest year with Worst_Manager data
+  const bestManagerAllTimeTally = {};
+  let bestManagerTrackedSince = null;
 
   // Career aggregates
   const career = {}; // player -> { pf, wins, losses, seasons, bestFinish }
@@ -667,6 +718,16 @@ function getAllTimeRecords() {
           worstManagerAllTimeTally[parts[0]] = (worstManagerAllTimeTally[parts[0]] || 0) + 1;
           if (worstManagerTrackedSince === null || year < worstManagerTrackedSince) {
             worstManagerTrackedSince = year;
+          }
+        }
+      }
+
+      if (w.bestManager) {
+        const parts = w.bestManager.split(',').map(p => p.trim());
+        if (parts.length >= 3 && parts[0]) {
+          bestManagerAllTimeTally[parts[0]] = (bestManagerAllTimeTally[parts[0]] || 0) + 1;
+          if (bestManagerTrackedSince === null || year < bestManagerTrackedSince) {
+            bestManagerTrackedSince = year;
           }
         }
       }
@@ -709,8 +770,12 @@ function getAllTimeRecords() {
     .map(([player, count]) => ({ player, count }))
     .sort((a, b) => b.count - a.count);
   const worstManagerAllTimeLeader = worstManagerAllTimeRanked.length ? worstManagerAllTimeRanked[0] : null;
+  const bestManagerAllTimeRanked = Object.entries(bestManagerAllTimeTally)
+    .map(([player, count]) => ({ player, count }))
+    .sort((a, b) => b.count - a.count);
+  const bestManagerAllTimeLeader = bestManagerAllTimeRanked.length ? bestManagerAllTimeRanked[0] : null;
 
-  return { highestWeek, lowestWeek, highestPlayerWeek, biggestWaiver, mostPoints, mostWins, biggestBlowout, closestGame, worstManagerAllTimeLeader, worstManagerAllTimeRanked, worstManagerTrackedSince };
+  return { highestWeek, lowestWeek, highestPlayerWeek, biggestWaiver, mostPoints, mostWins, biggestBlowout, closestGame, worstManagerAllTimeLeader, worstManagerAllTimeRanked, worstManagerTrackedSince, bestManagerAllTimeLeader, bestManagerAllTimeRanked, bestManagerTrackedSince };
 }
 
 function renderHallOfFame() {
@@ -751,6 +816,23 @@ function renderHallOfFame() {
             <div class="wm-alltime-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
               <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Worst Manager Weeks (All-Time)</p>
               ${records.worstManagerAllTimeRanked.map(b => `
+                <div style="display: flex; justify-content: space-between; padding: 3px 0; font-size: 12px;">
+                  <span style="color: #e2e8f0;">${b.player}</span>
+                  <span style="color: #a8b0bd;">${b.count}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+        ${records.bestManagerAllTimeLeader ? `
+          <div class="bm-alltime-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 1rem; color: #e2e8f0; cursor: pointer;">
+            <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Best Manager (All-Time) <span style="color: #8a97a8;">ⓘ</span></p>
+            <p style="font-size: 17px; font-weight: 500; margin: 0 0 2px;">${records.bestManagerAllTimeLeader.player}</p>
+            <p style="font-size: 11px; color: #a8b0bd; margin: 0 0 4px;">${records.bestManagerAllTimeLeader.count} week${records.bestManagerAllTimeLeader.count !== 1 ? 's' : ''} across every season</p>
+            <p style="font-size: 10px; color: #8a97a8; margin: 0; font-style: italic;">Tracked since the ${records.bestManagerTrackedSince} season</p>
+            <div class="bm-alltime-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+              <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Best Manager Weeks (All-Time)</p>
+              ${records.bestManagerAllTimeRanked.map(b => `
                 <div style="display: flex; justify-content: space-between; padding: 3px 0; font-size: 12px;">
                   <span style="color: #e2e8f0;">${b.player}</span>
                   <span style="color: #a8b0bd;">${b.count}</span>
@@ -1179,6 +1261,28 @@ function render() {
     wmAllTimeTile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
     wmAllTimeTile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
     wmAllTimeTile.addEventListener('click', () => {
+      tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
+    });
+  }
+
+  // Best Manager (season) tooltip (hover on desktop, tap on mobile)
+  const bmSeasonTile = document.querySelector('.bm-season-tile');
+  if (bmSeasonTile) {
+    const tooltip = bmSeasonTile.querySelector('.bm-season-tooltip');
+    bmSeasonTile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
+    bmSeasonTile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    bmSeasonTile.addEventListener('click', () => {
+      tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
+    });
+  }
+
+  // Best Manager (all-time) tooltip (hover on desktop, tap on mobile)
+  const bmAllTimeTile = document.querySelector('.bm-alltime-tile');
+  if (bmAllTimeTile) {
+    const tooltip = bmAllTimeTile.querySelector('.bm-alltime-tooltip');
+    bmAllTimeTile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
+    bmAllTimeTile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    bmAllTimeTile.addEventListener('click', () => {
       tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
     });
   }
