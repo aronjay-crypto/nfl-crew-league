@@ -2289,7 +2289,7 @@
     "weeks": [
       {
         "week": 1,
-        "highScore": "Aron, 164.46",
+        "highScore": "Aron, 163.46",
         "lowScore": "Ben, 91.06",
         "highPlayer": "Nathan, Derrick Henry, 35.3",
         "lowPlayer": "Lance, Kyle Pitts, 0",
@@ -2298,30 +2298,30 @@
       },
       {
         "week": 2,
-        "highScore": ", ",
-        "lowScore": ", ",
-        "highPlayer": "",
-        "lowPlayer": "",
+        "highScore": "James, 143.22",
+        "lowScore": "Jamie, 86.1",
+        "highPlayer": "James, Josh Allen, 38.82",
+        "lowPlayer": "Ethan, Coleston Loveland, 0.3",
         "waiver": "Aron, Kaelon Black, 25",
-        "worstManager": ""
+        "worstManager": "Zak, 88.06, 140.08"
       },
       {
         "week": 3,
-        "highScore": ", ",
-        "lowScore": ", ",
-        "highPlayer": "",
-        "lowPlayer": "",
-        "waiver": "-",
-        "worstManager": ""
+        "highScore": "Ben, 138.24",
+        "lowScore": "Ethan, 71.46",
+        "highPlayer": "Lance, Jahmyr Gibbs, 34.4",
+        "lowPlayer": "Ethan, Drake Maye, -0.24",
+        "waiver": "Ben, Emanuel Wilson, 15",
+        "worstManager": "Ethan, 71.46, 95.8"
       },
       {
         "week": 4,
-        "highScore": ", ",
-        "lowScore": ", ",
-        "highPlayer": "",
-        "lowPlayer": "",
-        "waiver": "-",
-        "worstManager": ""
+        "highScore": "Ethan, 151.44",
+        "lowScore": "Zak, 98.02",
+        "highPlayer": "James, Kenneth Walker, 30.9",
+        "lowPlayer": "Lance, Dalton Kincaid, 0.7",
+        "waiver": "Ben, Ollie Gordon, 15",
+        "worstManager": "Aron, 98.9, 130.8"
       },
       {
         "week": 5,
@@ -2475,6 +2475,102 @@
         "redScore": 114.72,
         "blue": "James",
         "blueScore": 137.46
+      },
+      {
+        "week": 2,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 118.42,
+        "blue": "Jamie",
+        "blueScore": 86.1
+      },
+      {
+        "week": 2,
+        "round": "Regular",
+        "red": "Lance",
+        "redScore": 109.9,
+        "blue": "Zak",
+        "blueScore": 89.06
+      },
+      {
+        "week": 2,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 91.92,
+        "blue": "Nathan",
+        "blueScore": 101.5
+      },
+      {
+        "week": 2,
+        "round": "Regular",
+        "red": "James",
+        "redScore": 143.22,
+        "blue": "Ben",
+        "blueScore": 110.36
+      },
+      {
+        "week": 3,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 122.8,
+        "blue": "Ben",
+        "blueScore": 140.24
+      },
+      {
+        "week": 3,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 72.46,
+        "blue": "Zak",
+        "blueScore": 137.52
+      },
+      {
+        "week": 3,
+        "round": "Regular",
+        "red": "James",
+        "redScore": 117.96,
+        "blue": "Jamie",
+        "blueScore": 94.54
+      },
+      {
+        "week": 3,
+        "round": "Regular",
+        "red": "Lance",
+        "redScore": 119.84,
+        "blue": "Nathan",
+        "blueScore": 130.38
+      },
+      {
+        "week": 4,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 98.9,
+        "blue": "Ben",
+        "blueScore": 122.12
+      },
+      {
+        "week": 4,
+        "round": "Regular",
+        "red": "James",
+        "redScore": 142.12,
+        "blue": "Zak",
+        "blueScore": 98.02
+      },
+      {
+        "week": 4,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 150.44,
+        "blue": "Lance",
+        "blueScore": 119.88
+      },
+      {
+        "week": 4,
+        "round": "Regular",
+        "red": "Jamie",
+        "redScore": 114.26,
+        "blue": "Nathan",
+        "blueScore": 134.58
       }
     ]
   },
