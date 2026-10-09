@@ -8,7 +8,8 @@
         "highPlayer": "James, Tyreek Hill, 35.50",
         "lowPlayer": "James, Zak - Goedert, Higbee 0",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 2,
@@ -17,7 +18,8 @@
         "highPlayer": "Ben, Brian Robinson, 26.90",
         "lowPlayer": "Jamie - Juwan Johnson, 1.3",
         "waiver": "Aron, Puca Nacua, 15",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 3,
@@ -26,7 +28,8 @@
         "highPlayer": "Ethan, Mostert, 38.20",
         "lowPlayer": "Aron, Jamie, Ben - Josh Kelley, Hunter Henry, Brandin Cooks, 1.7",
         "waiver": "Nathan, Jerome Ford, 40",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 4,
@@ -35,7 +38,8 @@
         "highPlayer": "James, Josh Allen, 37.50",
         "lowPlayer": "Ethan, Mostert, -1.5",
         "waiver": "Ben, Adam Theilen, 10",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 5,
@@ -44,7 +48,8 @@
         "highPlayer": "Jamie, DJ Moore, 43",
         "lowPlayer": "Jamie, Hunter Henry, 0",
         "waiver": "Zak, Jameson Williams, 21",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 6,
@@ -53,7 +58,8 @@
         "highPlayer": "Ethan, Mostert, 34",
         "lowPlayer": "Ethan, Gabe Davis, -0.9",
         "waiver": "Ben, Emari Demercado, 16",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 7,
@@ -62,7 +68,8 @@
         "highPlayer": "Ethan, Mahomes, 34.86",
         "lowPlayer": "Jamie, Bijan, 0.3",
         "waiver": "Lance, Craig Reynolds, 12",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 8,
@@ -71,7 +78,8 @@
         "highPlayer": "Ethan, CD Lamb, 30",
         "lowPlayer": "Aron, Darren Waller, 0.1",
         "waiver": "Jamie, Dalton Kincaid, 14",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 9,
@@ -80,7 +88,8 @@
         "highPlayer": "Zak, Hurts, 24.88",
         "lowPlayer": "Nathan, Pickens, -0.1",
         "waiver": "James, Chubba Hubbard, 17",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 10,
@@ -89,7 +98,8 @@
         "highPlayer": "Jamie, Keenan, 30.50",
         "lowPlayer": "Lance, Dionte Johnson, 1.7",
         "waiver": "Jamie, Keaton Mitchell, 28",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 11,
@@ -98,7 +108,8 @@
         "highPlayer": "Ben, Saquon, 26",
         "lowPlayer": "Zak, Diggs, -0.3",
         "waiver": "Nathan, Noah Brown, 9",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 12,
@@ -107,7 +118,8 @@
         "highPlayer": "James, Josh Allen, 39.66",
         "lowPlayer": "Aron, Shultz, 0.2",
         "waiver": "Aron, Zach Charbonnet, 17",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 13,
@@ -116,7 +128,8 @@
         "highPlayer": "Jamie, Deebo, 32.8",
         "lowPlayer": "Zak, Tank Dell, 0",
         "waiver": "Nathan, Zack Moss, 25",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 14,
@@ -125,7 +138,8 @@
         "highPlayer": "Nathan, Lamar, 31.64",
         "lowPlayer": "Ethan, Gabe Davis, 0",
         "waiver": "Ethan, Montez Sweat, 5",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 15,
@@ -134,7 +148,8 @@
         "highPlayer": "Aron, CMC, 37.70",
         "lowPlayer": "Jamie, Bijan, -1.6",
         "waiver": "James, Gus Edwards, 43",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 16,
@@ -143,7 +158,8 @@
         "highPlayer": "Aron, Breece, 31.10",
         "lowPlayer": "Jamie, Taysom hill, 0.2",
         "waiver": "James, Julian Love, 6",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 17,
@@ -152,7 +168,8 @@
         "highPlayer": "Nathan, Lamar, 37.74",
         "lowPlayer": "Ben, Kmet, 0",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       }
     ],
     "standings": [
@@ -770,7 +787,8 @@
         "highPlayer": "James, Saquon, 34.2",
         "lowPlayer": "Nathan, Kincaid, 1.10",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 2,
@@ -779,7 +797,8 @@
         "highPlayer": "Ben, Kamara, 43",
         "lowPlayer": "Ben, Kelce, 0.6",
         "waiver": "Aron, Zach Charbonnet, 8",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 3,
@@ -788,7 +807,8 @@
         "highPlayer": "Ethan, Josh Allen, 30.92",
         "lowPlayer": "James, Stevenson, -0.7",
         "waiver": "James, Rashid Shaheed, 18",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 4,
@@ -797,7 +817,8 @@
         "highPlayer": "Jamie, Derrick Henry, 30.90",
         "lowPlayer": "Ben, Steele, -2.4",
         "waiver": "Ethan, Jauan Jennings, 15",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 5,
@@ -806,7 +827,8 @@
         "highPlayer": "Ben, Burrow, 33.78",
         "lowPlayer": "Jamie, Olave, 1",
         "waiver": "Lance, Xavier Worthy, 22",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 6,
@@ -815,7 +837,8 @@
         "highPlayer": "Nathan + Jamie, Mixon + Henry, 26.20",
         "lowPlayer": "Jamie, Olave, -2.50",
         "waiver": "Ethan, Rico Dowdle, 15",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 7,
@@ -824,7 +847,8 @@
         "highPlayer": "Aron, Lamar, 33.94",
         "lowPlayer": "Lance, Jameson Williams, -0.4",
         "waiver": "Ben, Keenan Allen, 20",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 8,
@@ -833,7 +857,8 @@
         "highPlayer": "James, Hurts, 35.14",
         "lowPlayer": "Zak, Jake Ferguson, 1.30",
         "waiver": "Aron, Jauan Jennings, 38",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 9,
@@ -842,7 +867,8 @@
         "highPlayer": "James, Hurts + Saquon, 29.90",
         "lowPlayer": "Ethan, Kmet, 0",
         "waiver": "Ben, Alexander Mattison, 6",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 10,
@@ -851,7 +877,8 @@
         "highPlayer": "Lance, Chase, 46.40",
         "lowPlayer": "Zak, Brian Thomas, 1.2",
         "waiver": "Ethan (deviously), Tucker Kraft, 10",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 11,
@@ -860,7 +887,8 @@
         "highPlayer": "Nathan, Mixon, 34.30",
         "lowPlayer": "Jamie, Pitts, 0.8",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 12,
@@ -869,7 +897,8 @@
         "highPlayer": "James, Saquon, 44.20",
         "lowPlayer": "Zak, Jonathan Taylor, 0.5",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 13,
@@ -878,7 +907,8 @@
         "highPlayer": "Nathan, Bucky Irving, 27.50",
         "lowPlayer": "Lance, Hubbard, 1.30",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 14,
@@ -887,7 +917,8 @@
         "highPlayer": "Zak, Sam Darnold, 35.58",
         "lowPlayer": "Ethan, Jayden Reed, 0",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 15,
@@ -896,7 +927,8 @@
         "highPlayer": "Ethan, Josh Allen, 42.28",
         "lowPlayer": "Nathan, Kupp, 0",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 16,
@@ -905,7 +937,8 @@
         "highPlayer": "Jonathan Taylor, 41.80",
         "lowPlayer": "Ethan, Brian Robinson, -1.90",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 17,
@@ -914,7 +947,8 @@
         "highPlayer": "Ben, Burrow, 38.98",
         "lowPlayer": "Ben, Scary Terry, 0.5",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       }
     ],
     "standings": [
@@ -1532,7 +1566,8 @@
         "highPlayer": "Zak, Josh Allen, 39.76",
         "lowPlayer": "Zak, A.J Brown, 0.8",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 2,
@@ -1541,7 +1576,8 @@
         "highPlayer": "Aron, Amon Ra St Brown, 31.20",
         "lowPlayer": "Jamie, Derrick Henry, -0.7",
         "waiver": "Ben, Keon Coleman, 14",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 3,
@@ -1550,7 +1586,8 @@
         "highPlayer": "James, Jonathan Taylor, 30.80",
         "lowPlayer": "Aron, Chase Brown, 1.0",
         "waiver": "James, Daniel Jones, 12",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 4,
@@ -1559,7 +1596,8 @@
         "highPlayer": "Aron, Jeanty, 31.50",
         "lowPlayer": "Zak, A.J Brown, 0.7",
         "waiver": "Aron, Trey Benson, 71",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 5,
@@ -1568,7 +1606,8 @@
         "highPlayer": "James, Jonathan Taylor, 30.60",
         "lowPlayer": "James, Quetin Johnston, 1.9",
         "waiver": "Ethan, Darren Waller, 10",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 6,
@@ -1577,7 +1616,8 @@
         "highPlayer": "James, Bijan, 30.80",
         "lowPlayer": "Ben, Garrett Wilson, 1.3",
         "waiver": "Aron, Stefon Diggs, 17",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 7,
@@ -1586,7 +1626,8 @@
         "highPlayer": "Jamie, CMC, 33.10",
         "lowPlayer": "Zak, Caleb williams, -0.82",
         "waiver": "Ben, Kayshon Boutte, 8",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 8,
@@ -1595,7 +1636,8 @@
         "highPlayer": "James, Jonathan Taylor, 36.40",
         "lowPlayer": "James + Nathan, Jake Ferguson + Hollywood Brown, 1",
         "waiver": "Ben, Tez Johnson, 9",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 9,
@@ -1604,7 +1646,8 @@
         "highPlayer": "James, Caleb Williams, 36.70",
         "lowPlayer": "Ben, Kamara, -1.3",
         "waiver": "Nathan, Tyrone Tracey, 51",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 10,
@@ -1613,7 +1656,8 @@
         "highPlayer": "James, Jonathan Taylor, 46.60",
         "lowPlayer": "Zak, A.J Brown, 1.3",
         "waiver": "Ben + Lance, Demercado + Singletary, 12",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 11,
@@ -1622,7 +1666,8 @@
         "highPlayer": "Zak, Josh Allen, 41.68",
         "lowPlayer": "Zak, Khalil Shakir, -0.3",
         "waiver": "Lance, RJ Harvey, 31",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 12,
@@ -1631,7 +1676,8 @@
         "highPlayer": "Ethan, Gibbs, 46.40",
         "lowPlayer": "Aron, Swift, -0.1",
         "waiver": "Ben, Sean Tucker, 15",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 13,
@@ -1640,7 +1686,8 @@
         "highPlayer": "Lance, Mahomes, 29.44",
         "lowPlayer": "Ben, Justin Jefferson, 0.9",
         "waiver": "Nathan, Jordyn Brooks, 6",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 14,
@@ -1649,7 +1696,8 @@
         "highPlayer": "Zak, Josh Allen, 37.84",
         "lowPlayer": "James, Jalen Hurt, -2.7",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 15,
@@ -1658,7 +1706,8 @@
         "highPlayer": "James, Kyle Pitts!, 35.60",
         "lowPlayer": "Lance, Judkins, 1.7",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 16,
@@ -1667,7 +1716,8 @@
         "highPlayer": "Lance, Puca, 36.50 (antisemetism week)",
         "lowPlayer": "Aron, Dartmania, -0.98",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 17,
@@ -1676,7 +1726,8 @@
         "highPlayer": "Jamie, Derrick Henry, 47.60",
         "lowPlayer": "Zak, Josh Jacobs, 0.3",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       }
     ],
     "standings": [
@@ -2294,7 +2345,8 @@
         "highPlayer": "Nathan, Derrick Henry, 35.3",
         "lowPlayer": "Lance, Kyle Pitts, 0",
         "waiver": "-",
-        "worstManager": "Lance, 101.16, 147"
+        "worstManager": "Lance, 101.16, 147",
+        "bestManager": "Ben, 91.06, 91.3"
       },
       {
         "week": 2,
@@ -2303,7 +2355,8 @@
         "highPlayer": "James, Josh Allen, 38.82",
         "lowPlayer": "Ethan, Coleston Loveland, 0.3",
         "waiver": "Aron, Kaelon Black, 25",
-        "worstManager": "Zak, 88.06, 140.08"
+        "worstManager": "Zak, 88.06, 140.08",
+        "bestManager": "Lance, 109.9, 110.9"
       },
       {
         "week": 3,
@@ -2312,7 +2365,8 @@
         "highPlayer": "Lance, Jahmyr Gibbs, 34.4",
         "lowPlayer": "Ethan, Drake Maye, -0.24",
         "waiver": "Ben, Emanuel Wilson, 15",
-        "worstManager": "Ethan, 71.46, 95.8"
+        "worstManager": "Ethan, 71.46, 95.8",
+        "bestManager": "Aron, 122.8, 122.8"
       },
       {
         "week": 4,
@@ -2321,7 +2375,8 @@
         "highPlayer": "James, Kenneth Walker, 30.9",
         "lowPlayer": "Lance, Dalton Kincaid, 0.7",
         "waiver": "Ben, Ollie Gordon, 15",
-        "worstManager": "Aron, 98.9, 130.8"
+        "worstManager": "Aron, 98.9, 130.8",
+        "bestManager": "Lance, 119.8, 124.48"
       },
       {
         "week": 5,
@@ -2330,7 +2385,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 6,
@@ -2339,7 +2395,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 7,
@@ -2348,7 +2405,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 8,
@@ -2357,7 +2415,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 9,
@@ -2366,7 +2425,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 10,
@@ -2375,7 +2435,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 11,
@@ -2384,7 +2445,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 12,
@@ -2393,7 +2455,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 13,
@@ -2402,7 +2465,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 14,
@@ -2411,7 +2475,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 15,
@@ -2420,7 +2485,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 16,
@@ -2429,7 +2495,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       },
       {
         "week": 17,
@@ -2438,7 +2505,8 @@
         "highPlayer": "",
         "lowPlayer": "",
         "waiver": "-",
-        "worstManager": ""
+        "worstManager": "",
+        "bestManager": ""
       }
     ],
     "standings": [],
