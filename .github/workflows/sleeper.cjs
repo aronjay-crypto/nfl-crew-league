@@ -52,18 +52,38 @@ async function syncSleeper(data) {
       rosters.forEach(r => { nameByRoster[r.roster_id] = nameByUser[r.owner_id] || `Team ${r.roster_id}`; });
       const positionOf = (id) => (players[id] && players[id].position) || '';
 
+      const startSlots = slots.filter(sl => sl !== 'BN');
+      const nameOf = (id) => {
+        const p = players[id];
+        if (!p) return id;
+        return p.full_name || [p.first_name, p.last_name].filter(Boolean).join(' ') || id;
+      };
+      data[year].lineups = {};
+
       for (let week = 1; week <= lastWeek; week++) {
         const row = data[year].weeks.find(w => w.week === week);
-        if (!row) continue;
         const matchups = await sleeperJson(`/league/${leagueId}/matchups/${week}`);
         const results = [];
         matchups.forEach(m => {
           const score = m.points || 0;
           if (!score || !m.players_points) return;
           const perfect = Math.max(perfectScore(slots, m.players_points, positionOf), score);
-          results.push({ name: nameByRoster[m.roster_id], score, perfect, pct: score / perfect });
+          const team = nameByRoster[m.roster_id];
+          results.push({ name: team, score, perfect, pct: score / perfect });
+
+          const pp = m.players_points;
+          const starterIds = m.starters || [];
+          const starters = starterIds.map((id, i) => ({
+            slot: startSlots[i] || '', name: nameOf(id), pos: positionOf(id) || (id.length <= 3 ? 'DEF' : ''), pts: pp[id] || 0
+          })).filter((_, i) => starterIds[i] && starterIds[i] !== '0');
+          const bench = Object.keys(pp)
+            .filter(id => !starterIds.includes(id))
+            .map(id => ({ name: nameOf(id), pos: positionOf(id), pts: pp[id] || 0 }))
+            .sort((a, b) => b.pts - a.pts);
+          if (!data[year].lineups[week]) data[year].lineups[week] = {};
+          data[year].lineups[week][team] = { points: score, perfect, starters, bench };
         });
-        if (!results.length) continue;
+        if (!row || !results.length) continue;
         results.sort((a, b) => a.pct - b.pct);
         const fmt = r => `${r.name}, ${r.score.toFixed(2)}, ${r.perfect.toFixed(2)}`;
         if (!row.worstManager) row.worstManager = fmt(results[0]);
