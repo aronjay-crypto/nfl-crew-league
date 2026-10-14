@@ -424,6 +424,37 @@ function renderWeekly() {
                 </div>
               </div>
             ` : ''}
+            ${records.injuryLuck ? `
+              <div class="inj-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0; cursor: pointer;">
+                <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Worst Injury Luck <span style="color: #8a97a8;">ⓘ</span></p>
+                <p style="font-size: 14px; font-weight: 500; margin: 0 0 2px;">${records.injuryLuck.player}</p>
+                <p style="font-size: 11px; color: #a8b0bd; margin: 0 0 8px;">${records.injuryLuck.dead} injured starter${records.injuryLuck.dead !== 1 ? 's' : ''} · ${records.injuryLuck.lost.toFixed(1)} pts lost</p>
+                <p style="font-size: 11px; color: #8a97a8; margin: 0; font-style: italic; line-height: 1.4;">Tap or hover for how this is calculated.</p>
+                <div class="inj-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+                  <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Zero-point starters (pts lost)</p>
+                  ${records.injuryLuck.breakdown.map(b => `
+                    <div style="display: flex; justify-content: space-between; padding: 3px 0; font-size: 12px;">
+                      <span style="color: #e2e8f0;">${b.player}</span>
+                      <span style="color: #a8b0bd;">${b.dead} (${b.lost.toFixed(1)})</span>
+                    </div>
+                  `).join('')}
+                  ${records.injuryLuck.incidents.length ? `
+                    <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 10px 0 4px; letter-spacing: 0.5px; font-weight: 500;">Biggest hits</p>
+                    ${records.injuryLuck.incidents.map(i => `
+                      <p style="font-size: 11px; color: #e2e8f0; margin: 0 0 3px; line-height: 1.35;">${i.team} · Wk ${i.week} · ${i.name}${i.status ? ` (${i.status}${i.injury ? ', ' + i.injury : ''})` : ''} · −${i.lost.toFixed(1)}</p>
+                    `).join('')}
+                  ` : ''}
+                  <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 10px 0 4px; letter-spacing: 0.5px; font-weight: 500;">How this is calculated</p>
+                  <ol style="font-size: 11px; color: #a8b0bd; margin: 0; padding-left: 16px; line-height: 1.45;">
+                    <li>${records.injuryLuck.hasInjuryData ? 'A starter counts if they scored exactly 0 <b>and</b> were on the official NFL injury report that week (Out, Doubtful or Questionable).' : 'Official injury reports aren\'t available yet, so a starter counts if they simply scored exactly 0 (out, inactive or on bye).'}</li>
+                    <li>For each one, we find the best unused bench player who could have filled that lineup slot.</li>
+                    <li>Points lost = what that bench player scored. Each bench player is used once per week.</li>
+                    <li>Ranked by total points lost, then number of injured starters.</li>
+                    ${records.injuryLuck.hasInjuryData ? '<li>Zeros with no injury listed (byes, healthy scratches, coach decisions) are ignored.</li>' : ''}
+                  </ol>
+                </div>
+              </div>
+            ` : ''}
             ${records.worstManagerAward ? `
               <div style="background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0;">
                 <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Worst Managed Week</p>
@@ -564,6 +595,46 @@ function getSeasonRecords(data) {
     }
   }
 
+  // Injury luck: starters who scored 0 AND appeared on the official NFL injury report that week
+  // (falls back to "scored 0" only when injury reports aren't available).
+  let injuryLuck = null;
+  if (data.lineups) {
+    const FLEX = { FLEX: ['RB','WR','TE'], WRRB_FLEX: ['RB','WR'], REC_FLEX: ['WR','TE'], SUPER_FLEX: ['QB','RB','WR','TE'], IDP_FLEX: ['DL','LB','DB'] };
+    const hasInjuryData = !!data.injuryData;
+    const tally = {};
+    const incidents = [];
+    Object.entries(data.lineups).forEach(([week, weekLineups]) => {
+      Object.entries(weekLineups).forEach(([team, l]) => {
+        const usedBench = new Set();
+        (l.starters || []).forEach(st => {
+          if (st.pts !== 0) return;
+          if (hasInjuryData && !st.inj) return; // zero but no injury listed: bye / inactive / coach decision
+          const ok = FLEX[st.slot] || [st.slot];
+          let best = -1;
+          (l.bench || []).forEach((b, i) => {
+            if (!usedBench.has(i) && ok.includes(b.pos) && (best === -1 || b.pts > l.bench[best].pts)) best = i;
+          });
+          let gain = 0;
+          if (best !== -1) { usedBench.add(best); gain = Math.max(0, l.bench[best].pts); }
+          if (!tally[team]) tally[team] = { dead: 0, lost: 0 };
+          tally[team].dead += 1;
+          tally[team].lost += gain;
+          incidents.push({ team, week: parseInt(week), name: st.name, status: st.inj ? st.inj.status : '', injury: st.inj ? st.inj.injury : '', lost: gain });
+        });
+      });
+    });
+    const rankedInj = Object.entries(tally)
+      .map(([player, t]) => ({ player, dead: t.dead, lost: t.lost }))
+      .sort((x, y) => y.lost - x.lost || y.dead - x.dead);
+    if (rankedInj.length) {
+      injuryLuck = {
+        player: rankedInj[0].player, dead: rankedInj[0].dead, lost: rankedInj[0].lost,
+        breakdown: rankedInj, hasInjuryData,
+        incidents: incidents.sort((x, y) => y.lost - x.lost).slice(0, 3)
+      };
+    }
+  }
+
   // Worst Manager: the single worst lineup-efficiency week this season (score vs perfect possible score)
   // ...and a tally of how many times each player has been worst manager this season.
   let worstManagerAward = null;
@@ -613,7 +684,7 @@ function getSeasonRecords(data) {
   const bestManagerSeasonLeader = bestManagerTallyRanked.length ? bestManagerTallyRanked[0] : null;
 
 
-  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver, unluckiest, luckiest, worstManagerAward, worstManagerSeasonLeader, worstManagerTallyRanked, bestManagerAward, bestManagerSeasonLeader, bestManagerTallyRanked };
+  return { highestScore, highestPlayer, lowestPlayer, expensiveWaiver, unluckiest, luckiest, injuryLuck, worstManagerAward, worstManagerSeasonLeader, worstManagerTallyRanked, bestManagerAward, bestManagerSeasonLeader, bestManagerTallyRanked };
 }
 
 // Build a playoff bracket section (Championship + Consolation) for a given season's matchups
@@ -1316,6 +1387,16 @@ function render() {
     luckyTile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
     luckyTile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
     luckyTile.addEventListener('click', () => {
+      tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
+    });
+  }
+
+  const injTile = document.querySelector('.inj-tile');
+  if (injTile) {
+    const tooltip = injTile.querySelector('.inj-tooltip');
+    injTile.addEventListener('mouseenter', () => { tooltip.style.display = 'block'; });
+    injTile.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+    injTile.addEventListener('click', () => {
       tooltip.style.display = tooltip.style.display === 'block' ? 'none' : 'block';
     });
   }
