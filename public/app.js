@@ -258,6 +258,26 @@ function renderWeekDetail() {
     return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
   });
 
+  const lineupsForWeek = (data && data.lineups && data.lineups[selectedWeek]) || {};
+  const lineupBlock = (team) => {
+    const l = lineupsForWeek[team];
+    if (!l) return '';
+    const row = (p, dim) => `
+      <div style="display: flex; justify-content: space-between; gap: 6px; padding: 2px 0; font-size: 11px; ${dim ? 'color: #8a97a8;' : 'color: #e2e8f0;'}">
+        <span><span style="color: #5B9BD5; display: inline-block; min-width: 34px;">${dim ? (p.pos || '') : (p.slot === 'WRRB_FLEX' ? 'FLX' : p.slot)}</span>${p.name}</span>
+        <span>${p.pts.toFixed(2)}</span>
+      </div>`;
+    const left = Math.max(0, l.perfect - l.points);
+    return `
+      <div style="flex: 1; min-width: 0;">
+        <p style="font-size: 11px; font-weight: 600; margin: 0 0 6px; color: #e2e8f0;">${team}</p>
+        ${l.starters.map(p => row(p, false)).join('')}
+        <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #8a97a8; margin: 8px 0 2px;">Bench</p>
+        ${l.bench.map(p => row(p, true)).join('')}
+        <p style="font-size: 10px; color: #a8b0bd; margin: 8px 0 0; font-style: italic;">${left.toFixed(2)} pts left on the table (perfect ${l.perfect.toFixed(2)})</p>
+      </div>`;
+  };
+
   const matchupRow = (m) => {
     const redWon = m.redScore > m.blueScore;
     const blueWon = m.blueScore > m.redScore;
@@ -276,6 +296,15 @@ function renderWeekDetail() {
             <p style="font-size: 22px; font-weight: 600; margin: 0; color: ${blueWon ? '#2BAE66' : '#a8b0bd'};">${m.blueScore}</p>
           </div>
         </div>
+        ${(lineupsForWeek[m.red] && lineupsForWeek[m.blue]) ? `
+          <details style="margin-top: 12px; border-top: 0.5px solid #4b515a; padding-top: 8px;">
+            <summary style="cursor: pointer; font-size: 11px; color: #5B9BD5; text-align: center; font-weight: 500;">Show lineups</summary>
+            <div style="display: flex; gap: 14px; margin-top: 10px;">
+              ${lineupBlock(m.red)}
+              ${lineupBlock(m.blue)}
+            </div>
+          </details>
+        ` : ''}
       </div>
     `;
   };
