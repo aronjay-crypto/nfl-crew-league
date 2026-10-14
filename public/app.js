@@ -428,7 +428,7 @@ function renderWeekly() {
               <div class="inj-tile" style="position: relative; background: #383D44; border-radius: 8px; padding: 1rem; margin-bottom: 12px; color: #e2e8f0; cursor: pointer;">
                 <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 6px; letter-spacing: 0.5px; font-weight: 500;">Worst Injury Luck <span style="color: #8a97a8;">ⓘ</span></p>
                 <p style="font-size: 14px; font-weight: 500; margin: 0 0 2px;">${records.injuryLuck.player}</p>
-                <p style="font-size: 11px; color: #a8b0bd; margin: 0 0 8px;">${records.injuryLuck.dead} injured starter${records.injuryLuck.dead !== 1 ? 's' : ''} · ${records.injuryLuck.lost.toFixed(1)} pts lost</p>
+                <p style="font-size: 11px; color: #a8b0bd; margin: 0 0 8px;">${records.injuryLuck.none ? 'No injury-hit starters so far' : `${records.injuryLuck.dead} injured starter${records.injuryLuck.dead !== 1 ? 's' : ''} · ${records.injuryLuck.lost.toFixed(1)} pts lost`}</p>
                 <p style="font-size: 11px; color: #8a97a8; margin: 0; font-style: italic; line-height: 1.4;">Tap or hover for how this is calculated.</p>
                 <div class="inj-tooltip" style="display: none; position: absolute; top: 8px; right: 8px; left: 8px; background: #011A36; border: 0.5px solid #5B9BD5; border-radius: 8px; padding: 12px; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
                   <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 0 0 8px; letter-spacing: 0.5px; font-weight: 500;">Zero-point starters (pts lost)</p>
@@ -632,6 +632,8 @@ function getSeasonRecords(data) {
         breakdown: rankedInj, hasInjuryData,
         incidents: incidents.sort((x, y) => y.lost - x.lost).slice(0, 3)
       };
+    } else if (Object.keys(data.lineups).length) {
+      injuryLuck = { player: 'Nobody yet', dead: 0, lost: 0, breakdown: [], hasInjuryData, incidents: [], none: true };
     }
   }
 
