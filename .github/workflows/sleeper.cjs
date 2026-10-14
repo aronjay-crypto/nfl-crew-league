@@ -1,3 +1,5 @@
+const { loadInjuries, loadSnaps, snapDrop } = require('./feeds.cjs');
+
 // ---------- Sleeper (2026 league) ----------
 const SLEEPER_LEAGUES = { '2026': '1403696235939966976' };
 const SLEEPER_NAMES = {
@@ -35,44 +37,6 @@ function perfectScore(slots, playerPoints, positionOf) {
 }
 
 
-// Official NFL injury reports (free, via nflverse). Returns { week: { gsis_id: {status, injury} } } or null.
-async function loadInjuries(year) {
-  try {
-    const res = await fetch(`https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_${year}.csv`, { redirect: 'follow' });
-    if (!res.ok) throw new Error(`status ${res.status}`);
-    const lines = (await res.text()).trim().split('\n');
-    const parse = (line) => {
-      const out = []; let cur = ''; let q = false;
-      for (const ch of line) {
-        if (ch === '"') q = !q;
-        else if (ch === ',' && !q) { out.push(cur); cur = ''; }
-        else cur += ch;
-      }
-      out.push(cur);
-      return out;
-    };
-    const head = parse(lines[0]);
-    const col = (n) => head.indexOf(n);
-    const iWeek = col('week'), iId = col('gsis_id'), iStat = col('report_status'), iInj = col('report_primary_injury'), iType = col('season_type');
-    if (iWeek < 0 || iId < 0 || iStat < 0) throw new Error('unexpected columns');
-    const map = {};
-    lines.slice(1).forEach(line => {
-      const r = parse(line);
-      if (iType >= 0 && r[iType] && r[iType] !== 'REG') return;
-      const status = (r[iStat] || '').trim();
-      if (!status || status === 'NA') return;
-      const w = parseInt(r[iWeek]);
-      if (!map[w]) map[w] = {};
-      map[w][r[iId]] = { status, injury: (r[iInj] || '').trim() };
-    });
-    console.log(`Injury reports loaded for ${year} (${Object.keys(map).length} weeks).`);
-    return map;
-  } catch (e) {
-    console.warn(`Injury reports skipped for ${year}: ${e.message}`);
-    return null;
-  }
-}
-
 async function syncSleeper(data) {
   for (const [year, leagueId] of Object.entries(SLEEPER_LEAGUES)) {
     if (!data[year]) continue;
@@ -100,6 +64,8 @@ async function syncSleeper(data) {
       data[year].lineups = {};
       const injuries = await loadInjuries(year);
       data[year].injuryData = !!injuries;
+      const snapData = await loadSnaps(year);
+      data[year].snapData = !!snapData;
 
       const injuryTag = (week, id) => {
         const gsis = players[id] && players[id].gsis_id;
@@ -122,7 +88,8 @@ async function syncSleeper(data) {
           const starterIds = m.starters || [];
           const starters = starterIds.map((id, i) => ({
             slot: startSlots[i] || '', name: nameOf(id), pos: positionOf(id) || (id.length <= 3 ? 'DEF' : ''), pts: pp[id] || 0,
-            inj: injuryTag(week, id)
+            inj: injuryTag(week, id),
+            snap: snapDrop(snapData, id, positionOf(id), week)
           })).filter((_, i) => starterIds[i] && starterIds[i] !== '0');
           const bench = Object.keys(pp)
             .filter(id => !starterIds.includes(id))
