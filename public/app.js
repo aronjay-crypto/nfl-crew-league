@@ -309,18 +309,36 @@ function renderWeekDetail() {
     `;
   };
 
+  const weekList = [...new Set(((data && data.matchups) || []).map(m => m.week))].sort((x, y) => x - y);
+  const idx = weekList.indexOf(selectedWeek);
+  const prevWeek = idx > 0 ? weekList[idx - 1] : null;
+  const nextWeek = idx !== -1 && idx < weekList.length - 1 ? weekList[idx + 1] : null;
+  const navBtn = (cls, wk, label) => wk === null
+    ? `<span style="padding: 8px 12px; font-size: 13px; color: #cbd5e1; border: 0.5px solid #e5e8ec; border-radius: 6px;">${label}</span>`
+    : `<button class="${cls}" data-week="${wk}" style="background: #011A36; border: none; color: #fff; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 13px;">${label}</button>`;
+  const weekNav = `
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin: 0 0 1.25rem;">
+      ${navBtn('week-nav', prevWeek, prevWeek !== null ? `← Week ${prevWeek}` : '← Prev')}
+      <select id="weekJump" style="flex: 1; max-width: 160px; padding: 8px; border-radius: 6px; border: 0.5px solid #d0d5dd; font-size: 13px; color: #011A36; background: #fff;">
+        ${weekList.map(w => `<option value="${w}" ${w === selectedWeek ? 'selected' : ''}>Week ${w}</option>`).join('')}
+      </select>
+      ${navBtn('week-nav', nextWeek, nextWeek !== null ? `Week ${nextWeek} →` : 'Next →')}
+    </div>`;
+
   return `
     <div style="max-width: 680px; margin: 0 auto; padding: 1.5rem 1rem;">
       <button id="backToWeeks" style="background: transparent; border: 0.5px solid #d0d5dd; color: #011A36; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; margin-bottom: 1.5rem;">← Back</button>
 
       <h1 style="font-size: 28px; font-weight: 500; margin: 0 0 0.25rem; color: #011A36;">Week ${selectedWeek}</h1>
-      <p style="font-size: 14px; color: #64748b; margin: 0 0 2rem;">${selectedYear} Season · Matchups</p>
+      <p style="font-size: 14px; color: #64748b; margin: 0 0 1rem;">${selectedYear} Season · Matchups</p>
+      ${weekNav}
 
       ${sorted.length ? `
         <div style="display: grid; gap: 10px;">
           ${sorted.map(matchupRow).join('')}
         </div>
       ` : '<p style="color: #64748b; font-size: 13px;">No matchup data for this week.</p>'}
+      <div style="margin-top: 1.5rem;">${weekNav.replace('id="weekJump"', 'id="weekJumpBottom"')}</div>
     </div>
   `;
 }
@@ -1347,6 +1365,28 @@ function render() {
       render();
     });
   });
+
+  // Previous / next week + jump dropdown (week detail)
+  const goWeek = (wk) => { selectedWeek = wk; window.scrollTo(0, 0); render(); };
+  document.querySelectorAll('.week-nav').forEach(btn => {
+    btn.addEventListener('click', () => goWeek(parseInt(btn.dataset.week)));
+  });
+  ['weekJump', 'weekJumpBottom'].forEach(id => {
+    const sel = document.getElementById(id);
+    if (sel) sel.addEventListener('change', () => goWeek(parseInt(sel.value)));
+  });
+  if (!window.__weekKeysBound) {
+    window.__weekKeysBound = true;
+    document.addEventListener('keydown', (e) => {
+      if (selectedWeek === null || currentPage !== 'weekly') return;
+      if (e.target && /INPUT|SELECT|TEXTAREA/.test(e.target.tagName)) return;
+      const nav = document.querySelectorAll('.week-nav');
+      const prev = [...nav].find(b => b.textContent.includes('←'));
+      const next = [...nav].find(b => b.textContent.includes('→'));
+      if (e.key === 'ArrowLeft' && prev) prev.click();
+      if (e.key === 'ArrowRight' && next) next.click();
+    });
+  }
 
   // Back from week detail
   const backToWeeks = document.getElementById('backToWeeks');
