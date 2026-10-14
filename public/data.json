@@ -2380,13 +2380,13 @@
       },
       {
         "week": 5,
-        "highScore": ", ",
-        "lowScore": ", ",
-        "highPlayer": "",
-        "lowPlayer": "",
-        "waiver": "-",
-        "worstManager": "",
-        "bestManager": ""
+        "highScore": "James, 147.3",
+        "lowScore": "Aron, 115.58",
+        "highPlayer": "Ethan, Drake Maye, 40.46",
+        "lowPlayer": "Aron, Harold Fannin, 0.4",
+        "waiver": "Ethan, Travis Kelce, 30",
+        "worstManager": "Ben, 131.9, 161",
+        "bestManager": "Zak, 142.22, 143.62"
       },
       {
         "week": 6,
@@ -2639,6 +2639,38 @@
         "redScore": 114.26,
         "blue": "Nathan",
         "blueScore": 134.58
+      },
+      {
+        "week": 5,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 115.58,
+        "blue": "James",
+        "blueScore": 147.3
+      },
+      {
+        "week": 5,
+        "round": "Regular",
+        "red": "Lance",
+        "redScore": 131.02,
+        "blue": "Zak",
+        "blueScore": 142.22
+      },
+      {
+        "week": 5,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 130.66,
+        "blue": "Ben",
+        "blueScore": 131.9
+      },
+      {
+        "week": 5,
+        "round": "Regular",
+        "red": "Jamie",
+        "redScore": 132.04,
+        "blue": "Nathan",
+        "blueScore": 138.74
       }
     ]
   },
