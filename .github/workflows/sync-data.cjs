@@ -64,79 +64,44 @@ function parseCSV(csv) {
   });
 }
 
-async function sync() {
-  try {
-    const data = {};
 
-    // Loop through every season defined above
-    for (const [year, gids] of Object.entries(SEASONS)) {
-      console.log(`Fetching ${year}...`);
-      const weeksCsv = await fetchSheet(gids.weeks);
-      const standingsCsv = gids.standings ? await fetchSheet(gids.standings) : '';
+// ---------- Sleeper (2026 league) ----------
+const SLEEPER_LEAGUES = { '2026': '1403696235939966976' };
+const SLEEPER_NAMES = {
+  AronJay: 'Aron', jupjamie: 'Jamie', zgelbz: 'Zak', BryceBryceBaby1: 'Lance',
+  Sewellster: 'Ben', JF1997: 'James', NathanD1997: 'Nathan', ethanwong000: 'Ethan'
+};
+const FLEX_ELIGIBLE = {
+  FLEX: ['RB', 'WR', 'TE'], WRRB_FLEX: ['RB', 'WR'], REC_FLEX: ['WR', 'TE'],
+  SUPER_FLEX: ['QB', 'RB', 'WR', 'TE'], IDP_FLEX: ['DL', 'LB', 'DB']
+};
 
-      const weeksData = parseCSV(weeksCsv).filter(r => r.Week);
-      const standingsData = parseCSV(standingsCsv).filter(r => r.Rank);
-
-      data[year] = {
-        weeks: weeksData.map(r => ({
-          week: parseInt(r.Week),
-          highScore: `${r.High_Scorer}, ${r.High_Score}`,
-          lowScore: `${r.Low_Scorer}, ${r.Low_Score}`,
-          highPlayer: r.Highest_Player,
-          lowPlayer: r.Lowest_Player,
-          waiver: r.Most_Expensive_waiver || '-',
-          worstManager: r.Worst_Manager || '',
-          bestManager: r.Best_Manager || ''
-        })),
-        standings: standingsData.map(r => ({
-          rank: parseInt(r.Rank),
-          player: r.Player,
-          record: r.Record,
-          pf: parseFloat((r.Points_For || '').replace(/,/g, '')) || 0,
-          pa: parseFloat((r.Points_Against || '').replace(/,/g, '')) || 0
-        })),
-        champion: standingsData[0]?.Player || null
-      };
-    }
-
-    // Matchups (only exist for some seasons)
-    for (const [year, gid] of Object.entries(MATCHUPS)) {
-      console.log(`Fetching ${year} matchups...`);
-      const matchupsCsv = await fetchSheet(gid);
-      const rows = parseCSV(matchupsCsv).filter(r => r.Week && r.Red && r.Blue);
-
-      const matchups = rows.map(r => ({
-        week: parseInt(r.Week),
-        round: r.Round || 'Regular',
-        red: r.Red,
-        redScore: parseFloat((r.Red_Score || '').replace(/,/g, '')) || 0,
-        blue: r.Blue,
-        blueScore: parseFloat((r.Blue_Score || '').replace(/,/g, '')) || 0
-      }));
-
-      if (data[year]) {
-        data[year].matchups = matchups;
-      }
-    }
-
-    // Hall of Fame + Championships
-    console.log('Fetching Hall of Fame...');
-    const hofData = parseCSV(await fetchSheet(HALL_OF_FAME_GID)).filter(r => r.Year && String(r.Year).trim());
-    const champData = parseCSV(await fetchSheet(CHAMPIONSHIPS_GID)).filter(r => r.Player);
-
-    data.hallOfFame = {
-      champions: hofData
-        .map(r => ({ year: parseInt(String(r.Year).replace(/[^\d]/g, ''), 10), champion: r.Champion }))
-        .filter(c => !isNaN(c.year) && c.champion),
-      championships: Object.fromEntries(champData.map(r => [r.Player, parseInt(r.Total)]))
-    };
-
-    fs.writeFileSync('public/data.json', JSON.stringify(data, null, 2));
-    console.log('✅ Synced successfully!');
-  } catch (e) {
-    console.error('❌ Error:', e);
-    process.exit(1);
-  }
+async function sleeperJson(path) {
+  const res = await fetch(`https://api.sleeper.app/v1${path}`);
+  if (!res.ok) throw new Error(`Sleeper ${path} -> ${res.status}`);
+  return res.json();
 }
 
-sync();
+// Best legal lineup: fixed-position slots take the top players at that position,
+// then flex slots take the best remaining eligible players.
+function perfectScore(slots, playerPoints, positionOf) {
+  const used = new Set();
+  const ids = Object.keys(playerPoints);
+  let total = 0;
+  const take = (eligible) => {
+    let best = null;
+    ids.forEach(id => {
+      if (used.has(id) || !eligible.includes(positionOf(id))) return;
+      if (best === null || playerPoints[id] > playerPoints[best]) best = id;
+    });
+    if (best !== null) { used.add(best); total += playerPoints[best]; }
+  };
+  slots.filter(sl => !FLEX_ELIGIBLE[sl] && sl !== 'BN').forEach(sl => take([sl]));
+  slots.filter(sl => FLEX_ELIGIBLE[sl]).forEach(sl => take(FLEX_ELIGIBLE[sl]));
+  return total;
+}
+
+async function syncSleeper(data) {
+  for (const [year, leagueId] of Object.entries(SLEEPER_LEAGUES)) {
+    if (!data[year]) continue;
+    try {
