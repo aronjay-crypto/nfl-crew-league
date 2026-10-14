@@ -441,14 +441,15 @@ function renderWeekly() {
                   ${records.injuryLuck.incidents.length ? `
                     <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 10px 0 4px; letter-spacing: 0.5px; font-weight: 500;">Biggest hits</p>
                     ${records.injuryLuck.incidents.map(i => `
-                      <p style="font-size: 11px; color: #e2e8f0; margin: 0 0 3px; line-height: 1.35;">${i.team} · Wk ${i.week} · ${i.name}${i.status ? ` (${i.status}${i.injury ? ', ' + i.injury : ''})` : ''} · −${i.lost.toFixed(1)}</p>
+                      <p style="font-size: 11px; color: #e2e8f0; margin: 0 0 3px; line-height: 1.35;">${i.team} · Wk ${i.week} · ${i.name}${i.status ? ` (${i.status}${i.injury ? ', ' + i.injury : ''})` : i.snap ? ` (possible in-game injury: ${i.snap.pct}% of snaps vs ${i.snap.avg}% avg)` : ''} · −${i.lost.toFixed(1)}</p>
                     `).join('')}
                   ` : ''}
                   <p style="font-size: 10px; color: #5B9BD5; text-transform: uppercase; margin: 10px 0 4px; letter-spacing: 0.5px; font-weight: 500;">How this is calculated</p>
                   <ol style="font-size: 11px; color: #a8b0bd; margin: 0; padding-left: 16px; line-height: 1.45;">
                     <li>${records.injuryLuck.hasInjuryData ? 'A starter counts if they scored exactly 0 <b>and</b> were on the official NFL injury report that week (Out, Doubtful or Questionable).' : 'Official injury reports aren\'t available yet, so a starter counts if they simply scored exactly 0 (out, inactive or on bye).'}</li>
+                    <li><b>Possible in-game injuries:</b> a starter who scored points but played at most half of their usual share of team snaps (compared with their average in earlier weeks) is also flagged. This can catch a player hurt mid-game, but it can also catch a blowout rest or a rotation change, so treat these as "possible".</li>
                     <li>For each one, we find the best unused bench player who could have filled that lineup slot.</li>
-                    <li>Points lost = what that bench player scored. Each bench player is used once per week.</li>
+                    <li>Points lost = what that bench player scored minus what the starter scored. Each bench player is used once per week.</li>
                     <li>Ranked by total points lost, then number of injured starters.</li>
                     ${records.injuryLuck.hasInjuryData ? '<li>Zeros with no injury listed (byes, healthy scratches, coach decisions) are ignored.</li>' : ''}
                   </ol>
@@ -607,19 +608,20 @@ function getSeasonRecords(data) {
       Object.entries(weekLineups).forEach(([team, l]) => {
         const usedBench = new Set();
         (l.starters || []).forEach(st => {
-          if (st.pts !== 0) return;
-          if (hasInjuryData && !st.inj) return; // zero but no injury listed: bye / inactive / coach decision
+          const injHit = st.pts === 0 ? (hasInjuryData ? !!st.inj : true) : false;
+          const snapHit = !!st.snap;
+          if (!injHit && !snapHit) return;
           const ok = FLEX[st.slot] || [st.slot];
           let best = -1;
           (l.bench || []).forEach((b, i) => {
             if (!usedBench.has(i) && ok.includes(b.pos) && (best === -1 || b.pts > l.bench[best].pts)) best = i;
           });
           let gain = 0;
-          if (best !== -1) { usedBench.add(best); gain = Math.max(0, l.bench[best].pts); }
+          if (best !== -1) { usedBench.add(best); gain = Math.max(0, l.bench[best].pts - st.pts); }
           if (!tally[team]) tally[team] = { dead: 0, lost: 0 };
           tally[team].dead += 1;
           tally[team].lost += gain;
-          incidents.push({ team, week: parseInt(week), name: st.name, status: st.inj ? st.inj.status : '', injury: st.inj ? st.inj.injury : '', lost: gain });
+          incidents.push({ team, week: parseInt(week), name: st.name, status: st.inj ? st.inj.status : '', injury: st.inj ? st.inj.injury : '', snap: st.snap || null, lost: gain });
         });
       });
     });
