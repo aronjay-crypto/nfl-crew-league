@@ -2344,7 +2344,7 @@
         "lowScore": "Ben, 91.06",
         "highPlayer": "Nathan, Derrick Henry, 35.3",
         "lowPlayer": "Lance, Kyle Pitts, 0",
-        "waiver": "-",
+        "waiver": "Aron, Kaelon Black, 25",
         "worstManager": "Lance, 101.16, 147",
         "bestManager": "Ben, 91.06, 91.3"
       },
@@ -2390,11 +2390,11 @@
       },
       {
         "week": 6,
-        "highScore": ", ",
-        "lowScore": ", ",
-        "highPlayer": "",
-        "lowPlayer": "",
-        "waiver": "-",
+        "highScore": "James, 125.9",
+        "lowScore": "Ethan, 86",
+        "highPlayer": "James, Kenneth Walker, 26.9",
+        "lowPlayer": "Zak, Tyler Higbee, -0.8",
+        "waiver": "James, Michael Wilson, 23",
         "worstManager": "Ethan, 86.00, 111.80",
         "bestManager": "Zak, 101.88, 101.88"
       },
@@ -2509,7 +2509,64 @@
         "bestManager": ""
       }
     ],
-    "standings": [],
+    "standings": [
+      {
+        "rank": 1,
+        "player": "James",
+        "record": "6-0",
+        "pf": 813.96,
+        "pa": 651.92
+      },
+      {
+        "rank": 2,
+        "player": "Nathan",
+        "record": "5-1",
+        "pf": 761.06,
+        "pa": 675.02
+      },
+      {
+        "rank": 3,
+        "player": "Aron",
+        "record": "3-3",
+        "pf": 740.46,
+        "pa": 698.8
+      },
+      {
+        "rank": 4,
+        "player": "Ben",
+        "record": "3-3",
+        "pf": 682.2,
+        "pa": 721.68
+      },
+      {
+        "rank": 5,
+        "player": "Lance",
+        "record": "2-4",
+        "pf": 670.74,
+        "pa": 763.08
+      },
+      {
+        "rank": 6,
+        "player": "Zak",
+        "record": "2-4",
+        "pf": 664.52,
+        "pa": 694.2
+      },
+      {
+        "rank": 7,
+        "player": "Jamie",
+        "record": "2-4",
+        "pf": 656.48,
+        "pa": 691.52
+      },
+      {
+        "rank": 8,
+        "player": "Ethan",
+        "record": "1-5",
+        "pf": 646.2,
+        "pa": 739.4
+      }
+    ],
     "champion": null,
     "matchups": [
       {
@@ -2671,6 +2728,38 @@
         "redScore": 132.04,
         "blue": "Nathan",
         "blueScore": 138.74
+      },
+      {
+        "week": 6,
+        "round": "Regular",
+        "red": "Aron",
+        "redScore": 120.3,
+        "blue": "Zak",
+        "blueScore": 101.88
+      },
+      {
+        "week": 6,
+        "round": "Regular",
+        "red": "Lance",
+        "redScore": 88.94,
+        "blue": "Ben",
+        "blueScore": 86.52
+      },
+      {
+        "week": 6,
+        "round": "Regular",
+        "red": "James",
+        "redScore": 125.9,
+        "blue": "Nathan",
+        "blueScore": 118.7
+      },
+      {
+        "week": 6,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 86,
+        "blue": "Jamie",
+        "blueScore": 111.14
       }
     ],
     "lineups": {
