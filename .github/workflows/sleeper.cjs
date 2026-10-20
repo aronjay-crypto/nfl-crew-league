@@ -1,4 +1,5 @@
 const { loadInjuries, loadSnaps, snapDrop } = require('./feeds.cjs');
+const { fillFromSleeper } = require('./sleeper-fill.cjs');
 
 // ---------- Sleeper (2026 league) ----------
 const SLEEPER_LEAGUES = { '2026': '1403696235939966976' };
@@ -73,9 +74,11 @@ async function syncSleeper(data) {
         return rec ? { status: rec.status, injury: rec.injury } : null;
       };
 
+      const rawByWeek = {};
+      const managers = {};
       for (let week = 1; week <= lastWeek; week++) {
-        const row = data[year].weeks.find(w => w.week === week);
         const matchups = await sleeperJson(`/league/${leagueId}/matchups/${week}`);
+        rawByWeek[week] = matchups;
         const results = [];
         matchups.forEach(m => {
           const score = m.points || 0;
@@ -98,12 +101,12 @@ async function syncSleeper(data) {
           if (!data[year].lineups[week]) data[year].lineups[week] = {};
           data[year].lineups[week][team] = { points: score, perfect, starters, bench };
         });
-        if (!row || !results.length) continue;
+        if (!results.length) continue;
         results.sort((a, b) => a.pct - b.pct);
         const fmt = r => `${r.name}, ${r.score.toFixed(2)}, ${r.perfect.toFixed(2)}`;
-        if (!row.worstManager) row.worstManager = fmt(results[0]);
-        if (!row.bestManager) row.bestManager = fmt(results[results.length - 1]);
+        managers[week] = { worst: fmt(results[0]), best: fmt(results[results.length - 1]) };
       }
+      await fillFromSleeper({ data, year, leagueId, league, rosters, nameByRoster, nameOf, rawByWeek, managers, lastWeek, sleeperJson });
       console.log(`Sleeper ${year} done (weeks 1-${lastWeek}).`);
     } catch (e) {
       console.warn(`Sleeper ${year} skipped: ${e.message}`);
