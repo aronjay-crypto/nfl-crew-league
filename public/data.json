@@ -2392,7 +2392,7 @@
         "week": 6,
         "highScore": "James, 125.9",
         "lowScore": "Ethan, 86",
-        "highPlayer": "James, Kenneth Walker, 26.9",
+        "highPlayer": "James, Kenneth Walker III, 26.9",
         "lowPlayer": "Zak, Tyler Higbee, -0.8",
         "waiver": "James, Michael Wilson, 23",
         "worstManager": "Ethan, 86.00, 111.80",
@@ -2884,7 +2884,7 @@
               "pts": 4.5
             },
             {
-              "name": "Brian Thomas",
+              "name": "Brian Thomas Jr.",
               "pos": "WR",
               "pts": 2
             },
@@ -3072,7 +3072,7 @@
             },
             {
               "slot": "TE",
-              "name": "Kyle Pitts",
+              "name": "Kyle Pitts Sr.",
               "pos": "TE",
               "pts": 0,
               "inj": null,
@@ -3080,7 +3080,7 @@
             },
             {
               "slot": "WRRB_FLEX",
-              "name": "Travis Etienne",
+              "name": "Travis Etienne Jr.",
               "pos": "RB",
               "pts": 7.8,
               "inj": null,
@@ -3176,7 +3176,7 @@
             },
             {
               "slot": "RB",
-              "name": "James Cook",
+              "name": "James Cook III",
               "pos": "RB",
               "pts": 4.9,
               "inj": null,
@@ -3216,7 +3216,7 @@
             },
             {
               "slot": "WRRB_FLEX",
-              "name": "Kenneth Walker",
+              "name": "Kenneth Walker III",
               "pos": "RB",
               "pts": 32.1,
               "inj": null,
@@ -3277,7 +3277,7 @@
               "pts": 5.6
             },
             {
-              "name": "Chris Godwin",
+              "name": "Chris Godwin Jr.",
               "pos": "WR",
               "pts": 4.3
             },
@@ -3398,7 +3398,7 @@
               "pts": 17
             },
             {
-              "name": "Michael Pittman",
+              "name": "Michael Pittman Jr.",
               "pos": "WR",
               "pts": 5.8
             },
@@ -3459,7 +3459,7 @@
             },
             {
               "slot": "WR",
-              "name": "Luther Burden",
+              "name": "Luther Burden III",
               "pos": "WR",
               "pts": 3.5,
               "inj": null,
@@ -3515,7 +3515,7 @@
             },
             {
               "slot": "DB",
-              "name": "Derwin James",
+              "name": "Derwin James Jr.",
               "pos": "DB",
               "pts": 10.5,
               "inj": null,
@@ -3549,7 +3549,7 @@
               "pts": 5.2
             },
             {
-              "name": "Mike Washington",
+              "name": "Mike Washington Jr.",
               "pos": "RB",
               "pts": 4.1
             },
@@ -3564,7 +3564,7 @@
               "pts": 3.7
             },
             {
-              "name": "KC Concepcion",
+              "name": "KC Concepcion Jr.",
               "pos": "WR",
               "pts": 2.8
             },
@@ -3636,7 +3636,7 @@
             },
             {
               "slot": "TE",
-              "name": "Harold Fannin",
+              "name": "Harold Fannin Jr.",
               "pos": "TE",
               "pts": 2.1,
               "inj": null,
@@ -3700,7 +3700,7 @@
               "pts": 13.7
             },
             {
-              "name": "Deebo Samuel",
+              "name": "Deebo Samuel Sr.",
               "pos": "WR",
               "pts": 12
             },
@@ -3710,12 +3710,12 @@
               "pts": 8.8
             },
             {
-              "name": "Marvin Harrison",
+              "name": "Marvin Harrison Jr.",
               "pos": "WR",
               "pts": 3.3
             },
             {
-              "name": "Chris Rodriguez",
+              "name": "Chris Rodriguez Jr.",
               "pos": "RB",
               "pts": 2.3
             },
@@ -3811,7 +3811,7 @@
             },
             {
               "slot": "DL",
-              "name": "Will Anderson",
+              "name": "Will Anderson Jr.",
               "pos": "DL",
               "pts": 3,
               "inj": null,
@@ -3984,7 +3984,7 @@
               "pts": 4.8
             },
             {
-              "name": "Brian Thomas",
+              "name": "Brian Thomas Jr.",
               "pos": "WR",
               "pts": 4
             },
@@ -4190,7 +4190,7 @@
             },
             {
               "slot": "WRRB_FLEX",
-              "name": "Aaron Jones",
+              "name": "Aaron Jones Sr.",
               "pos": "RB",
               "pts": 11.5,
               "inj": null,
@@ -4241,7 +4241,7 @@
               "pts": 5.16
             },
             {
-              "name": "Travis Etienne",
+              "name": "Travis Etienne Jr.",
               "pos": "RB",
               "pts": 5.1
             },
@@ -4251,7 +4251,7 @@
               "pts": 3.3
             },
             {
-              "name": "Kyle Pitts",
+              "name": "Kyle Pitts Sr.",
               "pos": "TE",
               "pts": 2
             },
@@ -4286,7 +4286,7 @@
             },
             {
               "slot": "RB",
-              "name": "James Cook",
+              "name": "James Cook III",
               "pos": "RB",
               "pts": 20.9,
               "inj": null,
@@ -4310,7 +4310,7 @@
             },
             {
               "slot": "WR",
-              "name": "Deebo Samuel",
+              "name": "Deebo Samuel Sr.",
               "pos": "WR",
               "pts": 3.5,
               "inj": null,
@@ -4326,7 +4326,7 @@
             },
             {
               "slot": "WRRB_FLEX",
-              "name": "Kenneth Walker",
+              "name": "Kenneth Walker III",
               "pos": "RB",
               "pts": 18.8,
               "inj": null,
@@ -4377,7 +4377,7 @@
               "pts": 12.4
             },
             {
-              "name": "Chris Godwin",
+              "name": "Chris Godwin Jr.",
               "pos": "WR",
               "pts": 5.8
             },
@@ -4533,7 +4533,7 @@
               "pts": 1.9
             },
             {
-              "name": "Michael Pittman",
+              "name": "Michael Pittman Jr.",
               "pos": "WR",
               "pts": 0
             }
@@ -4569,7 +4569,7 @@
             },
             {
               "slot": "WR",
-              "name": "Luther Burden",
+              "name": "Luther Burden III",
               "pos": "WR",
               "pts": 3.2,
               "inj": null,
@@ -4625,7 +4625,7 @@
             },
             {
               "slot": "DB",
-              "name": "Derwin James",
+              "name": "Derwin James Jr.",
               "pos": "DB",
               "pts": 4.5,
               "inj": null,
@@ -4795,7 +4795,7 @@
               "pts": 5.8
             },
             {
-              "name": "Harold Fannin",
+              "name": "Harold Fannin Jr.",
               "pos": "TE",
               "pts": 5.4
             },
@@ -4815,7 +4815,7 @@
               "pts": 0
             },
             {
-              "name": "Marvin Harrison",
+              "name": "Marvin Harrison Jr.",
               "pos": "WR",
               "pts": 0
             }
@@ -4891,7 +4891,7 @@
             },
             {
               "slot": "DL",
-              "name": "Will Anderson",
+              "name": "Will Anderson Jr.",
               "pos": "DL",
               "pts": 12,
               "inj": null,
@@ -5082,7 +5082,7 @@
               "pts": 1.5
             },
             {
-              "name": "Brian Thomas",
+              "name": "Brian Thomas Jr.",
               "pos": "WR",
               "pts": 0.8
             },
@@ -5284,7 +5284,7 @@
             },
             {
               "slot": "WRRB_FLEX",
-              "name": "Aaron Jones",
+              "name": "Aaron Jones Sr.",
               "pos": "RB",
               "pts": 9.2,
               "inj": null,
@@ -5330,7 +5330,7 @@
               "pts": 18.78
             },
             {
-              "name": "Travis Etienne",
+              "name": "Travis Etienne Jr.",
               "pos": "RB",
               "pts": 7
             },
@@ -5345,7 +5345,7 @@
               "pts": 1.8
             },
             {
-              "name": "Kyle Pitts",
+              "name": "Kyle Pitts Sr.",
               "pos": "TE",
               "pts": 0.5
             },
@@ -5380,7 +5380,7 @@
             },
             {
               "slot": "RB",
-              "name": "James Cook",
+              "name": "James Cook III",
               "pos": "RB",
               "pts": 19.4,
               "inj": null,
@@ -5388,7 +5388,7 @@
             },
             {
               "slot": "RB",
-              "name": "Kenneth Walker",
+              "name": "Kenneth Walker III",
               "pos": "RB",
               "pts": 19.3,
               "inj": null,
@@ -5444,7 +5444,7 @@
             },
             {
               "slot": "LB",
-              "name": "Anthony Hill",
+              "name": "Anthony Hill Jr.",
               "pos": "LB",
               "pts": 6,
               "inj": null,
@@ -5466,7 +5466,7 @@
               "pts": 31.28
             },
             {
-              "name": "Deebo Samuel",
+              "name": "Deebo Samuel Sr.",
               "pos": "WR",
               "pts": 15.4
             },
@@ -5627,7 +5627,7 @@
               "pts": 2.9
             },
             {
-              "name": "Michael Pittman",
+              "name": "Michael Pittman Jr.",
               "pos": "WR",
               "pts": 1.6
             }
@@ -5719,7 +5719,7 @@
             },
             {
               "slot": "DB",
-              "name": "Derwin James",
+              "name": "Derwin James Jr.",
               "pos": "DB",
               "pts": 3.5,
               "inj": null,
@@ -5733,7 +5733,7 @@
               "pts": 17.3
             },
             {
-              "name": "Luther Burden",
+              "name": "Luther Burden III",
               "pos": "WR",
               "pts": 12.8
             },
@@ -5889,7 +5889,7 @@
               "pts": 13.7
             },
             {
-              "name": "Brian Robinson",
+              "name": "Brian Robinson Jr.",
               "pos": "RB",
               "pts": 11
             },
@@ -5995,7 +5995,7 @@
             },
             {
               "slot": "DL",
-              "name": "Will Anderson",
+              "name": "Will Anderson Jr.",
               "pos": "DL",
               "pts": 16.2,
               "inj": null,
@@ -6158,7 +6158,7 @@
               "pts": 20.16
             },
             {
-              "name": "Brian Thomas",
+              "name": "Brian Thomas Jr.",
               "pos": "WR",
               "pts": 7.7
             },
@@ -6342,7 +6342,7 @@
             },
             {
               "slot": "RB",
-              "name": "Aaron Jones",
+              "name": "Aaron Jones Sr.",
               "pos": "RB",
               "pts": 10.8,
               "inj": null,
@@ -6440,7 +6440,7 @@
               "pts": 0.7
             },
             {
-              "name": "Travis Etienne",
+              "name": "Travis Etienne Jr.",
               "pos": "RB",
               "pts": 0
             },
@@ -6475,7 +6475,7 @@
             },
             {
               "slot": "RB",
-              "name": "James Cook",
+              "name": "James Cook III",
               "pos": "RB",
               "pts": 14.3,
               "inj": null,
@@ -6483,7 +6483,7 @@
             },
             {
               "slot": "RB",
-              "name": "Kenneth Walker",
+              "name": "Kenneth Walker III",
               "pos": "RB",
               "pts": 30.9,
               "inj": null,
@@ -6574,12 +6574,12 @@
               "pts": 11.4
             },
             {
-              "name": "Deebo Samuel",
+              "name": "Deebo Samuel Sr.",
               "pos": "WR",
               "pts": 11
             },
             {
-              "name": "Harold Fannin",
+              "name": "Harold Fannin Jr.",
               "pos": "TE",
               "pts": 8.7
             },
@@ -6728,7 +6728,7 @@
               "pts": 2.7
             },
             {
-              "name": "Michael Pittman",
+              "name": "Michael Pittman Jr.",
               "pos": "WR",
               "pts": 2.5
             }
@@ -6772,7 +6772,7 @@
             },
             {
               "slot": "WR",
-              "name": "Luther Burden",
+              "name": "Luther Burden III",
               "pos": "WR",
               "pts": 7.4,
               "inj": null,
@@ -7076,7 +7076,7 @@
             },
             {
               "slot": "DL",
-              "name": "Will Anderson",
+              "name": "Will Anderson Jr.",
               "pos": "DL",
               "pts": 8,
               "inj": null,
@@ -7111,7 +7111,7 @@
               "pts": 19.1
             },
             {
-              "name": "Ollie Gordon",
+              "name": "Ollie Gordon II",
               "pos": "RB",
               "pts": 17
             },
@@ -7326,7 +7326,7 @@
             },
             {
               "slot": "TE",
-              "name": "Harold Fannin",
+              "name": "Harold Fannin Jr.",
               "pos": "TE",
               "pts": 0.4,
               "inj": null,
@@ -7438,7 +7438,7 @@
             },
             {
               "slot": "RB",
-              "name": "Aaron Jones",
+              "name": "Aaron Jones Sr.",
               "pos": "RB",
               "pts": 15.7,
               "inj": null,
@@ -7531,7 +7531,7 @@
               "pts": 0
             },
             {
-              "name": "Travis Etienne",
+              "name": "Travis Etienne Jr.",
               "pos": "RB",
               "pts": 0
             },
@@ -7566,7 +7566,7 @@
             },
             {
               "slot": "RB",
-              "name": "James Cook",
+              "name": "James Cook III",
               "pos": "RB",
               "pts": 19.8,
               "inj": null,
@@ -7672,7 +7672,7 @@
               "pts": 0
             },
             {
-              "name": "Kenneth Walker",
+              "name": "Kenneth Walker III",
               "pos": "RB",
               "pts": 0
             },
@@ -7857,7 +7857,7 @@
             },
             {
               "slot": "WR",
-              "name": "Luther Burden",
+              "name": "Luther Burden III",
               "pos": "WR",
               "pts": 5.9,
               "inj": null,
@@ -7939,7 +7939,7 @@
               "pts": 0
             },
             {
-              "name": "Marvin Harrison",
+              "name": "Marvin Harrison Jr.",
               "pos": "WR",
               "pts": 0
             },
@@ -8166,7 +8166,7 @@
             },
             {
               "slot": "DL",
-              "name": "Will Anderson",
+              "name": "Will Anderson Jr.",
               "pos": "DL",
               "pts": 12.5,
               "inj": null,
@@ -8196,7 +8196,7 @@
               "pts": 17.4
             },
             {
-              "name": "Ollie Gordon",
+              "name": "Ollie Gordon II",
               "pos": "RB",
               "pts": 14.8
             },
@@ -8312,7 +8312,7 @@
             },
             {
               "slot": "LB",
-              "name": "Ernest Jones",
+              "name": "Ernest Jones IV",
               "pos": "LB",
               "pts": 10,
               "inj": null,
@@ -8475,7 +8475,7 @@
               "pts": 4.8
             },
             {
-              "name": "Harold Fannin",
+              "name": "Harold Fannin Jr.",
               "pos": "TE",
               "pts": 0.9
             },
@@ -8616,7 +8616,7 @@
               "pts": 0
             },
             {
-              "name": "Travis Etienne",
+              "name": "Travis Etienne Jr.",
               "pos": "RB",
               "pts": 0
             },
@@ -8651,7 +8651,7 @@
             },
             {
               "slot": "RB",
-              "name": "James Cook",
+              "name": "James Cook III",
               "pos": "RB",
               "pts": 21.3,
               "inj": null,
@@ -8659,7 +8659,7 @@
             },
             {
               "slot": "RB",
-              "name": "Kenneth Walker",
+              "name": "Kenneth Walker III",
               "pos": "RB",
               "pts": 26.9,
               "inj": null,
@@ -8947,7 +8947,7 @@
             },
             {
               "slot": "WR",
-              "name": "Luther Burden",
+              "name": "Luther Burden III",
               "pos": "WR",
               "pts": 9.5,
               "inj": null,
@@ -9019,7 +9019,7 @@
               "pts": 3.9
             },
             {
-              "name": "Marvin Harrison",
+              "name": "Marvin Harrison Jr.",
               "pos": "WR",
               "pts": 3.4
             },
@@ -9259,7 +9259,7 @@
             },
             {
               "slot": "DL",
-              "name": "Will Anderson",
+              "name": "Will Anderson Jr.",
               "pos": "DL",
               "pts": 0.5,
               "inj": null,
@@ -9314,7 +9314,7 @@
               "pts": 0
             },
             {
-              "name": "Ollie Gordon",
+              "name": "Ollie Gordon II",
               "pos": "RB",
               "pts": 0
             },
@@ -9335,7 +9335,7 @@
     "injuryData": true,
     "snapData": true,
     "waiverIntel": {
-      "generated": "2026-10-21T17:49:14.478Z",
+      "generated": "2026-10-21T21:07:10.062Z",
       "week": 7,
       "teams": [
         {
@@ -9369,10 +9369,19 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 3.8936820937533856,
+              "score": 3.955329172028566,
               "lo": 12,
               "hi": 23,
-              "reason": "needs K · 827400 adds (48h)"
+              "reason": "needs K · 884744 adds (48h)"
+            },
+            {
+              "player": "Chris Boswell",
+              "pos": "K",
+              "nfl": "PIT",
+              "score": 3.3677849480308275,
+              "lo": 11,
+              "hi": 21,
+              "reason": "needs K · 263076 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -9380,26 +9389,17 @@
               "nfl": "LAC",
               "score": 3.35472,
               "lo": 11,
-              "hi": 22,
-              "reason": "needs K"
-            },
-            {
-              "player": "Chris Boswell",
-              "pos": "K",
-              "nfl": "PIT",
-              "score": 3.3498913596792175,
-              "lo": 11,
-              "hi": 22,
-              "reason": "needs K · 246504 adds (48h)"
-            },
-            {
-              "player": "Jason Myers",
-              "pos": "K",
-              "nfl": "SEA",
-              "score": 3.3059999999999996,
-              "lo": 11,
               "hi": 21,
               "reason": "needs K"
+            },
+            {
+              "player": "Kyler Murray",
+              "pos": "QB",
+              "nfl": "MIN",
+              "score": 3.3135354026727004,
+              "lo": 13,
+              "hi": 26,
+              "reason": "needs QB · 1337512 adds (48h)"
             }
           ]
         },
@@ -9412,7 +9412,7 @@
           "claims": 11,
           "needs": {
             "QB": 0.21,
-            "RB": 0,
+            "RB": 1.5,
             "WR": 0.25,
             "TE": 1.78,
             "K": 1.5,
@@ -9422,13 +9422,13 @@
           },
           "targets": [
             {
-              "player": "Kyle Pitts",
+              "player": "Kyle Pitts Sr.",
               "pos": "TE",
               "nfl": "ATL",
-              "score": 3.893238243777641,
+              "score": 3.891152894996776,
               "lo": 7,
               "hi": 14,
-              "reason": "needs TE · 653737 adds (48h)"
+              "reason": "needs TE · 643762 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -9440,7 +9440,7 @@
               "reason": "needs DL"
             },
             {
-              "player": "Harold Fannin",
+              "player": "Harold Fannin Jr.",
               "pos": "TE",
               "nfl": "CLE",
               "score": 3.3847272727272735,
@@ -9452,10 +9452,10 @@
               "player": "Hunter Henry",
               "pos": "TE",
               "nfl": "NE",
-              "score": 3.3525334742013104,
+              "score": 3.3570665046848323,
               "lo": 6,
               "hi": 13,
-              "reason": "needs TE · 182304 adds (48h)"
+              "reason": "needs TE · 185643 adds (48h)"
             },
             {
               "player": "Oronde Gadsden",
@@ -9490,10 +9490,10 @@
               "player": "Rico Dowdle",
               "pos": "RB",
               "nfl": "PIT",
-              "score": 4.5789756629953935,
+              "score": 4.593040643299287,
               "lo": 6,
               "hi": 11,
-              "reason": "needs RB · 265395 adds (48h)"
+              "reason": "needs RB · 275560 adds (48h)"
             },
             {
               "player": "RJ Harvey",
@@ -9505,7 +9505,7 @@
               "reason": "needs RB"
             },
             {
-              "player": "Brian Robinson",
+              "player": "Brian Robinson Jr.",
               "pos": "RB",
               "nfl": "ATL",
               "score": 4.178909090909091,
@@ -9514,7 +9514,7 @@
               "reason": "needs RB"
             },
             {
-              "player": "Aaron Jones",
+              "player": "Aaron Jones Sr.",
               "pos": "RB",
               "nfl": "MIN",
               "score": 4.138727272727274,
@@ -9564,10 +9564,19 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 2.6852979956919905,
+              "score": 2.7278132220886664,
               "lo": 4,
               "hi": 9,
-              "reason": "needs K · 827400 adds (48h)"
+              "reason": "needs K · 884744 adds (48h)"
+            },
+            {
+              "player": "Chris Boswell",
+              "pos": "K",
+              "nfl": "PIT",
+              "score": 2.322610308986778,
+              "lo": 4,
+              "hi": 8,
+              "reason": "needs K · 263076 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -9579,22 +9588,13 @@
               "reason": "needs K"
             },
             {
-              "player": "Chris Boswell",
-              "pos": "K",
-              "nfl": "PIT",
-              "score": 2.3102699032270464,
-              "lo": 4,
-              "hi": 8,
-              "reason": "needs K · 246504 adds (48h)"
-            },
-            {
               "player": "Courtland Sutton",
               "pos": "WR",
               "nfl": "DEN",
-              "score": 2.2860702113658613,
+              "score": 2.2942653399797313,
               "lo": 4,
               "hi": 9,
-              "reason": "needs WR · 155385 adds (48h)"
+              "reason": "needs WR · 168435 adds (48h)"
             }
           ]
         },
@@ -9629,37 +9629,37 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 3.9334642862821556,
+              "score": 3.9957412197632127,
               "lo": 2,
               "hi": 5,
-              "reason": "needs K · 827400 adds (48h)"
+              "reason": "needs K · 884744 adds (48h)"
             },
             {
               "player": "Kyler Murray",
               "pos": "QB",
               "nfl": "MIN",
-              "score": 3.735874590546842,
+              "score": 3.7737486530439086,
               "lo": 2,
               "hi": 5,
-              "reason": "needs QB · 1300128 adds (48h)"
+              "reason": "needs QB · 1337512 adds (48h)"
             },
             {
               "player": "C.J. Stroud",
               "pos": "QB",
               "nfl": "HOU",
-              "score": 3.5154890050221286,
+              "score": 3.53887776285088,
               "lo": 2,
               "hi": 5,
-              "reason": "needs QB · 1106973 adds (48h)"
+              "reason": "needs QB · 1126580 adds (48h)"
             },
             {
-              "player": "Cameron Dicker",
+              "player": "Chris Boswell",
               "pos": "K",
-              "nfl": "LAC",
-              "score": 3.3889955555555553,
+              "nfl": "PIT",
+              "score": 3.4021939896454465,
               "lo": 2,
               "hi": 5,
-              "reason": "needs K"
+              "reason": "needs K · 263076 adds (48h)"
             }
           ]
         },
@@ -9694,19 +9694,19 @@
               "player": "Rico Dowdle",
               "pos": "RB",
               "nfl": "PIT",
-              "score": 3.991006641211068,
+              "score": 4.0032655903587955,
               "lo": 3,
               "hi": 6,
-              "reason": "needs RB · 265395 adds (48h)"
+              "reason": "needs RB · 275560 adds (48h)"
             },
             {
               "player": "Kyler Murray",
               "pos": "QB",
               "nfl": "MIN",
-              "score": 3.9120377826214088,
+              "score": 3.951697776520776,
               "lo": 3,
               "hi": 6,
-              "reason": "needs QB · 1300128 adds (48h)"
+              "reason": "needs QB · 1337512 adds (48h)"
             },
             {
               "player": "RJ Harvey",
@@ -9721,10 +9721,10 @@
               "player": "C.J. Stroud",
               "pos": "QB",
               "nfl": "HOU",
-              "score": 3.6812600312752046,
+              "score": 3.7057516736194587,
               "lo": 3,
               "hi": 6,
-              "reason": "needs QB · 1106973 adds (48h)"
+              "reason": "needs QB · 1126580 adds (48h)"
             }
           ]
         },
@@ -9759,10 +9759,19 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 3.9608145436456854,
+              "score": 4.023524502580782,
               "lo": 1,
               "hi": 4,
-              "reason": "needs K · 827400 adds (48h)"
+              "reason": "needs K · 884744 adds (48h)"
+            },
+            {
+              "player": "Chris Boswell",
+              "pos": "K",
+              "nfl": "PIT",
+              "score": 3.4258502057554967,
+              "lo": 1,
+              "hi": 4,
+              "reason": "needs K · 263076 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -9772,15 +9781,6 @@
               "lo": 1,
               "hi": 4,
               "reason": "needs K"
-            },
-            {
-              "player": "Chris Boswell",
-              "pos": "K",
-              "nfl": "PIT",
-              "score": 3.407648107259893,
-              "lo": 1,
-              "hi": 4,
-              "reason": "needs K · 246504 adds (48h)"
             },
             {
               "player": "Jason Myers",
@@ -9815,10 +9815,19 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 3.9056167515120173,
+              "score": 3.96745278634896,
               "lo": 6,
               "hi": 11,
-              "reason": "needs K · 827400 adds (48h)"
+              "reason": "needs K · 884744 adds (48h)"
+            },
+            {
+              "player": "Chris Boswell",
+              "pos": "K",
+              "nfl": "PIT",
+              "score": 3.3781076605152136,
+              "lo": 5,
+              "hi": 10,
+              "reason": "needs K · 263076 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -9828,15 +9837,6 @@
               "lo": 5,
               "hi": 10,
               "reason": "needs K"
-            },
-            {
-              "player": "Chris Boswell",
-              "pos": "K",
-              "nfl": "PIT",
-              "score": 3.360159225915782,
-              "lo": 5,
-              "hi": 10,
-              "reason": "needs K · 246504 adds (48h)"
             },
             {
               "player": "Jason Myers",
@@ -9896,7 +9896,7 @@
           "player": "Jake Bates",
           "pos": "K",
           "nfl": "DET",
-          "adds": 827400,
+          "adds": 884744,
           "by": [
             {
               "team": "Ethan",
@@ -9921,14 +9921,14 @@
           ]
         },
         {
-          "player": "Cameron Dicker",
+          "player": "Chris Boswell",
           "pos": "K",
-          "nfl": "LAC",
-          "adds": 0,
+          "nfl": "PIT",
+          "adds": 263076,
           "by": [
             {
               "team": "Ethan",
-              "hi": 22
+              "hi": 21
             },
             {
               "team": "James",
@@ -9948,7 +9948,7 @@
           "player": "Kyler Murray",
           "pos": "QB",
           "nfl": "MIN",
-          "adds": 1300128,
+          "adds": 1337512,
           "by": [
             {
               "team": "Zak",
@@ -9964,7 +9964,7 @@
           "player": "Rico Dowdle",
           "pos": "RB",
           "nfl": "PIT",
-          "adds": 265395,
+          "adds": 275560,
           "by": [
             {
               "team": "Lance",
@@ -9977,10 +9977,10 @@
           ]
         },
         {
-          "player": "Kyle Pitts",
+          "player": "Kyle Pitts Sr.",
           "pos": "TE",
           "nfl": "ATL",
-          "adds": 653737,
+          "adds": 643762,
           "by": [
             {
               "team": "Aron",
@@ -9989,25 +9989,25 @@
           ]
         },
         {
-          "player": "Chris Boswell",
-          "pos": "K",
-          "nfl": "PIT",
-          "adds": 246504,
-          "by": [
-            {
-              "team": "Ben",
-              "hi": 10
-            }
-          ]
-        },
-        {
-          "player": "Brian Robinson",
+          "player": "Brian Robinson Jr.",
           "pos": "RB",
           "nfl": "ATL",
           "adds": 0,
           "by": [
             {
               "team": "Lance",
+              "hi": 10
+            }
+          ]
+        },
+        {
+          "player": "Cameron Dicker",
+          "pos": "K",
+          "nfl": "LAC",
+          "adds": 0,
+          "by": [
+            {
+              "team": "Ben",
               "hi": 10
             }
           ]
@@ -10025,7 +10025,7 @@
           ]
         },
         {
-          "player": "Harold Fannin",
+          "player": "Harold Fannin Jr.",
           "pos": "TE",
           "nfl": "CLE",
           "adds": 0,
@@ -10039,7 +10039,7 @@
       ],
       "mine": [
         {
-          "player": "Kyle Pitts",
+          "player": "Kyle Pitts Sr.",
           "pos": "TE",
           "rivals": [],
           "beat": 1
@@ -10057,7 +10057,7 @@
           "beat": 22
         },
         {
-          "player": "Harold Fannin",
+          "player": "Harold Fannin Jr.",
           "pos": "TE",
           "rivals": [],
           "beat": 1
