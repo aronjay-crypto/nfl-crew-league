@@ -1,5 +1,6 @@
 const { loadInjuries, loadSnaps, snapDrop } = require('./feeds.cjs');
 const { fillFromSleeper } = require('./sleeper-fill.cjs');
+const { buildWaiverIntel } = require('./waiver-intel.cjs');
 
 // ---------- Sleeper (2026 league) ----------
 const SLEEPER_LEAGUES = { '2026': '1403696235939966976' };
@@ -107,6 +108,7 @@ async function syncSleeper(data) {
         managers[week] = { worst: fmt(results[0]), best: fmt(results[results.length - 1]) };
       }
       await fillFromSleeper({ data, year, leagueId, league, rosters, nameByRoster, nameOf, rawByWeek, managers, lastWeek, sleeperJson });
+      await buildWaiverIntel({ data, year, leagueId, league, rosters, players, nameByRoster, nameOf, lastWeek, sleeperJson });
       console.log(`Sleeper ${year} done (weeks 1-${lastWeek}).`);
     } catch (e) {
       console.warn(`Sleeper ${year} skipped: ${e.message}`);
