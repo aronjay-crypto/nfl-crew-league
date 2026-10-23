@@ -9335,7 +9335,7 @@
     "injuryData": true,
     "snapData": true,
     "waiverIntel": {
-      "generated": "2026-10-23T06:50:51.827Z",
+      "generated": "2026-10-23T12:20:36.539Z",
       "week": 7,
       "teams": [
         {
@@ -9360,46 +9360,46 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 5.575677061703725,
+              "score": 5.346697395251397,
               "lo": 13,
               "hi": 26,
-              "reason": "needs K · 750624 adds (48h)"
+              "reason": "needs K · 646024 adds (48h)"
             },
             {
               "player": "Jared Verse",
               "pos": "DL",
               "nfl": "CLE",
               "score": 4.18,
-              "lo": 10,
-              "hi": 19,
+              "lo": 11,
+              "hi": 21,
               "reason": "needs DL"
             },
             {
               "player": "Chris Boswell",
               "pos": "K",
               "nfl": "PIT",
-              "score": 3.8851831171512554,
+              "score": 3.7896878002793297,
               "lo": 11,
-              "hi": 21,
-              "reason": "needs K · 234160 adds (48h)"
+              "hi": 22,
+              "reason": "needs K · 194488 adds (48h)"
             },
             {
               "player": "Kyler Murray",
               "pos": "QB",
               "nfl": "MIN",
-              "score": 3.7586632824905375,
+              "score": 3.584257541899442,
               "lo": 13,
               "hi": 24,
-              "reason": "needs QB · 579000 adds (48h)"
+              "reason": "needs QB · 476000 adds (48h)"
             },
             {
               "player": "C.J. Stroud",
               "pos": "QB",
               "nfl": "HOU",
-              "score": 3.6216889449048724,
+              "score": 3.519713704608939,
               "lo": 13,
               "hi": 24,
-              "reason": "needs QB · 547834 adds (48h)"
+              "reason": "needs QB · 477127 adds (48h)"
             }
           ]
         },
@@ -9425,10 +9425,10 @@
               "player": "Kyle Pitts Sr.",
               "pos": "TE",
               "nfl": "ATL",
-              "score": 4.074603295905729,
+              "score": 3.9700054649145082,
               "lo": 7,
               "hi": 14,
-              "reason": "needs TE · 245385 adds (48h)"
+              "reason": "needs TE · 199297 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -9443,19 +9443,10 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 3.845294525312914,
+              "score": 3.687377513966481,
               "lo": 8,
               "hi": 15,
-              "reason": "needs K · 750624 adds (48h)"
-            },
-            {
-              "player": "Hunter Henry",
-              "pos": "TE",
-              "nfl": "NE",
-              "score": 3.48585680570951,
-              "lo": 6,
-              "hi": 13,
-              "reason": "needs TE · 96576 adds (48h)"
+              "reason": "needs K · 646024 adds (48h)"
             },
             {
               "player": "Harold Fannin Jr.",
@@ -9465,6 +9456,15 @@
               "lo": 6,
               "hi": 13,
               "reason": "needs TE"
+            },
+            {
+              "player": "Colby Parkinson",
+              "pos": "TE",
+              "nfl": "LAR",
+              "score": 3.3084844570001697,
+              "lo": 6,
+              "hi": 13,
+              "reason": "needs TE · 124038 adds (48h)"
             }
           ]
         },
@@ -9490,28 +9490,28 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 4.712427861450396,
+              "score": 4.5188997664846795,
               "lo": 6,
               "hi": 13,
-              "reason": "needs K · 750624 adds (48h)"
+              "reason": "needs K · 646024 adds (48h)"
             },
             {
               "player": "Chris Boswell",
               "pos": "K",
               "nfl": "PIT",
-              "score": 3.2836631256591855,
+              "score": 3.2029527855722026,
               "lo": 5,
               "hi": 10,
-              "reason": "needs K · 234160 adds (48h)"
+              "reason": "needs K · 194488 adds (48h)"
             },
             {
               "player": "Kyle Pitts Sr.",
               "pos": "TE",
               "nfl": "ATL",
-              "score": 3.009721396071905,
+              "score": 2.93245980591089,
               "lo": 6,
               "hi": 11,
-              "reason": "needs TE · 245385 adds (48h)"
+              "reason": "needs TE · 199297 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -9564,37 +9564,37 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 3.845294525312914,
+              "score": 3.687377513966481,
               "lo": 4,
               "hi": 9,
-              "reason": "needs K · 750624 adds (48h)"
+              "reason": "needs K · 646024 adds (48h)"
             },
             {
               "player": "Chris Boswell",
               "pos": "K",
               "nfl": "PIT",
-              "score": 2.6794366325181076,
+              "score": 2.6135777932960895,
               "lo": 4,
               "hi": 8,
-              "reason": "needs K · 234160 adds (48h)"
+              "reason": "needs K · 194488 adds (48h)"
             },
             {
               "player": "Courtland Sutton",
               "pos": "WR",
               "nfl": "DEN",
-              "score": 2.5578388056179127,
+              "score": 2.5416439742694457,
               "lo": 4,
               "hi": 8,
-              "reason": "needs WR · 198045 adds (48h)"
+              "reason": "needs WR · 180126 adds (48h)"
             },
             {
               "player": "Malik Washington",
               "pos": "WR",
               "nfl": "MIA",
-              "score": 2.456873984895458,
+              "score": 2.397634013751612,
               "lo": 4,
               "hi": 8,
-              "reason": "needs WR · 368520 adds (48h)"
+              "reason": "needs WR · 320800 adds (48h)"
             }
           ]
         },
@@ -9620,19 +9620,10 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 5.632644388004656,
+              "score": 5.401325210273122,
               "lo": 2,
               "hi": 5,
-              "reason": "needs K · 750624 adds (48h)"
-            },
-            {
-              "player": "Kyler Murray",
-              "pos": "QB",
-              "nfl": "MIN",
-              "score": 4.280699849503112,
-              "lo": 2,
-              "hi": 5,
-              "reason": "needs QB · 579000 adds (48h)"
+              "reason": "needs K · 646024 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -9644,22 +9635,31 @@
               "reason": "needs DL"
             },
             {
+              "player": "Kyler Murray",
+              "pos": "QB",
+              "nfl": "MIN",
+              "score": 4.082071089385475,
+              "lo": 2,
+              "hi": 5,
+              "reason": "needs QB · 476000 adds (48h)"
+            },
+            {
               "player": "C.J. Stroud",
               "pos": "QB",
               "nfl": "HOU",
-              "score": 4.124701298363882,
+              "score": 4.008562830249069,
               "lo": 2,
               "hi": 5,
-              "reason": "needs QB · 547834 adds (48h)"
+              "reason": "needs QB · 477127 adds (48h)"
             },
             {
               "player": "Chris Boswell",
               "pos": "K",
               "nfl": "PIT",
-              "score": 3.9248784746700416,
+              "score": 3.828407471291123,
               "lo": 2,
               "hi": 5,
-              "reason": "needs K · 234160 adds (48h)"
+              "reason": "needs K · 194488 adds (48h)"
             }
           ]
         },
@@ -9685,19 +9685,19 @@
               "player": "Kyler Murray",
               "pos": "QB",
               "nfl": "MIN",
-              "score": 4.4825539887479735,
+              "score": 4.2745589944134075,
               "lo": 3,
               "hi": 6,
-              "reason": "needs QB · 579000 adds (48h)"
+              "reason": "needs QB · 476000 adds (48h)"
             },
             {
               "player": "C.J. Stroud",
               "pos": "QB",
               "nfl": "HOU",
-              "score": 4.319199408368033,
+              "score": 4.197584492163253,
               "lo": 3,
               "hi": 6,
-              "reason": "needs QB · 547834 adds (48h)"
+              "reason": "needs QB · 477127 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -9712,19 +9712,19 @@
               "player": "Bo Nix",
               "pos": "QB",
               "nfl": "DEN",
-              "score": 4.030993266160221,
+              "score": 3.9628934504965856,
               "lo": 3,
               "hi": 6,
-              "reason": "needs QB · 317682 adds (48h)"
+              "reason": "needs QB · 277542 adds (48h)"
             },
             {
-              "player": "Jake Bates",
-              "pos": "K",
-              "nfl": "DET",
-              "score": 3.845294525312914,
-              "lo": 3,
-              "hi": 6,
-              "reason": "needs K · 750624 adds (48h)"
+              "player": "RJ Harvey",
+              "pos": "RB",
+              "nfl": "DEN",
+              "score": 3.8104177777777775,
+              "lo": 2,
+              "hi": 5,
+              "reason": "needs RB"
             }
           ]
         },
@@ -9750,10 +9750,10 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 5.671809424836547,
+              "score": 5.438881833100559,
               "lo": 1,
               "hi": 4,
-              "reason": "needs K · 750624 adds (48h)"
+              "reason": "needs K · 646024 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -9768,10 +9768,10 @@
               "player": "Chris Boswell",
               "pos": "K",
               "nfl": "PIT",
-              "score": 3.952169032964208,
+              "score": 3.8550272451117316,
               "lo": 1,
               "hi": 4,
-              "reason": "needs K · 234160 adds (48h)"
+              "reason": "needs K · 194488 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -9815,46 +9815,46 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 5.592767259594004,
+              "score": 5.363085739757915,
               "lo": 6,
               "hi": 13,
-              "reason": "needs K · 750624 adds (48h)"
+              "reason": "needs K · 646024 adds (48h)"
             },
             {
               "player": "Kyler Murray",
               "pos": "QB",
               "nfl": "MIN",
-              "score": 4.238936924142106,
+              "score": 4.042246005586592,
               "lo": 6,
               "hi": 13,
-              "reason": "needs QB · 579000 adds (48h)"
+              "reason": "needs QB · 476000 adds (48h)"
             },
             {
               "player": "C.J. Stroud",
               "pos": "QB",
               "nfl": "HOU",
-              "score": 4.084460310087161,
+              "score": 3.9694549001978587,
               "lo": 6,
               "hi": 11,
-              "reason": "needs QB · 547834 adds (48h)"
+              "reason": "needs QB · 477127 adds (48h)"
             },
             {
               "player": "Chris Boswell",
               "pos": "K",
               "nfl": "PIT",
-              "score": 3.8970917244068914,
+              "score": 3.801303701582868,
               "lo": 5,
               "hi": 10,
-              "reason": "needs K · 234160 adds (48h)"
+              "reason": "needs K · 194488 adds (48h)"
             },
             {
               "player": "Bo Nix",
               "pos": "QB",
               "nfl": "DEN",
-              "score": 3.811917545173251,
+              "score": 3.7475188064478573,
               "lo": 6,
               "hi": 11,
-              "reason": "needs QB · 317682 adds (48h)"
+              "reason": "needs QB · 277542 adds (48h)"
             }
           ]
         }
@@ -9864,7 +9864,7 @@
           "player": "Jake Bates",
           "pos": "K",
           "nfl": "DET",
-          "adds": 750624,
+          "adds": 646024,
           "by": [
             {
               "team": "Ethan",
@@ -9904,7 +9904,7 @@
           "by": [
             {
               "team": "Ethan",
-              "hi": 19
+              "hi": 21
             },
             {
               "team": "Aron",
@@ -9932,11 +9932,11 @@
           "player": "Chris Boswell",
           "pos": "K",
           "nfl": "PIT",
-          "adds": 234160,
+          "adds": 194488,
           "by": [
             {
               "team": "Ethan",
-              "hi": 21
+              "hi": 22
             },
             {
               "team": "Lance",
@@ -9956,7 +9956,7 @@
           "player": "Kyler Murray",
           "pos": "QB",
           "nfl": "MIN",
-          "adds": 579000,
+          "adds": 476000,
           "by": [
             {
               "team": "Zak",
@@ -9976,7 +9976,7 @@
           "player": "C.J. Stroud",
           "pos": "QB",
           "nfl": "HOU",
-          "adds": 547834,
+          "adds": 477127,
           "by": [
             {
               "team": "Jamie",
@@ -9992,7 +9992,7 @@
           "player": "Kyle Pitts Sr.",
           "pos": "TE",
           "nfl": "ATL",
-          "adds": 245385,
+          "adds": 199297,
           "by": [
             {
               "team": "Aron",
@@ -10024,7 +10024,7 @@
             "Jamie",
             "Nathan"
           ],
-          "beat": 20
+          "beat": 22
         },
         {
           "player": "Jake Bates",
@@ -10040,13 +10040,13 @@
           "beat": 27
         },
         {
-          "player": "Hunter Henry",
+          "player": "Harold Fannin Jr.",
           "pos": "TE",
           "rivals": [],
           "beat": 1
         },
         {
-          "player": "Harold Fannin Jr.",
+          "player": "Colby Parkinson",
           "pos": "TE",
           "rivals": [],
           "beat": 1
