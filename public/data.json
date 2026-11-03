@@ -11599,7 +11599,7 @@
     "injuryData": true,
     "snapData": true,
     "waiverIntel": {
-      "generated": "2026-11-03T15:43:28.513Z",
+      "generated": "2026-11-03T21:26:05.229Z",
       "week": 9,
       "teams": [
         {
@@ -11636,34 +11636,34 @@
               "score": 3.3301333333333334,
               "lo": 13,
               "hi": 26,
-              "reason": "1469552 adds (48h)"
+              "reason": "1935208 adds (48h)"
             },
             {
               "player": "Tyler Allgeier",
               "pos": "RB",
               "nfl": "ARI",
-              "score": 2.9743418413230702,
-              "lo": 11,
-              "hi": 22,
-              "reason": "900125 adds (48h)"
-            },
-            {
-              "player": "Bo Nix",
-              "pos": "QB",
-              "nfl": "DEN",
-              "score": 2.8929063333587384,
-              "lo": 9,
-              "hi": 18,
-              "reason": "needs QB · 77868 adds (48h)"
+              "score": 3.282735812584487,
+              "lo": 12,
+              "hi": 23,
+              "reason": "1422175 adds (48h)"
             },
             {
               "player": "Malik Willis",
               "pos": "QB",
               "nfl": "MIA",
-              "score": 2.792318603764957,
+              "score": 2.8967441821240922,
               "lo": 9,
               "hi": 18,
-              "reason": "needs QB · 169379 adds (48h)"
+              "reason": "needs QB · 269829 adds (48h)"
+            },
+            {
+              "player": "Bo Nix",
+              "pos": "QB",
+              "nfl": "DEN",
+              "score": 2.8692214749008897,
+              "lo": 9,
+              "hi": 18,
+              "reason": "needs QB · 91932 adds (48h)"
             }
           ]
         },
@@ -11689,19 +11689,19 @@
               "player": "Tyler Allgeier",
               "pos": "RB",
               "nfl": "ARI",
-              "score": 5.794172418161826,
+              "score": 6.394939894645105,
               "lo": 7,
               "hi": 14,
-              "reason": "needs RB · 900125 adds (48h)"
+              "reason": "needs RB · 1422175 adds (48h)"
             },
             {
               "player": "Emmett Johnson",
               "pos": "RB",
               "nfl": "KC",
-              "score": 4.8093054853080766,
+              "score": 4.890741636980718,
               "lo": 6,
               "hi": 13,
-              "reason": "needs RB · 644490 adds (48h)"
+              "reason": "needs RB · 880812 adds (48h)"
             },
             {
               "player": "Adonai Mitchell",
@@ -11710,25 +11710,25 @@
               "score": 4.257272727272728,
               "lo": 8,
               "hi": 15,
-              "reason": "1469552 adds (48h)"
+              "reason": "1935208 adds (48h)"
+            },
+            {
+              "player": "Cairo Santos",
+              "pos": "K",
+              "nfl": "CHI",
+              "score": 3.4505876475638106,
+              "lo": 5,
+              "hi": 10,
+              "reason": "needs K · 201026 adds (48h)"
             },
             {
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 3.427569306636762,
+              "score": 3.4457604730309783,
               "lo": 5,
               "hi": 10,
-              "reason": "needs K · 80224 adds (48h)"
-            },
-            {
-              "player": "Tyler Bass",
-              "pos": "K",
-              "nfl": "BUF",
-              "score": 3.3534126240378024,
-              "lo": 5,
-              "hi": 10,
-              "reason": "needs K · 289520 adds (48h)"
+              "reason": "needs K · 111352 adds (48h)"
             }
           ]
         },
@@ -11766,34 +11766,34 @@
               "score": 6.192101818181819,
               "lo": 6,
               "hi": 13,
-              "reason": "needs WR · 1469552 adds (48h)"
+              "reason": "needs WR · 1935208 adds (48h)"
             },
             {
               "player": "Tyler Allgeier",
               "pos": "RB",
               "nfl": "ARI",
-              "score": 4.485977045527956,
+              "score": 4.951104576209677,
               "lo": 6,
               "hi": 11,
-              "reason": "needs RB · 900125 adds (48h)"
-            },
-            {
-              "player": "Bo Nix",
-              "pos": "QB",
-              "nfl": "DEN",
-              "score": 4.130427375962198,
-              "lo": 4,
-              "hi": 9,
-              "reason": "needs QB · 77868 adds (48h)"
+              "reason": "needs RB · 1422175 adds (48h)"
             },
             {
               "player": "Malik Willis",
               "pos": "QB",
               "nfl": "MIA",
-              "score": 3.986810450931077,
+              "score": 4.135906971143842,
               "lo": 4,
               "hi": 9,
-              "reason": "needs QB · 169379 adds (48h)"
+              "reason": "needs QB · 269829 adds (48h)"
+            },
+            {
+              "player": "Bo Nix",
+              "pos": "QB",
+              "nfl": "DEN",
+              "score": 4.09661066138627,
+              "lo": 4,
+              "hi": 9,
+              "reason": "needs QB · 91932 adds (48h)"
             }
           ]
         },
@@ -11822,7 +11822,7 @@
               "score": 7.225200000000001,
               "lo": 4,
               "hi": 8,
-              "reason": "needs WR · 1469552 adds (48h)"
+              "reason": "needs WR · 1935208 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -11837,28 +11837,28 @@
               "player": "Harold Fannin Jr.",
               "pos": "TE",
               "nfl": "CLE",
-              "score": 3.357815582871515,
+              "score": 3.3538345551279245,
               "lo": 2,
               "hi": 5,
-              "reason": "needs TE · 53500 adds (48h)"
+              "reason": "needs TE · 69000 adds (48h)"
             },
             {
-              "player": "Ryan Flournoy",
-              "pos": "WR",
-              "nfl": "DAL",
-              "score": 3.338849214454473,
+              "player": "Oronde Gadsden",
+              "pos": "TE",
+              "nfl": "LAC",
+              "score": 3.046853333333334,
               "lo": 2,
               "hi": 5,
-              "reason": "needs WR · 354824 adds (48h)"
+              "reason": "needs TE"
             },
             {
-              "player": "Makai Lemon",
+              "player": "Jaylen Waddle",
               "pos": "WR",
-              "nfl": "PHI",
-              "score": 3.1301160821801477,
+              "nfl": "DEN",
+              "score": 3.0132,
               "lo": 2,
               "hi": 5,
-              "reason": "needs WR · 112096 adds (48h)"
+              "reason": "needs WR"
             }
           ]
         },
@@ -11884,10 +11884,19 @@
               "player": "Harold Fannin Jr.",
               "pos": "TE",
               "nfl": "CLE",
-              "score": 5.18106386316374,
+              "score": 5.17492119139648,
               "lo": 1,
               "hi": 4,
-              "reason": "needs TE · 53500 adds (48h)"
+              "reason": "needs TE · 69000 adds (48h)"
+            },
+            {
+              "player": "Tyler Allgeier",
+              "pos": "RB",
+              "nfl": "ARI",
+              "score": 4.96057856123878,
+              "lo": 2,
+              "hi": 5,
+              "reason": "1422175 adds (48h)"
             },
             {
               "player": "Adonai Mitchell",
@@ -11896,7 +11905,7 @@
               "score": 4.74544,
               "lo": 2,
               "hi": 5,
-              "reason": "needs WR · 1469552 adds (48h)"
+              "reason": "needs WR · 1935208 adds (48h)"
             },
             {
               "player": "Oronde Gadsden",
@@ -11906,15 +11915,6 @@
               "lo": 1,
               "hi": 4,
               "reason": "needs TE"
-            },
-            {
-              "player": "AJ Barner",
-              "pos": "TE",
-              "nfl": "SEA",
-              "score": 4.608829872287608,
-              "lo": 1,
-              "hi": 4,
-              "reason": "needs TE · 53616 adds (48h)"
             },
             {
               "player": "Mark Andrews",
@@ -11952,43 +11952,43 @@
               "score": 6.4224000000000006,
               "lo": 3,
               "hi": 6,
-              "reason": "needs WR · 1469552 adds (48h)"
-            },
-            {
-              "player": "Bo Nix",
-              "pos": "QB",
-              "nfl": "DEN",
-              "score": 4.856332576277215,
-              "lo": 2,
-              "hi": 5,
-              "reason": "needs QB · 77868 adds (48h)"
+              "reason": "needs WR · 1935208 adds (48h)"
             },
             {
               "player": "Tyler Allgeier",
               "pos": "RB",
               "nfl": "ARI",
-              "score": 4.721177525909635,
+              "score": 5.2106917660071215,
               "lo": 3,
               "hi": 6,
-              "reason": "900125 adds (48h)"
+              "reason": "1422175 adds (48h)"
             },
             {
               "player": "Malik Willis",
               "pos": "QB",
               "nfl": "MIA",
-              "score": 4.687475582060987,
+              "score": 4.862775187213869,
               "lo": 2,
               "hi": 5,
-              "reason": "needs QB · 169379 adds (48h)"
+              "reason": "needs QB · 269829 adds (48h)"
+            },
+            {
+              "player": "Bo Nix",
+              "pos": "QB",
+              "nfl": "DEN",
+              "score": 4.816572716662326,
+              "lo": 2,
+              "hi": 5,
+              "reason": "needs QB · 91932 adds (48h)"
             },
             {
               "player": "Tyler Shough",
               "pos": "QB",
               "nfl": "NO",
-              "score": 4.593922143129334,
+              "score": 4.553049097109974,
               "lo": 2,
               "hi": 5,
-              "reason": "needs QB · 93272 adds (48h)"
+              "reason": "needs QB · 111920 adds (48h)"
             }
           ]
         },
@@ -12017,25 +12017,25 @@
               "score": 8.15065,
               "lo": 1,
               "hi": 4,
-              "reason": "needs WR · 1469552 adds (48h)"
+              "reason": "needs WR · 1935208 adds (48h)"
             },
             {
               "player": "Tyler Allgeier",
               "pos": "RB",
               "nfl": "ARI",
-              "score": 5.5078437311643285,
+              "score": 6.07892328151806,
               "lo": 1,
               "hi": 4,
-              "reason": "needs RB · 900125 adds (48h)"
+              "reason": "needs RB · 1422175 adds (48h)"
             },
             {
               "player": "Emmett Johnson",
               "pos": "RB",
               "nfl": "KC",
-              "score": 4.571645639242436,
+              "score": 4.649057487753255,
               "lo": 1,
               "hi": 4,
-              "reason": "needs RB · 644490 adds (48h)"
+              "reason": "needs RB · 880812 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -12047,13 +12047,13 @@
               "reason": "needs DL"
             },
             {
-              "player": "Ryan Flournoy",
+              "player": "Jaylen Waddle",
               "pos": "WR",
-              "nfl": "DAL",
-              "score": 3.766510456429352,
+              "nfl": "DEN",
+              "score": 3.39915,
               "lo": 1,
               "hi": 4,
-              "reason": "needs WR · 354824 adds (48h)"
+              "reason": "needs WR"
             }
           ]
         },
@@ -12079,10 +12079,10 @@
               "player": "Tyler Allgeier",
               "pos": "RB",
               "nfl": "ARI",
-              "score": 3.9327408790827256,
-              "lo": 5,
-              "hi": 10,
-              "reason": "900125 adds (48h)"
+              "score": 4.340506241083933,
+              "lo": 6,
+              "hi": 11,
+              "reason": "1422175 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -12094,31 +12094,31 @@
               "reason": "needs DL"
             },
             {
-              "player": "Jake Bates",
-              "pos": "K",
-              "nfl": "DET",
-              "score": 3.4075640383100883,
-              "lo": 4,
-              "hi": 8,
-              "reason": "needs K · 80224 adds (48h)"
-            },
-            {
-              "player": "Tyler Bass",
-              "pos": "K",
-              "nfl": "BUF",
-              "score": 3.3338401768157917,
-              "lo": 4,
-              "hi": 8,
-              "reason": "needs K · 289520 adds (48h)"
-            },
-            {
               "player": "Cairo Santos",
               "pos": "K",
               "nfl": "CHI",
-              "score": 3.3078062177679546,
+              "score": 3.4304480309437886,
               "lo": 4,
               "hi": 8,
-              "reason": "needs K · 123263 adds (48h)"
+              "reason": "needs K · 201026 adds (48h)"
+            },
+            {
+              "player": "Jake Bates",
+              "pos": "K",
+              "nfl": "DET",
+              "score": 3.4256490305813814,
+              "lo": 4,
+              "hi": 8,
+              "reason": "needs K · 111352 adds (48h)"
+            },
+            {
+              "player": "Emmett Johnson",
+              "pos": "RB",
+              "nfl": "KC",
+              "score": 3.319545601455875,
+              "lo": 5,
+              "hi": 10,
+              "reason": "880812 adds (48h)"
             }
           ]
         }
@@ -12128,7 +12128,7 @@
           "player": "Adonai Mitchell",
           "pos": "WR",
           "nfl": "NYJ",
-          "adds": 1469552,
+          "adds": 1935208,
           "by": [
             {
               "team": "Ethan",
@@ -12164,11 +12164,11 @@
           "player": "Tyler Allgeier",
           "pos": "RB",
           "nfl": "ARI",
-          "adds": 900125,
+          "adds": 1422175,
           "by": [
             {
               "team": "Ethan",
-              "hi": 22
+              "hi": 23
             },
             {
               "team": "Aron",
@@ -12177,6 +12177,10 @@
             {
               "team": "Lance",
               "hi": 11
+            },
+            {
+              "team": "Zak",
+              "hi": 5
             },
             {
               "team": "Jamie",
@@ -12188,7 +12192,7 @@
             },
             {
               "team": "Ben",
-              "hi": 10
+              "hi": 11
             }
           ]
         },
@@ -12220,7 +12224,7 @@
           "player": "Emmett Johnson",
           "pos": "RB",
           "nfl": "KC",
-          "adds": 644490,
+          "adds": 880812,
           "by": [
             {
               "team": "Aron",
@@ -12236,7 +12240,7 @@
           "player": "Harold Fannin Jr.",
           "pos": "TE",
           "nfl": "CLE",
-          "adds": 53500,
+          "adds": 69000,
           "by": [
             {
               "team": "James",
@@ -12249,22 +12253,10 @@
           ]
         },
         {
-          "player": "Jake Bates",
-          "pos": "K",
-          "nfl": "DET",
-          "adds": 80224,
-          "by": [
-            {
-              "team": "Ben",
-              "hi": 8
-            }
-          ]
-        },
-        {
-          "player": "Bo Nix",
+          "player": "Malik Willis",
           "pos": "QB",
-          "nfl": "DEN",
-          "adds": 77868,
+          "nfl": "MIA",
+          "adds": 269829,
           "by": [
             {
               "team": "Jamie",
@@ -12273,14 +12265,14 @@
           ]
         },
         {
-          "player": "Oronde Gadsden",
-          "pos": "TE",
-          "nfl": "LAC",
-          "adds": 0,
+          "player": "Cairo Santos",
+          "pos": "K",
+          "nfl": "CHI",
+          "adds": 201026,
           "by": [
             {
-              "team": "Zak",
-              "hi": 4
+              "team": "Ben",
+              "hi": 8
             }
           ]
         }
@@ -12292,11 +12284,12 @@
           "rivals": [
             "Ethan",
             "Lance",
+            "Zak",
             "Jamie",
             "Nathan",
             "Ben"
           ],
-          "beat": 23
+          "beat": 24
         },
         {
           "player": "Emmett Johnson",
@@ -12320,7 +12313,7 @@
           "beat": 27
         },
         {
-          "player": "Jake Bates",
+          "player": "Cairo Santos",
           "pos": "K",
           "rivals": [
             "Ben"
@@ -12328,7 +12321,7 @@
           "beat": 9
         },
         {
-          "player": "Tyler Bass",
+          "player": "Jake Bates",
           "pos": "K",
           "rivals": [],
           "beat": 1
