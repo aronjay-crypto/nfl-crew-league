@@ -2410,13 +2410,13 @@
       },
       {
         "week": 8,
-        "highScore": ", ",
-        "lowScore": ", ",
-        "highPlayer": "",
-        "lowPlayer": "",
+        "highScore": "Aron, 137.68",
+        "lowScore": "Zak, 96.58",
+        "highPlayer": "Ben, Joe Burrow, 38.48",
+        "lowPlayer": "James, Derrick Barnes, 0.5",
         "waiver": "-",
-        "worstManager": "",
-        "bestManager": ""
+        "worstManager": "Zak, 96.58, 113.58",
+        "bestManager": "Nathan, 120.18, 120.18"
       },
       {
         "week": 9,
@@ -2513,58 +2513,58 @@
       {
         "rank": 1,
         "player": "James",
-        "record": "6-1",
-        "pf": 916.78,
-        "pa": 789.06
+        "record": "7-1",
+        "pf": 1031.54,
+        "pa": 891.66
       },
       {
         "rank": 2,
         "player": "Nathan",
-        "record": "5-2",
-        "pf": 855.38,
-        "pa": 823.14
+        "record": "6-2",
+        "pf": 975.56,
+        "pa": 919.72
       },
       {
         "rank": 3,
         "player": "Aron",
-        "record": "4-3",
-        "pf": 888.08,
-        "pa": 793.12
+        "record": "5-3",
+        "pf": 1025.76,
+        "pa": 917.18
       },
       {
         "rank": 4,
         "player": "Ben",
-        "record": "4-3",
-        "pf": 811.28,
-        "pa": 832.28
+        "record": "5-3",
+        "pf": 947.06,
+        "pa": 942.34
       },
       {
         "rank": 5,
         "player": "Jamie",
-        "record": "3-4",
-        "pf": 755.4,
-        "pa": 774.08
+        "record": "3-5",
+        "pf": 865.46,
+        "pa": 909.86
       },
       {
         "rank": 6,
         "player": "Ethan",
-        "record": "2-5",
-        "pf": 783.34,
-        "pa": 841.72
+        "record": "2-6",
+        "pf": 907.4,
+        "pa": 979.4
       },
       {
         "rank": 7,
         "player": "Zak",
-        "record": "2-5",
-        "pf": 775.12,
-        "pa": 823.28
+        "record": "2-6",
+        "pf": 871.7,
+        "pa": 943.46
       },
       {
         "rank": 8,
         "player": "Lance",
-        "record": "2-5",
-        "pf": 753.3,
-        "pa": 862
+        "record": "2-6",
+        "pf": 855.9,
+        "pa": 976.76
       }
     ],
     "champion": null,
@@ -2792,6 +2792,38 @@
         "redScore": 137.14,
         "blue": "James",
         "blueScore": 102.32
+      },
+      {
+        "week": 8,
+        "round": "Regular",
+        "red": "Zak",
+        "redScore": 96.58,
+        "blue": "Nathan",
+        "blueScore": 120.18
+      },
+      {
+        "week": 8,
+        "round": "Regular",
+        "red": "Jamie",
+        "redScore": 110.06,
+        "blue": "Ben",
+        "blueScore": 135.78
+      },
+      {
+        "week": 8,
+        "round": "Regular",
+        "red": "Ethan",
+        "redScore": 124.06,
+        "blue": "Aron",
+        "blueScore": 137.68
+      },
+      {
+        "week": 8,
+        "round": "Regular",
+        "red": "Lance",
+        "redScore": 102.6,
+        "blue": "James",
+        "blueScore": 114.76
       }
     ],
     "lineups": {
@@ -10458,13 +10490,1117 @@
             }
           ]
         }
+      },
+      "8": {
+        "Ethan": {
+          "points": 124.06,
+          "perfect": 124.06,
+          "starters": [
+            {
+              "slot": "QB",
+              "name": "Drake Maye",
+              "pos": "QB",
+              "pts": 20.46,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Ashton Jeanty",
+              "pos": "RB",
+              "pts": 7.3,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Kyren Williams",
+              "pos": "RB",
+              "pts": 11.9,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Amon-Ra St. Brown",
+              "pos": "WR",
+              "pts": 5.6,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Justin Jefferson",
+              "pos": "WR",
+              "pts": 9.3,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "TE",
+              "name": "Tucker Kraft",
+              "pos": "TE",
+              "pts": 11.3,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WRRB_FLEX",
+              "name": "Bucky Irving",
+              "pos": "RB",
+              "pts": 21,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "K",
+              "name": "Brandon Aubrey",
+              "pos": "K",
+              "pts": 13.7,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DL",
+              "name": "T.J. Watt",
+              "pos": "LB",
+              "pts": 9,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "LB",
+              "name": "Ernest Jones IV",
+              "pos": "LB",
+              "pts": 11,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DB",
+              "name": "Nick Emmanwori",
+              "pos": "DB",
+              "pts": 3.5,
+              "inj": null,
+              "snap": null
+            }
+          ],
+          "bench": [
+            {
+              "name": "Blake Corum",
+              "pos": "RB",
+              "pts": 13.3
+            },
+            {
+              "name": "Rachaad White",
+              "pos": "RB",
+              "pts": 12
+            },
+            {
+              "name": "Travis Kelce",
+              "pos": "TE",
+              "pts": 6.7
+            },
+            {
+              "name": "Tetairoa McMillan",
+              "pos": "WR",
+              "pts": 5.8
+            },
+            {
+              "name": "Caleb Douglas",
+              "pos": "WR",
+              "pts": 4.3
+            },
+            {
+              "name": "Colston Loveland",
+              "pos": "TE",
+              "pts": 3.5
+            },
+            {
+              "name": "Keon Coleman",
+              "pos": "WR",
+              "pts": 0.4
+            },
+            {
+              "name": "Tank Bigsby",
+              "pos": "RB",
+              "pts": 0
+            }
+          ]
+        },
+        "Aron": {
+          "points": 137.68,
+          "perfect": 147.28,
+          "starters": [
+            {
+              "slot": "QB",
+              "name": "Caleb Williams",
+              "pos": "QB",
+              "pts": 13.98,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Jonathan Taylor",
+              "pos": "RB",
+              "pts": 1.7,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "D'Andre Swift",
+              "pos": "RB",
+              "pts": 25.9,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Jaxon Smith-Njigba",
+              "pos": "WR",
+              "pts": 18.8,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Tee Higgins",
+              "pos": "WR",
+              "pts": 28.5,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "TE",
+              "name": "Hunter Henry",
+              "pos": "TE",
+              "pts": 3,
+              "inj": null,
+              "snap": {
+                "pct": 13,
+                "avg": 74
+              }
+            },
+            {
+              "slot": "WRRB_FLEX",
+              "name": "Braelon Allen",
+              "pos": "RB",
+              "pts": 22.3,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "K",
+              "name": "Spencer Shrader",
+              "pos": "K",
+              "pts": 1,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DL",
+              "name": "Aidan Hutchinson",
+              "pos": "DL",
+              "pts": 5,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "LB",
+              "name": "Alex Singleton",
+              "pos": "LB",
+              "pts": 15,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DB",
+              "name": "Brian Branch",
+              "pos": "DB",
+              "pts": 2.5,
+              "inj": null,
+              "snap": null
+            }
+          ],
+          "bench": [
+            {
+              "name": "Rashee Rice",
+              "pos": "WR",
+              "pts": 11.3
+            },
+            {
+              "name": "Denzel Boston",
+              "pos": "WR",
+              "pts": 3.7
+            },
+            {
+              "name": "Germie Bernard",
+              "pos": "WR",
+              "pts": 3
+            },
+            {
+              "name": "Myles Garrett",
+              "pos": "DE",
+              "pts": 0
+            },
+            {
+              "name": "Isaiah Likely",
+              "pos": "TE",
+              "pts": 0
+            },
+            {
+              "name": "Emeka Egbuka",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "Kyle Monangai",
+              "pos": "RB",
+              "pts": 0
+            },
+            {
+              "name": "Omar Cooper Jr.",
+              "pos": "WR",
+              "pts": 0
+            }
+          ]
+        },
+        "Lance": {
+          "points": 102.6,
+          "perfect": 114.89999999999999,
+          "starters": [
+            {
+              "slot": "QB",
+              "name": "Trevor Lawrence",
+              "pos": "QB",
+              "pts": 18.4,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "J.K. Dobbins",
+              "pos": "RB",
+              "pts": 1.3,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Jahmyr Gibbs",
+              "pos": "RB",
+              "pts": 23.8,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Jalen Coker",
+              "pos": "WR",
+              "pts": 7.6,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Drake London",
+              "pos": "WR",
+              "pts": 2.8,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "TE",
+              "name": "Dalton Kincaid",
+              "pos": "TE",
+              "pts": 14.6,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WRRB_FLEX",
+              "name": "Jameson Williams",
+              "pos": "WR",
+              "pts": 14,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "K",
+              "name": "Tyler Loop",
+              "pos": "K",
+              "pts": 1.6,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DL",
+              "name": "Andrew Van Ginkel",
+              "pos": "LB",
+              "pts": 10,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "LB",
+              "name": "Jack Campbell",
+              "pos": "LB",
+              "pts": 1.5,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DB",
+              "name": "Kyle Hamilton",
+              "pos": "DB",
+              "pts": 7,
+              "inj": null,
+              "snap": null
+            }
+          ],
+          "bench": [
+            {
+              "name": "Kenny Gainwell",
+              "pos": "RB",
+              "pts": 15
+            },
+            {
+              "name": "Dallas Goedert",
+              "pos": "TE",
+              "pts": 3.2
+            },
+            {
+              "name": "Zach Charbonnet",
+              "pos": "RB",
+              "pts": 2.9
+            },
+            {
+              "name": "Mike Evans",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "Lamar Jackson",
+              "pos": "QB",
+              "pts": 0
+            },
+            {
+              "name": "Travis Etienne Jr.",
+              "pos": "RB",
+              "pts": 0
+            },
+            {
+              "name": "Nico Collins",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "Woody Marks",
+              "pos": "RB",
+              "pts": 0
+            }
+          ]
+        },
+        "James": {
+          "points": 114.76,
+          "perfect": 134.66,
+          "starters": [
+            {
+              "slot": "QB",
+              "name": "Josh Allen",
+              "pos": "QB",
+              "pts": 25.56,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Chuba Hubbard",
+              "pos": "RB",
+              "pts": 17.9,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "James Cook III",
+              "pos": "RB",
+              "pts": 16.1,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Ja'Marr Chase",
+              "pos": "WR",
+              "pts": 22.1,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Zay Flowers",
+              "pos": "WR",
+              "pts": 0,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "TE",
+              "name": "Tyler Warren",
+              "pos": "TE",
+              "pts": 1.8,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WRRB_FLEX",
+              "name": "Kenneth Walker III",
+              "pos": "RB",
+              "pts": 8.4,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "K",
+              "name": "Chad Ryland",
+              "pos": "K",
+              "pts": 9.9,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DL",
+              "name": "Derrick Barnes",
+              "pos": "LB",
+              "pts": 0.5,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "LB",
+              "name": "Blake Cashman",
+              "pos": "LB",
+              "pts": 9.5,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DB",
+              "name": "Brandon Jones",
+              "pos": "DB",
+              "pts": 3,
+              "inj": null,
+              "snap": {
+                "pct": 35,
+                "avg": 99
+              }
+            }
+          ],
+          "bench": [
+            {
+              "name": "Michael Wilson",
+              "pos": "WR",
+              "pts": 19.8
+            },
+            {
+              "name": "Rhamondre Stevenson",
+              "pos": "RB",
+              "pts": 9
+            },
+            {
+              "name": "Kyle Pitts Sr.",
+              "pos": "TE",
+              "pts": 0.6
+            },
+            {
+              "name": "Ka'imi Fairbairn",
+              "pos": "K",
+              "pts": 0
+            },
+            {
+              "name": "Brock Purdy",
+              "pos": "QB",
+              "pts": 0
+            },
+            {
+              "name": "Devaughn Vele",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "Carnell Tate",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "De'Zhaun Stribling",
+              "pos": "WR",
+              "pts": 0
+            }
+          ]
+        },
+        "Zak": {
+          "points": 96.58,
+          "perfect": 113.58,
+          "starters": [
+            {
+              "slot": "QB",
+              "name": "Matthew Stafford",
+              "pos": "QB",
+              "pts": 7.28,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Bijan Robinson",
+              "pos": "RB",
+              "pts": 7.6,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Saquon Barkley",
+              "pos": "RB",
+              "pts": 11.4,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "George Pickens",
+              "pos": "WR",
+              "pts": 4.8,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "KC Concepcion Jr.",
+              "pos": "WR",
+              "pts": 3.7,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "TE",
+              "name": "Sam LaPorta",
+              "pos": "TE",
+              "pts": 3.5,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WRRB_FLEX",
+              "name": "DJ Moore",
+              "pos": "WR",
+              "pts": 11.6,
+              "inj": {
+                "status": "Questionable",
+                "injury": "Shoulder"
+              },
+              "snap": null
+            },
+            {
+              "slot": "K",
+              "name": "Chase McLaughlin",
+              "pos": "K",
+              "pts": 13.2,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DL",
+              "name": "Jeffery Simmons",
+              "pos": "DT",
+              "pts": 9.5,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "LB",
+              "name": "Foyesade Oluokun",
+              "pos": "LB",
+              "pts": 11,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DB",
+              "name": "Jeremy Chinn",
+              "pos": "DB",
+              "pts": 13,
+              "inj": null,
+              "snap": null
+            }
+          ],
+          "bench": [
+            {
+              "name": "Tony Pollard",
+              "pos": "RB",
+              "pts": 24.7
+            },
+            {
+              "name": "Jordan Addison",
+              "pos": "WR",
+              "pts": 9.6
+            },
+            {
+              "name": "Josh Downs",
+              "pos": "WR",
+              "pts": 8.3
+            },
+            {
+              "name": "Jordan Mason",
+              "pos": "RB",
+              "pts": 2
+            },
+            {
+              "name": "Davante Adams",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "Christian McCaffrey",
+              "pos": "RB",
+              "pts": 0
+            },
+            {
+              "name": "Tre Tucker",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "TreVeyon Henderson",
+              "pos": "RB",
+              "pts": 0
+            }
+          ]
+        },
+        "Jamie": {
+          "points": 110.06,
+          "perfect": 117.76,
+          "starters": [
+            {
+              "slot": "QB",
+              "name": "Bryce Young",
+              "pos": "QB",
+              "pts": 10.36,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Chase Brown",
+              "pos": "RB",
+              "pts": 8.1,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Omarion Hampton",
+              "pos": "RB",
+              "pts": 2.7,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Christian Watson",
+              "pos": "WR",
+              "pts": 9.3,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Ladd McConkey",
+              "pos": "WR",
+              "pts": 8.6,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "TE",
+              "name": "Brock Bowers",
+              "pos": "TE",
+              "pts": 21.2,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WRRB_FLEX",
+              "name": "Luther Burden III",
+              "pos": "WR",
+              "pts": 11.6,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "K",
+              "name": "Will Reichard",
+              "pos": "K",
+              "pts": 1,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DL",
+              "name": "Maxx Crosby",
+              "pos": "DE",
+              "pts": 6,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "LB",
+              "name": "Nakobe Dean",
+              "pos": "LB",
+              "pts": 9,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DB",
+              "name": "Amani Hooker",
+              "pos": "DB",
+              "pts": 22.2,
+              "inj": null,
+              "snap": null
+            }
+          ],
+          "bench": [
+            {
+              "name": "Jonah Coleman",
+              "pos": "RB",
+              "pts": 16.4
+            },
+            {
+              "name": "Brian Thomas Jr.",
+              "pos": "WR",
+              "pts": 7.2
+            },
+            {
+              "name": "Seth McGowan",
+              "pos": "RB",
+              "pts": 3.9
+            },
+            {
+              "name": "Elijah Mitchell",
+              "pos": "RB",
+              "pts": 3.7
+            },
+            {
+              "name": "Kimani Vidal",
+              "pos": "RB",
+              "pts": 3
+            },
+            {
+              "name": "Roschon Johnson",
+              "pos": "RB",
+              "pts": 2.8
+            },
+            {
+              "name": "DeVonta Smith",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "Malik Nabers",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "Jordyn Tyson",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "Zonovan Knight",
+              "pos": "RB",
+              "pts": -1.2
+            }
+          ]
+        },
+        "Nathan": {
+          "points": 120.18,
+          "perfect": 120.18,
+          "starters": [
+            {
+              "slot": "QB",
+              "name": "Jayden Daniels",
+              "pos": "QB",
+              "pts": 14.98,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Derrick Henry",
+              "pos": "RB",
+              "pts": 12,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Bhayshul Tuten",
+              "pos": "RB",
+              "pts": 28.9,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Matthew Golden",
+              "pos": "WR",
+              "pts": 13.9,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Parker Washington",
+              "pos": "WR",
+              "pts": 2.6,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "TE",
+              "name": "T.J. Hockenson",
+              "pos": "TE",
+              "pts": 11.8,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WRRB_FLEX",
+              "name": "Javonte Williams",
+              "pos": "RB",
+              "pts": 3.7,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "K",
+              "name": "Matt Gay",
+              "pos": "K",
+              "pts": 10.3,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DL",
+              "name": "Boye Mafe",
+              "pos": "DL",
+              "pts": 9,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "LB",
+              "name": "Josiah Trotter",
+              "pos": "LB",
+              "pts": 3.5,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DB",
+              "name": "Evan Williams",
+              "pos": "DB",
+              "pts": 9.5,
+              "inj": null,
+              "snap": null
+            }
+          ],
+          "bench": [
+            {
+              "name": "Jadarian Price",
+              "pos": "RB",
+              "pts": 3.7
+            },
+            {
+              "name": "George Kittle",
+              "pos": "TE",
+              "pts": 0
+            },
+            {
+              "name": "A.J. Brown",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "David Montgomery",
+              "pos": "RB",
+              "pts": 0
+            },
+            {
+              "name": "Chris Olave",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "Breece Hall",
+              "pos": "RB",
+              "pts": 0
+            },
+            {
+              "name": "Arvell Reese",
+              "pos": "LB",
+              "pts": 0
+            },
+            {
+              "name": "Kaelon Black",
+              "pos": "RB",
+              "pts": 0
+            }
+          ]
+        },
+        "Ben": {
+          "points": 135.78,
+          "perfect": 136.88000000000002,
+          "starters": [
+            {
+              "slot": "QB",
+              "name": "Joe Burrow",
+              "pos": "QB",
+              "pts": 38.48,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Josh Jacobs",
+              "pos": "RB",
+              "pts": 17.2,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "RB",
+              "name": "Jaylen Warren",
+              "pos": "RB",
+              "pts": 19.3,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "Garrett Wilson",
+              "pos": "WR",
+              "pts": 8.3,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WR",
+              "name": "CeeDee Lamb",
+              "pos": "WR",
+              "pts": 5.8,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "TE",
+              "name": "Trey McBride",
+              "pos": "TE",
+              "pts": 13.2,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "WRRB_FLEX",
+              "name": "Puka Nacua",
+              "pos": "WR",
+              "pts": 14,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "K",
+              "name": "Cam Little",
+              "pos": "K",
+              "pts": 6,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DL",
+              "name": "Will Anderson Jr.",
+              "pos": "DL",
+              "pts": 0,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "LB",
+              "name": "Jordyn Brooks",
+              "pos": "LB",
+              "pts": 9.5,
+              "inj": null,
+              "snap": null
+            },
+            {
+              "slot": "DB",
+              "name": "Travis Hunter",
+              "pos": "DB",
+              "pts": 4,
+              "inj": null,
+              "snap": null
+            }
+          ],
+          "bench": [
+            {
+              "name": "Ollie Gordon II",
+              "pos": "RB",
+              "pts": 6.9
+            },
+            {
+              "name": "Quinshon Judkins",
+              "pos": "RB",
+              "pts": 4.9
+            },
+            {
+              "name": "Jeremiyah Love",
+              "pos": "RB",
+              "pts": 2.3
+            },
+            {
+              "name": "DK Metcalf",
+              "pos": "WR",
+              "pts": 1.4
+            },
+            {
+              "name": "Tyreek Hill",
+              "pos": "WR",
+              "pts": 0
+            },
+            {
+              "name": "Emanuel Wilson",
+              "pos": "RB",
+              "pts": 0
+            },
+            {
+              "name": "Cam Skattebo",
+              "pos": "RB",
+              "pts": 0
+            }
+          ]
+        }
       }
     },
     "injuryData": true,
     "snapData": true,
     "waiverIntel": {
-      "generated": "2026-11-03T00:21:06.037Z",
-      "week": 8,
+      "generated": "2026-11-03T07:28:36.913Z",
+      "week": 9,
       "teams": [
         {
           "name": "Ethan",
@@ -10476,12 +11612,12 @@
           "needs": {
             "QB": 1.5,
             "RB": 0.75,
-            "WR": 0.64,
+            "WR": 0.5,
             "TE": 0,
-            "K": 2.17,
+            "K": 1.5,
             "DL": 3,
             "LB": 0,
-            "DB": 2.27
+            "DB": 2.22
           },
           "targets": [
             {
@@ -10497,37 +11633,37 @@
               "player": "Adonai Mitchell",
               "pos": "WR",
               "nfl": "NYJ",
-              "score": 3.9129066666666668,
+              "score": 3.3301333333333334,
               "lo": 13,
               "hi": 26,
-              "reason": "719544 adds (48h)"
+              "reason": "1022000 adds (48h)"
             },
             {
-              "player": "Tyler Bass",
-              "pos": "K",
-              "nfl": "BUF",
-              "score": 3.4220627810946933,
-              "lo": 8,
-              "hi": 17,
-              "reason": "needs K · 165930 adds (48h)"
+              "player": "Tyler Allgeier",
+              "pos": "RB",
+              "nfl": "ARI",
+              "score": 2.936475342465754,
+              "lo": 11,
+              "hi": 22,
+              "reason": "610635 adds (48h)"
             },
             {
-              "player": "Cameron Dicker",
-              "pos": "K",
+              "player": "Bo Nix",
+              "pos": "QB",
+              "nfl": "DEN",
+              "score": 2.905827005870842,
+              "lo": 9,
+              "hi": 18,
+              "reason": "needs QB · 57210 adds (48h)"
+            },
+            {
+              "player": "Justin Herbert",
+              "pos": "QB",
               "nfl": "LAC",
-              "score": 3.174773333333333,
-              "lo": 8,
-              "hi": 17,
-              "reason": "needs K"
-            },
-            {
-              "player": "Jason Myers",
-              "pos": "K",
-              "nfl": "SEA",
-              "score": 3.1286666666666663,
-              "lo": 8,
-              "hi": 17,
-              "reason": "needs K"
+              "score": 2.712,
+              "lo": 9,
+              "hi": 18,
+              "reason": "needs QB"
             }
           ]
         },
@@ -10539,60 +11675,60 @@
           "maxBid": 25,
           "claims": 11,
           "needs": {
-            "QB": 1.5,
+            "QB": 1.55,
             "RB": 1.5,
             "WR": 0.75,
-            "TE": 2.44,
-            "K": 1.5,
-            "DL": 1.59,
+            "TE": 2.33,
+            "K": 2.27,
+            "DL": 1.5,
             "LB": 1.5,
-            "DB": 2.23
+            "DB": 2.64
           },
           "targets": [
             {
               "player": "Tyler Allgeier",
               "pos": "RB",
               "nfl": "ARI",
-              "score": 5.660842654893554,
+              "score": 5.720406511296924,
               "lo": 6,
               "hi": 13,
-              "reason": "needs RB · 421190 adds (48h)"
+              "reason": "needs RB · 610635 adds (48h)"
             },
             {
               "player": "Emmett Johnson",
               "pos": "RB",
               "nfl": "KC",
-              "score": 4.917450203310582,
+              "score": 4.873279309731364,
               "lo": 6,
               "hi": 13,
-              "reason": "needs RB · 331416 adds (48h)"
-            },
-            {
-              "player": "Devin Singletary",
-              "pos": "RB",
-              "nfl": "NYG",
-              "score": 4.834834789305955,
-              "lo": 6,
-              "hi": 13,
-              "reason": "needs RB · 708660 adds (48h)"
+              "reason": "needs RB · 461529 adds (48h)"
             },
             {
               "player": "Brenton Strange",
               "pos": "TE",
               "nfl": "JAX",
-              "score": 4.7197714603087,
+              "score": 4.3236214315365,
               "lo": 5,
               "hi": 10,
-              "reason": "needs TE · 57915 adds (48h)"
+              "reason": "needs TE · 52812 adds (48h)"
             },
             {
-              "player": "Mason Taylor",
+              "player": "Harold Fannin Jr.",
               "pos": "TE",
-              "nfl": "NYJ",
-              "score": 4.700166244682239,
+              "nfl": "CLE",
+              "score": 4.279727272727273,
               "lo": 5,
               "hi": 10,
-              "reason": "needs TE · 83210 adds (48h)"
+              "reason": "needs TE"
+            },
+            {
+              "player": "Adonai Mitchell",
+              "pos": "WR",
+              "nfl": "NYJ",
+              "score": 4.257272727272728,
+              "lo": 8,
+              "hi": 15,
+              "reason": "1022000 adds (48h)"
             }
           ]
         },
@@ -10604,14 +11740,14 @@
           "maxBid": 37,
           "claims": 11,
           "needs": {
-            "QB": 2.53,
-            "RB": 0.75,
-            "WR": 1.47,
-            "TE": 0.86,
-            "K": 1.85,
+            "QB": 2.27,
+            "RB": 1.04,
+            "WR": 1.36,
+            "TE": 0,
+            "K": 2.47,
             "DL": 5,
             "LB": 0,
-            "DB": 1.5
+            "DB": 1.7
           },
           "targets": [
             {
@@ -10627,34 +11763,34 @@
               "player": "Adonai Mitchell",
               "pos": "WR",
               "nfl": "NYJ",
-              "score": 6.602421818181818,
+              "score": 6.192101818181819,
               "lo": 6,
               "hi": 13,
-              "reason": "needs WR · 719544 adds (48h)"
+              "reason": "needs WR · 1022000 adds (48h)"
+            },
+            {
+              "player": "Tyler Allgeier",
+              "pos": "RB",
+              "nfl": "ARI",
+              "score": 4.428865841190774,
+              "lo": 6,
+              "hi": 11,
+              "reason": "needs RB · 610635 adds (48h)"
             },
             {
               "player": "Bo Nix",
               "pos": "QB",
               "nfl": "DEN",
-              "score": 4.574090270504653,
+              "score": 4.148875225048924,
               "lo": 4,
               "hi": 9,
-              "reason": "needs QB · 40860 adds (48h)"
-            },
-            {
-              "player": "Sam Darnold",
-              "pos": "QB",
-              "nfl": "SEA",
-              "score": 4.281823887128514,
-              "lo": 4,
-              "hi": 9,
-              "reason": "needs QB · 48273 adds (48h)"
+              "reason": "needs QB · 57210 adds (48h)"
             },
             {
               "player": "Justin Herbert",
               "pos": "QB",
               "nfl": "LAC",
-              "score": 4.263866666666666,
+              "score": 3.8721333333333336,
               "lo": 4,
               "hi": 9,
               "reason": "needs QB"
@@ -10669,14 +11805,14 @@
           "maxBid": 23,
           "claims": 16,
           "needs": {
-            "QB": 0.09,
+            "QB": 0.01,
             "RB": 0,
             "WR": 1.5,
-            "TE": 0.6,
+            "TE": 1.78,
             "K": 0,
             "DL": 3,
-            "LB": 0.45,
-            "DB": 1.5
+            "LB": 0.69,
+            "DB": 2
           },
           "targets": [
             {
@@ -10686,16 +11822,7 @@
               "score": 7.225200000000001,
               "lo": 4,
               "hi": 8,
-              "reason": "needs WR · 719544 adds (48h)"
-            },
-            {
-              "player": "Ryan Flournoy",
-              "pos": "WR",
-              "nfl": "DAL",
-              "score": 4.411656629198492,
-              "lo": 3,
-              "hi": 6,
-              "reason": "needs WR · 332568 adds (48h)"
+              "reason": "needs WR · 1022000 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -10707,22 +11834,31 @@
               "reason": "needs DL"
             },
             {
+              "player": "Ryan Flournoy",
+              "pos": "WR",
+              "nfl": "DAL",
+              "score": 3.8273107632093932,
+              "lo": 3,
+              "hi": 6,
+              "reason": "needs WR · 349480 adds (48h)"
+            },
+            {
               "player": "Makai Lemon",
               "pos": "WR",
               "nfl": "PHI",
-              "score": 3.9096333211033656,
+              "score": 3.4824843052837577,
               "lo": 3,
               "hi": 6,
-              "reason": "needs WR · 171896 adds (48h)"
+              "reason": "needs WR · 152056 adds (48h)"
             },
             {
-              "player": "Chris Godwin Jr.",
-              "pos": "WR",
-              "nfl": "TB",
-              "score": 3.453898429005036,
+              "player": "Brenton Strange",
+              "pos": "TE",
+              "nfl": "JAX",
+              "score": 3.197178311806915,
               "lo": 2,
               "hi": 5,
-              "reason": "needs WR · 102024 adds (48h)"
+              "reason": "needs TE · 52812 adds (48h)"
             }
           ]
         },
@@ -10734,60 +11870,60 @@
           "maxBid": 7,
           "claims": 3,
           "needs": {
-            "QB": 1.57,
-            "RB": 0.9,
-            "WR": 0.75,
-            "TE": 2.04,
+            "QB": 2.07,
+            "RB": 0.89,
+            "WR": 1.03,
+            "TE": 3.11,
             "K": 1.5,
             "DL": 3,
-            "LB": 1.88,
+            "LB": 1.85,
             "DB": 1.5
           },
           "targets": [
             {
-              "player": "Tyler Allgeier",
-              "pos": "RB",
-              "nfl": "ARI",
-              "score": 4.42803692116118,
-              "lo": 2,
-              "hi": 5,
-              "reason": "421190 adds (48h)"
-            },
-            {
-              "player": "Jared Verse",
-              "pos": "DL",
-              "nfl": "CLE",
-              "score": 4.1712,
+              "player": "Brenton Strange",
+              "pos": "TE",
+              "nfl": "JAX",
+              "score": 4.933202734507502,
               "lo": 1,
               "hi": 4,
-              "reason": "needs DL"
+              "reason": "needs TE · 52812 adds (48h)"
             },
             {
-              "player": "Emmett Johnson",
-              "pos": "RB",
-              "nfl": "KC",
-              "score": 3.846538825700721,
-              "lo": 2,
-              "hi": 5,
-              "reason": "331416 adds (48h)"
+              "player": "Harold Fannin Jr.",
+              "pos": "TE",
+              "nfl": "CLE",
+              "score": 4.88312,
+              "lo": 1,
+              "hi": 4,
+              "reason": "needs TE"
             },
             {
-              "player": "Devin Singletary",
-              "pos": "RB",
-              "nfl": "NYG",
-              "score": 3.7819152129682134,
-              "lo": 2,
-              "hi": 5,
-              "reason": "708660 adds (48h)"
+              "player": "Mason Taylor",
+              "pos": "TE",
+              "nfl": "NYJ",
+              "score": 4.762829080234833,
+              "lo": 1,
+              "hi": 4,
+              "reason": "needs TE · 70145 adds (48h)"
+            },
+            {
+              "player": "AJ Barner",
+              "pos": "TE",
+              "nfl": "SEA",
+              "score": 4.760440078277886,
+              "lo": 1,
+              "hi": 4,
+              "reason": "needs TE · 56220 adds (48h)"
             },
             {
               "player": "Adonai Mitchell",
               "pos": "WR",
               "nfl": "NYJ",
-              "score": 3.7464,
+              "score": 4.74544,
               "lo": 2,
               "hi": 5,
-              "reason": "719544 adds (48h)"
+              "reason": "needs WR · 1022000 adds (48h)"
             }
           ]
         },
@@ -10799,13 +11935,13 @@
           "maxBid": 8,
           "claims": 3,
           "needs": {
-            "QB": 2.16,
-            "RB": 1.06,
+            "QB": 2.29,
+            "RB": 0.95,
             "WR": 1.5,
             "TE": 1.5,
-            "K": 1.5,
+            "K": 1.64,
             "DL": 3,
-            "LB": 1.8,
+            "LB": 1.55,
             "DB": 1.5
           },
           "targets": [
@@ -10816,43 +11952,43 @@
               "score": 6.4224000000000006,
               "lo": 3,
               "hi": 6,
-              "reason": "needs WR · 719544 adds (48h)"
-            },
-            {
-              "player": "Tyler Allgeier",
-              "pos": "RB",
-              "nfl": "ARI",
-              "score": 5.018441843982671,
-              "lo": 3,
-              "hi": 6,
-              "reason": "needs RB · 421190 adds (48h)"
+              "reason": "needs WR · 1022000 adds (48h)"
             },
             {
               "player": "Bo Nix",
               "pos": "QB",
               "nfl": "DEN",
-              "score": 4.638741723091292,
+              "score": 4.878022557077625,
               "lo": 2,
               "hi": 5,
-              "reason": "needs QB · 40860 adds (48h)"
+              "reason": "needs QB · 57210 adds (48h)"
             },
             {
-              "player": "Emmett Johnson",
+              "player": "Tyler Allgeier",
               "pos": "RB",
-              "nfl": "KC",
-              "score": 4.3594106691274845,
-              "lo": 2,
-              "hi": 5,
-              "reason": "needs RB · 331416 adds (48h)"
+              "nfl": "ARI",
+              "score": 4.661071972167862,
+              "lo": 3,
+              "hi": 6,
+              "reason": "610635 adds (48h)"
             },
             {
-              "player": "Sam Darnold",
+              "player": "Justin Herbert",
               "pos": "QB",
-              "nfl": "SEA",
-              "score": 4.342344366098529,
+              "nfl": "LAC",
+              "score": 4.552644444444445,
               "lo": 2,
               "hi": 5,
-              "reason": "needs QB · 48273 adds (48h)"
+              "reason": "needs QB"
+            },
+            {
+              "player": "Dak Prescott",
+              "pos": "QB",
+              "nfl": "DAL",
+              "score": 4.520413333333334,
+              "lo": 2,
+              "hi": 5,
+              "reason": "needs QB"
             }
           ]
         },
@@ -10864,13 +12000,13 @@
           "maxBid": 12,
           "claims": 8,
           "needs": {
-            "QB": 1.5,
-            "RB": 1.57,
-            "WR": 1.63,
-            "TE": 0.05,
-            "K": 1.65,
+            "QB": 1.54,
+            "RB": 1.53,
+            "WR": 1.85,
+            "TE": 0,
+            "K": 1.5,
             "DL": 1.5,
-            "LB": 0.12,
+            "LB": 0.5,
             "DB": 1.5
           },
           "targets": [
@@ -10878,46 +12014,46 @@
               "player": "Adonai Mitchell",
               "pos": "WR",
               "nfl": "NYJ",
-              "score": 7.31663,
+              "score": 8.15065,
               "lo": 1,
               "hi": 4,
-              "reason": "needs WR · 719544 adds (48h)"
+              "reason": "needs WR · 1022000 adds (48h)"
             },
             {
               "player": "Tyler Allgeier",
               "pos": "RB",
               "nfl": "ARI",
-              "score": 5.498722411082575,
+              "score": 5.437723089530334,
               "lo": 1,
               "hi": 4,
-              "reason": "needs RB · 421190 adds (48h)"
+              "reason": "needs RB · 610635 adds (48h)"
             },
             {
               "player": "Emmett Johnson",
               "pos": "RB",
               "nfl": "KC",
-              "score": 4.776619893321326,
+              "score": 4.632458090508807,
               "lo": 1,
               "hi": 4,
-              "reason": "needs RB · 331416 adds (48h)"
-            },
-            {
-              "player": "Devin Singletary",
-              "pos": "RB",
-              "nfl": "NYG",
-              "score": 4.696370492978888,
-              "lo": 1,
-              "hi": 4,
-              "reason": "needs RB · 708660 adds (48h)"
+              "reason": "needs RB · 461529 adds (48h)"
             },
             {
               "player": "Ryan Flournoy",
               "pos": "WR",
               "nfl": "DAL",
-              "score": 4.467483148271683,
+              "score": 4.317537296151338,
               "lo": 1,
               "hi": 4,
-              "reason": "needs WR · 332568 adds (48h)"
+              "reason": "needs WR · 349480 adds (48h)"
+            },
+            {
+              "player": "Makai Lemon",
+              "pos": "WR",
+              "nfl": "PHI",
+              "score": 3.9285432517938688,
+              "lo": 1,
+              "hi": 4,
+              "reason": "needs WR · 152056 adds (48h)"
             }
           ]
         },
@@ -10930,69 +12066,101 @@
           "claims": 6,
           "needs": {
             "QB": 1.5,
-            "RB": 0.97,
-            "WR": 0.05,
+            "RB": 0.89,
+            "WR": 0.02,
             "TE": 1.5,
-            "K": 2.28,
-            "DL": 1.5,
+            "K": 1.89,
+            "DL": 2.79,
             "LB": 1.5,
-            "DB": 1.5
+            "DB": 1.54
           },
           "targets": [
             {
-              "player": "Tyler Bass",
-              "pos": "K",
-              "nfl": "BUF",
-              "score": 4.170206061172075,
+              "player": "Jared Verse",
+              "pos": "DL",
+              "nfl": "CLE",
+              "score": 3.9057600000000003,
               "lo": 4,
               "hi": 8,
-              "reason": "needs K · 165930 adds (48h)"
+              "reason": "needs DL"
             },
             {
               "player": "Tyler Allgeier",
               "pos": "RB",
               "nfl": "ARI",
-              "score": 4.100546690533634,
+              "score": 3.8826729528158297,
               "lo": 5,
               "hi": 10,
-              "reason": "421190 adds (48h)"
+              "reason": "610635 adds (48h)"
             },
             {
-              "player": "Cameron Dicker",
+              "player": "Tyler Bass",
               "pos": "K",
-              "nfl": "LAC",
-              "score": 3.8688533333333326,
+              "nfl": "BUF",
+              "score": 3.38243,
               "lo": 4,
               "hi": 8,
-              "reason": "needs K"
-            },
-            {
-              "player": "Jason Myers",
-              "pos": "K",
-              "nfl": "SEA",
-              "score": 3.812666666666666,
-              "lo": 4,
-              "hi": 8,
-              "reason": "needs K"
+              "reason": "needs K · 209445 adds (48h)"
             },
             {
               "player": "Emmett Johnson",
               "pos": "RB",
               "nfl": "KC",
-              "score": 3.562055225049939,
+              "score": 3.307693208523592,
               "lo": 5,
               "hi": 10,
-              "reason": "331416 adds (48h)"
+              "reason": "461529 adds (48h)"
+            },
+            {
+              "player": "Cameron Dicker",
+              "pos": "K",
+              "nfl": "LAC",
+              "score": 3.284026666666667,
+              "lo": 4,
+              "hi": 8,
+              "reason": "needs K"
             }
           ]
         }
       ],
       "hot": [
         {
+          "player": "Tyler Allgeier",
+          "pos": "RB",
+          "nfl": "ARI",
+          "adds": 610635,
+          "by": [
+            {
+              "team": "Ethan",
+              "hi": 22
+            },
+            {
+              "team": "Aron",
+              "hi": 13
+            },
+            {
+              "team": "Lance",
+              "hi": 11
+            },
+            {
+              "team": "Jamie",
+              "hi": 6
+            },
+            {
+              "team": "Nathan",
+              "hi": 4
+            },
+            {
+              "team": "Ben",
+              "hi": 10
+            }
+          ]
+        },
+        {
           "player": "Adonai Mitchell",
           "pos": "WR",
           "nfl": "NYJ",
-          "adds": 719544,
+          "adds": 1022000,
           "by": [
             {
               "team": "Ethan",
@@ -11017,34 +12185,6 @@
           ]
         },
         {
-          "player": "Tyler Allgeier",
-          "pos": "RB",
-          "nfl": "ARI",
-          "adds": 421190,
-          "by": [
-            {
-              "team": "Aron",
-              "hi": 13
-            },
-            {
-              "team": "Zak",
-              "hi": 5
-            },
-            {
-              "team": "Jamie",
-              "hi": 6
-            },
-            {
-              "team": "Nathan",
-              "hi": 4
-            },
-            {
-              "team": "Ben",
-              "hi": 10
-            }
-          ]
-        },
-        {
           "player": "Jared Verse",
           "pos": "DL",
           "nfl": "CLE",
@@ -11063,8 +12203,8 @@
               "hi": 5
             },
             {
-              "team": "Zak",
-              "hi": 4
+              "team": "Ben",
+              "hi": 8
             }
           ]
         },
@@ -11072,15 +12212,11 @@
           "player": "Emmett Johnson",
           "pos": "RB",
           "nfl": "KC",
-          "adds": 331416,
+          "adds": 461529,
           "by": [
             {
               "team": "Aron",
               "hi": 13
-            },
-            {
-              "team": "Zak",
-              "hi": 5
             },
             {
               "team": "Nathan",
@@ -11089,46 +12225,18 @@
           ]
         },
         {
-          "player": "Tyler Bass",
-          "pos": "K",
-          "nfl": "BUF",
-          "adds": 165930,
-          "by": [
-            {
-              "team": "Ethan",
-              "hi": 17
-            },
-            {
-              "team": "Ben",
-              "hi": 8
-            }
-          ]
-        },
-        {
-          "player": "Bo Nix",
-          "pos": "QB",
-          "nfl": "DEN",
-          "adds": 40860,
-          "by": [
-            {
-              "team": "Lance",
-              "hi": 9
-            },
-            {
-              "team": "Jamie",
-              "hi": 5
-            }
-          ]
-        },
-        {
-          "player": "Devin Singletary",
-          "pos": "RB",
-          "nfl": "NYG",
-          "adds": 708660,
+          "player": "Brenton Strange",
+          "pos": "TE",
+          "nfl": "JAX",
+          "adds": 52812,
           "by": [
             {
               "team": "Aron",
-              "hi": 13
+              "hi": 10
+            },
+            {
+              "team": "Zak",
+              "hi": 4
             }
           ]
         },
@@ -11136,7 +12244,7 @@
           "player": "Ryan Flournoy",
           "pos": "WR",
           "nfl": "DAL",
-          "adds": 332568,
+          "adds": 349480,
           "by": [
             {
               "team": "James",
@@ -11145,14 +12253,50 @@
           ]
         },
         {
-          "player": "Cameron Dicker",
+          "player": "Tyler Bass",
           "pos": "K",
-          "nfl": "LAC",
-          "adds": 0,
+          "nfl": "BUF",
+          "adds": 209445,
           "by": [
             {
               "team": "Ben",
               "hi": 8
+            }
+          ]
+        },
+        {
+          "player": "Mason Taylor",
+          "pos": "TE",
+          "nfl": "NYJ",
+          "adds": 70145,
+          "by": [
+            {
+              "team": "Zak",
+              "hi": 4
+            }
+          ]
+        },
+        {
+          "player": "Bo Nix",
+          "pos": "QB",
+          "nfl": "DEN",
+          "adds": 57210,
+          "by": [
+            {
+              "team": "Jamie",
+              "hi": 5
+            }
+          ]
+        },
+        {
+          "player": "Harold Fannin Jr.",
+          "pos": "TE",
+          "nfl": "CLE",
+          "adds": 0,
+          "by": [
+            {
+              "team": "Zak",
+              "hi": 4
             }
           ]
         }
@@ -11162,39 +12306,49 @@
           "player": "Tyler Allgeier",
           "pos": "RB",
           "rivals": [
-            "Zak",
+            "Ethan",
+            "Lance",
             "Jamie",
             "Nathan",
             "Ben"
           ],
-          "beat": 11
+          "beat": 23
         },
         {
           "player": "Emmett Johnson",
           "pos": "RB",
           "rivals": [
-            "Zak",
             "Nathan"
           ],
-          "beat": 6
-        },
-        {
-          "player": "Devin Singletary",
-          "pos": "RB",
-          "rivals": [],
-          "beat": 1
+          "beat": 5
         },
         {
           "player": "Brenton Strange",
           "pos": "TE",
-          "rivals": [],
-          "beat": 1
+          "rivals": [
+            "Zak"
+          ],
+          "beat": 5
         },
         {
-          "player": "Mason Taylor",
+          "player": "Harold Fannin Jr.",
           "pos": "TE",
-          "rivals": [],
-          "beat": 1
+          "rivals": [
+            "Zak"
+          ],
+          "beat": 5
+        },
+        {
+          "player": "Adonai Mitchell",
+          "pos": "WR",
+          "rivals": [
+            "Ethan",
+            "Lance",
+            "James",
+            "Jamie",
+            "Nathan"
+          ],
+          "beat": 27
         }
       ],
       "pending": []
