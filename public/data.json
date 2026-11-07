@@ -11604,7 +11604,7 @@
     "injuryData": true,
     "snapData": true,
     "waiverIntel": {
-      "generated": "2026-11-07T15:20:10.303Z",
+      "generated": "2026-11-07T19:47:51.270Z",
       "week": 9,
       "teams": [
         {
@@ -11635,15 +11635,6 @@
               "reason": "needs DL"
             },
             {
-              "player": "Cairo Santos",
-              "pos": "K",
-              "nfl": "CHI",
-              "score": 3.2655896629105814,
-              "lo": 12,
-              "hi": 23,
-              "reason": "needs K · 338506 adds (48h)"
-            },
-            {
               "player": "Caleb Downs",
               "pos": "DB",
               "nfl": "DAL",
@@ -11653,12 +11644,21 @@
               "reason": "needs DB"
             },
             {
+              "player": "Cairo Santos",
+              "pos": "K",
+              "nfl": "CHI",
+              "score": 3.0397525837477204,
+              "lo": 11,
+              "hi": 22,
+              "reason": "needs K · 286475 adds (48h)"
+            },
+            {
               "player": "Roquan Smith",
               "pos": "LB",
               "nfl": "BAL",
               "score": 2.8224,
-              "lo": 10,
-              "hi": 19,
+              "lo": 11,
+              "hi": 21,
               "reason": "needs LB"
             },
             {
@@ -11666,8 +11666,8 @@
               "pos": "LB",
               "nfl": "CLE",
               "score": 2.8168,
-              "lo": 10,
-              "hi": 19,
+              "lo": 11,
+              "hi": 21,
               "reason": "needs LB"
             }
           ]
@@ -11694,28 +11694,28 @@
               "player": "Cairo Santos",
               "pos": "K",
               "nfl": "CHI",
-              "score": 4.662536352044551,
+              "score": 4.340091189017578,
               "lo": 6,
               "hi": 13,
-              "reason": "needs K · 338506 adds (48h)"
+              "reason": "needs K · 286475 adds (48h)"
             },
             {
               "player": "Caleb Downs",
               "pos": "DB",
               "nfl": "DAL",
               "score": 3.7811666666666666,
-              "lo": 5,
-              "hi": 10,
+              "lo": 6,
+              "hi": 11,
               "reason": "needs DB"
             },
             {
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 3.4428608472090225,
+              "score": 3.392048204600603,
               "lo": 6,
               "hi": 11,
-              "reason": "needs K · 63064 adds (48h)"
+              "reason": "needs K · 55104 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -11731,8 +11731,8 @@
               "pos": "K",
               "nfl": "SEA",
               "score": 3.2553333333333327,
-              "lo": 5,
-              "hi": 10,
+              "lo": 6,
+              "hi": 11,
               "reason": "needs K"
             }
           ]
@@ -11759,19 +11759,10 @@
               "player": "Cairo Santos",
               "pos": "K",
               "nfl": "CHI",
-              "score": 9.48684034016847,
+              "score": 8.830762714359695,
               "lo": 5,
               "hi": 10,
-              "reason": "needs K · 338506 adds (48h)"
-            },
-            {
-              "player": "Jake Bates",
-              "pos": "K",
-              "nfl": "DET",
-              "score": 7.005172443656491,
-              "lo": 4,
-              "hi": 9,
-              "reason": "needs K · 63064 adds (48h)"
+              "reason": "needs K · 286475 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -11781,6 +11772,15 @@
               "lo": 4,
               "hi": 9,
               "reason": "needs DL"
+            },
+            {
+              "player": "Jake Bates",
+              "pos": "K",
+              "nfl": "DET",
+              "score": 6.9017842035891,
+              "lo": 4,
+              "hi": 9,
+              "reason": "needs K · 55104 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -11824,10 +11824,10 @@
               "player": "Adonai Mitchell",
               "pos": "WR",
               "nfl": "NYJ",
-              "score": 4.440133230832214,
+              "score": 4.228905969714548,
               "lo": 3,
               "hi": 6,
-              "reason": "needs WR · 499536 adds (48h)"
+              "reason": "needs WR · 460752 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -11842,19 +11842,19 @@
               "player": "Kyle Pitts Sr.",
               "pos": "TE",
               "nfl": "ATL",
-              "score": 3.3740448582448463,
+              "score": 3.361212386192993,
               "lo": 2,
               "hi": 5,
-              "reason": "needs TE · 39809 adds (48h)"
+              "reason": "needs TE · 38038 adds (48h)"
             },
             {
               "player": "Cairo Santos",
               "pos": "K",
               "nfl": "CHI",
-              "score": 3.3515262329871756,
+              "score": 3.1197460727937125,
               "lo": 3,
               "hi": 6,
-              "reason": "needs K · 338506 adds (48h)"
+              "reason": "needs K · 286475 adds (48h)"
             },
             {
               "player": "Oronde Gadsden",
@@ -11889,10 +11889,10 @@
               "player": "Kyle Pitts Sr.",
               "pos": "TE",
               "nfl": "ATL",
-              "score": 5.126744051728039,
+              "score": 5.10724555585,
               "lo": 9,
               "hi": 18,
-              "reason": "needs TE · 39809 adds (48h)"
+              "reason": "needs TE · 38038 adds (48h)"
             },
             {
               "player": "Oronde Gadsden",
@@ -11981,10 +11981,10 @@
               "player": "C.J. Stroud",
               "pos": "QB",
               "nfl": "HOU",
-              "score": 4.571924268106278,
+              "score": 4.477878974793846,
               "lo": 4,
               "hi": 9,
-              "reason": "needs QB · 65905 adds (48h)"
+              "reason": "needs QB · 52969 adds (48h)"
             },
             {
               "player": "Jared Goff",
@@ -12019,10 +12019,10 @@
               "player": "Adonai Mitchell",
               "pos": "WR",
               "nfl": "NYJ",
-              "score": 5.278237744112316,
+              "score": 5.027139940452994,
               "lo": 1,
               "hi": 4,
-              "reason": "needs WR · 499536 adds (48h)"
+              "reason": "needs WR · 460752 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -12034,31 +12034,31 @@
               "reason": "needs DL"
             },
             {
-              "player": "Cairo Santos",
-              "pos": "K",
-              "nfl": "CHI",
-              "score": 3.5921486292016396,
-              "lo": 1,
-              "hi": 4,
-              "reason": "needs K · 338506 adds (48h)"
-            },
-            {
               "player": "Malik Washington",
               "pos": "WR",
               "nfl": "MIA",
-              "score": 3.5708073788589063,
+              "score": 3.4594819830296233,
               "lo": 1,
               "hi": 4,
-              "reason": "needs WR · 178056 adds (48h)"
+              "reason": "needs WR · 159792 adds (48h)"
+            },
+            {
+              "player": "Rome Odunze",
+              "pos": "WR",
+              "nfl": "CHI",
+              "score": 3.3740666666666668,
+              "lo": 1,
+              "hi": 4,
+              "reason": "needs WR"
             },
             {
               "player": "Khalil Shakir",
               "pos": "WR",
               "nfl": "BUF",
-              "score": 3.4021580494972814,
+              "score": 3.3607648703839383,
               "lo": 1,
               "hi": 4,
-              "reason": "needs WR · 74448 adds (48h)"
+              "reason": "needs WR · 67860 adds (48h)"
             }
           ]
         },
@@ -12084,10 +12084,10 @@
               "player": "Cairo Santos",
               "pos": "K",
               "nfl": "CHI",
-              "score": 4.540724674142332,
+              "score": 4.226703592639687,
               "lo": 6,
               "hi": 13,
-              "reason": "needs K · 338506 adds (48h)"
+              "reason": "needs K · 286475 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -12102,10 +12102,10 @@
               "player": "Jake Bates",
               "pos": "K",
               "nfl": "DET",
-              "score": 3.3529139545915556,
+              "score": 3.303428824046836,
               "lo": 6,
               "hi": 11,
-              "reason": "needs K · 63064 adds (48h)"
+              "reason": "needs K · 55104 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -12129,34 +12129,6 @@
         }
       ],
       "hot": [
-        {
-          "player": "Cairo Santos",
-          "pos": "K",
-          "nfl": "CHI",
-          "adds": 338506,
-          "by": [
-            {
-              "team": "Ethan",
-              "hi": 23
-            },
-            {
-              "team": "Aron",
-              "hi": 13
-            },
-            {
-              "team": "Lance",
-              "hi": 10
-            },
-            {
-              "team": "Nathan",
-              "hi": 4
-            },
-            {
-              "team": "Ben",
-              "hi": 13
-            }
-          ]
-        },
         {
           "player": "Jared Verse",
           "pos": "DL",
@@ -12186,10 +12158,34 @@
           ]
         },
         {
+          "player": "Cairo Santos",
+          "pos": "K",
+          "nfl": "CHI",
+          "adds": 286475,
+          "by": [
+            {
+              "team": "Ethan",
+              "hi": 22
+            },
+            {
+              "team": "Aron",
+              "hi": 13
+            },
+            {
+              "team": "Lance",
+              "hi": 10
+            },
+            {
+              "team": "Ben",
+              "hi": 13
+            }
+          ]
+        },
+        {
           "player": "Jake Bates",
           "pos": "K",
           "nfl": "DET",
-          "adds": 63064,
+          "adds": 55104,
           "by": [
             {
               "team": "Aron",
@@ -12209,7 +12205,7 @@
           "player": "Adonai Mitchell",
           "pos": "WR",
           "nfl": "NYJ",
-          "adds": 499536,
+          "adds": 460752,
           "by": [
             {
               "team": "James",
@@ -12225,7 +12221,7 @@
           "player": "Kyle Pitts Sr.",
           "pos": "TE",
           "nfl": "ATL",
-          "adds": 39809,
+          "adds": 38038,
           "by": [
             {
               "team": "James",
@@ -12249,7 +12245,19 @@
             },
             {
               "team": "Aron",
-              "hi": 10
+              "hi": 11
+            }
+          ]
+        },
+        {
+          "player": "Malik Washington",
+          "pos": "WR",
+          "nfl": "MIA",
+          "adds": 159792,
+          "by": [
+            {
+              "team": "Nathan",
+              "hi": 4
             }
           ]
         },
@@ -12288,18 +12296,6 @@
               "hi": 9
             }
           ]
-        },
-        {
-          "player": "Bo Nix",
-          "pos": "QB",
-          "nfl": "DEN",
-          "adds": 0,
-          "by": [
-            {
-              "team": "Jamie",
-              "hi": 9
-            }
-          ]
         }
       ],
       "mine": [
@@ -12309,10 +12305,9 @@
           "rivals": [
             "Ethan",
             "Lance",
-            "Nathan",
             "Ben"
           ],
-          "beat": 24
+          "beat": 23
         },
         {
           "player": "Caleb Downs",
