@@ -11604,7 +11604,7 @@
     "injuryData": true,
     "snapData": true,
     "waiverIntel": {
-      "generated": "2026-11-08T03:54:35.754Z",
+      "generated": "2026-11-08T10:59:10.307Z",
       "week": 9,
       "teams": [
         {
@@ -11703,10 +11703,10 @@
               "player": "Cairo Santos",
               "pos": "K",
               "nfl": "CHI",
-              "score": 3.3758433421907292,
+              "score": 3.31044832628546,
               "lo": 6,
               "hi": 11,
-              "reason": "needs K · 104426 adds (48h)"
+              "reason": "needs K · 97937 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -11730,10 +11730,10 @@
               "player": "Kyle Pitts Sr.",
               "pos": "TE",
               "nfl": "ATL",
-              "score": 3.1330499734278128,
+              "score": 3.1322600177502,
               "lo": 6,
               "hi": 13,
-              "reason": "needs TE · 29722 adds (48h)"
+              "reason": "needs TE · 29988 adds (48h)"
             }
           ]
         },
@@ -11768,10 +11768,10 @@
               "player": "Cairo Santos",
               "pos": "K",
               "nfl": "CHI",
-              "score": 6.868812247810254,
+              "score": 6.735753322776025,
               "lo": 5,
               "hi": 10,
-              "reason": "needs K · 104426 adds (48h)"
+              "reason": "needs K · 97937 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -11796,8 +11796,8 @@
               "pos": "DB",
               "nfl": "DAL",
               "score": 5.247333333333334,
-              "lo": 4,
-              "hi": 9,
+              "lo": 5,
+              "hi": 10,
               "reason": "needs DB"
             }
           ]
@@ -11833,27 +11833,27 @@
               "player": "Adonai Mitchell",
               "pos": "WR",
               "nfl": "NYJ",
-              "score": 3.8835654095380177,
+              "score": 3.8081011420655795,
               "lo": 3,
               "hi": 6,
-              "reason": "needs WR · 371784 adds (48h)"
+              "reason": "needs WR · 375160 adds (48h)"
             },
             {
               "player": "Kyle Pitts Sr.",
               "pos": "TE",
               "nfl": "ATL",
-              "score": 3.3244556642269982,
+              "score": 3.323617448223678,
               "lo": 3,
               "hi": 6,
-              "reason": "needs TE · 29722 adds (48h)"
+              "reason": "needs TE · 29988 adds (48h)"
             },
             {
               "player": "Oronde Gadsden",
               "pos": "TE",
               "nfl": "LAC",
               "score": 3.094018245614035,
-              "lo": 2,
-              "hi": 5,
+              "lo": 3,
+              "hi": 6,
               "reason": "needs TE"
             },
             {
@@ -11889,10 +11889,10 @@
               "player": "Kyle Pitts Sr.",
               "pos": "TE",
               "nfl": "ATL",
-              "score": 5.051394992618837,
+              "score": 5.0501213524955935,
               "lo": 9,
               "hi": 18,
-              "reason": "needs TE · 29722 adds (48h)"
+              "reason": "needs TE · 29988 adds (48h)"
             },
             {
               "player": "Oronde Gadsden",
@@ -11972,7 +11972,7 @@
               "player": "Bo Nix",
               "pos": "QB",
               "nfl": "DEN",
-              "score": 4.608128,
+              "score": 4.591552,
               "lo": 5,
               "hi": 10,
               "reason": "needs QB"
@@ -12019,10 +12019,10 @@
               "player": "Adonai Mitchell",
               "pos": "WR",
               "nfl": "NYJ",
-              "score": 4.61661406554473,
+              "score": 4.526905418484572,
               "lo": 1,
               "hi": 4,
-              "reason": "needs WR · 371784 adds (48h)"
+              "reason": "needs WR · 375160 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -12046,19 +12046,19 @@
               "player": "Makai Lemon",
               "pos": "WR",
               "nfl": "PHI",
-              "score": 3.3585278316251217,
+              "score": 3.3494204185964422,
               "lo": 1,
               "hi": 4,
-              "reason": "needs WR · 27232 adds (48h)"
+              "reason": "needs WR · 26940 adds (48h)"
             },
             {
               "player": "Chris Godwin Jr.",
               "pos": "WR",
               "nfl": "TB",
-              "score": 3.3523955299675228,
+              "score": 3.3479944420495764,
               "lo": 1,
               "hi": 4,
-              "reason": "needs WR · 24738 adds (48h)"
+              "reason": "needs WR · 25296 adds (48h)"
             }
           ]
         },
@@ -12093,10 +12093,10 @@
               "player": "Cairo Santos",
               "pos": "K",
               "nfl": "CHI",
-              "score": 3.2876473238010884,
+              "score": 3.2239607935809484,
               "lo": 6,
               "hi": 11,
-              "reason": "needs K · 104426 adds (48h)"
+              "reason": "needs K · 97937 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -12161,7 +12161,7 @@
           "player": "Cairo Santos",
           "pos": "K",
           "nfl": "CHI",
-          "adds": 104426,
+          "adds": 97937,
           "by": [
             {
               "team": "Aron",
@@ -12201,7 +12201,7 @@
           "player": "Adonai Mitchell",
           "pos": "WR",
           "nfl": "NYJ",
-          "adds": 371784,
+          "adds": 375160,
           "by": [
             {
               "team": "James",
@@ -12217,7 +12217,7 @@
           "player": "Kyle Pitts Sr.",
           "pos": "TE",
           "nfl": "ATL",
-          "adds": 29722,
+          "adds": 29988,
           "by": [
             {
               "team": "James",
