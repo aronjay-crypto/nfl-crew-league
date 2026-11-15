@@ -12729,7 +12729,7 @@
     "injuryData": true,
     "snapData": true,
     "waiverIntel": {
-      "generated": "2026-11-14T20:17:59.786Z",
+      "generated": "2026-11-15T00:37:19.776Z",
       "week": 10,
       "teams": [
         {
@@ -12756,7 +12756,7 @@
               "nfl": "CLE",
               "score": 4.1712,
               "lo": 11,
-              "hi": 22,
+              "hi": 21,
               "reason": "needs DL"
             },
             {
@@ -12765,7 +12765,7 @@
               "nfl": "DAL",
               "score": 3.5434933333333336,
               "lo": 11,
-              "hi": 22,
+              "hi": 21,
               "reason": "needs DB"
             },
             {
@@ -12816,40 +12816,40 @@
           },
           "targets": [
             {
-              "player": "Darren Waller",
+              "player": "Kyle Pitts Sr.",
               "pos": "TE",
-              "nfl": "CAR",
-              "score": 4.615433167806091,
+              "nfl": "ATL",
+              "score": 4.009565711136904,
               "lo": 6,
-              "hi": 13,
-              "reason": "needs TE · 742248 adds (48h)"
+              "hi": 11,
+              "reason": "needs TE · 36911 adds (48h)"
             },
             {
               "player": "Brenton Strange",
               "pos": "TE",
               "nfl": "JAX",
-              "score": 4.123512597323391,
+              "score": 4.001321895114487,
               "lo": 6,
               "hi": 11,
-              "reason": "needs TE · 133515 adds (48h)"
+              "reason": "needs TE · 113787 adds (48h)"
             },
             {
               "player": "Hunter Henry",
               "pos": "TE",
               "nfl": "NE",
-              "score": 4.029189144482555,
+              "score": 3.9976604551369985,
               "lo": 6,
               "hi": 11,
-              "reason": "needs TE · 85842 adds (48h)"
+              "reason": "needs TE · 86991 adds (48h)"
             },
             {
-              "player": "Kyle Pitts Sr.",
+              "player": "Darren Waller",
               "pos": "TE",
-              "nfl": "ATL",
-              "score": 3.8840666666666666,
+              "nfl": "CAR",
+              "score": 3.8781815975519676,
               "lo": 6,
               "hi": 11,
-              "reason": "needs TE"
+              "reason": "needs TE · 615528 adds (48h)"
             },
             {
               "player": "Oronde Gadsden",
@@ -12871,7 +12871,7 @@
           "claims": 14,
           "needs": {
             "QB": 0.06,
-            "RB": 0.98,
+            "RB": 0.23,
             "WR": 1.52,
             "TE": 1.5,
             "K": 2.9,
@@ -12888,15 +12888,6 @@
               "lo": 5,
               "hi": 10,
               "reason": "needs DL"
-            },
-            {
-              "player": "Chris Boswell",
-              "pos": "K",
-              "nfl": "PIT",
-              "score": 4.484975036139967,
-              "lo": 5,
-              "hi": 10,
-              "reason": "needs K · 79400 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -12917,13 +12908,22 @@
               "reason": "needs K"
             },
             {
-              "player": "Tyler Bass",
+              "player": "Chris Boswell",
               "pos": "K",
-              "nfl": "BUF",
-              "score": 3.6178328098581756,
+              "nfl": "PIT",
+              "score": 4.320176564139276,
+              "lo": 5,
+              "hi": 10,
+              "reason": "needs K · 50408 adds (48h)"
+            },
+            {
+              "player": "Charlie Smyth",
+              "pos": "K",
+              "nfl": "NO",
+              "score": 3.455209961860503,
               "lo": 4,
               "hi": 9,
-              "reason": "needs K · 159970 adds (48h)"
+              "reason": "needs K · 42680 adds (48h)"
             }
           ]
         },
@@ -12949,28 +12949,28 @@
               "player": "Chimere Dike",
               "pos": "WR",
               "nfl": "TEN",
-              "score": 6.583768213870871,
+              "score": 6.862899854827293,
               "lo": 3,
               "hi": 6,
-              "reason": "needs WR · 438885 adds (48h)"
+              "reason": "needs WR · 551655 adds (48h)"
             },
             {
               "player": "Khalil Shakir",
               "pos": "WR",
               "nfl": "BUF",
-              "score": 5.940090969567681,
-              "lo": 3,
-              "hi": 6,
-              "reason": "needs WR · 211446 adds (48h)"
+              "score": 5.601668934240364,
+              "lo": 2,
+              "hi": 5,
+              "reason": "needs WR · 164997 adds (48h)"
             },
             {
               "player": "Jakobi Meyers",
               "pos": "WR",
               "nfl": "JAX",
-              "score": 5.612145138707214,
+              "score": 5.547373426595801,
               "lo": 2,
               "hi": 5,
-              "reason": "needs WR · 66942 adds (48h)"
+              "reason": "needs WR · 61266 adds (48h)"
             },
             {
               "player": "Courtland Sutton",
@@ -13011,40 +13011,40 @@
           },
           "targets": [
             {
-              "player": "Darren Waller",
+              "player": "Kyle Pitts Sr.",
               "pos": "TE",
-              "nfl": "CAR",
-              "score": 5.168245782275195,
-              "lo": 13,
-              "hi": 24,
-              "reason": "needs TE · 742248 adds (48h)"
+              "nfl": "ATL",
+              "score": 4.489810668234372,
+              "lo": 11,
+              "hi": 22,
+              "reason": "needs TE · 36911 adds (48h)"
             },
             {
               "player": "Brenton Strange",
               "pos": "TE",
               "nfl": "JAX",
-              "score": 4.617405520662195,
-              "lo": 12,
-              "hi": 23,
-              "reason": "needs TE · 133515 adds (48h)"
+              "score": 4.480579450743259,
+              "lo": 11,
+              "hi": 22,
+              "reason": "needs TE · 113787 adds (48h)"
             },
             {
               "player": "Hunter Henry",
               "pos": "TE",
               "nfl": "NE",
-              "score": 4.511784494511359,
-              "lo": 12,
-              "hi": 23,
-              "reason": "needs TE · 85842 adds (48h)"
-            },
-            {
-              "player": "Kyle Pitts Sr.",
-              "pos": "TE",
-              "nfl": "ATL",
-              "score": 4.349279999999999,
+              "score": 4.476479462501049,
               "lo": 11,
               "hi": 22,
-              "reason": "needs TE"
+              "reason": "needs TE · 86991 adds (48h)"
+            },
+            {
+              "player": "Darren Waller",
+              "pos": "TE",
+              "nfl": "CAR",
+              "score": 4.342690047871,
+              "lo": 11,
+              "hi": 22,
+              "reason": "needs TE · 615528 adds (48h)"
             },
             {
               "player": "Oronde Gadsden",
@@ -13076,15 +13076,6 @@
           },
           "targets": [
             {
-              "player": "Fernando Mendoza",
-              "pos": "QB",
-              "nfl": "LV",
-              "score": 6.194824851839837,
-              "lo": 5,
-              "hi": 10,
-              "reason": "needs QB · 183976 adds (48h)"
-            },
-            {
               "player": "Justin Herbert",
               "pos": "QB",
               "nfl": "LAC",
@@ -13092,15 +13083,6 @@
               "lo": 5,
               "hi": 10,
               "reason": "needs QB"
-            },
-            {
-              "player": "Tyler Shough",
-              "pos": "QB",
-              "nfl": "NO",
-              "score": 5.939606806472654,
-              "lo": 5,
-              "hi": 10,
-              "reason": "needs QB · 93856 adds (48h)"
             },
             {
               "player": "Dak Prescott",
@@ -13119,6 +13101,24 @@
               "lo": 5,
               "hi": 10,
               "reason": "needs QB"
+            },
+            {
+              "player": "Fernando Mendoza",
+              "pos": "QB",
+              "nfl": "LV",
+              "score": 5.830265293680343,
+              "lo": 5,
+              "hi": 10,
+              "reason": "needs QB · 132368 adds (48h)"
+            },
+            {
+              "player": "Tyler Shough",
+              "pos": "QB",
+              "nfl": "NO",
+              "score": 5.774963318496122,
+              "lo": 5,
+              "hi": 10,
+              "reason": "needs QB · 71856 adds (48h)"
             }
           ]
         },
@@ -13141,15 +13141,6 @@
           },
           "targets": [
             {
-              "player": "Chris Boswell",
-              "pos": "K",
-              "nfl": "PIT",
-              "score": 4.837657163981882,
-              "lo": 1,
-              "hi": 4,
-              "reason": "needs K · 79400 adds (48h)"
-            },
-            {
               "player": "Cameron Dicker",
               "pos": "K",
               "nfl": "LAC",
@@ -13168,6 +13159,15 @@
               "reason": "needs K"
             },
             {
+              "player": "Chris Boswell",
+              "pos": "K",
+              "nfl": "PIT",
+              "score": 4.659899539410227,
+              "lo": 1,
+              "hi": 4,
+              "reason": "needs K · 50408 adds (48h)"
+            },
+            {
               "player": "Jared Verse",
               "pos": "DL",
               "nfl": "CLE",
@@ -13177,13 +13177,13 @@
               "reason": "needs DL"
             },
             {
-              "player": "Tyler Bass",
+              "player": "Charlie Smyth",
               "pos": "K",
-              "nfl": "BUF",
-              "score": 3.902326026269751,
+              "nfl": "NO",
+              "score": 3.726915108861352,
               "lo": 1,
               "hi": 4,
-              "reason": "needs K · 159970 adds (48h)"
+              "reason": "needs K · 42680 adds (48h)"
             }
           ]
         },
@@ -13206,15 +13206,6 @@
           },
           "targets": [
             {
-              "player": "Justice Hill",
-              "pos": "RB",
-              "nfl": "BAL",
-              "score": 4.03943842501997,
-              "lo": 7,
-              "hi": 14,
-              "reason": "needs RB · 420309 adds (48h)"
-            },
-            {
               "player": "Caleb Downs",
               "pos": "DB",
               "nfl": "DAL",
@@ -13227,10 +13218,19 @@
               "player": "Rico Dowdle",
               "pos": "RB",
               "nfl": "PIT",
-              "score": 3.9358785731975736,
+              "score": 3.8413800814335795,
               "lo": 7,
               "hi": 14,
-              "reason": "needs RB · 94675 adds (48h)"
+              "reason": "needs RB · 76090 adds (48h)"
+            },
+            {
+              "player": "Justice Hill",
+              "pos": "RB",
+              "nfl": "BAL",
+              "score": 3.684790795330478,
+              "lo": 6,
+              "hi": 13,
+              "reason": "needs RB · 358452 adds (48h)"
             },
             {
               "player": "J.K. Dobbins",
@@ -13255,26 +13255,10 @@
       ],
       "hot": [
         {
-          "player": "Darren Waller",
-          "pos": "TE",
-          "nfl": "CAR",
-          "adds": 742248,
-          "by": [
-            {
-              "team": "Aron",
-              "hi": 13
-            },
-            {
-              "team": "Zak",
-              "hi": 24
-            }
-          ]
-        },
-        {
           "player": "Brenton Strange",
           "pos": "TE",
           "nfl": "JAX",
-          "adds": 133515,
+          "adds": 113787,
           "by": [
             {
               "team": "Aron",
@@ -13282,7 +13266,7 @@
             },
             {
               "team": "Zak",
-              "hi": 23
+              "hi": 22
             }
           ]
         },
@@ -13290,7 +13274,7 @@
           "player": "Hunter Henry",
           "pos": "TE",
           "nfl": "NE",
-          "adds": 85842,
+          "adds": 86991,
           "by": [
             {
               "team": "Aron",
@@ -13298,15 +13282,31 @@
             },
             {
               "team": "Zak",
-              "hi": 23
+              "hi": 22
             }
           ]
         },
         {
-          "player": "Chris Boswell",
+          "player": "Kyle Pitts Sr.",
+          "pos": "TE",
+          "nfl": "ATL",
+          "adds": 36911,
+          "by": [
+            {
+              "team": "Aron",
+              "hi": 11
+            },
+            {
+              "team": "Zak",
+              "hi": 22
+            }
+          ]
+        },
+        {
+          "player": "Jason Myers",
           "pos": "K",
-          "nfl": "PIT",
-          "adds": 79400,
+          "nfl": "SEA",
+          "adds": 0,
           "by": [
             {
               "team": "Lance",
@@ -13342,7 +13342,7 @@
           "by": [
             {
               "team": "Ethan",
-              "hi": 22
+              "hi": 21
             },
             {
               "team": "Lance",
@@ -13358,7 +13358,7 @@
           "by": [
             {
               "team": "Ethan",
-              "hi": 22
+              "hi": 21
             },
             {
               "team": "Ben",
@@ -13370,7 +13370,7 @@
           "player": "Chimere Dike",
           "pos": "WR",
           "nfl": "TEN",
-          "adds": 438885,
+          "adds": 551655,
           "by": [
             {
               "team": "James",
@@ -13382,11 +13382,11 @@
           "player": "Justice Hill",
           "pos": "RB",
           "nfl": "BAL",
-          "adds": 420309,
+          "adds": 358452,
           "by": [
             {
               "team": "Ben",
-              "hi": 14
+              "hi": 13
             }
           ]
         },
@@ -13394,23 +13394,23 @@
           "player": "Khalil Shakir",
           "pos": "WR",
           "nfl": "BUF",
-          "adds": 211446,
+          "adds": 164997,
           "by": [
             {
               "team": "James",
-              "hi": 6
+              "hi": 5
             }
           ]
         }
       ],
       "mine": [
         {
-          "player": "Darren Waller",
+          "player": "Kyle Pitts Sr.",
           "pos": "TE",
           "rivals": [
             "Zak"
           ],
-          "beat": 25
+          "beat": 23
         },
         {
           "player": "Brenton Strange",
@@ -13418,7 +13418,7 @@
           "rivals": [
             "Zak"
           ],
-          "beat": 24
+          "beat": 23
         },
         {
           "player": "Hunter Henry",
@@ -13426,10 +13426,10 @@
           "rivals": [
             "Zak"
           ],
-          "beat": 24
+          "beat": 23
         },
         {
-          "player": "Kyle Pitts Sr.",
+          "player": "Darren Waller",
           "pos": "TE",
           "rivals": [],
           "beat": 1
