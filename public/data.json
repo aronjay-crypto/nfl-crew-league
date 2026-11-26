@@ -14998,7 +14998,7 @@
     "injuryData": true,
     "snapData": true,
     "waiverIntel": {
-      "generated": "2026-11-26T13:28:02.705Z",
+      "generated": "2026-11-26T22:44:58.300Z",
       "week": 12,
       "teams": [
         {
@@ -15012,7 +15012,7 @@
             "QB": 2.09,
             "RB": 0.81,
             "WR": 0.21,
-            "TE": 0,
+            "TE": 0.75,
             "K": 1.5,
             "DL": 3,
             "LB": 2.22,
@@ -15020,22 +15020,22 @@
           },
           "targets": [
             {
-              "player": "Fernando Mendoza",
-              "pos": "QB",
-              "nfl": "LV",
-              "score": 4.9221259422310935,
-              "lo": 11,
-              "hi": 21,
-              "reason": "needs QB · 435496 adds (48h)"
-            },
-            {
               "player": "Deshaun Watson",
               "pos": "QB",
               "nfl": "CLE",
-              "score": 4.796814969131462,
+              "score": 5.328620653644004,
+              "lo": 11,
+              "hi": 22,
+              "reason": "needs QB · 798000 adds (48h)"
+            },
+            {
+              "player": "Fernando Mendoza",
+              "pos": "QB",
+              "nfl": "LV",
+              "score": 4.9122633913775235,
               "lo": 11,
               "hi": 21,
-              "reason": "needs QB · 802008 adds (48h)"
+              "reason": "needs QB · 356768 adds (48h)"
             },
             {
               "player": "Jared Verse",
@@ -15047,6 +15047,15 @@
               "reason": "needs DL"
             },
             {
+              "player": "Tyler Shough",
+              "pos": "QB",
+              "nfl": "NO",
+              "score": 4.002876486915874,
+              "lo": 10,
+              "hi": 19,
+              "reason": "needs QB · 83224 adds (48h)"
+            },
+            {
               "player": "Bo Nix",
               "pos": "QB",
               "nfl": "DEN",
@@ -15054,15 +15063,6 @@
               "lo": 9,
               "hi": 18,
               "reason": "needs QB"
-            },
-            {
-              "player": "Tyler Shough",
-              "pos": "QB",
-              "nfl": "NO",
-              "score": 3.941537062865282,
-              "lo": 9,
-              "hi": 18,
-              "reason": "needs QB · 81816 adds (48h)"
             }
           ]
         },
@@ -15094,22 +15094,31 @@
               "reason": "needs DL"
             },
             {
-              "player": "Fernando Mendoza",
-              "pos": "QB",
-              "nfl": "LV",
-              "score": 5.075793858676674,
-              "lo": 6,
-              "hi": 13,
-              "reason": "needs QB · 435496 adds (48h)"
-            },
-            {
               "player": "Deshaun Watson",
               "pos": "QB",
               "nfl": "CLE",
-              "score": 4.946570698776055,
+              "score": 5.49497926433067,
               "lo": 6,
               "hi": 13,
-              "reason": "needs QB · 802008 adds (48h)"
+              "reason": "needs QB · 798000 adds (48h)"
+            },
+            {
+              "player": "Fernando Mendoza",
+              "pos": "QB",
+              "nfl": "LV",
+              "score": 5.065623400699578,
+              "lo": 6,
+              "hi": 13,
+              "reason": "needs QB · 356768 adds (48h)"
+            },
+            {
+              "player": "Tyler Shough",
+              "pos": "QB",
+              "nfl": "NO",
+              "score": 4.127845595133075,
+              "lo": 6,
+              "hi": 11,
+              "reason": "needs QB · 83224 adds (48h)"
             },
             {
               "player": "Bo Nix",
@@ -15119,15 +15128,6 @@
               "lo": 6,
               "hi": 11,
               "reason": "needs QB"
-            },
-            {
-              "player": "Tyler Shough",
-              "pos": "QB",
-              "nfl": "NO",
-              "score": 4.064591164924482,
-              "lo": 6,
-              "hi": 11,
-              "reason": "needs QB · 81816 adds (48h)"
             }
           ]
         },
@@ -15162,10 +15162,19 @@
               "player": "Kyle Pitts Sr.",
               "pos": "TE",
               "nfl": "ATL",
-              "score": 4.154831532912975,
+              "score": 4.185892333217664,
               "lo": 5,
               "hi": 10,
-              "reason": "needs TE · 106540 adds (48h)"
+              "reason": "needs TE · 95879 adds (48h)"
+            },
+            {
+              "player": "Brenton Strange",
+              "pos": "TE",
+              "nfl": "JAX",
+              "score": 4.009097550818894,
+              "lo": 5,
+              "hi": 10,
+              "reason": "needs TE · 118458 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -15175,15 +15184,6 @@
               "lo": 4,
               "hi": 9,
               "reason": "needs K"
-            },
-            {
-              "player": "Brenton Strange",
-              "pos": "TE",
-              "nfl": "JAX",
-              "score": 3.8843269396105846,
-              "lo": 5,
-              "hi": 10,
-              "reason": "needs TE · 104724 adds (48h)"
             },
             {
               "player": "Jason Myers",
@@ -15236,19 +15236,19 @@
               "player": "Kyle Pitts Sr.",
               "pos": "TE",
               "nfl": "ATL",
-              "score": 2.6068078712923746,
+              "score": 2.626295915050947,
               "lo": 2,
               "hi": 5,
-              "reason": "needs TE · 106540 adds (48h)"
+              "reason": "needs TE · 95879 adds (48h)"
             },
             {
               "player": "Brenton Strange",
               "pos": "TE",
               "nfl": "JAX",
-              "score": 2.4370889555059074,
+              "score": 2.515372036017657,
               "lo": 2,
               "hi": 5,
-              "reason": "needs TE · 104724 adds (48h)"
+              "reason": "needs TE · 118458 adds (48h)"
             },
             {
               "player": "Cameron Dicker",
@@ -15292,19 +15292,19 @@
               "player": "Kyle Pitts Sr.",
               "pos": "TE",
               "nfl": "ATL",
-              "score": 4.135470714959046,
+              "score": 4.166386777144888,
               "lo": 11,
               "hi": 22,
-              "reason": "needs TE · 106540 adds (48h)"
+              "reason": "needs TE · 95879 adds (48h)"
             },
             {
               "player": "Brenton Strange",
               "pos": "TE",
               "nfl": "JAX",
-              "score": 3.8662266276832287,
+              "score": 3.9904158287740716,
               "lo": 11,
-              "hi": 21,
-              "reason": "needs TE · 104724 adds (48h)"
+              "hi": 22,
+              "reason": "needs TE · 118458 adds (48h)"
             },
             {
               "player": "Oronde Gadsden",
@@ -15345,22 +15345,31 @@
           },
           "targets": [
             {
-              "player": "Fernando Mendoza",
-              "pos": "QB",
-              "nfl": "LV",
-              "score": 5.646208359846947,
-              "lo": 6,
-              "hi": 13,
-              "reason": "needs QB · 435496 adds (48h)"
-            },
-            {
               "player": "Deshaun Watson",
               "pos": "QB",
               "nfl": "CLE",
-              "score": 5.502463183027071,
+              "score": 6.112501556069553,
               "lo": 6,
               "hi": 13,
-              "reason": "needs QB · 802008 adds (48h)"
+              "reason": "needs QB · 798000 adds (48h)"
+            },
+            {
+              "player": "Fernando Mendoza",
+              "pos": "QB",
+              "nfl": "LV",
+              "score": 5.634894952239662,
+              "lo": 6,
+              "hi": 13,
+              "reason": "needs QB · 356768 adds (48h)"
+            },
+            {
+              "player": "Tyler Shough",
+              "pos": "QB",
+              "nfl": "NO",
+              "score": 4.59173027043973,
+              "lo": 6,
+              "hi": 11,
+              "reason": "needs QB · 83224 adds (48h)"
             },
             {
               "player": "Bo Nix",
@@ -15372,22 +15381,13 @@
               "reason": "needs QB"
             },
             {
-              "player": "Tyler Shough",
+              "player": "Geno Smith",
               "pos": "QB",
-              "nfl": "NO",
-              "score": 4.521367347400489,
+              "nfl": "NYJ",
+              "score": 4.555473490978578,
               "lo": 6,
               "hi": 11,
-              "reason": "needs QB · 81816 adds (48h)"
-            },
-            {
-              "player": "Jared Goff",
-              "pos": "QB",
-              "nfl": "DET",
-              "score": 4.424921904761906,
-              "lo": 6,
-              "hi": 11,
-              "reason": "needs QB"
+              "reason": "needs QB · 301188 adds (48h)"
             }
           ]
         },
@@ -15419,6 +15419,15 @@
               "reason": "needs DL"
             },
             {
+              "player": "Deshaun Watson",
+              "pos": "QB",
+              "nfl": "CLE",
+              "score": 4.033767549845735,
+              "lo": 1,
+              "hi": 4,
+              "reason": "needs QB · 798000 adds (48h)"
+            },
+            {
               "player": "Cameron Dicker",
               "pos": "K",
               "nfl": "LAC",
@@ -15440,19 +15449,10 @@
               "player": "Fernando Mendoza",
               "pos": "QB",
               "nfl": "LV",
-              "score": 3.726050922474262,
+              "score": 3.71858496830381,
               "lo": 1,
               "hi": 4,
-              "reason": "needs QB · 435496 adds (48h)"
-            },
-            {
-              "player": "Deshaun Watson",
-              "pos": "QB",
-              "nfl": "CLE",
-              "score": 3.631190475506018,
-              "lo": 1,
-              "hi": 4,
-              "reason": "needs QB · 802008 adds (48h)"
+              "reason": "needs QB · 356768 adds (48h)"
             }
           ]
         },
@@ -15478,19 +15478,19 @@
               "player": "Justice Hill",
               "pos": "RB",
               "nfl": "BAL",
-              "score": 7.1656931859783315,
-              "lo": 8,
-              "hi": 15,
-              "reason": "needs RB · 839718 adds (48h)"
+              "score": 6.980744890503153,
+              "lo": 7,
+              "hi": 14,
+              "reason": "needs RB · 656883 adds (48h)"
             },
             {
               "player": "Dylan Sampson",
               "pos": "RB",
               "nfl": "CLE",
-              "score": 5.862592505962731,
+              "score": 5.7825573315954735,
               "lo": 6,
               "hi": 13,
-              "reason": "needs RB · 330345 adds (48h)"
+              "reason": "needs RB · 257005 adds (48h)"
             },
             {
               "player": "Rico Dowdle",
@@ -15516,7 +15516,7 @@
               "nfl": "GB",
               "score": 4.752266666666666,
               "lo": 6,
-              "hi": 11,
+              "hi": 13,
               "reason": "needs RB"
             }
           ]
@@ -15559,11 +15559,11 @@
           "player": "Deshaun Watson",
           "pos": "QB",
           "nfl": "CLE",
-          "adds": 802008,
+          "adds": 798000,
           "by": [
             {
               "team": "Ethan",
-              "hi": 21
+              "hi": 22
             },
             {
               "team": "Aron",
@@ -15572,6 +15572,10 @@
             {
               "team": "Jamie",
               "hi": 13
+            },
+            {
+              "team": "Nathan",
+              "hi": 4
             }
           ]
         },
@@ -15579,7 +15583,7 @@
           "player": "Fernando Mendoza",
           "pos": "QB",
           "nfl": "LV",
-          "adds": 435496,
+          "adds": 356768,
           "by": [
             {
               "team": "Ethan",
@@ -15599,7 +15603,7 @@
           "player": "Kyle Pitts Sr.",
           "pos": "TE",
           "nfl": "ATL",
-          "adds": 106540,
+          "adds": 95879,
           "by": [
             {
               "team": "Lance",
@@ -15616,18 +15620,18 @@
           ]
         },
         {
-          "player": "Cameron Dicker",
-          "pos": "K",
-          "nfl": "LAC",
-          "adds": 0,
+          "player": "Brenton Strange",
+          "pos": "TE",
+          "nfl": "JAX",
+          "adds": 118458,
           "by": [
             {
               "team": "Lance",
-              "hi": 9
+              "hi": 10
             },
             {
-              "team": "Nathan",
-              "hi": 4
+              "team": "Zak",
+              "hi": 22
             }
           ]
         },
@@ -15635,11 +15639,11 @@
           "player": "Justice Hill",
           "pos": "RB",
           "nfl": "BAL",
-          "adds": 839718,
+          "adds": 656883,
           "by": [
             {
               "team": "Ben",
-              "hi": 15
+              "hi": 14
             }
           ]
         },
@@ -15647,7 +15651,7 @@
           "player": "Dylan Sampson",
           "pos": "RB",
           "nfl": "CLE",
-          "adds": 330345,
+          "adds": 257005,
           "by": [
             {
               "team": "Ben",
@@ -15656,26 +15660,14 @@
           ]
         },
         {
-          "player": "Brenton Strange",
-          "pos": "TE",
-          "nfl": "JAX",
-          "adds": 104724,
+          "player": "Tyler Shough",
+          "pos": "QB",
+          "nfl": "NO",
+          "adds": 83224,
           "by": [
             {
-              "team": "Zak",
-              "hi": 21
-            }
-          ]
-        },
-        {
-          "player": "Jason Myers",
-          "pos": "K",
-          "nfl": "SEA",
-          "adds": 0,
-          "by": [
-            {
-              "team": "Nathan",
-              "hi": 4
+              "team": "Jamie",
+              "hi": 11
             }
           ]
         },
@@ -15688,6 +15680,18 @@
             {
               "team": "Ben",
               "hi": 13
+            }
+          ]
+        },
+        {
+          "player": "Cameron Dicker",
+          "pos": "K",
+          "nfl": "LAC",
+          "adds": 0,
+          "by": [
+            {
+              "team": "Nathan",
+              "hi": 4
             }
           ]
         }
@@ -15706,6 +15710,16 @@
           "beat": 20
         },
         {
+          "player": "Deshaun Watson",
+          "pos": "QB",
+          "rivals": [
+            "Ethan",
+            "Jamie",
+            "Nathan"
+          ],
+          "beat": 23
+        },
+        {
           "player": "Fernando Mendoza",
           "pos": "QB",
           "rivals": [
@@ -15715,16 +15729,7 @@
           "beat": 22
         },
         {
-          "player": "Deshaun Watson",
-          "pos": "QB",
-          "rivals": [
-            "Ethan",
-            "Jamie"
-          ],
-          "beat": 22
-        },
-        {
-          "player": "Bo Nix",
+          "player": "Tyler Shough",
           "pos": "QB",
           "rivals": [
             "Jamie"
@@ -15732,7 +15737,7 @@
           "beat": 12
         },
         {
-          "player": "Tyler Shough",
+          "player": "Bo Nix",
           "pos": "QB",
           "rivals": [],
           "beat": 1
